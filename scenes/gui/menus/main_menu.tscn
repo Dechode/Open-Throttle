@@ -1,0 +1,616 @@
+[gd_scene load_steps=7 format=3 uid="uid://cloowpy63vyph"]
+
+[ext_resource type="Script" path="res://scenes/gui/menus/main_menu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/gui/menus/options_tab.tscn" id="2"]
+[ext_resource type="Script" path="res://scenes/gui/menus/track_button.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/gui/menus/play_button.gd" id="5"]
+[ext_resource type="Script" path="res://scenes/gui/menus/car_button.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://crbuaifd4dl6a" path="res://scenes/car_preview.tscn" id="8"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MainButtons" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="HBoxContainer/MainButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="HBoxContainer/MainButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="HBoxContainer/MainButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/MainButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="CreditsLabel" type="RichTextLabel" parent="HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+text = "
+Source code is available at: https://github.com/Dechode/Unnamed-Racing-Sim
+License notice is located in the root directory of this program.
+
+    Open source racing / rally simulator
+    Copyright (C) 2023 Veeti Väisänen
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+"
+selection_enabled = true
+
+[node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
+visible = false
+layout_mode = 2
+
+[node name="GamePlay" parent="HBoxContainer/Options" index="1"]
+layout_mode = 2
+
+[node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="Label" parent="HBoxContainer/Options/GamePlay/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="SteeringInterpolation" parent="HBoxContainer/Options/GamePlay/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/GamePlay/VBoxContainer/SteeringInterpolation" index="0"]
+layout_mode = 2
+
+[node name="CheckButton" parent="HBoxContainer/Options/GamePlay/VBoxContainer/SteeringInterpolation" index="1"]
+layout_mode = 2
+
+[node name="Graphics" parent="HBoxContainer/Options" index="2"]
+layout_mode = 2
+
+[node name="VBoxContainer" parent="HBoxContainer/Options/Graphics" index="0"]
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="AspectRatio" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/AspectRatio" index="0"]
+layout_mode = 2
+
+[node name="OptionButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/AspectRatio" index="1"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+selected = -1
+
+[node name="Resolution" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/Resolution" index="0"]
+layout_mode = 2
+
+[node name="OptionButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/Resolution" index="1"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Fullscreen" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/Fullscreen" index="0"]
+layout_mode = 2
+
+[node name="CheckButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/Fullscreen" index="1"]
+layout_mode = 2
+
+[node name="VSync" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="4"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/VSync" index="0"]
+layout_mode = 2
+
+[node name="CheckButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/VSync" index="1"]
+layout_mode = 2
+
+[node name="Shadows" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="5"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/Shadows" index="0"]
+layout_mode = 2
+
+[node name="CheckButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/Shadows" index="1"]
+layout_mode = 2
+
+[node name="Audio" parent="HBoxContainer/Options" index="3"]
+layout_mode = 2
+
+[node name="VBoxContainer" parent="HBoxContainer/Options/Audio" index="0"]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="Label" parent="HBoxContainer/Options/Audio/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="MasterVolume" parent="HBoxContainer/Options/Audio/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Audio/VBoxContainer/MasterVolume" index="0"]
+layout_mode = 2
+
+[node name="HSlider" parent="HBoxContainer/Options/Audio/VBoxContainer/MasterVolume" index="1"]
+layout_mode = 2
+
+[node name="Label2" parent="HBoxContainer/Options/Audio/VBoxContainer/MasterVolume" index="2"]
+layout_mode = 2
+
+[node name="Input" parent="HBoxContainer/Options" index="4"]
+layout_mode = 2
+
+[node name="VBoxContainer" parent="HBoxContainer/Options/Input" index="0"]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="HSeparator2" parent="HBoxContainer/Options/Input/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="BindTitles" parent="HBoxContainer/Options/Input/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="Label9" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="0"]
+layout_mode = 2
+
+[node name="Label10" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="1"]
+layout_mode = 2
+
+[node name="Label12" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="2"]
+layout_mode = 2
+
+[node name="Label13" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="3"]
+layout_mode = 2
+
+[node name="Label11" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="4"]
+layout_mode = 2
+
+[node name="Label14" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="5"]
+layout_mode = 2
+
+[node name="Label15" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="6"]
+layout_mode = 2
+
+[node name="HSeparator" parent="HBoxContainer/Options/Input/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="SteerLeft" parent="HBoxContainer/Options/Input/VBoxContainer" index="4"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="1"]
+layout_mode = 2
+
+[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="2"]
+layout_mode = 2
+
+[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="3"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="4"]
+layout_mode = 2
+
+[node name="HBoxContainer2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="5"]
+layout_mode = 2
+
+[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="6"]
+layout_mode = 2
+
+[node name="SteerRight" parent="HBoxContainer/Options/Input/VBoxContainer" index="5"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="1"]
+layout_mode = 2
+
+[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="2"]
+layout_mode = 2
+
+[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="3"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="4"]
+layout_mode = 2
+
+[node name="HBoxContainer2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="5"]
+layout_mode = 2
+
+[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="6"]
+layout_mode = 2
+
+[node name="Throttle" parent="HBoxContainer/Options/Input/VBoxContainer" index="6"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="1"]
+layout_mode = 2
+
+[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="2"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="3"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="4"]
+layout_mode = 2
+
+[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="5"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="6"]
+layout_mode = 2
+
+[node name="Brake" parent="HBoxContainer/Options/Input/VBoxContainer" index="7"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="1"]
+layout_mode = 2
+
+[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="2"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="3"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="4"]
+layout_mode = 2
+
+[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="5"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="6"]
+layout_mode = 2
+
+[node name="Clutch" parent="HBoxContainer/Options/Input/VBoxContainer" index="8"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="1"]
+layout_mode = 2
+
+[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="2"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="3"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="4"]
+layout_mode = 2
+
+[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="5"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="6"]
+layout_mode = 2
+
+[node name="Handbrake" parent="HBoxContainer/Options/Input/VBoxContainer" index="9"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="1"]
+layout_mode = 2
+
+[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="2"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="3"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="4"]
+layout_mode = 2
+
+[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="5"]
+layout_mode = 2
+selected = -1
+
+[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="6"]
+layout_mode = 2
+
+[node name="ShiftUp" parent="HBoxContainer/Options/Input/VBoxContainer" index="10"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="1"]
+layout_mode = 2
+
+[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="2"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="3"]
+layout_mode = 2
+
+[node name="ShiftDown" parent="HBoxContainer/Options/Input/VBoxContainer" index="11"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="0"]
+layout_mode = 2
+
+[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="1"]
+layout_mode = 2
+
+[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="2"]
+layout_mode = 2
+
+[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="3"]
+layout_mode = 2
+
+[node name="FFB" parent="HBoxContainer/Options" index="5"]
+layout_mode = 2
+
+[node name="VBoxContainer" parent="HBoxContainer/Options/FFB" index="0"]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="Title" parent="HBoxContainer/Options/FFB/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" parent="HBoxContainer/Options/FFB/VBoxContainer/Title" index="0"]
+layout_mode = 2
+
+[node name="Options" parent="HBoxContainer/Options/FFB/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Actions" parent="HBoxContainer/Options/FFB/VBoxContainer/Options" index="0"]
+layout_mode = 2
+
+[node name="FFBEnabled" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="0"]
+layout_mode = 2
+
+[node name="FFBInverted" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="1"]
+layout_mode = 2
+
+[node name="FFBGain" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="2"]
+layout_mode = 2
+
+[node name="FFBMinForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="3"]
+layout_mode = 2
+
+[node name="FFBFrontForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="4"]
+layout_mode = 2
+
+[node name="FFBRearForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="5"]
+layout_mode = 2
+
+[node name="Values" parent="HBoxContainer/Options/FFB/VBoxContainer/Options" index="1"]
+layout_mode = 2
+
+[node name="FFBEnabled" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="0"]
+layout_mode = 2
+
+[node name="FFBEnabled2" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="1"]
+layout_mode = 2
+
+[node name="FFBGain" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="2"]
+layout_mode = 2
+
+[node name="FFBMinForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="3"]
+layout_mode = 2
+
+[node name="FFBFrontForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="4"]
+layout_mode = 2
+
+[node name="FFBRearForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="5"]
+layout_mode = 2
+
+[node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Track" type="TabBar" parent="HBoxContainer/PlayMenu"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Track"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TrackList" type="ScrollContainer" parent="HBoxContainer/PlayMenu/Track/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Track List"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer"]
+layout_mode = 2
+
+[node name="TrackButton" type="Button" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Test Track"
+script = ExtResource("4")
+path = "res://scenes/levels/test_track.tscn"
+
+[node name="TrackButton2" type="Button" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Playground"
+script = ExtResource("4")
+path = "res://scenes/levels/playground.tscn"
+
+[node name="TrackButton3" type="Button" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Drag Race"
+script = ExtResource("4")
+path = "res://scenes/levels/drag_test.tscn"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/PlayMenu/Track/HBoxContainer"]
+layout_mode = 2
+
+[node name="Preview" type="VBoxContainer" parent="HBoxContainer/PlayMenu/Track/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/Preview"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Car" type="TabBar" parent="HBoxContainer/PlayMenu"]
+visible = false
+layout_mode = 2
+
+[node name="Cars" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Car"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CarListScroll" type="ScrollContainer" parent="HBoxContainer/PlayMenu/Car/Cars"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CarListVbox" type="VBoxContainer" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+layout_mode = 2
+text = "Historic Rally Rwd mk2"
+script = ExtResource("6")
+car_path = "res://scenes/vehicle/rally_rwd/rally_rwd_1.tscn"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/PlayMenu/Car/Cars"]
+layout_mode = 2
+
+[node name="CarPreview" type="VBoxContainer" parent="HBoxContainer/PlayMenu/Car/Cars"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ViewPortContainer" type="SubViewportContainer" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer"]
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 0
+
+[node name="CarPreview" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport" instance=ExtResource("8")]
+
+[node name="Start" type="TabBar" parent="HBoxContainer/PlayMenu"]
+visible = false
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="HBoxContainer/PlayMenu/Start"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -40.0
+disabled = true
+text = "Play"
+script = ExtResource("5")
+
+[node name="QuitPopUp" type="ConfirmationDialog" parent="."]
+position = Vector2i(450, 245)
+dialog_text = "Quit?"
+
+[connection signal="pressed" from="HBoxContainer/MainButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainButtons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="tab_changed" from="HBoxContainer/PlayMenu" to="HBoxContainer/PlayMenu/Start/PlayButton" method="_on_tab_changed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" method="_on_TrackButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" method="_on_TrackButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" method="_on_TrackButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" method="_on_car_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Start/PlayButton" to="HBoxContainer/PlayMenu/Start/PlayButton" method="_on_PlayButton_pressed"]
+[connection signal="confirmed" from="QuitPopUp" to="." method="_on_QuitPopUp_confirmed"]
+
+[editable path="HBoxContainer/Options"]

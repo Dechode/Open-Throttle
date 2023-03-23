@@ -1,0 +1,291 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlbk6a2lbq4e"]
+
+[ext_resource type="Script" path="res://scenes/gui/menus/car_setup_options.gd" id="1_b7v37"]
+
+[node name="CarSetup" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_b7v37")
+
+[node name="Suspension" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Suspension"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FrontSuspension" type="Label" parent="Suspension/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Front Suspension"
+vertical_alignment = 1
+
+[node name="FrontSuspLength" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspLength"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Spring Length"
+
+[node name="Slider" type="HSlider" parent="Suspension/VBoxContainer/FrontSuspLength"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Suspension/VBoxContainer/FrontSuspLength"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.5"
+
+[node name="FrontSuspSpringRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspSpringRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Spring Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspSpringRate"]
+layout_mode = 2
+
+[node name="FrontSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspBumpRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Bump Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspBumpRate"]
+layout_mode = 2
+
+[node name="FrontSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspReboundRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Rebound Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspReboundRate"]
+layout_mode = 2
+
+[node name="FrontSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspAntiRollRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Anti-Roll Bar Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspAntiRollRate"]
+layout_mode = 2
+
+[node name="RearSuspension" type="Label" parent="Suspension/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Rear Suspension"
+vertical_alignment = 1
+
+[node name="RearSuspLength" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspLength"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Spring Length"
+
+[node name="Slider" type="HSlider" parent="Suspension/VBoxContainer/RearSuspLength"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Suspension/VBoxContainer/RearSuspLength"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.5"
+
+[node name="RearSuspSpringRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspSpringRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Spring Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspSpringRate"]
+layout_mode = 2
+
+[node name="RearSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspBumpRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Bump Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspBumpRate"]
+layout_mode = 2
+
+[node name="RearSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspReboundRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Rebound Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspReboundRate"]
+layout_mode = 2
+
+[node name="RearSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspAntiRollRate"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Anti-Roll Bar Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspAntiRollRate"]
+layout_mode = 2
+
+[node name="Wheels" type="TabBar" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Wheels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BrakeBias" type="Label" parent="Wheels/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Brake Bias"
+vertical_alignment = 1
+
+[node name="BrakeBiasFrontBack" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/BrakeBiasFrontBack"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Brake Bias Front-Back"
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/BrakeBiasFrontBack"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/BrakeBiasFrontBack"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.5"
+
+[node name="TireS" type="Label" parent="Wheels/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Tire Model"
+vertical_alignment = 1
+
+[node name="TireModel" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireModel"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Model"
+
+[node name="OptionButton" type="OptionButton" parent="Wheels/VBoxContainer/TireModel"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="TireStiffness" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireStiffness"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Stiffness"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/TireStiffness"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireStiffness"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.5"
+
+[node name="Drivetrain" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Drivetrain"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AWD" type="Label" parent="Drivetrain/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "All Wheel Drive"
+vertical_alignment = 1
+
+[node name="TorqueSplit" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/TorqueSplit"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Torque Split Front-Back"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/TorqueSplit"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/TorqueSplit"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.5"
+
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspLength/Slider" to="." method="_on_front_spring_length_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspSpringRate/SpinBox" to="." method="_on_front_spring_rate_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspBumpRate/SpinBox" to="." method="_on_front_bump_rate_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspReboundRate/SpinBox" to="." method="_on_front_rebound_rate_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspAntiRollRate/SpinBox" to="." method="_on_front_anti_roll_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspLength/Slider" to="." method="_on_rear_spring_length_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspBumpRate/SpinBox" to="." method="_on_rear_bump_rate_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspReboundRate/SpinBox" to="." method="_on_rear_rebound_rate_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspAntiRollRate/SpinBox" to="." method="_on_rear_anti_roll_changed"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://1kdu82q2oqo8"]
+
+[ext_resource type="Script" path="res://scenes/lighting.gd" id="1"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_equol"]
+ground_color = Color(0.768627, 0.847059, 0.866667, 1)
+
+[sub_resource type="Sky" id="Sky_e2gj4"]
+sky_material = SubResource("PhysicalSkyMaterial_equol")
+
+[sub_resource type="Environment" id="6"]
+background_mode = 2
+sky = SubResource("Sky_e2gj4")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.17
+reflected_light_source = 2
+tonemap_mode = 3
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_use_occlusion = true
+
+[node name="Lighting" type="Node3D"]
+script = ExtResource("1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.297242, 0.954802, 0, -0.954802, -0.297242, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("6")

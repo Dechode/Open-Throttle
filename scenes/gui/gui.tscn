@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj3nxdbc2e1wv"]
+
+[ext_resource type="Script" path="res://scenes/gui/gui.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://dbhema4vhnlcq" path="res://scenes/gui/input_app.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://d3u6g8p68o0bb" path="res://scenes/gui/tire_info_app.tscn" id="5"]
+
+[node name="Gui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
+
+[node name="Essentials" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.556863)
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_right = 200.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Essentials"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -116.0
+offset_right = 48.0
+grow_vertical = 0
+
+[node name="GearLabel" type="Label" parent="Essentials/VBoxContainer"]
+layout_mode = 2
+text = "Gear"
+
+[node name="Speedlabel" type="Label" parent="Essentials/VBoxContainer"]
+layout_mode = 2
+text = "Speed"
+
+[node name="RpmLabel" type="Label" parent="Essentials/VBoxContainer"]
+layout_mode = 2
+text = "Rpm"
+
+[node name="FuelLabel" type="Label" parent="Essentials/VBoxContainer"]
+layout_mode = 2
+text = "Fuel"
+
+[node name="TireInfoApp" parent="." instance=ExtResource("5")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 203.0
+offset_bottom = 340.0
+
+[node name="InputApp" parent="." instance=ExtResource("4")]
+layout_mode = 1
+grow_horizontal = 0
+grow_vertical = 0
