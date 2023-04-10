@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2seqrwm503jq"
-path.s3tc="res://.godot/imported/RallyRWD_1_colorpalette8x8.png-4f4365e972dbe647efc8d0e47af33bb8.s3tc.ctex"
+path="res://.godot/imported/RallyRWD_1_colorpalette8x8.png-4f4365e972dbe647efc8d0e47af33bb8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/RallyRWD_1_colorpalette8x8.png"
-dest_files=["res://.godot/imported/RallyRWD_1_colorpalette8x8.png-4f4365e972dbe647efc8d0e47af33bb8.s3tc.ctex"]
+dest_files=["res://.godot/imported/RallyRWD_1_colorpalette8x8.png-4f4365e972dbe647efc8d0e47af33bb8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -1,12 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://1kdu82q2oqo8"]
 
 [ext_resource type="Script" path="res://scenes/lighting.gd" id="1"]
-
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_equol"]
-ground_color = Color(0.768627, 0.847059, 0.866667, 1)
+[ext_resource type="Material" uid="uid://ydgttax2661i" path="res://resources/skies/procedural_sky.tres" id="2_j4dl0"]
 
 [sub_resource type="Sky" id="Sky_e2gj4"]
-sky_material = SubResource("PhysicalSkyMaterial_equol")
+sky_material = ExtResource("2_j4dl0")
 
 [sub_resource type="Environment" id="6"]
 background_mode = 2
