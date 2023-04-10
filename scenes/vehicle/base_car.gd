@@ -351,7 +351,7 @@ func diff(diff_preload, coast_ratio, power_ratio,
 			else:
 				var rolling_resistance = wheels[0].rolling_resistance + wheels[1].rolling_resistance
 				net_torque -= (brake_force + rolling_resistance) * sign(avg_spin)
-				spin = avg_spin + (delta * net_torque / (wheels[0].wheel_inertia + drive_inertia + wheels[1].wheel_inertia))
+				spin = avg_spin + (delta * net_torque / (wheels[0].wheel_moment + drive_inertia + wheels[1].wheel_moment))
 				wheels[0].set_spin(spin)
 				wheels[1].set_spin(spin)
 				

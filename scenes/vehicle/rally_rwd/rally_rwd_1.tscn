@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0ncl8cjc6710"]
+[gd_scene load_steps=11 format=3 uid="uid://d0ncl8cjc6710"]
 
+[ext_resource type="PackedScene" uid="uid://veu4qokvfi21" path="res://assets/models/RallyRWD_1.glb" id="1"]
 [ext_resource type="PackedScene" uid="uid://cof4otah4cygk" path="res://scenes/vehicle/base_car.tscn" id="3"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="3_5kkr2"]
 [ext_resource type="Material" uid="uid://cj5h7b80tkud0" path="res://assets/models/BaseMaterial.material" id="4"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_handler.gd" id="5"]
-[ext_resource type="PackedScene" uid="uid://bjsnhnipobgsx" path="res://assets/models/rwd1/rally_rwd_1.tscn" id="5_s1t76"]
+[ext_resource type="Material" uid="uid://12ovrkdiinj" path="res://assets/models/CarBaseNaterial.material" id="6_dfrio"]
 
 [sub_resource type="Resource" id="Resource_i3jhq"]
 script = ExtResource("3_5kkr2")
-tire_stiffness = 0.5
+tire_stiffness = 1.0
 tire_width = 0.225
 
 [sub_resource type="ArrayMesh" id="3"]
@@ -99,24 +100,23 @@ wheel_mass = 25.0
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 mesh = SubResource("3")
 
-[node name="EngineSound" parent="RigidBodyCar" index="4"]
-visible = false
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBodyCar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00266775, 0.204892)
-visible = false
 shape = SubResource("4")
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="RigidBodyCar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.492021, 0.43385)
-visible = false
 shape = SubResource("5")
 
-[node name="RallyRWD_1" parent="RigidBodyCar" instance=ExtResource("5_s1t76")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.443774, 0.305692)
+[node name="RallyRWD_1" parent="RigidBodyCar" instance=ExtResource("1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.434128, 0.3)
+
+[node name="RallyRwdMk2" parent="RigidBodyCar/RallyRWD_1" index="0"]
+surface_material_override/0 = ExtResource("6_dfrio")
 
 [editable path="RigidBodyCar"]
 [editable path="RigidBodyCar/Wheel_br"]
 [editable path="RigidBodyCar/Wheel_bl"]
 [editable path="RigidBodyCar/Wheel_fr"]
 [editable path="RigidBodyCar/Wheel_fl"]
+[editable path="RigidBodyCar/RallyRWD_1"]

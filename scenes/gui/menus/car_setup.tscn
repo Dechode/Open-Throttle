@@ -13,6 +13,7 @@ size_flags_vertical = 3
 script = ExtResource("1_b7v37")
 
 [node name="Suspension" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Suspension"]
@@ -163,7 +164,6 @@ text = "Anti-Roll Bar Rate"
 layout_mode = 2
 
 [node name="Wheels" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Wheels"]
@@ -279,166 +279,6 @@ ticks_on_borders = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "0.5"
-
-[node name="Gearing" type="Label" parent="Drivetrain/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-text = "Gearing"
-vertical_alignment = 1
-
-[node name="FinalRatio" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/FinalRatio"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Final ratio"
-
-[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/FinalRatio"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.7
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/FinalRatio"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-text = "3.7"
-
-[node name="Gear1" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/Gear1"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Gear 1 Ratio"
-
-[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear1"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.7
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/Gear1"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-text = "3.7"
-
-[node name="Gear2" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/Gear2"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Gear 2 Ratio"
-
-[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear2"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.7
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/Gear2"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-text = "3.7"
-
-[node name="Gear3" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/Gear3"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Gear 3 Ratio"
-
-[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear3"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.7
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/Gear3"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-text = "3.7"
-
-[node name="Gear4" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/Gear4"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Gear 4 Ratio"
-
-[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear4"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.7
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/Gear4"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-text = "3.7"
-
-[node name="Gear5" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/Gear5"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Gear 5 Ratio"
-
-[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear5"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.7
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/Gear5"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-text = "3.7"
-
-[node name="Gear6" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/Gear6"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Gear 6 Ratio"
-
-[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear6"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-min_value = 1.0
-max_value = 5.0
-step = 0.01
-value = 3.7
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/Gear6"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-text = "3.7"
 
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspLength/Slider" to="." method="_on_front_spring_length_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspSpringRate/SpinBox" to="." method="_on_front_spring_rate_changed"]
