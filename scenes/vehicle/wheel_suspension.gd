@@ -16,25 +16,27 @@ extends RayCast3D
 @export var tire_radius := 0.3
 @export var ackermann := 0.15
 
-var tire_wear: float = 0.0
-var surface_mu = 1.0
-var rolling_resistance: float = 0.0 
-var rolling_resistance_coefficient: float = 0.02
+var tire_wear := 0.0
+var surface_mu := 1.0
+var rolling_resistance := 0.0 
+var rolling_resistance_coefficient := 0.02
 
-var y_force: float = 0.0
+var y_force := 0.0
 
-var wheel_moment: float = 0.0
-var spin: float = 0.0
-var z_vel: float = 0.0
-var local_vel
+var wheel_inertia := 0.0
+var spin := 0.0 :
+	set = set_spin, get = get_spin
 
-var force_vec = Vector3.ZERO
-var slip_vec: Vector2 = Vector2.ZERO
+var z_vel := 0.0
+var local_vel := Vector3.ZERO
+
+var force_vec := Vector3.ZERO
+var slip_vec := Vector2.ZERO
 var peak_slip := Vector2.ZERO
-var prev_pos: Vector3 = Vector3.ZERO
+var prev_pos := Vector3.ZERO
 
-var prev_compress: float = 0.0
-var spring_curr_length: float = spring_length
+var prev_compress := 0.0
+var spring_curr_length := spring_length
 
 
 @onready var car = get_parent() as BaseCar
@@ -43,7 +45,7 @@ var spring_curr_length: float = spring_length
 
 func _ready() -> void:
 #	var nominal_load = car.weight * 0.25
-	wheel_moment = 0.5 * wheel_mass * pow(tire_radius, 2)
+	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
 	peak_slip.x = 0.1
 	peak_slip.y = 0.2
@@ -92,6 +94,7 @@ func apply_forces(opposite_comp, delta):
 			elif surface == "Snow":
 				surface_mu = 0.4
 				rolling_resistance_coefficient = 0.035
+		
 		spring_curr_length = get_collision_point().distance_to(global_transform.origin) - tire_radius
 	else:
 		rolling_resistance_coefficient = 0.0
@@ -112,6 +115,7 @@ func apply_forces(opposite_comp, delta):
 	rolling_resistance_coefficient = clamp(rolling_resistance_coefficient, 0, 0.07)
 
 	rolling_resistance = rolling_resistance_coefficient * y_force
+	
 	############### Slip #######################
 	var slip_x = asin(clamp(-planar_vect.x, -1, 1)) # X slip is lateral slip
 	var slip_y = 0.0 # Y slip is the longitudinal Z slip
@@ -133,7 +137,6 @@ func apply_forces(opposite_comp, delta):
 		
 		car.apply_force(normal * y_force, contact)
 		car.apply_force(global_transform.basis.x * force_vec.x, contact)
-	
 		car.apply_force(global_transform.basis.z * force_vec.y, contact)
 		
 		### Return suspension compress info for the car bodys antirollbar calculations
@@ -142,7 +145,7 @@ func apply_forces(opposite_comp, delta):
 			y_force += anti_roll * (compress - opposite_comp)
 		return compress
 	else:
-		spin -= sign(spin) * delta * 2 / wheel_moment # stop undriven wheels from spinning endlessly
+		spin -= sign(spin) * delta * 2 / wheel_inertia # stop undriven wheels from spinning endlessly
 		return 0.0
 
 
@@ -155,12 +158,12 @@ func apply_torque(drive, drive_inertia, brake_torque, delta):
 		spin = 0
 	else:
 		net_torque -= (brake_torque + rolling_resistance) * sign(spin)
-		spin += delta * net_torque / (wheel_moment + drive_inertia)
+		spin += delta * net_torque / (wheel_inertia + drive_inertia)
 		spin = clamp(spin, -1000, 1000)
 	if drive * delta == 0:
 		return 0.5
 	else:
-		return (spin - prev_spin) * (wheel_moment + drive_inertia) / (drive * delta)
+		return (spin - prev_spin) * (wheel_inertia + drive_inertia) / (drive * delta)
 
 
 func steer(input, max_steer):
