@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Unnamed Racing Sim"
+config/name="Open Throttle"
 run/main_scene="res://scenes/gui/menus/main_menu.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
