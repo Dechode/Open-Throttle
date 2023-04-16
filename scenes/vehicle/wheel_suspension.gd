@@ -136,15 +136,6 @@ func apply_forces(opposite_comp, delta):
 	slip_vec.x = asin(clamp(-planar_vect.x, -1, 1)) # X slip is lateral slip
 	slip_vec.y = 0.0 # Y slip is the longitudinal Z slip
 	
-#	if abs(z_vel) != 0:
-#		slip_y = (z_vel - spin * tire_radius) / abs(z_vel)
-#	else:
-#		var vsx = spin - z_vel
-#		var vth = 2
-#		slip_y = -2 * vsx / (vth + z_vel * z_vel / vth)
-	
-	
-#	if not is_zero_approx(z_vel):
 	if abs(z_vel) > 0.01:
 			slip_vec.y = (z_vel - spin * tire_radius) / abs(z_vel)
 	else:
@@ -152,14 +143,11 @@ func apply_forces(opposite_comp, delta):
 			slip_vec.y = 0.0001 * sign(z_vel)
 		else:
 			slip_vec.y = 0.0001 * abs(spin) * sign(z_vel) # This is to avoid "getting stuck" if local z velocity is absolute 0
-#	print_debug(slip_vec)
-#	slip_vec = Vector2(slip_x, slip_y)
-#	clamp(slip_vec,-Vector2.ONE, Vector2.ONE)
 	
 	############### Calculate and apply the forces #######################
-	force_vec = tire_model.update_tire_forces(slip_vec, y_force, surface_mu)
-	
 	if is_colliding():
+		force_vec = tire_model.update_tire_forces(slip_vec, y_force, surface_mu)
+		
 		var contact = get_collision_point() - car.global_transform.origin
 		var normal = get_collision_normal()
 		
@@ -173,7 +161,8 @@ func apply_forces(opposite_comp, delta):
 			y_force += anti_roll * (compress - opposite_comp)
 		return compress
 	else:
-		spin -= sign(spin) * delta * 2 / wheel_inertia # stop undriven wheels from spinning endlessly
+		### stop wheels not colliding from spinning endlessly
+		spin -= sign(spin) * delta * 2 / wheel_inertia 
 		return 0.0
 
 
