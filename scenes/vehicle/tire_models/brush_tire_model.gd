@@ -28,7 +28,7 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float = 1
 	
 	peak_sa = friction / (2 * cornering_stiffness)
 	peak_sr = peak_sa * 0.7
-	print(peak_sa)
+#	print(peak_sa)
 	var critical_length = 0
 	if slip.x:
 		critical_length = friction / (stiffness * contact_patch * tan(abs(slip.x)))
