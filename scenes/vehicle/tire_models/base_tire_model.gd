@@ -3,7 +3,7 @@ extends Resource
 
 const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 
-@export var tire_stiffness := 0.5 # (float, 0.0 ,1.0)
+@export var tire_stiffness := 0.5
 @export var tire_width := 0.225
 
 # Possible input parameters for tire model
@@ -24,9 +24,6 @@ var peak_sr := 0.1
 #var tire_rim_size := 16.0
 #var pneumatic_trail = 0.03
 
-#func _init():
-#	print("Base tire model initialized")
-
 
 # Override this
 func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
@@ -41,9 +38,12 @@ func update_tire_wear(delta: float, slip: Vector2, normal_load: float, mu: float
 
 
 func update_load_sensitivity(normal_load: float) -> float:
-	var max_mu = 3.0 - tire_stiffness * 1.6
-	var min_mu = 0.9 + tire_stiffness * 0.2
-	var average_load = 5000
-	var load_factor = normal_load / average_load
+	var max_mu = 2.5 - tire_stiffness * 1.0
+	var min_mu = 0.6 + tire_stiffness * 0.4
+#	var average_load = 5000
+#	var load_factor = normal_load / average_load
+	var max_load = 7000
+	var load_factor = normal_load / max_load
 	load_sensitivity = clamp(min_mu + (1 - load_factor) * (max_mu - min_mu), min_mu, max_mu)
+	print_debug(load_sensitivity)
 	return load_sensitivity
