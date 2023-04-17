@@ -43,6 +43,10 @@ var spring_curr_length := spring_length
 @onready var wheelmesh = $MeshInstance3D
 
 
+func _init() -> void:
+	tire_model = BaseTireModel.new()
+
+
 func _ready() -> void:
 #	var nominal_load = car.weight * 0.25
 	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
@@ -75,10 +79,10 @@ func set_params(params: WheelSuspensionParameters):
 	bump = params.bump
 	rebound = params.rebound
 	wheel_mass = params.wheel_mass
-	tire_radius = params.tire_radius
-	tire_model.tire_width = params.tire_width
+	tire_radius = params.tire_model.tire_radius
 	ackermann = params.ackermann
 	anti_roll = params.anti_roll
+	
 	
 	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
