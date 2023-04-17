@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0ncl8cjc6710"]
+[gd_scene load_steps=16 format=3 uid="uid://d0ncl8cjc6710"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="3"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="3_5kkr2"]
@@ -12,76 +12,22 @@
 _data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_ivacb"]
+[sub_resource type="Resource" id="Resource_q7tsp"]
 script = ExtResource("3_5kkr2")
 tire_stiffness = 0.5
 tire_width = 0.225
-
-[sub_resource type="Resource" id="Resource_48fjh"]
-script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_ivacb")
-spring_length = 0.15
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
-wheel_mass = 20.0
 tire_radius = 0.3
-tire_width = 0.225
-ackermann = 0.15
-anti_roll = 50
-
-[sub_resource type="Resource" id="Resource_vgee4"]
-script = ExtResource("3_5kkr2")
-tire_stiffness = 0.5
-tire_width = 0.225
-
-[sub_resource type="Resource" id="Resource_xxk4w"]
-script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_vgee4")
-spring_length = 0.15
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
-wheel_mass = 20.0
-tire_radius = 0.3
-tire_width = 0.225
-ackermann = 0.15
-anti_roll = 50
-
-[sub_resource type="Resource" id="Resource_qrtx3"]
-script = ExtResource("3_5kkr2")
-tire_stiffness = 0.5
-tire_width = 0.225
+tire_rated_load = 7000
 
 [sub_resource type="Resource" id="Resource_2ayn4"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_qrtx3")
+tire_model = SubResource("Resource_q7tsp")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
 wheel_mass = 20.0
-tire_radius = 0.3
-tire_width = 0.225
-ackermann = 0.15
-anti_roll = 50
-
-[sub_resource type="Resource" id="Resource_8iv08"]
-script = ExtResource("3_5kkr2")
-tire_stiffness = 0.5
-tire_width = 0.225
-
-[sub_resource type="Resource" id="Resource_msyrl"]
-script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_8iv08")
-spring_length = 0.15
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
-wheel_mass = 20.0
-tire_radius = 0.3
-tire_width = 0.225
-ackermann = 0.15
+ackermann = -0.15
 anti_roll = 50
 
 [sub_resource type="Resource" id="Resource_ysiuk"]
@@ -90,7 +36,7 @@ max_steer = 0.4
 front_brake_bias = 0.6
 steer_speed = 5.0
 max_brake_force = 20000.0
-max_handbrake_force = 10000.0
+max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 40.0
 fuel_percentage = 100.0
@@ -124,14 +70,16 @@ cd = 0.3
 air_density = 1.225
 frontal_area = 2.0
 wheel_params_fl = SubResource("Resource_2ayn4")
-wheel_params_fr = SubResource("Resource_msyrl")
-wheel_params_bl = SubResource("Resource_48fjh")
-wheel_params_br = SubResource("Resource_xxk4w")
+wheel_params_fr = SubResource("Resource_2ayn4")
+wheel_params_bl = SubResource("Resource_2ayn4")
+wheel_params_br = SubResource("Resource_2ayn4")
 
 [sub_resource type="Resource" id="Resource_i3jhq"]
 script = ExtResource("3_5kkr2")
 tire_stiffness = 0.5
 tire_width = 0.225
+tire_radius = 0.3
+tire_rated_load = 7000
 
 [sub_resource type="ArrayMesh" id="3"]
 resource_name = "RallyRWD_1_Cylinder"
