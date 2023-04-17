@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlbk6a2lbq4e"]
 
-[ext_resource type="Script" path="res://scenes/gui/menus/car_setup_options.gd" id="1_b7v37"]
+[ext_resource type="Script" path="res://scenes/gui/menus/car_setup_menu.gd" id="1_4tq7e"]
 
 [node name="CarSetup" type="TabContainer"]
 anchors_preset = 15
@@ -10,9 +10,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_b7v37")
+script = ExtResource("1_4tq7e")
 
 [node name="Suspension" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Suspension"]
@@ -163,7 +164,6 @@ text = "Anti-Roll Bar Rate"
 layout_mode = 2
 
 [node name="Wheels" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Wheels"]
@@ -174,10 +174,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BrakeBias" type="Label" parent="Wheels/VBoxContainer"]
+[node name="Brakes" type="Label" parent="Wheels/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Brake Bias"
+text = "Brakes"
 vertical_alignment = 1
 
 [node name="BrakeBiasFrontBack" type="HBoxContainer" parent="Wheels/VBoxContainer"]
@@ -201,10 +201,10 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "0.5"
 
-[node name="TireS" type="Label" parent="Wheels/VBoxContainer"]
+[node name="Tires" type="Label" parent="Wheels/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Tire Model"
+text = "Tires"
 vertical_alignment = 1
 
 [node name="TireModel" type="HBoxContainer" parent="Wheels/VBoxContainer"]
@@ -240,6 +240,72 @@ ticks_on_borders = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "0.5"
+
+[node name="TireRadius" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireRadius"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Radius"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/TireRadius"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireRadius"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.3"
+
+[node name="TireWidth" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireWidth"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Width"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/TireWidth"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireWidth"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.225"
+
+[node name="TireRatedLoad" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireRatedLoad"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Rated Load"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/TireRatedLoad"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 15000.0
+step = 100.0
+value = 7000.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireRatedLoad"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "7000"
 
 [node name="Drivetrain" type="TabBar" parent="."]
 visible = false
@@ -446,6 +512,7 @@ text = "3.7"
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspReboundRate/SpinBox" to="." method="_on_front_rebound_rate_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspAntiRollRate/SpinBox" to="." method="_on_front_anti_roll_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspLength/Slider" to="." method="_on_rear_spring_length_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspSpringRate/SpinBox" to="." method="_on_rear_spring_rate_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspBumpRate/SpinBox" to="." method="_on_rear_bump_rate_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspReboundRate/SpinBox" to="." method="_on_rear_rebound_rate_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspAntiRollRate/SpinBox" to="." method="_on_rear_anti_roll_changed"]
