@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://du83hxrcubipa"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://bwhvhk6h7f26f" path="res://scenes/camera_system.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bwhvhk6h7f26f" path="res://scenes/camera/camera_system.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dj3nxdbc2e1wv" path="res://scenes/gui/gui.tscn" id="2"]
 
 [node name="Player" type="Node3D"]
