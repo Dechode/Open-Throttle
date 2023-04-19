@@ -25,6 +25,7 @@ enum DRIVE_TYPE{
 @export var reverse_ratio = 3.9
 @export var gear_inertia = 0.10
 @export var automatic := true
+@export var transmission_efficiency := 0.9
 
 @export var rear_diff = DIFF_TYPE.LIMITED_SLIP
 @export var front_diff = DIFF_TYPE.LIMITED_SLIP
@@ -86,8 +87,8 @@ func differential(torque, brake_torque, wheels, diff_preload, power_ratio, coast
 #	print_debug(torque)
 	
 	var delta_torque = wheels[0].get_reaction_torque() - wheels[1].get_reaction_torque()
-	var t1 = torque * 0.5
-	var t2 = torque * 0.5
+	var t1 = torque * 0.5 * transmission_efficiency
+	var t2 = torque * 0.5 * transmission_efficiency
 	var drive_inertia = _engine_inertia + pow(abs(get_gearing()), 2) * gear_inertia
 #	print_debug(drive_inertia)
 	

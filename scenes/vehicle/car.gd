@@ -83,6 +83,7 @@ func _ready() -> void:
 	drivetrain.rear_diff_coast_ratio = car_params.rear_diff_coast_ratio
 	drivetrain.automatic = car_params.automatic
 	drivetrain.drivetype = car_params.drivetype
+	drivetrain.transmission_efficiency = car_params.transmission_efficiency
 	drivetrain.set_front_diff_preload(car_params.front_diff_preload)
 	drivetrain.set_rear_diff_preload(car_params.rear_diff_preload)
 	drivetrain.set_input_inertia(car_params.engine_moment)
