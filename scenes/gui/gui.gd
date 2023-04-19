@@ -1,12 +1,15 @@
 extends Control
 
 
-
 @onready var car = get_parent().get_parent()
 @onready var speed_label = $Essentials/VBoxContainer/Speedlabel
 @onready var gear_label = $Essentials/VBoxContainer/GearLabel
 @onready var rpm_label = $Essentials/VBoxContainer/RpmLabel
 @onready var fuel_label = $Essentials/VBoxContainer/FuelLabel
+
+# TODO Use VehicleAPI to get the properties
+#func _ready() -> void:
+#	car = VehicleAPI.car
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
