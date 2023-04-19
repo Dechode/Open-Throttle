@@ -182,7 +182,7 @@ func engine_loop(delta):
 	if rpm >= car_params.max_engine_rpm:
 		torque_out = 0.0
 		rpm -= 500.0
-	if rpm <= (car_params.rpm_idle + 10) and abs(local_vel.z) <= 2:
+	if rpm <= car_params.rpm_idle + 10: #and abs(local_vel.z) <= 2:
 		clutch_input = 1.0
 	play_engine_sound()
 	if fuel <= 0.0:
@@ -191,6 +191,7 @@ func engine_loop(delta):
 		stop_engine_sound()
 	burn_fuel(torque_out, delta)
 	rpm = max(rpm , car_params.rpm_idle)
+#	rpm = max(rpm , 0) # TODO make engine able to shutoff?
 	return torque_out
 
 
