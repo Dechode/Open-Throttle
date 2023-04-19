@@ -108,6 +108,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.721552, -0.111579, 1.32806)
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_br" index="0"]
 mesh = SubResource("3")
 
+[node name="TireMarks" parent="RigidBodyCar/Wheel_br" index="1"]
+visibility_aabb = AABB(-0.374988, -0.205301, -0.475521, 0.749976, 0.410602, 0.951042)
+
 [node name="Wheel_bl" parent="RigidBodyCar" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.722, -0.111579, 1.32806)
 

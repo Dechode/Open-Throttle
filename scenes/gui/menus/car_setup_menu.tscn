@@ -13,6 +13,7 @@ size_flags_vertical = 3
 script = ExtResource("1_4tq7e")
 
 [node name="Suspension" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Suspension"]
@@ -163,7 +164,6 @@ text = "Anti-Roll Bar Rate"
 layout_mode = 2
 
 [node name="Wheels" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Wheels"]
