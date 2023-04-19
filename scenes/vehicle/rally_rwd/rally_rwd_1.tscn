@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0ncl8cjc6710"]
+[gd_scene load_steps=15 format=3 uid="uid://d0ncl8cjc6710"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="3"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="3_5kkr2"]
@@ -74,13 +74,6 @@ wheel_params_fr = SubResource("Resource_2ayn4")
 wheel_params_bl = SubResource("Resource_2ayn4")
 wheel_params_br = SubResource("Resource_2ayn4")
 
-[sub_resource type="Resource" id="Resource_i3jhq"]
-script = ExtResource("3_5kkr2")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-tire_rated_load = 7000
-
 [sub_resource type="ArrayMesh" id="3"]
 resource_name = "RallyRWD_1_Cylinder"
 _surfaces = [{
@@ -111,49 +104,24 @@ car_params = SubResource("Resource_ysiuk")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.721552, -0.111579, 1.32806)
-tire_model = SubResource("Resource_i3jhq")
-spring_length = 0.12
-spring_stiffness = 75000.0
-bump = 9000.0
-rebound = 8000.0
-wheel_mass = 25.0
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_br" index="0"]
 mesh = SubResource("3")
 
 [node name="Wheel_bl" parent="RigidBodyCar" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.722, -0.111579, 1.32806)
-tire_model = SubResource("Resource_i3jhq")
-spring_length = 0.12
-spring_stiffness = 75000.0
-bump = 9000.0
-rebound = 8000.0
-wheel_mass = 25.0
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_bl" index="0"]
 mesh = SubResource("3")
 
 [node name="Wheel_fr" parent="RigidBodyCar" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.721552, -0.111579, -1.1884)
-tire_model = SubResource("Resource_i3jhq")
-spring_length = 0.12
-spring_stiffness = 110000.0
-bump = 10000.0
-rebound = 16000.0
-wheel_mass = 25.0
-ackermann = -0.15
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fr" index="0"]
 mesh = SubResource("3")
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.722, -0.111579, -1.1884)
-tire_model = SubResource("Resource_i3jhq")
-spring_length = 0.12
-spring_stiffness = 110000.0
-bump = 10000.0
-rebound = 16000.0
-wheel_mass = 25.0
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 mesh = SubResource("3")

@@ -46,6 +46,7 @@ var prev_pos: Vector3 = Vector3.ZERO
 
 var last_shift_time = 0
 
+######### Instances ######### 
 var clutch: Clutch
 var drivetrain: DriveTrain
 var driver: Driver
@@ -202,7 +203,6 @@ func get_engine_torgue(p_rpm) -> float:
 func get_brake_torques(p_brake_input: float):
 	var clamping_force := p_brake_input * car_params.max_brake_force * 0.5 
 	var brake_pad_mu := 0.4
-#	var effective_radius := 0.25
 	var braking_force := 2.0 * brake_pad_mu * clamping_force
 	
 	var torques := Vector2.ZERO
@@ -243,7 +243,7 @@ func engage(delta):
 	var delta_av := engine_av - gearbox_av
 	var clutch_kick: float = abs(delta_av) * 0.2
 	var reaction_torques = clutch.get_reaction_torques(engine_av, gearbox_av, clutch_input, clutch_kick)
-	drive_reaction_torque = reaction_torques.x #* (1 - clutch_input)
+	drive_reaction_torque = reaction_torques.x
 	clutch_reaction_torque = reaction_torques.y
 	
 	drivetrain.drivetrain(drive_reaction_torque, rear_brake_torque, front_brake_torque, [wheel_bl, wheel_br, wheel_fl, wheel_fr], delta)

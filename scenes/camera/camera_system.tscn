@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cecdjwrkufhri"]
 
 [ext_resource type="Script" path="res://scenes/camera/camera_system.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/camera/cam_targets.gd" id="2"]

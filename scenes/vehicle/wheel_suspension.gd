@@ -2,19 +2,19 @@ class_name RaycastSuspension
 extends RayCast3D
 
 ############# Choose what tire formula to use #############
-@export var tire_model: BaseTireModel 
+var tire_model: BaseTireModel 
 
 ############# Suspension stuff #############
-@export var spring_length := 0.2
-@export var spring_stiffness := 20000.0
-@export var bump := 5000.0
-@export var rebound := 3000.0
-@export var anti_roll := 0.0
+var spring_length := 0.2
+var spring_stiffness := 20000.0
+var bump := 5000.0
+var rebound := 3000.0
+var anti_roll := 0.0
 
 ############# Tire stuff #############
-@export var wheel_mass := 15.0
-@export var tire_radius := 0.3
-@export var ackermann := 0.15
+var wheel_mass := 15.0
+var tire_radius := 0.3
+var ackermann := 0.15
 
 var tire_wear := 0.0
 var surface_mu := 1.0
@@ -56,18 +56,19 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	peak_slip.x = tire_model.peak_sa
-	peak_slip.y = tire_model.peak_sr
-	
 	if abs(slip_vec.x) >= peak_slip.x or abs(slip_vec.y) >= peak_slip.y:
 		$TireMarks.emitting = self.is_colliding()
 	else:
 		$TireMarks.emitting = false
-	if abs(z_vel) > 2.0:
-		tire_wear = tire_model.update_tire_wear(delta, slip_vec, y_force, surface_mu, tire_wear)
 
 
 func _physics_process(delta: float) -> void:
+	peak_slip.x = tire_model.peak_sa
+	peak_slip.y = tire_model.peak_sr
+	
+	if abs(z_vel) > 2.0:
+		tire_wear = tire_model.update_tire_wear(delta, slip_vec, y_force, surface_mu, tire_wear)
+	
 	wheelmesh.position.y = -spring_curr_length
 	wheelmesh.rotate_x(wrapf(-spin * delta,0, TAU))
 
@@ -131,6 +132,8 @@ func apply_forces(opposite_comp, delta):
 	y_force = max(0, y_force)
 	
 	prev_compress = compress
+	
+	# Somewhat made up speed relative rolling resistance
 	rolling_resistance_coefficient *= abs(z_vel) / 27
 	rolling_resistance_coefficient = clamp(rolling_resistance_coefficient, 0, 0.07)
 
@@ -170,21 +173,23 @@ func apply_forces(opposite_comp, delta):
 		return 0.0
 
 
-func apply_torque(drive, brake_torque, drive_inertia, delta):
-#	print(drive)
+func apply_torque(drive_torque, brake_torque, drive_inertia, delta):
+#	print(drive_torque)
 	var prev_spin = spin
 	var net_torque = force_vec.y * tire_radius
-	net_torque += drive
+	net_torque += drive_torque
+	
 	if abs(spin) < 5 and brake_torque > abs(net_torque):
 		spin = 0
 	else:
 		net_torque -= (brake_torque + rolling_resistance) * sign(spin)
 		spin += delta * net_torque / (wheel_inertia + drive_inertia)
 		spin = clamp(spin, -1000, 1000)
-	if drive * delta == 0:
+	
+	if drive_torque * delta == 0:
 		return 0.5
 	else:
-		return (spin - prev_spin) * (wheel_inertia + drive_inertia) / (drive * delta)
+		return (spin - prev_spin) * (wheel_inertia + drive_inertia) / (drive_torque * delta)
 
 
 func steer(input, max_steer):

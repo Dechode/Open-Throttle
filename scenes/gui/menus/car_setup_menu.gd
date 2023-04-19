@@ -1,3 +1,4 @@
+class_name CarSetupMenu
 extends TabContainer
 
 #var car_setup: CarParameters

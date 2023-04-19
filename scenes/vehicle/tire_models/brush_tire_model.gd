@@ -9,10 +9,10 @@ var contact_patch = 0.2
 
 
 func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float = 1.0) -> Vector3:
-	var avg_contact_patch = 0.2
-	var max_contact_patch = tire_width * 1.2
+#	var avg_contact_patch = 0.2
+#	var max_contact_patch = tire_width * 1.2
 	
-	var load_factor = normal_load / 4000
+#	var load_factor = normal_load / 4000
 	
 #	contact_patch = clamp(avg_contact_patch * load_factor, 0.08, max_contact_patch)
 	contact_patch = tire_width * 0.75
