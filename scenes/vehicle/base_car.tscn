@@ -1,63 +1,149 @@
-[gd_scene load_steps=10 format=3 uid="uid://cof4otah4cygk"]
+[gd_scene load_steps=17 format=3 uid="uid://bgkpgeq00bws2"]
 
-[ext_resource type="Script" path="res://scenes/vehicle/base_car.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/vehicle/car.gd" id="1_ekicj"]
+[ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_skbd3"]
 [ext_resource type="AudioStream" path="res://resources/audio/engine/EngineSample.tres" id="4_kgrag"]
+[ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="4_sel4p"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="8"]
 [ext_resource type="PackedScene" uid="uid://nelgdfamj8jh" path="res://scenes/vehicle/wheel_suspension.tscn" id="9"]
 
-[sub_resource type="Curve" id="8"]
-_data = [Vector2(0, 0.563636), 0.0, 0.0, 0, 0, Vector2(0.623809, 1), -0.303719, -0.303719, 0, 0, Vector2(0.872852, 0.663636), -1.61667, -1.8438, 0, 0, Vector2(1, 0.109091), -6.85253, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_8w45n"]
+_data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_far6u"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_8dxut"]
 script = ExtResource("8")
 tire_stiffness = 0.5
 tire_width = 0.225
+tire_radius = 0.3
+tire_rated_load = 7000
 
-[sub_resource type="Resource" id="Resource_p7nij"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_48fjh"]
+script = ExtResource("4_sel4p")
+tire_model = SubResource("Resource_8dxut")
+spring_length = 0.15
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 20.0
+ackermann = 0.15
+anti_roll = 50
+
+[sub_resource type="Resource" id="Resource_3f7xa"]
 script = ExtResource("8")
 tire_stiffness = 0.5
 tire_width = 0.225
+tire_radius = 0.3
+tire_rated_load = 7000
 
-[sub_resource type="Resource" id="Resource_qeh51"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_xxk4w"]
+script = ExtResource("4_sel4p")
+tire_model = SubResource("Resource_3f7xa")
+spring_length = 0.15
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 20.0
+ackermann = 0.15
+anti_roll = 50
+
+[sub_resource type="Resource" id="Resource_tlmfx"]
 script = ExtResource("8")
 tire_stiffness = 0.5
 tire_width = 0.225
+tire_radius = 0.3
+tire_rated_load = 7000
 
-[sub_resource type="Resource" id="Resource_88hmf"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_2ayn4"]
+script = ExtResource("4_sel4p")
+tire_model = SubResource("Resource_tlmfx")
+spring_length = 0.15
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 20.0
+ackermann = 0.15
+anti_roll = 50
+
+[sub_resource type="Resource" id="Resource_rtuig"]
 script = ExtResource("8")
 tire_stiffness = 0.5
 tire_width = 0.225
+tire_radius = 0.3
+tire_rated_load = 7000
 
-[node name="RigidBodyCar" type="RigidBody3D" node_paths=PackedStringArray("engine_sound")]
+[sub_resource type="Resource" id="Resource_msyrl"]
+script = ExtResource("4_sel4p")
+tire_model = SubResource("Resource_rtuig")
+spring_length = 0.15
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 20.0
+ackermann = 0.15
+anti_roll = 50
+
+[sub_resource type="Resource" id="Resource_rf8jn"]
+script = ExtResource("2_skbd3")
+max_steer = 0.3
+front_brake_bias = 0.6
+steer_speed = 5.0
+max_brake_force = 30000.0
+max_handbrake_force = 3000.0
+brake_effective_radius = 0.25
+fuel_tank_size = 40.0
+fuel_percentage = 100.0
+max_torque = 250.0
+max_engine_rpm = 8000.0
+rpm_idle = 900.0
+torque_curve = SubResource("Curve_8w45n")
+engine_drag = 0.03
+engine_brake = 10.0
+engine_moment = 0.25
+engine_bsfc = 0.3
+engine_sound = ExtResource("4_kgrag")
+clutch_friction = 500.0
+drivetype = 1
+automatic = false
+transmission_efficiency = 0.9
+gear_ratios = [3.1, 2.61, 2.1, 1.72, 1.2, 1.0]
+final_drive = 3.7
+reverse_ratio = 3.9
+gear_inertia = 0.12
+front_diff = 0
+front_diff_preload = 50.0
+front_diff_power_ratio = 2.0
+front_diff_coast_ratio = 1.0
+rear_diff = 0
+rear_diff_preload = 50.0
+rear_diff_power_ratio = 2.0
+rear_diff_coast_ratio = 1.0
+center_split_fr = 0.4
+cd = 0.3
+air_density = 1.225
+frontal_area = 2.0
+wheel_params_fl = SubResource("Resource_2ayn4")
+wheel_params_fr = SubResource("Resource_msyrl")
+wheel_params_bl = SubResource("Resource_48fjh")
+wheel_params_br = SubResource("Resource_xxk4w")
+
+[node name="RigidBodyCar" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 2
 mass = 700.0
-script = ExtResource("1")
-torque_curve = SubResource("8")
-engine_moment = 0.2
-engine_sound = NodePath("EngineSound")
-gear_ratios = [3.5, 3.0, 2.5, 1.72, 1.2, 1.0]
-gear_inertia = 0.09
+script = ExtResource("1_ekicj")
+car_params = SubResource("Resource_rf8jn")
 
 [node name="Wheel_br" parent="." instance=ExtResource("9")]
-tire_model = SubResource("Resource_far6u")
 
 [node name="Wheel_bl" parent="." instance=ExtResource("9")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 1.5)
-tire_model = SubResource("Resource_p7nij")
 
 [node name="Wheel_fr" parent="." instance=ExtResource("9")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, -1.5)
-tire_model = SubResource("Resource_qeh51")
 
 [node name="Wheel_fl" parent="." instance=ExtResource("9")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -1.5)
-tire_model = SubResource("Resource_88hmf")
 
 [node name="EngineSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.79)

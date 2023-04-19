@@ -1,14 +1,12 @@
 class_name PlayerDriver
-extends BaseDriver
+extends Driver
 
-var steering_value := 0.0
-var steer_speed := 5.0
-
-@onready var car = get_parent()
 
 
 func _ready():
-	pass
+	VehicleAPI.car = car
+#	print_debug("created player driver")
+#	set_physics_process(true)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -18,27 +16,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		car.shift_down()
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	brake_input = InputManager.get_brake_input()
-	steering_input = InputManager.get_steering_input()
+	var raw_steering_input = InputManager.get_steering_input()
 	throttle_input = InputManager.get_throttle_input()
 	handbrake_input = InputManager.get_handbrake_input()
 	clutch_input = InputManager.get_clutch_input()
 	
-	VehicleAPI.tires[0].tire_wear = car.wheel_bl.tire_wear
-	VehicleAPI.tires[1].tire_wear = car.wheel_br.tire_wear
-	VehicleAPI.tires[2].tire_wear = car.wheel_fl.tire_wear
-	VehicleAPI.tires[3].tire_wear = car.wheel_fr.tire_wear
+	VehicleAPI.car.wheel_bl.tire_wear = car.wheel_bl.tire_wear
+	VehicleAPI.car.wheel_br.tire_wear = car.wheel_br.tire_wear
+	VehicleAPI.car.wheel_fl.tire_wear = car.wheel_fl.tire_wear
+	VehicleAPI.car.wheel_fr.tire_wear = car.wheel_fr.tire_wear
 	
 		##### Steerin with steer speed #####
 	if OptionsManager.get_config_value("steering_interpolation"):
-		steering_value = steer_lerp(steering_input, steering_value, steer_speed, delta)
-	
-	car.throttle_input = throttle_input
-	car.steering_input = steering_value
-	car.brake_input = brake_input
-	car.handbrake_input = handbrake_input
-	car.clutch_input = clutch_input
+		steering_input = steer_lerp(raw_steering_input, steering_input, steer_speed, delta)
+	else:
+		steering_input = raw_steering_input
 
 
 func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float):

@@ -34,6 +34,12 @@ func add_car(car_n_driver: CarDriverPair, grid_id):
 	
 #	print_debug("car path = %s" % car_path)
 	var car = load(car_path).instantiate()
-	car.add_driver(driver_type)
+	if driver_type == 1:
+		for child in car.get_children():
+			if child is BaseCar:
+				child.add_child(load("res://scenes/drivers/player_driver.tscn").instantiate())
+				var driver = PlayerDriver.new()
+				child.set_driver(driver)
+#				
 	grid[grid_id].add_child(car)
 	

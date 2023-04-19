@@ -1,13 +1,21 @@
 extends Node
 
-var tire := {
-	"tire_wear" : 0.0,
-} 
+signal car_changed(car)
 
-var tires := [tire.duplicate(), tire.duplicate(), tire.duplicate(), tire.duplicate()]
-var speed_kmh = 0
-var selected_gear := 0
+var car: BaseCar = BaseCar.new():
+	set(value):
+		car = value
+		car_changed.emit(value)
 
 
 func _ready():
 	pass
+
+
+func get_tire_wear():
+	var wear_fl: float = car.wheel_fl.tire_wear
+	var wear_fr: float = car.wheel_fr.tire_wear
+	var wear_bl: float = car.wheel_bl.tire_wear
+	var wear_br: float = car.wheel_br.tire_wear
+	
+	return [wear_fl, wear_fr, wear_bl, wear_br]

@@ -3,12 +3,13 @@ extends Resource
 
 const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 
-@export var tire_stiffness := 0.5 # (float, 0.0 ,1.0)
+@export var tire_stiffness := 0.5
 @export var tire_width := 0.225
+@export var tire_radius := 0.3
+@export var tire_rated_load := 7000
 
 # Possible input parameters for tire model
 #export var tire_rated_pressure := 2.0
-#export var tire_radius := 0.3
 
 
 var tire_wear := 0.0
@@ -17,15 +18,13 @@ var load_sensitivity := 1.0
 var peak_sa := 0.1
 var peak_sr := 0.1
 
+
 # Possible variables for force calculations
 #var tire_temperature := 280.0 # Kelvin
 #var tire_pressure := 2.0
 #var tire_ratio := 0.5
 #var tire_rim_size := 16.0
 #var pneumatic_trail = 0.03
-
-#func _init():
-#	print("Base tire model initialized")
 
 
 # Override this
@@ -41,9 +40,11 @@ func update_tire_wear(delta: float, slip: Vector2, normal_load: float, mu: float
 
 
 func update_load_sensitivity(normal_load: float) -> float:
-	var max_mu = 3.0 - tire_stiffness * 1.6
-	var min_mu = 0.9 + tire_stiffness * 0.2
-	var average_load = 5000
-	var load_factor = normal_load / average_load
+	var width_factor = tire_width / 0.225
+	var max_mu = 2.0 - tire_stiffness * 0.9 + width_factor * 0.5 - 0.5
+	var min_mu = 0.6 + tire_stiffness * 0.35 + width_factor * 0.5 - 0.5
+	var load_factor = normal_load / tire_rated_load
+	load_factor = clamp(load_factor, 0.0, 1.0)
 	load_sensitivity = clamp(min_mu + (1 - load_factor) * (max_mu - min_mu), min_mu, max_mu)
+#	print_debug(load_sensitivity)
 	return load_sensitivity
