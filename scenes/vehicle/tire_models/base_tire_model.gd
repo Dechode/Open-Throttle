@@ -6,7 +6,7 @@ const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 @export var tire_stiffness := 0.5
 @export var tire_width := 0.225
 @export var tire_radius := 0.3
-@export var tire_rated_load := 7000
+@export var tire_rated_load := 7000.0
 
 # Possible input parameters for tire model
 #export var tire_rated_pressure := 2.0

@@ -17,9 +17,12 @@ visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Suspension"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="FrontSuspension" type="Label" parent="Suspension/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -58,6 +61,8 @@ text = "Spring Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspSpringRate"]
 layout_mode = 2
+max_value = 200000.0
+step = 100.0
 
 [node name="FrontSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -69,6 +74,8 @@ text = "Bump Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspBumpRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="FrontSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -80,6 +87,8 @@ text = "Rebound Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspReboundRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="FrontSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -91,6 +100,8 @@ text = "Anti-Roll Bar Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspAntiRollRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 10.0
 
 [node name="RearSuspension" type="Label" parent="Suspension/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -129,6 +140,8 @@ text = "Spring Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspSpringRate"]
 layout_mode = 2
+max_value = 200000.0
+step = 100.0
 
 [node name="RearSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -140,6 +153,8 @@ text = "Bump Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspBumpRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="RearSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -151,6 +166,8 @@ text = "Rebound Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspReboundRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="RearSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -162,8 +179,18 @@ text = "Anti-Roll Bar Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspAntiRollRate"]
 layout_mode = 2
+max_value = 100000.0
+
+[node name="BackButton" type="Button" parent="Suspension/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+auto_translate = false
+text = "Back"
 
 [node name="Wheels" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Wheels"]
@@ -276,7 +303,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 max_value = 1.0
-step = 0.01
+step = 0.005
 value = 0.5
 ticks_on_borders = true
 
@@ -307,8 +334,15 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "7000"
 
+[node name="BackButton" type="Button" parent="Wheels/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+auto_translate = false
+text = "Back"
+
 [node name="Drivetrain" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Drivetrain"]
@@ -506,6 +540,178 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "3.7"
 
+[node name="ReverseRatio" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/ReverseRatio"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Reverse Ratio"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/ReverseRatio"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+min_value = 1.0
+max_value = 5.0
+step = 0.01
+value = 3.7
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/ReverseRatio"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "3.7"
+
+[node name="FrontDiff" type="Label" parent="Drivetrain/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Front Differential
+"
+vertical_alignment = 1
+
+[node name="FrontDiffPreload" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/FrontDiffPreload"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Preload"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/FrontDiffPreload"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+min_value = 10.0
+max_value = 200.0
+step = 10.0
+value = 50.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/FrontDiffPreload"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "50"
+
+[node name="FrontDiffPowerRatio" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/FrontDiffPowerRatio"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Power Ratio"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/FrontDiffPowerRatio"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 2.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/FrontDiffPowerRatio"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "2.0"
+
+[node name="FrontDiffCoastRatio" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/FrontDiffCoastRatio"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Coast Ratio"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/FrontDiffCoastRatio"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 2.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/FrontDiffCoastRatio"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "2.0"
+
+[node name="RearDiff" type="Label" parent="Drivetrain/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Rear Differential
+"
+vertical_alignment = 1
+
+[node name="RearDiffPreload" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/RearDiffPreload"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Preload"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/RearDiffPreload"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+min_value = 10.0
+max_value = 200.0
+step = 10.0
+value = 50.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/RearDiffPreload"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "50"
+
+[node name="RearDiffPowerRatio" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/RearDiffPowerRatio"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Power Ratio"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/RearDiffPowerRatio"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 2.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/RearDiffPowerRatio"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "2.0"
+
+[node name="RearDiffCoastRatio" type="HBoxContainer" parent="Drivetrain/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Drivetrain/VBoxContainer/RearDiffCoastRatio"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Coast Ratio"
+
+[node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/RearDiffCoastRatio"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 2.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Drivetrain/VBoxContainer/RearDiffCoastRatio"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "2.0"
+
+[node name="BackButton" type="Button" parent="Drivetrain/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+auto_translate = false
+text = "Back"
+
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspLength/Slider" to="." method="_on_front_spring_length_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspSpringRate/SpinBox" to="." method="_on_front_spring_rate_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspBumpRate/SpinBox" to="." method="_on_front_bump_rate_changed"]
@@ -516,3 +722,24 @@ text = "3.7"
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspBumpRate/SpinBox" to="." method="_on_rear_bump_rate_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspReboundRate/SpinBox" to="." method="_on_rear_rebound_rate_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspAntiRollRate/SpinBox" to="." method="_on_rear_anti_roll_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/BrakeBiasFrontBack/Slider" to="." method="_on_brake_bias_changed"]
+[connection signal="item_selected" from="Wheels/VBoxContainer/TireModel/OptionButton" to="." method="_on_tire_model_selected"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/TireStiffness/Slider" to="." method="_on_tire_stiffness_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/TireRadius/Slider" to="." method="_on_tire_radius_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/TireWidth/Slider" to="." method="_on_tire_width_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/TireRatedLoad/Slider" to="." method="_on_tire_rated_load_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/TorqueSplit/Slider" to="." method="_on_torque_split_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/FinalRatio/Slider" to="." method="_on_final_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/Gear1/Slider" to="." method="_on_gear1_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/Gear2/Slider" to="." method="_on_gear2_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/Gear3/Slider" to="." method="_on_gear3_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/Gear4/Slider" to="." method="_on_gear4_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/Gear5/Slider" to="." method="_on_gear5_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/Gear6/Slider" to="." method="_on_gear6_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/ReverseRatio/Slider" to="." method="_on_reverse_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/FrontDiffPreload/Slider" to="." method="_on_front_diff_preload_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/FrontDiffPowerRatio/Slider" to="." method="_on_front_diff_power_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/FrontDiffCoastRatio/Slider" to="." method="_on_front_diff_coast_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/RearDiffPreload/Slider" to="." method="_on_rear_diff_preload_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/RearDiffPowerRatio/Slider" to="." method="_on_rear_diff_power_ratio_changed"]
+[connection signal="value_changed" from="Drivetrain/VBoxContainer/RearDiffCoastRatio/Slider" to="." method="_on_rear_diff_coast_ratio_changed"]

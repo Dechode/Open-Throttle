@@ -9,12 +9,14 @@ var grid := []
 func _ready():
 	pass
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 
-func add_to_grid(car_path, driver_type, pos):
+#func add_to_grid(car_path, driver_type, pos):
+func add_to_grid(car, pos):
 	if grid.size() >= MAX_CARS:
 		push_warning("Grid is full, cant add more cars ")
 		return
@@ -26,9 +28,9 @@ func add_to_grid(car_path, driver_type, pos):
 	if pos > grid.size():
 		grid.resize(pos)
 	
-	var car := {
-	"car_path": car_path,
-	"driver_type": driver_type,
-	}
+#	var car := {
+#	"car_path": car_path,
+#	"driver_type": driver_type,
+#	}
 	
 	grid[pos-1] = car
