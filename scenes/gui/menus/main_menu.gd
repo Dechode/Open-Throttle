@@ -1,5 +1,7 @@
 extends Control
 
+const car_setup_menu = preload("res://scenes/gui/menus/car_setup_menu.tscn")
+
 var current_menu = -1
 
 @onready var play_button = $"%PlayButton"
@@ -52,3 +54,11 @@ func _on_PlayButton_pressed() -> void:
 	toggle_current_menu(0)
 
 
+func _on_car_setup_button_pressed() -> void:
+	$CarSetupMenu.show()
+	$HBoxContainer.hide()
+
+
+func _on_car_setup_back_button_pressed() -> void:
+	$HBoxContainer.show()
+	$CarSetupMenu.hide()

@@ -13,13 +13,15 @@ size_flags_vertical = 3
 script = ExtResource("1_4tq7e")
 
 [node name="Suspension" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Suspension"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="FrontSuspension" type="Label" parent="Suspension/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -58,6 +60,8 @@ text = "Spring Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspSpringRate"]
 layout_mode = 2
+max_value = 200000.0
+step = 100.0
 
 [node name="FrontSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -69,6 +73,8 @@ text = "Bump Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspBumpRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="FrontSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -80,6 +86,8 @@ text = "Rebound Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspReboundRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="FrontSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -91,6 +99,8 @@ text = "Anti-Roll Bar Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspAntiRollRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 10.0
 
 [node name="RearSuspension" type="Label" parent="Suspension/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -129,6 +139,8 @@ text = "Spring Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspSpringRate"]
 layout_mode = 2
+max_value = 200000.0
+step = 100.0
 
 [node name="RearSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -140,6 +152,8 @@ text = "Bump Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspBumpRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="RearSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -151,6 +165,8 @@ text = "Rebound Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspReboundRate"]
 layout_mode = 2
+max_value = 100000.0
+step = 100.0
 
 [node name="RearSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -162,8 +178,18 @@ text = "Anti-Roll Bar Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspAntiRollRate"]
 layout_mode = 2
+max_value = 100000.0
+
+[node name="BackButton" type="Button" parent="Suspension/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+auto_translate = false
+text = "Back"
 
 [node name="Wheels" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Wheels"]
@@ -306,6 +332,14 @@ ticks_on_borders = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "7000"
+
+[node name="BackButton" type="Button" parent="Wheels/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+auto_translate = false
+text = "Back"
 
 [node name="Drivetrain" type="TabBar" parent="."]
 visible = false
@@ -505,6 +539,14 @@ ticks_on_borders = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "3.7"
+
+[node name="BackButton" type="Button" parent="Drivetrain/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+auto_translate = false
+text = "Back"
 
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspLength/Slider" to="." method="_on_front_spring_length_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspSpringRate/SpinBox" to="." method="_on_front_spring_rate_changed"]
