@@ -7,11 +7,12 @@ signal car_selected
 
 func _on_car_button_pressed():
 	var driver_type := 0
-	var car = load(car_path).instantiate() # TODO pass reference to the car in RaceControl and CarSpawner
+	var car_scene = load(car_path).instantiate() 
 	var car_params = CarParameters.new()
-	
-	for child in car.get_children():
+	var car = null
+	for child in car_scene.get_children():
 		if child is BaseCar:
+			car = child
 			car_params = child.car_params
 		else:
 			push_warning("car_path is not a path to a valid car scene")
@@ -20,9 +21,9 @@ func _on_car_button_pressed():
 	if is_player:
 		SessionManager.player_car_path = car_path
 		SessionManager.player_car_setup = car_params
-		driver_type = 1
+		car.driver = PlayerDriver.new()
 	
 	car_selected.emit()
-	RaceControl.add_to_grid(car_path, driver_type, 1)
+	RaceControl.add_to_grid(car_scene, 1)
 	
 
