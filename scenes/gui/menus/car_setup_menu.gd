@@ -36,10 +36,16 @@ func update_params(params: CarParameters):
 	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Brush", TIRE_MODELS.BRUSH)
 	
 	var tire_model_id = -1
+	
 	if SessionManager.player_car_setup.wheel_params_fl.tire_model is PacejkaTireModel:
 		tire_model_id = TIRE_MODELS.PACEJKA
+		print_debug("Tire model is pacejka")
 	elif SessionManager.player_car_setup.wheel_params_fl.tire_model is BrushTireModel:
 		tire_model_id = TIRE_MODELS.BRUSH
+		print_debug("Tire model is brush")
+	else:
+		print_debug("Tire model is unknown or not set")
+	
 	$Wheels/VBoxContainer/TireModel/OptionButton.selected = tire_model_id
 	
 	$Wheels/VBoxContainer/BrakeBiasFrontBack/Slider.value = params.front_brake_bias
@@ -124,6 +130,11 @@ func update_tire_model(tire_model: BaseTireModel):
 	tire_model.tire_radius = $Wheels/VBoxContainer/TireRadius/Slider.value
 	tire_model.tire_rated_load = $Wheels/VBoxContainer/TireRatedLoad/Slider.value
 	tire_model.tire_width = $Wheels/VBoxContainer/TireWidth/Slider.value
+
+
+func _on_car_selected():
+	update_params(SessionManager.player_car_setup)
+
 
 
 func _on_front_spring_length_changed(value:float):

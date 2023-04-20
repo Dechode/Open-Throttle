@@ -619,6 +619,12 @@ dialog_text = "Quit?"
 visible = false
 layout_mode = 1
 
+[node name="Suspension" parent="CarSetupMenu" index="1"]
+visible = true
+
+[node name="Drivetrain" parent="CarSetupMenu" index="3"]
+visible = false
+
 [connection signal="pressed" from="HBoxContainer/MainButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
@@ -627,8 +633,9 @@ layout_mode = 1
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" method="_on_TrackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" method="_on_TrackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" method="_on_TrackButton_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" method="_on_car_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarPreview/CarSetupButton" to="." method="_on_car_setup_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Start/PlayButton" to="HBoxContainer/PlayMenu/Start/PlayButton" method="_on_PlayButton_pressed"]
 [connection signal="confirmed" from="QuitPopUp" to="." method="_on_QuitPopUp_confirmed"]
