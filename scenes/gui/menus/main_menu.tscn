@@ -83,9 +83,6 @@ selection_enabled = true
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
 
-[node name="GamePlay" parent="HBoxContainer/Options" index="1"]
-visible = true
-
 [node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -105,9 +102,6 @@ custom_minimum_size = Vector2(50, 0)
 [node name="VBoxContainer" parent="HBoxContainer/Options/Audio" index="0"]
 anchor_right = 0.0
 anchor_bottom = 0.0
-
-[node name="Input" parent="HBoxContainer/Options" index="4"]
-visible = false
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Input" index="0"]
 anchor_right = 0.0
