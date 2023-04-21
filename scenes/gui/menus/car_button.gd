@@ -6,7 +6,6 @@ signal car_selected
 @export var is_player := true
 
 func _on_car_button_pressed():
-	var driver_type := 0
 	var car_scene = load(car_path).instantiate() 
 	var car_params = CarParameters.new()
 	var car: BaseCar
