@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cloowpy63vyph"]
 
 [ext_resource type="Script" path="res://scenes/gui/menus/main_menu.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/gui/menus/options_tab.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ct2poygblqrg5" path="res://scenes/gui/menus/options_tab.tscn" id="2"]
 [ext_resource type="Script" path="res://scenes/gui/menus/track_button.gd" id="4"]
 [ext_resource type="Script" path="res://scenes/gui/menus/play_button.gd" id="5"]
 [ext_resource type="Script" path="res://scenes/gui/menus/car_button.gd" id="6"]
@@ -105,7 +105,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Graphics" parent="HBoxContainer/Options" index="2"]
-visible = true
 layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Graphics" index="0"]
@@ -189,6 +188,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Input" parent="HBoxContainer/Options" index="4"]
+visible = true
 layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Input" index="0"]
