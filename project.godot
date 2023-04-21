@@ -23,6 +23,11 @@ SessionManager="*res://global/session_manager.gd"
 VehicleAPI="*res://global/vehicle_api.gd"
 RaceControl="*res://global/race_control.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

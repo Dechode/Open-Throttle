@@ -81,10 +81,10 @@ License notice is located in the root directory of this program.
 selection_enabled = true
 
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
-visible = false
 layout_mode = 2
 
 [node name="GamePlay" parent="HBoxContainer/Options" index="1"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
@@ -105,6 +105,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Graphics" parent="HBoxContainer/Options" index="2"]
+visible = true
 layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Graphics" index="0"]
@@ -470,6 +471,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -618,12 +620,6 @@ dialog_text = "Quit?"
 [node name="CarSetupMenu" parent="." instance=ExtResource("7_ur4f2")]
 visible = false
 layout_mode = 1
-
-[node name="Suspension" parent="CarSetupMenu" index="1"]
-visible = true
-
-[node name="Drivetrain" parent="CarSetupMenu" index="3"]
-visible = false
 
 [connection signal="pressed" from="HBoxContainer/MainButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]

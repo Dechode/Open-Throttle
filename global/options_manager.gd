@@ -2,25 +2,24 @@ extends Node
 
 var options_config: OptionsConfig
 var resolutions := {
-	0: [Vector2(640,480), Vector2(800,600), 
-		Vector2(960,720), Vector2(1024,768), 
-		Vector2(1280,960), Vector2(1400, 1050),
-		Vector2(1440,1080), Vector2(1600,1200),
-		Vector2(1856,1392), Vector2(1920,1440),
-		Vector2(2048,1536)],
+	0: [Vector2i(960,720), Vector2i(1024,768), 
+		Vector2i(1280,960), Vector2i(1400, 1050),
+		Vector2i(1440,1080), Vector2i(1600,1200),
+		Vector2i(1856,1392), Vector2i(1920,1440),
+		Vector2i(2048,1536)],
 	
-	1: [Vector2(854,480), Vector2(960,540),
-		Vector2(1280,720), Vector2(1600,900), 
-		Vector2(1920,1080), Vector2(2560,1440), 
-		Vector2(3200,1800), Vector2(3840,2160)],
+	1: [Vector2i(1280,720), Vector2i(1600,900), 
+		Vector2i(1920,1080), Vector2i(2560,1440), 
+		Vector2i(3200,1800), Vector2i(3840,2160)],
 	
-	2: [Vector2(1280,800), Vector2(1920,1200), Vector2(3840,2400)] 
+	2: [Vector2i(1280,800), Vector2i(1920,1200), Vector2i(3840,2400)] 
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_options()
 	set_resolution(options_config.config["resolution"])
+	set_vsync(options_config.config["vsync"])
 
 
 func load_options():
@@ -67,14 +66,16 @@ func set_config_value(key, value):
 func get_config_value(key):
 	if options_config.config.has(key):
 		return options_config.config[key]
-	return 0
+	push_error("No config value found with key %s" % str(key))
+	return null
 
 
 func set_fullscreen(value):
 	load_options()
 	set_resolution(options_config.config["resolution"])
 	options_config.config["fullscreen"] = value
-	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
+	var mode = DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN if value else DisplayServer.WINDOW_MODE_WINDOWED
+	DisplayServer.window_set_mode(mode)
 	save_options()
 
 
@@ -85,7 +86,11 @@ func set_resolution(index):
 	var ratio = options_config.config["aspect_ratio"]
 	var res = resolutions[ratio][index]
 	DisplayServer.window_set_size(res)
-#	get_window().set_size(res)
-#	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT, SceneTree.STRETCH_ASPECT_EXPAND, res)
 	save_options()
-	pass
+
+
+func set_vsync(value):
+	load_options()
+	options_config.config["vsync"] = value
+	DisplayServer.window_set_vsync_mode(value)
+	save_options()
