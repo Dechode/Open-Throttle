@@ -5,11 +5,15 @@ var aspect_ratios := [Vector2(4,3), Vector2(16,9), Vector2(19,10)]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var aspect_ratio_idx = OptionsManager.get_config_value("aspect_ratio")
 	$GamePlay/VBoxContainer/SteeringInterpolation/CheckButton.button_pressed = OptionsManager.get_config_value("steering_interpolation")
 	$Graphics/VBoxContainer/Fullscreen/CheckButton.button_pressed = OptionsManager.get_config_value("fullscreen")
 	$Graphics/VBoxContainer/VSync/CheckButton.button_pressed = OptionsManager.get_config_value("vsync")
 	$Audio/VBoxContainer/MasterVolume/HSlider.value = OptionsManager.get_config_value("master_audio_vol") * 100
+	
+	$Graphics/VBoxContainer/AspectRatio/OptionButton.clear()
+	for ratio in aspect_ratios:
+		$Graphics/VBoxContainer/AspectRatio/OptionButton.add_item(str(ratio))
+	var aspect_ratio_idx = OptionsManager.get_config_value("aspect_ratio")
 	$Graphics/VBoxContainer/AspectRatio/OptionButton.selected = aspect_ratio_idx
 	_set_res_items(aspect_ratio_idx)
 	$Graphics/VBoxContainer/Resolution/OptionButton.selected = OptionsManager.get_config_value("resolution")
@@ -40,6 +44,7 @@ func _ready() -> void:
 	$Input/VBoxContainer/Handbrake/OptionButton.selected = OptionsManager.get_config_value("handbrake_minus_one_to_one")
 	$Input/VBoxContainer/Handbrake/OptionButton2.selected = OptionsManager.get_config_value("handbrake_minus_one_to_one_sec")
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pass
@@ -54,7 +59,7 @@ func _on_fullscreen_toggled(button_pressed: bool) -> void:
 
 
 func _on_vsync_toggled(button_pressed: bool) -> void:
-	OptionsManager.set_config_value("vsync", button_pressed)
+	OptionsManager.set_vsync(button_pressed)
 
 
 func _on_master_audio_changed(value: float) -> void:
