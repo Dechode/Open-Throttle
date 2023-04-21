@@ -61,8 +61,8 @@ enum DRIVE_TYPE{
 @export var air_density = 1.225
 @export var frontal_area = 2.0
 
-@export var wheel_params_fl: WheelSuspensionParameters
-@export var wheel_params_fr: WheelSuspensionParameters
-@export var wheel_params_bl: WheelSuspensionParameters
-@export var wheel_params_br: WheelSuspensionParameters
+@export var wheel_params_fl := WheelSuspensionParameters.new()
+@export var wheel_params_fr := WheelSuspensionParameters.new()
+@export var wheel_params_bl := WheelSuspensionParameters.new()
+@export var wheel_params_br := WheelSuspensionParameters.new()
 

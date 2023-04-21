@@ -24,22 +24,16 @@ func _ready():
 			count += 1
 
 
-func add_car(car_n_driver: CarDriverPair, grid_id):
-	var car_path = car_n_driver.car_path
-	var driver_type = car_n_driver.driver_type
-	
-	if car_path == "":
-		push_warning("Car path is empty")
-		return
-	
-#	print_debug("car path = %s" % car_path)
-	var car = load(car_path).instantiate()
-	if driver_type == 1:
-		for child in car.get_children():
-			if child is BaseCar:
-				child.add_child(load("res://scenes/drivers/player_driver.tscn").instantiate())
-				var driver = PlayerDriver.new()
-				child.set_driver(driver)
-#				
+func add_car(car, grid_id):
+	for child in car.get_children():
+		if not child is BaseCar:
+			continue
+			
+		if child.driver is PlayerDriver:
+			print_debug("Driver is PlayerDriver")
+			child.add_child(load("res://scenes/drivers/player_driver.tscn").instantiate())
+			var driver = PlayerDriver.new()
+			child.set_driver(driver)
+			
 	grid[grid_id].add_child(car)
 	

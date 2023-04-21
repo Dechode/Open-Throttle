@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cloowpy63vyph"]
+[gd_scene load_steps=8 format=3 uid="uid://cloowpy63vyph"]
 
 [ext_resource type="Script" path="res://scenes/gui/menus/main_menu.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/gui/menus/options_tab.tscn" id="2"]
 [ext_resource type="Script" path="res://scenes/gui/menus/track_button.gd" id="4"]
 [ext_resource type="Script" path="res://scenes/gui/menus/play_button.gd" id="5"]
 [ext_resource type="Script" path="res://scenes/gui/menus/car_button.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://dlbk6a2lbq4e" path="res://scenes/gui/menus/car_setup_menu.tscn" id="7_ur4f2"]
 [ext_resource type="PackedScene" uid="uid://crbuaifd4dl6a" path="res://scenes/car_preview.tscn" id="8"]
 
 [node name="MainMenu" type="Control"]
@@ -80,7 +81,6 @@ License notice is located in the root directory of this program.
 selection_enabled = true
 
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
-visible = false
 layout_mode = 2
 
 [node name="GamePlay" parent="HBoxContainer/Options" index="1"]
@@ -582,6 +582,20 @@ render_target_update_mode = 0
 
 [node name="CarPreview" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport" instance=ExtResource("8")]
 
+[node name="CarInfo" type="RichTextLabel" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Model: 
+Max Torque:
+Max Horsepower: 
+Drive Type: 
+N. Gears: 
+Top Speed: "
+
+[node name="CarSetupButton" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview"]
+layout_mode = 2
+text = "Car Setup"
+
 [node name="Start" type="TabBar" parent="HBoxContainer/PlayMenu"]
 visible = false
 layout_mode = 2
@@ -603,6 +617,10 @@ script = ExtResource("5")
 position = Vector2i(450, 245)
 dialog_text = "Quit?"
 
+[node name="CarSetupMenu" parent="." instance=ExtResource("7_ur4f2")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="HBoxContainer/MainButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
@@ -611,9 +629,15 @@ dialog_text = "Quit?"
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" method="_on_TrackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" method="_on_TrackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" method="_on_TrackButton_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" method="_on_car_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarPreview/CarSetupButton" to="." method="_on_car_setup_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Start/PlayButton" to="HBoxContainer/PlayMenu/Start/PlayButton" method="_on_PlayButton_pressed"]
 [connection signal="confirmed" from="QuitPopUp" to="." method="_on_QuitPopUp_confirmed"]
+[connection signal="pressed" from="CarSetupMenu/Suspension/VBoxContainer/BackButton" to="." method="_on_car_setup_back_button_pressed"]
+[connection signal="pressed" from="CarSetupMenu/Wheels/VBoxContainer/BackButton" to="." method="_on_car_setup_back_button_pressed"]
+[connection signal="pressed" from="CarSetupMenu/Drivetrain/VBoxContainer/BackButton" to="." method="_on_car_setup_back_button_pressed"]
 
 [editable path="HBoxContainer/Options"]
+[editable path="CarSetupMenu"]

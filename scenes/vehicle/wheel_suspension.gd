@@ -96,7 +96,7 @@ func apply_forces(opposite_comp, delta):
 	var planar_vect = Vector2(local_vel.x, local_vel.z).normalized()
 	prev_pos = global_transform.origin
 	
-	var surface
+	var surface := ""
 	############# Suspension #################
 	if is_colliding():
 		if get_collider().get_groups().size() > 0:
@@ -142,17 +142,19 @@ func apply_forces(opposite_comp, delta):
 	############### Slip #######################
 	slip_vec.x = asin(clamp(-planar_vect.x, -1, 1)) # X slip is lateral slip
 	slip_vec.y = 0.0 # Y slip is the longitudinal Z slip
+	force_vec = Vector3.ZERO
 	
-	if abs(z_vel) > 0.01:
-			slip_vec.y = (z_vel - spin * tire_radius) / abs(z_vel)
-	else:
-		if is_zero_approx(spin):
-			slip_vec.y = 0.0001 * sign(z_vel)
-		else:
-			slip_vec.y = 0.0001 * abs(spin) * sign(z_vel) # This is to avoid "getting stuck" if local z velocity is absolute 0
 	
 	############### Calculate and apply the forces #######################
 	if is_colliding():
+		if abs(z_vel) > 0.01:
+			slip_vec.y = (z_vel - spin * tire_radius) / abs(z_vel)
+		else:
+			if is_zero_approx(spin):
+				slip_vec.y = 0.0001 * sign(z_vel)
+			else:
+				slip_vec.y = 0.0001 * abs(spin) * sign(z_vel) # This is to avoid "getting stuck" if local z velocity is absolute 0
+	
 		force_vec = tire_model.update_tire_forces(slip_vec, y_force, surface_mu)
 		
 		var contact = get_collision_point() - car.global_transform.origin
