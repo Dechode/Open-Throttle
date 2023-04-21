@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cloowpy63vyph"]
 
 [ext_resource type="Script" path="res://scenes/gui/menus/main_menu.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/gui/menus/options_tab.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ct2poygblqrg5" path="res://scenes/gui/menus/options_tab.tscn" id="2"]
 [ext_resource type="Script" path="res://scenes/gui/menus/track_button.gd" id="4"]
 [ext_resource type="Script" path="res://scenes/gui/menus/play_button.gd" id="5"]
 [ext_resource type="Script" path="res://scenes/gui/menus/car_button.gd" id="6"]
@@ -83,30 +83,9 @@ selection_enabled = true
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
 
-[node name="GamePlay" parent="HBoxContainer/Options" index="1"]
-visible = false
-layout_mode = 2
-
 [node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
-layout_mode = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-
-[node name="Label" parent="HBoxContainer/Options/GamePlay/VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="SteeringInterpolation" parent="HBoxContainer/Options/GamePlay/VBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/GamePlay/VBoxContainer/SteeringInterpolation" index="0"]
-layout_mode = 2
-
-[node name="CheckButton" parent="HBoxContainer/Options/GamePlay/VBoxContainer/SteeringInterpolation" index="1"]
-layout_mode = 2
-
-[node name="Graphics" parent="HBoxContainer/Options" index="2"]
-visible = true
-layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Graphics" index="0"]
 layout_mode = 1
@@ -114,361 +93,23 @@ anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="AspectRatio" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/AspectRatio" index="0"]
-layout_mode = 2
-
 [node name="OptionButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/AspectRatio" index="1"]
 custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-selected = -1
-
-[node name="Resolution" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="2"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/Resolution" index="0"]
-layout_mode = 2
 
 [node name="OptionButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/Resolution" index="1"]
 custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="Fullscreen" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="3"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/Fullscreen" index="0"]
-layout_mode = 2
-
-[node name="CheckButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/Fullscreen" index="1"]
-layout_mode = 2
-
-[node name="VSync" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="4"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/VSync" index="0"]
-layout_mode = 2
-
-[node name="CheckButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/VSync" index="1"]
-layout_mode = 2
-
-[node name="Shadows" parent="HBoxContainer/Options/Graphics/VBoxContainer" index="5"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Graphics/VBoxContainer/Shadows" index="0"]
-layout_mode = 2
-
-[node name="CheckButton" parent="HBoxContainer/Options/Graphics/VBoxContainer/Shadows" index="1"]
-layout_mode = 2
-
-[node name="Audio" parent="HBoxContainer/Options" index="3"]
-layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Audio" index="0"]
-layout_mode = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-
-[node name="Label" parent="HBoxContainer/Options/Audio/VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="MasterVolume" parent="HBoxContainer/Options/Audio/VBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Audio/VBoxContainer/MasterVolume" index="0"]
-layout_mode = 2
-
-[node name="HSlider" parent="HBoxContainer/Options/Audio/VBoxContainer/MasterVolume" index="1"]
-layout_mode = 2
-
-[node name="Label2" parent="HBoxContainer/Options/Audio/VBoxContainer/MasterVolume" index="2"]
-layout_mode = 2
-
-[node name="Input" parent="HBoxContainer/Options" index="4"]
-layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Input" index="0"]
-layout_mode = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="HSeparator2" parent="HBoxContainer/Options/Input/VBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="BindTitles" parent="HBoxContainer/Options/Input/VBoxContainer" index="2"]
-layout_mode = 2
-
-[node name="Label9" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="0"]
-layout_mode = 2
-
-[node name="Label10" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="1"]
-layout_mode = 2
-
-[node name="Label12" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="2"]
-layout_mode = 2
-
-[node name="Label13" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="3"]
-layout_mode = 2
-
-[node name="Label11" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="4"]
-layout_mode = 2
-
-[node name="Label14" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="5"]
-layout_mode = 2
-
-[node name="Label15" parent="HBoxContainer/Options/Input/VBoxContainer/BindTitles" index="6"]
-layout_mode = 2
-
-[node name="HSeparator" parent="HBoxContainer/Options/Input/VBoxContainer" index="3"]
-layout_mode = 2
-
-[node name="SteerLeft" parent="HBoxContainer/Options/Input/VBoxContainer" index="4"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="1"]
-layout_mode = 2
-
-[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="2"]
-layout_mode = 2
-
-[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="3"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="4"]
-layout_mode = 2
-
-[node name="HBoxContainer2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="5"]
-layout_mode = 2
-
-[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerLeft" index="6"]
-layout_mode = 2
-
-[node name="SteerRight" parent="HBoxContainer/Options/Input/VBoxContainer" index="5"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="1"]
-layout_mode = 2
-
-[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="2"]
-layout_mode = 2
-
-[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="3"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="4"]
-layout_mode = 2
-
-[node name="HBoxContainer2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="5"]
-layout_mode = 2
-
-[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/SteerRight" index="6"]
-layout_mode = 2
-
-[node name="Throttle" parent="HBoxContainer/Options/Input/VBoxContainer" index="6"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="1"]
-layout_mode = 2
-
-[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="2"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="3"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="4"]
-layout_mode = 2
-
-[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="5"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Throttle" index="6"]
-layout_mode = 2
-
-[node name="Brake" parent="HBoxContainer/Options/Input/VBoxContainer" index="7"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="1"]
-layout_mode = 2
-
-[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="2"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="3"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="4"]
-layout_mode = 2
-
-[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="5"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Brake" index="6"]
-layout_mode = 2
-
-[node name="Clutch" parent="HBoxContainer/Options/Input/VBoxContainer" index="8"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="1"]
-layout_mode = 2
-
-[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="2"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="3"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="4"]
-layout_mode = 2
-
-[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="5"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Clutch" index="6"]
-layout_mode = 2
-
-[node name="Handbrake" parent="HBoxContainer/Options/Input/VBoxContainer" index="9"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="1"]
-layout_mode = 2
-
-[node name="OptionButton" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="2"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="3"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="4"]
-layout_mode = 2
-
-[node name="OptionButton2" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="5"]
-layout_mode = 2
-selected = -1
-
-[node name="CheckBox2" parent="HBoxContainer/Options/Input/VBoxContainer/Handbrake" index="6"]
-layout_mode = 2
-
-[node name="ShiftUp" parent="HBoxContainer/Options/Input/VBoxContainer" index="10"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="1"]
-layout_mode = 2
-
-[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="2"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftUp" index="3"]
-layout_mode = 2
-
-[node name="ShiftDown" parent="HBoxContainer/Options/Input/VBoxContainer" index="11"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="0"]
-layout_mode = 2
-
-[node name="BindButton" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="1"]
-layout_mode = 2
-
-[node name="HBoxContainer" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="2"]
-layout_mode = 2
-
-[node name="BindButton2" parent="HBoxContainer/Options/Input/VBoxContainer/ShiftDown" index="3"]
-layout_mode = 2
-
-[node name="FFB" parent="HBoxContainer/Options" index="5"]
-layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/FFB" index="0"]
-layout_mode = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-
-[node name="Title" parent="HBoxContainer/Options/FFB/VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="Label" parent="HBoxContainer/Options/FFB/VBoxContainer/Title" index="0"]
-layout_mode = 2
-
-[node name="Options" parent="HBoxContainer/Options/FFB/VBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="Actions" parent="HBoxContainer/Options/FFB/VBoxContainer/Options" index="0"]
-layout_mode = 2
-
-[node name="FFBEnabled" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="0"]
-layout_mode = 2
-
-[node name="FFBInverted" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="1"]
-layout_mode = 2
-
-[node name="FFBGain" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="2"]
-layout_mode = 2
-
-[node name="FFBMinForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="3"]
-layout_mode = 2
-
-[node name="FFBFrontForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="4"]
-layout_mode = 2
-
-[node name="FFBRearForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Actions" index="5"]
-layout_mode = 2
-
-[node name="Values" parent="HBoxContainer/Options/FFB/VBoxContainer/Options" index="1"]
-layout_mode = 2
-
-[node name="FFBEnabled" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="0"]
-layout_mode = 2
-
-[node name="FFBEnabled2" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="1"]
-layout_mode = 2
-
-[node name="FFBGain" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="2"]
-layout_mode = 2
-
-[node name="FFBMinForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="3"]
-layout_mode = 2
-
-[node name="FFBFrontForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="4"]
-layout_mode = 2
-
-[node name="FFBRearForce" parent="HBoxContainer/Options/FFB/VBoxContainer/Options/Values" index="5"]
-layout_mode = 2
 
 [node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
 visible = false
