@@ -1,860 +1,595 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://ct2poygblqrg5"]
 
-[ext_resource path="res://scenes/gui/menus/options_tab.gd" type="Script" id=1]
-[ext_resource path="res://scenes/gui/menus/bind_button.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://scenes/gui/menus/options_tab.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/gui/menus/bind_button.gd" id="2"]
 
 [node name="Options" type="TabContainer"]
 unique_name_in_owner = true
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="GamePlay" type="TabBar" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 32.0
-offset_right = -4.0
-offset_bottom = -4.0
+visible = false
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GamePlay"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 10
 
 [node name="Label" type="Label" parent="GamePlay/VBoxContainer"]
-offset_right = 1016.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 text = "Gameplay options"
-align = 1
-valign = 1
 
 [node name="SteeringInterpolation" type="HBoxContainer" parent="GamePlay/VBoxContainer"]
-offset_top = 50.0
-offset_right = 1016.0
-offset_bottom = 90.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GamePlay/VBoxContainer/SteeringInterpolation"]
-offset_top = 13.0
-offset_right = 167.0
-offset_bottom = 27.0
+layout_mode = 2
 text = "Use steering interpolation"
 
 [node name="CheckButton" type="CheckButton" parent="GamePlay/VBoxContainer/SteeringInterpolation"]
-offset_left = 171.0
-offset_right = 247.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="Graphics" type="TabBar" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 32.0
-offset_right = -4.0
-offset_bottom = -4.0
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="Graphics/VBoxContainer"]
-offset_right = 1016.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 text = "Graphics options"
-align = 1
-valign = 1
 
 [node name="AspectRatio" type="HBoxContainer" parent="Graphics/VBoxContainer"]
-offset_top = 44.0
-offset_right = 1016.0
-offset_bottom = 84.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Graphics/VBoxContainer/AspectRatio"]
-offset_top = 13.0
-offset_right = 150.0
-offset_bottom = 27.0
-custom_minimum_size = Vector2( 150, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "Aspect ratio"
 
 [node name="OptionButton" type="OptionButton" parent="Graphics/VBoxContainer/AspectRatio"]
-offset_left = 154.0
-offset_right = 204.0
-offset_bottom = 40.0
-text = "4/3"
-items = [ "4/3", null, false, 0, null, "16/9", null, false, 1, null, "16/10", null, false, 2, null ]
-selected = 0
+layout_mode = 2
 
 [node name="Resolution" type="HBoxContainer" parent="Graphics/VBoxContainer"]
-offset_top = 88.0
-offset_right = 1016.0
-offset_bottom = 128.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Graphics/VBoxContainer/Resolution"]
-offset_top = 13.0
-offset_right = 150.0
-offset_bottom = 27.0
-custom_minimum_size = Vector2( 150, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "Resolution"
 
 [node name="OptionButton" type="OptionButton" parent="Graphics/VBoxContainer/Resolution"]
-offset_left = 154.0
-offset_right = 183.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="Fullscreen" type="HBoxContainer" parent="Graphics/VBoxContainer"]
-offset_top = 132.0
-offset_right = 1016.0
-offset_bottom = 172.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Graphics/VBoxContainer/Fullscreen"]
-offset_top = 13.0
-offset_right = 150.0
-offset_bottom = 27.0
-custom_minimum_size = Vector2( 150, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "Fullscreen"
 
 [node name="CheckButton" type="CheckButton" parent="Graphics/VBoxContainer/Fullscreen"]
-offset_left = 154.0
-offset_right = 230.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="VSync" type="HBoxContainer" parent="Graphics/VBoxContainer"]
-offset_top = 176.0
-offset_right = 1016.0
-offset_bottom = 216.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Graphics/VBoxContainer/VSync"]
-offset_top = 13.0
-offset_right = 150.0
-offset_bottom = 27.0
-custom_minimum_size = Vector2( 150, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "VSync"
 
 [node name="CheckButton" type="CheckButton" parent="Graphics/VBoxContainer/VSync"]
-offset_left = 154.0
-offset_right = 230.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="Shadows" type="HBoxContainer" parent="Graphics/VBoxContainer"]
-offset_top = 220.0
-offset_right = 1016.0
-offset_bottom = 260.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Graphics/VBoxContainer/Shadows"]
-offset_top = 13.0
-offset_right = 150.0
-offset_bottom = 27.0
-custom_minimum_size = Vector2( 150, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "Shadows"
 
 [node name="CheckButton" type="CheckButton" parent="Graphics/VBoxContainer/Shadows"]
-offset_left = 154.0
-offset_right = 230.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="Audio" type="TabBar" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 32.0
-offset_right = -4.0
-offset_bottom = -4.0
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Audio"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="Audio/VBoxContainer"]
-offset_right = 1016.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 text = "Audio options"
-align = 1
-valign = 1
 
 [node name="MasterVolume" type="HBoxContainer" parent="Audio/VBoxContainer"]
-offset_top = 44.0
-offset_right = 1016.0
-offset_bottom = 84.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Audio/VBoxContainer/MasterVolume"]
-offset_top = 13.0
-offset_right = 96.0
-offset_bottom = 27.0
+layout_mode = 2
 text = "Master volume"
 
 [node name="HSlider" type="HSlider" parent="Audio/VBoxContainer/MasterVolume"]
-offset_left = 100.0
-offset_right = 220.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_vertical = 1
 
 [node name="Label2" type="Label" parent="Audio/VBoxContainer/MasterVolume"]
-offset_left = 224.0
-offset_top = 13.0
-offset_right = 240.0
-offset_bottom = 27.0
+layout_mode = 2
 text = "50"
 
 [node name="Input" type="TabBar" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 32.0
-offset_right = -4.0
-offset_bottom = -4.0
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Input"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="Input/VBoxContainer"]
-offset_right = 1016.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 text = "Input options"
-align = 1
-valign = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Input/VBoxContainer"]
-offset_top = 44.0
-offset_right = 1016.0
-offset_bottom = 48.0
+layout_mode = 2
 
 [node name="BindTitles" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 52.0
-offset_right = 1016.0
-offset_bottom = 66.0
+layout_mode = 2
 
 [node name="Label9" type="Label" parent="Input/VBoxContainer/BindTitles"]
-offset_right = 100.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "Actions"
 
 [node name="Label10" type="Label" parent="Input/VBoxContainer/BindTitles"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "Primary binds"
-align = 1
 
 [node name="Label12" type="Label" parent="Input/VBoxContainer/BindTitles"]
-offset_left = 228.0
-offset_right = 308.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 80, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 text = "Range"
-align = 1
 
 [node name="Label13" type="Label" parent="Input/VBoxContainer/BindTitles"]
-offset_left = 312.0
-offset_right = 372.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 60, 0 )
-text = "reverse"
-align = 1
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Invert"
 
 [node name="Label11" type="Label" parent="Input/VBoxContainer/BindTitles"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 text = "secondary binds"
-align = 1
 
 [node name="Label14" type="Label" parent="Input/VBoxContainer/BindTitles"]
-offset_left = 500.0
-offset_right = 560.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 text = "Range"
-align = 1
 
 [node name="Label15" type="Label" parent="Input/VBoxContainer/BindTitles"]
-offset_left = 564.0
-offset_right = 624.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 60, 0 )
-text = "reverse"
-align = 1
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Invert"
 
 [node name="HSeparator" type="HSeparator" parent="Input/VBoxContainer"]
-offset_top = 70.0
-offset_right = 1016.0
-offset_bottom = 74.0
+layout_mode = 2
 
 [node name="SteerLeft" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 78.0
-offset_right = 1016.0
-offset_bottom = 102.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/SteerLeft"]
-offset_top = 2.0
-offset_right = 100.0
-offset_bottom = 22.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Steer left"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/SteerLeft"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "steer_left"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/SteerLeft"]
-offset_left = 228.0
-offset_right = 308.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox" type="CheckBox" parent="Input/VBoxContainer/SteerLeft"]
-offset_left = 312.0
-offset_right = 372.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/SteerLeft"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "steer_left_secondary"
-is_secondary = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Input/VBoxContainer/SteerLeft"]
-offset_left = 500.0
-offset_right = 580.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox2" type="CheckBox" parent="Input/VBoxContainer/SteerLeft"]
-offset_left = 584.0
-offset_right = 644.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="SteerRight" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 106.0
-offset_right = 1016.0
-offset_bottom = 130.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/SteerRight"]
-offset_top = 2.0
-offset_right = 100.0
-offset_bottom = 22.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Steer right"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/SteerRight"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "steer_right"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/SteerRight"]
-offset_left = 228.0
-offset_right = 308.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox" type="CheckBox" parent="Input/VBoxContainer/SteerRight"]
-offset_left = 312.0
-offset_right = 372.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/SteerRight"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "steer_right_secondary"
-is_secondary = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Input/VBoxContainer/SteerRight"]
-offset_left = 500.0
-offset_right = 580.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox2" type="CheckBox" parent="Input/VBoxContainer/SteerRight"]
-offset_left = 584.0
-offset_right = 644.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="Throttle" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 134.0
-offset_right = 1016.0
-offset_bottom = 158.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/Throttle"]
-offset_top = 2.0
-offset_right = 100.0
-offset_bottom = 22.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Throttle"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/Throttle"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "throttle"
 
 [node name="OptionButton" type="OptionButton" parent="Input/VBoxContainer/Throttle"]
-offset_left = 228.0
-offset_right = 308.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox" type="CheckBox" parent="Input/VBoxContainer/Throttle"]
-offset_left = 312.0
-offset_right = 372.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/Throttle"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "throttle_secondary"
-is_secondary = true
 
 [node name="OptionButton2" type="OptionButton" parent="Input/VBoxContainer/Throttle"]
-offset_left = 500.0
-offset_right = 580.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox2" type="CheckBox" parent="Input/VBoxContainer/Throttle"]
-offset_left = 584.0
-offset_right = 644.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="Brake" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 162.0
-offset_right = 1016.0
-offset_bottom = 186.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/Brake"]
-offset_top = 2.0
-offset_right = 100.0
-offset_bottom = 22.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Brake"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/Brake"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "brake"
 
 [node name="OptionButton" type="OptionButton" parent="Input/VBoxContainer/Brake"]
-offset_left = 228.0
-offset_right = 308.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox" type="CheckBox" parent="Input/VBoxContainer/Brake"]
-offset_left = 312.0
-offset_right = 372.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/Brake"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "brake_secondary"
-is_secondary = true
 
 [node name="OptionButton2" type="OptionButton" parent="Input/VBoxContainer/Brake"]
-offset_left = 500.0
-offset_right = 580.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox2" type="CheckBox" parent="Input/VBoxContainer/Brake"]
-offset_left = 584.0
-offset_right = 644.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="Clutch" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 190.0
-offset_right = 1016.0
-offset_bottom = 214.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/Clutch"]
-offset_top = 2.0
-offset_right = 100.0
-offset_bottom = 22.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Clutch"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/Clutch"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "clutch"
 
 [node name="OptionButton" type="OptionButton" parent="Input/VBoxContainer/Clutch"]
-offset_left = 228.0
-offset_right = 308.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox" type="CheckBox" parent="Input/VBoxContainer/Clutch"]
-offset_left = 312.0
-offset_right = 372.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/Clutch"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "clutch_secondary"
-is_secondary = true
 
 [node name="OptionButton2" type="OptionButton" parent="Input/VBoxContainer/Clutch"]
-offset_left = 500.0
-offset_right = 580.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox2" type="CheckBox" parent="Input/VBoxContainer/Clutch"]
-offset_left = 584.0
-offset_right = 644.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="Handbrake" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 218.0
-offset_right = 1016.0
-offset_bottom = 242.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/Handbrake"]
-offset_top = 2.0
-offset_right = 100.0
-offset_bottom = 22.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Handbrake"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/Handbrake"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "handbrake"
 
 [node name="OptionButton" type="OptionButton" parent="Input/VBoxContainer/Handbrake"]
-offset_left = 228.0
-offset_right = 308.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox" type="CheckBox" parent="Input/VBoxContainer/Handbrake"]
-offset_left = 312.0
-offset_right = 372.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/Handbrake"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "handbrake_secondary"
-is_secondary = true
 
 [node name="OptionButton2" type="OptionButton" parent="Input/VBoxContainer/Handbrake"]
-offset_left = 500.0
-offset_right = 580.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 80, 0 )
-text = "0...1"
-align = 1
-items = [ "0...1", null, false, 0, false, "-1...1", null, false, 0, false ]
-selected = 0
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="CheckBox2" type="CheckBox" parent="Input/VBoxContainer/Handbrake"]
-offset_left = 584.0
-offset_right = 644.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="ShiftUp" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 246.0
-offset_right = 1016.0
-offset_bottom = 266.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/ShiftUp"]
-offset_right = 100.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Shift up"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/ShiftUp"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "shift_up"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/ShiftUp"]
-offset_left = 228.0
-offset_right = 372.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 144, 0 )
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/ShiftUp"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "shift_up_secondary"
-is_secondary = true
 
 [node name="ShiftDown" type="HBoxContainer" parent="Input/VBoxContainer"]
-offset_top = 270.0
-offset_right = 1016.0
-offset_bottom = 290.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Input/VBoxContainer/ShiftDown"]
-offset_right = 100.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 100, 20 )
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
 text = "Shift down"
 
 [node name="BindButton" type="Button" parent="Input/VBoxContainer/ShiftDown"]
-offset_left = 104.0
-offset_right = 224.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "shift_down"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/ShiftDown"]
-offset_left = 228.0
-offset_right = 372.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 144, 0 )
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
 
 [node name="BindButton2" type="Button" parent="Input/VBoxContainer/ShiftDown"]
-offset_left = 376.0
-offset_right = 496.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 toggle_mode = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 action = "shift_down_secondary"
-is_secondary = true
+
+[node name="ChangeCamera" type="HBoxContainer" parent="Input/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Input/VBoxContainer/ChangeCamera"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+text = "Change Camera"
+
+[node name="BindButton" type="Button" parent="Input/VBoxContainer/ChangeCamera"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "change_camera"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/ChangeCamera"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+
+[node name="BindButton2" type="Button" parent="Input/VBoxContainer/ChangeCamera"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "change_camera_secondary"
 
 [node name="FFB" type="TabBar" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 32.0
-offset_right = -4.0
-offset_bottom = -4.0
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FFB"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Title" type="HBoxContainer" parent="FFB/VBoxContainer"]
-offset_right = 1016.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 0, 40 )
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="FFB/VBoxContainer/Title"]
-offset_left = 431.0
-offset_top = 13.0
-offset_right = 585.0
-offset_bottom = 27.0
+layout_mode = 2
 text = "Force Feedback Options"
 
 [node name="Options" type="HBoxContainer" parent="FFB/VBoxContainer"]
-offset_top = 44.0
-offset_right = 1016.0
-offset_bottom = 208.0
-custom_constants/separation = 10
+layout_mode = 2
 
 [node name="Actions" type="VBoxContainer" parent="FFB/VBoxContainer/Options"]
-offset_right = 69.0
-offset_bottom = 164.0
+layout_mode = 2
 
 [node name="FFBEnabled" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-offset_right = 69.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 0, 24 )
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 text = "Enabled"
 
 [node name="FFBInverted" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-offset_top = 28.0
-offset_right = 69.0
-offset_bottom = 52.0
-custom_minimum_size = Vector2( 0, 24 )
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 text = "Inverted"
 
 [node name="FFBGain" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-offset_top = 56.0
-offset_right = 69.0
-offset_bottom = 80.0
-custom_minimum_size = Vector2( 0, 24 )
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 text = "Gain"
 
 [node name="FFBMinForce" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-offset_top = 84.0
-offset_right = 69.0
-offset_bottom = 108.0
-custom_minimum_size = Vector2( 0, 24 )
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 text = "Min force"
 
 [node name="FFBFrontForce" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-offset_top = 112.0
-offset_right = 69.0
-offset_bottom = 136.0
-custom_minimum_size = Vector2( 0, 24 )
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 text = "Front force"
 
 [node name="FFBRearForce" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-offset_top = 140.0
-offset_right = 69.0
-offset_bottom = 164.0
-custom_minimum_size = Vector2( 0, 24 )
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 text = "Rear force"
 
 [node name="Values" type="VBoxContainer" parent="FFB/VBoxContainer/Options"]
-offset_left = 79.0
-offset_right = 153.0
-offset_bottom = 164.0
+layout_mode = 2
 
 [node name="FFBEnabled" type="CheckBox" parent="FFB/VBoxContainer/Options/Values"]
-offset_right = 74.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="FFBEnabled2" type="CheckBox" parent="FFB/VBoxContainer/Options/Values"]
-offset_top = 28.0
-offset_right = 74.0
-offset_bottom = 52.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="FFBGain" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-offset_top = 56.0
-offset_right = 74.0
-offset_bottom = 80.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 suffix = "%"
 
 [node name="FFBMinForce" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-offset_top = 84.0
-offset_right = 74.0
-offset_bottom = 108.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 max_value = 150.0
 suffix = "%"
 
 [node name="FFBFrontForce" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-offset_top = 112.0
-offset_right = 74.0
-offset_bottom = 136.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 min_value = -150.0
 max_value = 150.0
 suffix = "%"
 
 [node name="FFBRearForce" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-offset_top = 140.0
-offset_right = 74.0
-offset_bottom = 164.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 min_value = -150.0
 max_value = 150.0
 suffix = "%"
@@ -898,3 +633,5 @@ suffix = "%"
 [connection signal="toggled" from="Input/VBoxContainer/ShiftUp/BindButton2" to="Input/VBoxContainer/ShiftUp/BindButton2" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ShiftDown/BindButton" to="Input/VBoxContainer/ShiftDown/BindButton" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ShiftDown/BindButton2" to="Input/VBoxContainer/ShiftDown/BindButton2" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ChangeCamera/BindButton" to="Input/VBoxContainer/ChangeCamera/BindButton" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ChangeCamera/BindButton2" to="Input/VBoxContainer/ChangeCamera/BindButton2" method="_toggled"]
