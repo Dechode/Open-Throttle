@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d3l5rm7ycg1cx"
-path="res://.godot/imported/retro_openwheeler.blend-72065b9c6d7db49eaf90ab37caa9b617.scn"
+uid="uid://bqk1ulmddcbcc"
+path="res://.godot/imported/historic_fwd_rally.blend-ebcf477a250a8ae38c36f021d477874e.scn"
 
 [deps]
 
-source_file="res://assets/models/cars/retro_openwheeler.blend"
-dest_files=["res://.godot/imported/retro_openwheeler.blend-72065b9c6d7db49eaf90ab37caa9b617.scn"]
+source_file="res://assets/models/cars_blend/historic_fwd_rally.blend"
+dest_files=["res://.godot/imported/historic_fwd_rally.blend-ebcf477a250a8ae38c36f021d477874e.scn"]
 
 [params]
 

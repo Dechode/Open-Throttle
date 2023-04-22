@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c4ie4f6ud73xs"
-path="res://.godot/imported/modern_openwheeler.blend-b6924b1ece416b77ce77fab323258605.scn"
+uid="uid://p3djm6s2splf"
+path="res://.godot/imported/shorty.blend-61c65015181ec654333caa0afba3b24c.scn"
 
 [deps]
 
-source_file="res://assets/models/cars/modern_openwheeler.blend"
-dest_files=["res://.godot/imported/modern_openwheeler.blend-b6924b1ece416b77ce77fab323258605.scn"]
+source_file="res://assets/models/cars_blend/shorty.blend"
+dest_files=["res://.godot/imported/shorty.blend-61c65015181ec654333caa0afba3b24c.scn"]
 
 [params]
 

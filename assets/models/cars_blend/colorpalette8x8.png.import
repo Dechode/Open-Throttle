@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2lctyqtx7drx"
-path="res://.godot/imported/colorpalette8x8.png-187b71dedfb147460538362699c4483b.ctex"
+path="res://.godot/imported/colorpalette8x8.png-a7fa8b83682e48a56e050b322f63768f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/cars/colorpalette8x8.png"
-dest_files=["res://.godot/imported/colorpalette8x8.png-187b71dedfb147460538362699c4483b.ctex"]
+source_file="res://assets/models/cars_blend/colorpalette8x8.png"
+dest_files=["res://.godot/imported/colorpalette8x8.png-a7fa8b83682e48a56e050b322f63768f.ctex"]
 
 [params]
 

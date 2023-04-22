@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dvwoapojerdo"
-path="res://.godot/imported/gokart.blend-7c79c8ecf32772eabb279c2977ad46ef.scn"
+uid="uid://chegbitu4wqtg"
+path="res://.godot/imported/crosskart.blend-a71ce1b04d286c3dcf2a8f5ad9c1c0fe.scn"
 
 [deps]
 
-source_file="res://assets/models/cars/gokart.blend"
-dest_files=["res://.godot/imported/gokart.blend-7c79c8ecf32772eabb279c2977ad46ef.scn"]
+source_file="res://assets/models/cars_blend/crosskart.blend"
+dest_files=["res://.godot/imported/crosskart.blend-a71ce1b04d286c3dcf2a8f5ad9c1c0fe.scn"]
 
 [params]
 

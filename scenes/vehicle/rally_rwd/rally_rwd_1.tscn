@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0ncl8cjc6710"]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="3"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="3_5kkr2"]
 [ext_resource type="AudioStream" path="res://resources/audio/engine/EngineSample.tres" id="3_y1qg8"]
 [ext_resource type="Material" uid="uid://cj5h7b80tkud0" path="res://assets/models/BaseMaterial.material" id="4"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_ew8te"]
-[ext_resource type="PackedScene" uid="uid://bjsnhnipobgsx" path="res://assets/models/rwd1/rally_rwd_1.tscn" id="5_s1t76"]
+[ext_resource type="PackedScene" uid="uid://bjsnhnipobgsx" path="res://assets/models/car_model_scenes/historic_rally_rwd_1_model.tscn" id="5_s1t76"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_ts823"]
 
 [sub_resource type="Curve" id="Curve_8w45n"]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://x64rjv3eqmdd"
-path="res://.godot/imported/modern_prototype.blend-233caf4db600a3fa0ed23eabb39d1900.scn"
+uid="uid://dvwoapojerdo"
+path="res://.godot/imported/gokart.blend-15a1a1ad705608987e34215dd4d26297.scn"
 
 [deps]
 
-source_file="res://assets/models/cars/modern_prototype.blend"
-dest_files=["res://.godot/imported/modern_prototype.blend-233caf4db600a3fa0ed23eabb39d1900.scn"]
+source_file="res://assets/models/cars_blend/gokart.blend"
+dest_files=["res://.godot/imported/gokart.blend-15a1a1ad705608987e34215dd4d26297.scn"]
 
 [params]
 
@@ -28,14 +28,7 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={
-"materials": {
-"CarBaseNaterial": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/models/CarBaseNaterial.material"
-}
-}
-}
+_subresources={}
 gltf/embedded_image_handling=1
 blender/nodes/visible=0
 blender/nodes/punctual_lights=true

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bp6k6lalsn7pi"
-path="res://.godot/imported/offroad4x4.blend-307d9c7bd053c9f4d669d15fa6289d80.scn"
+uid="uid://c4ie4f6ud73xs"
+path="res://.godot/imported/modern_openwheeler.blend-968a1790150f359ff82607a42736c5bf.scn"
 
 [deps]
 
-source_file="res://assets/models/cars/offroad4x4.blend"
-dest_files=["res://.godot/imported/offroad4x4.blend-307d9c7bd053c9f4d669d15fa6289d80.scn"]
+source_file="res://assets/models/cars_blend/modern_openwheeler.blend"
+dest_files=["res://.godot/imported/modern_openwheeler.blend-968a1790150f359ff82607a42736c5bf.scn"]
 
 [params]
 

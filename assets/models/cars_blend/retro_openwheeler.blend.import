@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://chegbitu4wqtg"
-path="res://.godot/imported/crosskart.blend-1615dca3c0d9781557258bd422295ff0.scn"
+uid="uid://d3l5rm7ycg1cx"
+path="res://.godot/imported/retro_openwheeler.blend-d3705df247d4db9eeef12295fbae9112.scn"
 
 [deps]
 
-source_file="res://assets/models/cars/crosskart.blend"
-dest_files=["res://.godot/imported/crosskart.blend-1615dca3c0d9781557258bd422295ff0.scn"]
+source_file="res://assets/models/cars_blend/retro_openwheeler.blend"
+dest_files=["res://.godot/imported/retro_openwheeler.blend-d3705df247d4db9eeef12295fbae9112.scn"]
 
 [params]
 

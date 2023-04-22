@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bqk1ulmddcbcc"
-path="res://.godot/imported/historic_fwd_rally.blend-c0b04b48ac3cde596336cde096aaa6a2.scn"
+uid="uid://bp6k6lalsn7pi"
+path="res://.godot/imported/offroad4x4.blend-37e34fc0db9d9c4786b4c6625fdecdcb.scn"
 
 [deps]
 
-source_file="res://assets/models/cars/historic_fwd_rally.blend"
-dest_files=["res://.godot/imported/historic_fwd_rally.blend-c0b04b48ac3cde596336cde096aaa6a2.scn"]
+source_file="res://assets/models/cars_blend/offroad4x4.blend"
+dest_files=["res://.godot/imported/offroad4x4.blend-37e34fc0db9d9c4786b4c6625fdecdcb.scn"]
 
 [params]
 

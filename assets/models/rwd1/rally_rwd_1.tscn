@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjsnhnipobgsx"]
-
-[ext_resource type="PackedScene" uid="uid://veu4qokvfi21" path="res://assets/models/RallyRWD_1.glb" id="1_gyu7q"]
-
-[node name="RallyRWD_1" instance=ExtResource("1_gyu7q")]
