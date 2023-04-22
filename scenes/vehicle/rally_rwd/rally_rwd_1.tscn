@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://rdg3dlgmp8gl"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="3"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="3_5kkr2"]
@@ -17,7 +17,7 @@ script = ExtResource("3_5kkr2")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-tire_rated_load = 7000
+tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_2ayn4"]
 script = ExtResource("5_ts823")
@@ -28,7 +28,7 @@ bump = 10000.0
 rebound = 11000.0
 wheel_mass = 20.0
 ackermann = -0.15
-anti_roll = 50
+anti_roll = 50.0
 
 [sub_resource type="Resource" id="Resource_ysiuk"]
 script = ExtResource("4_ew8te")
@@ -46,7 +46,7 @@ rpm_idle = 900.0
 torque_curve = SubResource("Curve_8w45n")
 engine_drag = 0.03
 engine_brake = 10.0
-engine_moment = 0.25
+engine_moment = 0.15
 engine_bsfc = 0.3
 engine_sound = ExtResource("3_y1qg8")
 clutch_friction = 300.0
@@ -56,7 +56,7 @@ transmission_efficiency = 0.9
 gear_ratios = [3.1, 2.61, 2.0, 1.3, 1.0]
 final_drive = 3.7
 reverse_ratio = 3.9
-gear_inertia = 0.2
+gear_inertia = 0.15
 front_diff = 0
 front_diff_preload = 50.0
 front_diff_power_ratio = 2.0

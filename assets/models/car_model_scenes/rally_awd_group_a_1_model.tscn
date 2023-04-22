@@ -80,18 +80,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_oukj5")
 
-[node name="Node3D" type="Node3D"]
+[node name="RallyAwdGroupA1Model" type="Node3D"]
 
 [node name="body_geo" type="Node3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, -1.62921e-05, 0, 1.62921e-05, 100, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0, 0, 0)
 
-[node name="body_geo_Default OBJ068_0" type="MeshInstance3D" parent="body_geo"]
+[node name="body_geo" type="MeshInstance3D" parent="body_geo"]
 mesh = SubResource("ArrayMesh_51df0")
 skeleton = NodePath("")
 
-[node name="L_front_wheel_geo #370597" type="Node3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, -1.62921e-05, 0, 1.62921e-05, 100, 66.61, -44.93, 134.12)
+[node name="L_front_whee" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0.70021, -0.420126, 1.32573)
 
-[node name="L_front_wheel_geo #370597_Default OBJ069_0" type="MeshInstance3D" parent="L_front_wheel_geo #370597"]
+[node name="L_front_wheel_mesh" type="MeshInstance3D" parent="L_front_whee"]
 mesh = SubResource("ArrayMesh_w4ork")
 skeleton = NodePath("")

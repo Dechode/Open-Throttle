@@ -7,6 +7,7 @@ resource_name = "Default_OBJ.017"
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_pdgjo")
+metallic = 1.0
 roughness = 0.821115
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qkm2f"]
@@ -83,14 +84,14 @@ shadow_mesh = SubResource("ArrayMesh_x3hsf")
 [node name="HistoricRallyRwd3Model" type="Node3D"]
 
 [node name="CarBody" type="Node3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, -1.62921e-05, 0, 1.62921e-05, 100, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0, 0, 0)
 
 [node name="CarBodyMesh" type="MeshInstance3D" parent="CarBody"]
 mesh = SubResource("ArrayMesh_qn6cq")
 skeleton = NodePath("")
 
 [node name="L_front_wheel_geo" type="Node3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, -1.62921e-05, 0, 1.62921e-05, 100, 64.8684, -22.6883, 109.579)
+transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0.616324, -0.30416, 1.10173)
 
 [node name="L_front_wheel_geo" type="MeshInstance3D" parent="L_front_wheel_geo"]
 mesh = SubResource("ArrayMesh_ard11")

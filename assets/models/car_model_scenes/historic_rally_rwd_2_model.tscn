@@ -120,21 +120,21 @@ shadow_mesh = SubResource("ArrayMesh_8c6ql")
 [node name="HistoricRallyRwd2" type="Node3D"]
 
 [node name="body_geo #370683" type="Node3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, -1.62921e-05, 0, 1.62921e-05, 100, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0, 0, 0)
 
 [node name="body_geo #370683_Default OBJ109_0" type="MeshInstance3D" parent="body_geo #370683"]
 mesh = SubResource("ArrayMesh_d6hwp")
 skeleton = NodePath("")
 
 [node name="fanali_geo #370649" type="Node3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, -1.62921e-05, 0, 1.62921e-05, 100, 0, -56.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0, -0.56, 0)
 
 [node name="fanali_geo #370649_Default OBJ014_0" type="MeshInstance3D" parent="fanali_geo #370649"]
 mesh = SubResource("ArrayMesh_fgmuq")
 skeleton = NodePath("")
 
 [node name="L_front_wheel_geo #370474001" type="Node3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, -1.62921e-05, 0, 1.62921e-05, 100, 66.91, -25.41, 100.06)
+transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0.69, -0.26, 1)
 
 [node name="L_front_wheel_geo #370474001_Default OBJ013_0" type="MeshInstance3D" parent="L_front_wheel_geo #370474001"]
 mesh = SubResource("ArrayMesh_aujjx")
