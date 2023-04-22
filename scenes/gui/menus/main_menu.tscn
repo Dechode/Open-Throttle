@@ -81,6 +81,7 @@ License notice is located in the root directory of this program.
 selection_enabled = true
 
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
@@ -112,7 +113,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -197,10 +197,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Historic Rally Rwd mk2"
 script = ExtResource("6")
 car_path = "res://scenes/vehicle/rally_rwd/rally_rwd_1.tscn"
+
+[node name="Button2" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Retro Open Wheeler 1960's"
+script = ExtResource("6")
+car_path = "res://scenes/vehicle/retro_open_wheeler60/retro_open_wheeler_60.tscn"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/PlayMenu/Car/Cars"]
 layout_mode = 2
@@ -273,6 +283,9 @@ layout_mode = 1
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" method="_on_car_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarPreview/CarSetupButton" to="." method="_on_car_setup_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Start/PlayButton" to="HBoxContainer/PlayMenu/Start/PlayButton" method="_on_PlayButton_pressed"]
 [connection signal="confirmed" from="QuitPopUp" to="." method="_on_QuitPopUp_confirmed"]
