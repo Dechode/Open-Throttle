@@ -51,7 +51,6 @@ text = "Quit"
 
 [node name="CreditsLabel" type="RichTextLabel" parent="HBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -77,6 +76,18 @@ License notice is located in the root directory of this program.
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+Low Poly Rally Cars Pack:
+Model Information:
+* title:	Low Poly Rally Cars Pack
+* source:	https://sketchfab.com/3d-models/low-poly-rally-cars-pack-aa5eb26008474c88a04d0ea6a3c424a2
+* author:	MuhammadOkky (https://sketchfab.com/muhammad.oky2018)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on \"Low Poly Rally Cars Pack\" (https://sketchfab.com/3d-models/low-poly-rally-cars-pack-aa5eb26008474c88a04d0ea6a3c424a2) by MuhammadOkky (https://sketchfab.com/muhammad.oky2018) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 "
 selection_enabled = true
 
@@ -113,6 +124,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
