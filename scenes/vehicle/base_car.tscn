@@ -159,4 +159,28 @@ stream = ExtResource("4_kgrag")
 
 [node name="CameraSystem" parent="." instance=ExtResource("8_prruq")]
 
+[node name="CameraPosTarget" parent="CameraSystem/ThirdPersonCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91289, 3.62001)
+
+[node name="CameraLookAtTarget" parent="CameraSystem/ThirdPersonCam" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84903, -2.45317)
+
+[node name="CameraPosTarget" parent="CameraSystem/ThirdPersonCam2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.18656, 6.24888)
+
+[node name="CameraPosTarget" parent="CameraSystem/FlyCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.3088, 7.66541)
+
+[node name="CameraPosTarget" parent="CameraSystem/IndoorCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545339, 0.60169, -0.866356)
+
+[node name="CameraLookAtTarget" parent="CameraSystem/IndoorCam" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, 0.613, -4.083)
+
+[node name="CameraPosTarget" parent="CameraSystem/HoodCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47318, -2.21026)
+
+[node name="CameraLookAtTarget" parent="CameraSystem/HoodCam" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.569255, -4.08343)
+
 [editable path="CameraSystem"]
