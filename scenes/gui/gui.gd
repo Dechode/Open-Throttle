@@ -7,7 +7,7 @@ var car: BaseCar
 @onready var rpm_label = $Essentials/VBoxContainer/RpmLabel
 @onready var fuel_label = $Essentials/VBoxContainer/FuelLabel
 
-# TODO Use VehicleAPI to get the properties, this itself wont
+
 func _ready() -> void:
 	VehicleAPI.connect("car_changed", set_car)
 
