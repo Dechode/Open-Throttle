@@ -6,7 +6,9 @@ enum tire_pos {FL,FR,RL,RR}
 @export var tire_index:tire_pos = tire_pos.FL
 
 var radius_grip_ring:float = 0
-var tire_spin_abs:float = 0
+var tire_slip_z_abs:float = 0
+var tire_slip_x_abs:float = 0
+var tire_slip_max_abs:float = 0
 var max_scale_n:float = 0
 
 func _ready():
@@ -28,7 +30,9 @@ func _ready():
 func _process(delta):
 	if tire != null:
 		#clamp absolute spin from 0 to 1 to use in lerp function
-		tire_spin_abs = clamp(abs(tire.slip_vec.y), 0.0, 1.0)
+		tire_slip_z_abs = clamp(abs(tire.slip_vec.y), 0.0, 1.0)
+		tire_slip_x_abs = clamp(abs(tire.slip_vec.x), 0.0, 1.0)
+		tire_slip_max_abs = max(tire_slip_x_abs, tire_slip_z_abs)
 		
 		#calculate the radius of the indicator based on tire load
 		var gripScale = clamp((1.0/max_scale_n) * tire.y_force, 0.0, 1.0)
@@ -44,7 +48,7 @@ func _draw():
 	var colorG = Color(0.0, 1.0, 0.0)#Green
 	
 	# mix colors based on slip, green = tire has grip, red = tire has no grip
-	var color_mixed = colorG.lerp(colorR, tire_spin_abs)
+	var color_mixed = colorG.lerp(colorR, tire_slip_max_abs)
 	
 	# draw the circle sized based on actual load on tire
 	draw_circle_arc(center, radius_grip_ring, angle_from, angle_to, color_mixed)
