@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgkpgeq00bws2"]
+[gd_scene load_steps=20 format=3 uid="uid://bgkpgeq00bws2"]
 
 [ext_resource type="Script" path="res://scenes/vehicle/car.gd" id="1_ekicj"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_skbd3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="4_sel4p"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="5_02gb1"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://cecdjwrkufhri" path="res://scenes/camera/camera_system.tscn" id="8_prruq"]
 [ext_resource type="PackedScene" uid="uid://nelgdfamj8jh" path="res://scenes/vehicle/wheel_suspension.tscn" id="9"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_sj011"]
@@ -155,3 +156,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -1.5)
 [node name="EngineSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.79)
 stream = ExtResource("4_kgrag")
+
+[node name="CameraSystem" parent="." instance=ExtResource("8_prruq")]
+
+[editable path="CameraSystem"]
