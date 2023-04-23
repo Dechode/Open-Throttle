@@ -4,8 +4,8 @@ extends Driver
 
 func _ready():
 	VehicleAPI.car = car
-#	print_debug("created player driver")
-#	set_physics_process(true)
+	# Has to be call_deferred so the car reference is updated in VehicleAPI when instantiating the gui 
+	car.add_child.call_deferred((load("res://scenes/gui/gui.tscn").instantiate()))
 
 
 func _unhandled_input(event: InputEvent) -> void:

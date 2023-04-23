@@ -31,7 +31,7 @@ func add_car(car, grid_id):
 			
 		if child.driver is PlayerDriver:
 			print_debug("Driver is PlayerDriver")
-			child.add_child(load("res://scenes/gui/gui.tscn").instantiate())
+#			child.add_child(load("res://scenes/gui/gui.tscn").instantiate())
 			var driver = PlayerDriver.new()
 			child.set_driver(driver)
 			
