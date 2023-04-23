@@ -28,6 +28,10 @@ RaceControl="*res://global/race_control.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
+[dotnet]
+
+project/assembly_name="Open Throttle"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
