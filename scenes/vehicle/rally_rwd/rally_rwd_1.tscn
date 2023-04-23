@@ -94,7 +94,7 @@ size = Vector3(1.52553, 0.6321, 3.7992)
 [sub_resource type="BoxShape3D" id="5"]
 size = Vector3(1.06005, 0.354276, 1.56064)
 
-[node name="RallyRWD_1" type="Node3D"]
+[node name="HistoricRallyRWD1" type="Node3D"]
 
 [node name="RigidBodyCar" parent="." instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395646, 0)
@@ -132,6 +132,15 @@ mesh = SubResource("3")
 [node name="EngineSound" parent="RigidBodyCar" index="4"]
 visible = false
 
+[node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, 0.6, -0.106)
+
+[node name="CameraLookAtTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, 0.6, -4.083)
+
+[node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47318, -1.15006)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBodyCar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00266775, 0.204892)
 visible = false
@@ -150,3 +159,4 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 [editable path="RigidBodyCar/Wheel_bl"]
 [editable path="RigidBodyCar/Wheel_fr"]
 [editable path="RigidBodyCar/Wheel_fl"]
+[editable path="RigidBodyCar/CameraSystem"]

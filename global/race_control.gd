@@ -28,9 +28,4 @@ func add_to_grid(car, pos):
 	if pos > grid.size():
 		grid.resize(pos)
 	
-#	var car := {
-#	"car_path": car_path,
-#	"driver_type": driver_type,
-#	}
-	
 	grid[pos-1] = car

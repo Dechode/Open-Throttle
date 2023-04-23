@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgkpgeq00bws2"]
+[gd_scene load_steps=20 format=3 uid="uid://bgkpgeq00bws2"]
 
 [ext_resource type="Script" path="res://scenes/vehicle/car.gd" id="1_ekicj"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_skbd3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="4_sel4p"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="5_02gb1"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://cecdjwrkufhri" path="res://scenes/camera/camera_system.tscn" id="8_prruq"]
 [ext_resource type="PackedScene" uid="uid://nelgdfamj8jh" path="res://scenes/vehicle/wheel_suspension.tscn" id="9"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_sj011"]
@@ -155,3 +156,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -1.5)
 [node name="EngineSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.79)
 stream = ExtResource("4_kgrag")
+
+[node name="CameraSystem" parent="." instance=ExtResource("8_prruq")]
+
+[node name="CameraPosTarget" parent="CameraSystem/ThirdPersonCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91289, 3.62001)
+
+[node name="CameraLookAtTarget" parent="CameraSystem/ThirdPersonCam" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84903, -2.45317)
+
+[node name="CameraPosTarget" parent="CameraSystem/ThirdPersonCam2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.18656, 6.24888)
+
+[node name="CameraPosTarget" parent="CameraSystem/FlyCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.3088, 7.66541)
+
+[node name="CameraPosTarget" parent="CameraSystem/IndoorCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545339, 0.60169, -0.866356)
+
+[node name="CameraLookAtTarget" parent="CameraSystem/IndoorCam" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, 0.613, -4.083)
+
+[node name="CameraPosTarget" parent="CameraSystem/HoodCam" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47318, -2.21026)
+
+[node name="CameraLookAtTarget" parent="CameraSystem/HoodCam" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.569255, -4.08343)
+
+[editable path="CameraSystem"]
