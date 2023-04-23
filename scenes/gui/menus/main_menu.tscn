@@ -221,9 +221,9 @@ car_path = "res://scenes/vehicle/rally_rwd/rally_rwd_1.tscn"
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Retro Open Wheeler 1960's"
+text = "Historic Open Wheeler 1960's"
 script = ExtResource("6")
-car_path = "res://scenes/vehicle/retro_open_wheeler60/retro_open_wheeler_60.tscn"
+car_path = "res://scenes/vehicle/historic_open_wheeler60/historic_open_wheeler_60.tscn"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/PlayMenu/Car/Cars"]
 layout_mode = 2
