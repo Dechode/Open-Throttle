@@ -12,75 +12,75 @@
 _data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_k433c"]
+[sub_resource type="Resource" id="Resource_85tt5"]
 script = ExtResource("5_763fl")
-tire_stiffness = 0.0
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_rc4qb"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_k433c")
+tire_model = SubResource("Resource_85tt5")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 30.0
 ackermann = 0.0
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_cuhiq"]
+[sub_resource type="Resource" id="Resource_q6fyr"]
 script = ExtResource("5_763fl")
-tire_stiffness = 0.0
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_l7g81"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_cuhiq")
+tire_model = SubResource("Resource_q6fyr")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 30.0
 ackermann = 0.0
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_683jw"]
+[sub_resource type="Resource" id="Resource_pb31b"]
 script = ExtResource("5_763fl")
-tire_stiffness = 0.0
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_p6ctj"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_683jw")
+tire_model = SubResource("Resource_pb31b")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 30.0
 ackermann = 0.15
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_u8rrm"]
+[sub_resource type="Resource" id="Resource_qsqbf"]
 script = ExtResource("5_763fl")
-tire_stiffness = 0.0
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_l325x"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_u8rrm")
+tire_model = SubResource("Resource_qsqbf")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 30.0
 ackermann = -0.15
 anti_roll = 50.0
 
@@ -110,7 +110,7 @@ transmission_efficiency = 0.9
 gear_ratios = [3.1, 2.61, 2.0, 1.3, 1.0]
 final_drive = 3.7
 reverse_ratio = 3.9
-gear_inertia = 0.15
+gear_inertia = 0.2
 front_diff = 0
 front_diff_preload = 50.0
 front_diff_power_ratio = 2.0

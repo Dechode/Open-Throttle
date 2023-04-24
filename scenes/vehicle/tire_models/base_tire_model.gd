@@ -18,8 +18,8 @@ const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 #var pneumatic_trail = 0.03
 
 var tire_wear := 0.0
-var tire_temperature := 20.0
 var load_sensitivity := 1.0
+#var tire_temperature := 20.0
 
 var peak_sa := 0.12
 var peak_sr := 0.09
@@ -38,7 +38,7 @@ func update_tire_wear(prev_wear: float, friction_power: float, delta: float):
 	return prev_wear + friction_power * wear_rate * delta
 
 
-func update_tire_temps(friction_power: float, speed: float, delta: float, ambient_temp := 20.0):
+func update_tire_temps(prev_temp: float, friction_power: float, speed: float, delta: float, ambient_temp := 20.0):
 	# From Speed Dreams wiki: https://sourceforge.net/p/speed-dreams/wiki/TireTempDeg/
 	# dT/SimDeltaTime = P * heatingm - aircoolm * (1 + speedcoolm * v) * (T-Tair)
 	
@@ -52,12 +52,12 @@ func update_tire_temps(friction_power: float, speed: float, delta: float, ambien
 	var heating := friction_power * heating_multiplier
 	var cooling: float = air_cooling_multiplier * (1 + speed_cooling_multiplier * abs(speed))
 	
-	var delta_temp := heating - cooling * (tire_temperature - ambient_temp)
+	var delta_temp := heating - cooling * (prev_temp - ambient_temp)
 	delta_temp *= delta
 #	delta_temp = clamp(delta_temp, -1, 1)
 	
-	tire_temperature += delta_temp
-	return tire_temperature
+	prev_temp += delta_temp
+	return prev_temp
 
 
 func update_load_sensitivity(normal_load: float) -> float:
