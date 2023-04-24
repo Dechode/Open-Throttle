@@ -24,10 +24,11 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float):
 	var force_vec := Vector3.ZERO
 	force_vec.x = pacejka(abs(sa_modified), b, 1.35, mu, 0, normal_load) * sign(slip.x)
 	force_vec.y = pacejka(abs(sr_modified), b, 1.6, mu, 0, normal_load) * sign(slip.y)
-	force_vec.z = pacejka(abs(sa_modified), b, 2.0, 0.1 * mu, -20, normal_load) * sign(slip.x)
 	
 	if resultant_slip != 0:
 		force_vec.x = force_vec.x * abs(normalised_sa / resultant_slip)
 		force_vec.y = force_vec.y * abs(normalised_sr / resultant_slip)
-		force_vec.z = force_vec.z * abs(normalised_sa / resultant_slip)
+	
+	var pneumatic_trail = 0.03 - normalised_sa * 0.03
+	force_vec.z = force_vec.x * pneumatic_trail
 	return force_vec
