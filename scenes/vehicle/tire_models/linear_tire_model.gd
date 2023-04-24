@@ -4,19 +4,15 @@ extends BaseTireModel
 
 func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float) -> Vector3:
 	var tire_force_vec := Vector3.ZERO
-	var cornering_stiffness := (400 + tire_stiffness * 300) * 57.2957795 # N / rad
-	var longitudinal_stiffness := (500 + tire_stiffness * 300) * 57.2957795 # N / rad
+	var cornering_stiffness := (300 + tire_stiffness * 500) * 57.2957795 # N / rad
+	var longitudinal_stiffness := (500 + tire_stiffness * 700) * 57.2957795 # N / rad
 	
-#	var cornering_stiffness = clamp(0.165 * normal_load * 57.29577950, 100.0, 200000.0)
-#	var longitudinal_stiffness = clamp(0.17 * normal_load * 57.29577950, 100.0, 200000.0)
+#	load_sensitivity = update_load_sensitivity(normal_load)
+#	var grip := normal_load * load_sensitivity * surface_mu
+	var grip := normal_load * surface_mu
 	
-	load_sensitivity = update_load_sensitivity(normal_load)
-	var grip := normal_load * load_sensitivity * surface_mu
-#	var grip := normal_load * surface_mu
-	
-	peak_sa = clamp(grip / cornering_stiffness, 0.0001, 1.0)
-	peak_sr = clamp(grip / longitudinal_stiffness, 0.0001, 1.0)
-#	peak_sr = 0.65 * peak_sa
+	peak_sa = clamp(grip / cornering_stiffness, 0.04, 1.0)
+	peak_sr = clamp(grip / longitudinal_stiffness, 0.04, 1.0)
 	
 	var normalised_sa = abs(slip.x) / peak_sa
 	var normalised_sr = abs(slip.y) / peak_sr
@@ -39,7 +35,6 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float) ->
 	if abs(tire_force_vec.y) >= grip:
 		tire_force_vec.y = grip * sign(slip.y)
 	
-	
 #	print(rad_to_deg(peak_sa))
-	print(tire_force_vec.x / normal_load)
+	
 	return tire_force_vec
