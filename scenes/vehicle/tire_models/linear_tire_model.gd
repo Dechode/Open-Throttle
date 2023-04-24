@@ -9,7 +9,9 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float) ->
 	
 #	load_sensitivity = update_load_sensitivity(normal_load)
 #	var grip := normal_load * load_sensitivity * surface_mu
-	var grip := normal_load * surface_mu
+	
+	var wear_mu := TIRE_WEAR_CURVE.sample_baked(tire_wear)
+	var grip := normal_load * surface_mu * wear_mu
 	
 	peak_sa = clamp(grip / cornering_stiffness, 0.04, 1.0)
 	peak_sr = clamp(grip / longitudinal_stiffness, 0.04, 1.0)
