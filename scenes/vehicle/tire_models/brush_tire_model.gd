@@ -4,22 +4,24 @@ extends BaseTireModel
 
 func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float = 1.0) -> Vector3:
 	var contact_patch = tire_width * 0.75
-	var stiffness = 2_000_000 + 5_000_000 * tire_stiffness
-	var cornering_stiffness = 0.5 * stiffness * pow(contact_patch, 2)
+	var lat_stiffness := 1_000_000 + 5_000_000 * tire_stiffness
+	var tan_stiffness := 3_000_000 + 7_000_000 * tire_stiffness
+	var cornering_stiffness := 0.5 * lat_stiffness * pow(contact_patch, 2)
+	var longitudinal_stiffness := 0.5 * tan_stiffness * pow(contact_patch, 2)
 	
-	var wear_mu = TIRE_WEAR_CURVE.sample_baked(tire_wear)
+	var wear_mu := TIRE_WEAR_CURVE.sample_baked(tire_wear)
 	load_sensitivity = update_load_sensitivity(normal_load)
 	
-	var mu = surface_mu * load_sensitivity * wear_mu
-	var friction = mu * normal_load
+	var mu := surface_mu * wear_mu
+	var grip := mu * normal_load
 	
-	peak_sa = clamp(friction / cornering_stiffness, 0.04, 1.0)
-	peak_sr = peak_sa * 0.7
-#	print(cornering_stiffness)
+	peak_sa = clamp(grip / cornering_stiffness, 0.04, 1.0)
+	peak_sr = clamp(grip / longitudinal_stiffness, 0.04, 1.0)
 #	print(rad_to_deg(peak_sa))
-	var critical_length = 0
+	
+	var critical_length := 0.0
 	if slip.x:
-		critical_length = friction / (stiffness * contact_patch * tan(abs(slip.x)))
+		critical_length = grip / (lat_stiffness * contact_patch * tan(abs(slip.x)))
 	
 	var force_vector := Vector3.ZERO
 	
@@ -28,18 +30,19 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float = 1
 		force_vector.z = cornering_stiffness * contact_patch * slip.x / 6
 	else: # Sliding region
 		if slip.x:
-			var idk = (mu * pow(normal_load, 2) / (12 * contact_patch * stiffness * tan(slip.x)))
-			force_vector.z = idk * (3 - ((2 * friction) / (pow(contact_patch, 2) * stiffness * tan(slip.x))))
+			var idk = (pow(grip, 2) / (12 * contact_patch * lat_stiffness * tan(slip.x)))
+			force_vector.z = idk * (3 - ((2 * grip) / (pow(contact_patch, 2) * lat_stiffness * tan(slip.x))))
 	
-	var deflect = sqrt(pow(cornering_stiffness * slip.y, 2) + pow(cornering_stiffness * tan(slip.x), 2))
+	# Tire forces
+	var deflect := sqrt(pow(longitudinal_stiffness * slip.y, 2) + pow(cornering_stiffness * tan(slip.x), 2))
 	if deflect == 0:
 		return Vector3.ZERO
 
-	if deflect <= 0.5 * friction * (1 - slip.y):
-		force_vector.y = cornering_stiffness * -slip.y / (1 - slip.y)
+	if deflect <= 0.5 * grip * (1 - slip.y):
+		force_vector.y = longitudinal_stiffness * slip.y / (1 - slip.y)
 		force_vector.x = cornering_stiffness * tan(slip.x) / (1 - slip.y)
 	else:
-		var brushy = (1 - friction * (1 - slip.y) / (4 * deflect)) / deflect
-		force_vector.y = -friction * cornering_stiffness * -slip.y * brushy
-		force_vector.x = friction * cornering_stiffness * tan(slip.x) * brushy
-	return force_vector
+		var brushy = (1 - grip * (1 - slip.y) / (4 * deflect)) / deflect
+		force_vector.y = grip * longitudinal_stiffness * slip.y * brushy
+		force_vector.x = grip * cornering_stiffness * tan(slip.x) * brushy
+	return force_vector * load_sensitivity
