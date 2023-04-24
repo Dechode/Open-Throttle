@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rdg3dlgmp8gl"]
+[gd_scene load_steps=18 format=3 uid="uid://rdg3dlgmp8gl"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="3"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="3_5kkr2"]
@@ -19,7 +19,40 @@ tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
-[sub_resource type="Resource" id="Resource_2ayn4"]
+[sub_resource type="Resource" id="Resource_rc4qb"]
+script = ExtResource("5_ts823")
+tire_model = SubResource("Resource_q7tsp")
+spring_length = 0.15
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 20.0
+ackermann = 0.15
+anti_roll = 50.0
+
+[sub_resource type="Resource" id="Resource_l7g81"]
+script = ExtResource("5_ts823")
+tire_model = SubResource("Resource_q7tsp")
+spring_length = 0.15
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 20.0
+ackermann = 0.15
+anti_roll = 50.0
+
+[sub_resource type="Resource" id="Resource_p6ctj"]
+script = ExtResource("5_ts823")
+tire_model = SubResource("Resource_q7tsp")
+spring_length = 0.15
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 20.0
+ackermann = 0.15
+anti_roll = 50.0
+
+[sub_resource type="Resource" id="Resource_l325x"]
 script = ExtResource("5_ts823")
 tire_model = SubResource("Resource_q7tsp")
 spring_length = 0.15
@@ -69,10 +102,10 @@ center_split_fr = 0.4
 cd = 0.3
 air_density = 1.225
 frontal_area = 2.0
-wheel_params_fl = SubResource("Resource_2ayn4")
-wheel_params_fr = SubResource("Resource_2ayn4")
-wheel_params_bl = SubResource("Resource_2ayn4")
-wheel_params_br = SubResource("Resource_2ayn4")
+wheel_params_fl = SubResource("Resource_p6ctj")
+wheel_params_fr = SubResource("Resource_l325x")
+wheel_params_bl = SubResource("Resource_rc4qb")
+wheel_params_br = SubResource("Resource_l7g81")
 
 [sub_resource type="ArrayMesh" id="3"]
 resource_name = "RallyRWD_1_Cylinder"

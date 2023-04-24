@@ -88,7 +88,7 @@ spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
 wheel_mass = 20.0
-ackermann = 0.15
+ackermann = -0.15
 anti_roll = 50.0
 
 [sub_resource type="Resource" id="Resource_yuobi"]
