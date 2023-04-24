@@ -1,15 +1,10 @@
 class_name BrushTireModel
 extends BaseTireModel
 
-#var contact_patch = 0.2
-
 
 func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float = 1.0) -> Vector3:
 	var contact_patch = tire_width * 0.75
-	
-#	var stiffness = 5_000_000 + 20_000_000 * tire_stiffness
-	var stiffness = 5_000_000 + 5_000_000 * tire_stiffness
-#	var stiffness = 5 + tire_stiffness * 15.0
+	var stiffness = 2_000_000 + 5_000_000 * tire_stiffness
 	var cornering_stiffness = 0.5 * stiffness * pow(contact_patch, 2)
 	
 	var wear_mu = TIRE_WEAR_CURVE.sample_baked(tire_wear)
@@ -18,12 +13,10 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float = 1
 	var mu = surface_mu * load_sensitivity * wear_mu
 	var friction = mu * normal_load
 	
-	peak_sa = friction / cornering_stiffness
-#	peak_sa = friction / (2 * cornering_stiffness)
-#	peak_sa = friction / (2 * stiffness)
+	peak_sa = clamp(friction / cornering_stiffness, 0.04, 1.0)
 	peak_sr = peak_sa * 0.7
 #	print(cornering_stiffness)
-	print(rad_to_deg(peak_sa))
+#	print(rad_to_deg(peak_sa))
 	var critical_length = 0
 	if slip.x:
 		critical_length = friction / (stiffness * contact_patch * tan(abs(slip.x)))
