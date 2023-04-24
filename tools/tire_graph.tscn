@@ -1,0 +1,178 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu5d6u0jvancl"]
+
+[ext_resource type="Script" path="res://tools/tire_graph.gd" id="1_1l4bb"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="2_q871f"]
+
+[sub_resource type="Resource" id="Resource_w1pmh"]
+script = ExtResource("2_q871f")
+tire_stiffness = 1.0
+tire_width = 0.225
+tire_radius = 0.3
+tire_rated_load = 7000.0
+
+[node name="TireGraph" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1l4bb")
+tire_model = SubResource("Resource_w1pmh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GraphPanel" type="Panel" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/GraphPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LateralTireForceGraph" type="Line2D" parent="HBoxContainer/VBoxContainer/GraphPanel/VBoxContainer"]
+position = Vector2(1, 398)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="LongitudinalTireForceGraph" type="Line2D" parent="HBoxContainer/VBoxContainer/GraphPanel/VBoxContainer"]
+position = Vector2(1, 398)
+width = 2.0
+default_color = Color(0, 0, 1, 1)
+
+[node name="SelfAligningTorqueGraph" type="Line2D" parent="HBoxContainer/VBoxContainer/GraphPanel/VBoxContainer"]
+position = Vector2(1, 398)
+width = 2.0
+default_color = Color(0, 1, 0, 1)
+
+[node name="Parameters" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TireStiffness" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Tire Stiffness"
+
+[node name="StiffnessSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="StiffnessValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness"]
+layout_mode = 2
+text = "0.5"
+
+[node name="TireLoad" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireLoad"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Tire Load"
+
+[node name="TireLoadSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireLoad"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 10000.0
+step = 50.0
+value = 3500.0
+
+[node name="TireLoadValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireLoad"]
+layout_mode = 2
+text = "3500"
+
+[node name="Friction" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Coefficient Of Friction"
+
+[node name="FrictionSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 3.5
+step = 0.05
+value = 1.0
+
+[node name="FrictionValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction"]
+layout_mode = 2
+text = "1.0"
+
+[node name="TireModel" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Tire Model"
+
+[node name="TireModelOption" type="OptionButton" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="PeakSlipAngle" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="PeakSlipAngleLabel" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer2/PeakSlipAngle"]
+layout_mode = 2
+text = "Peak Slip Angle = 6.2 deg"
+
+[node name="Slip0" type="Label" parent="."]
+layout_mode = 2
+offset_top = 400.0
+offset_right = 10.0
+offset_bottom = 426.0
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "0"
+
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness/StiffnessSlider" to="." method="_on_stiffness_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireLoad/TireLoadSlider" to="." method="_on_tire_load_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionSlider" to="." method="_on_friction_slider_value_changed"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel/TireModelOption" to="." method="_on_tire_model_option_item_selected"]
