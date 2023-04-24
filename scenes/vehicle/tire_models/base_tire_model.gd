@@ -15,8 +15,8 @@ const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 var tire_wear := 0.0
 var load_sensitivity := 1.0
 
-var peak_sa := 0.1
-var peak_sr := 0.1
+var peak_sa := 0.12
+var peak_sr := 0.09
 
 
 # Possible variables for force calculations
