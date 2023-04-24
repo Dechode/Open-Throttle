@@ -14,12 +14,12 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float):
 	var b = 2 + tire_stiffness * 18
 	peak_sa = 0.1 + (1 - tire_stiffness) * 0.5
 	peak_sr = 0.65 * peak_sa
-	var normalised_sr = slip.y / peak_sr
-	var normalised_sa = slip.x / peak_sa
+	var normalised_sr = abs(slip.y) / peak_sr
+	var normalised_sa = abs(slip.x) / peak_sa
 	var resultant_slip = sqrt(pow(normalised_sr, 2) + pow(normalised_sa, 2))
 #
-	var sr_modified = resultant_slip * peak_sr
-	var sa_modified = resultant_slip * peak_sa
+	var sr_modified = resultant_slip * peak_sr * sign(slip.x) 
+	var sa_modified = resultant_slip * peak_sa * sign(slip.y)
 	
 	var force_vec := Vector3.ZERO
 	force_vec.x = pacejka(abs(sa_modified), b, 1.35, mu, 0, normal_load) * sign(slip.x)
