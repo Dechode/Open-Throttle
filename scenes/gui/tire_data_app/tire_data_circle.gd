@@ -1,13 +1,14 @@
 extends Control
 
-var tire:RaycastSuspension
-
 enum tire_pos {FL,FR,RL,RR}
-@export var tire_index:tire_pos = tire_pos.FL
 
-var radius_grip_ring:float = 0
-var tire_slip_max_abs:float = 0
-var max_scale_n:float = 0
+@export var tire_index: tire_pos = tire_pos.FL
+
+var radius_grip_ring: float = 0
+var tire_slip_max_abs: float = 0
+var max_scale_n: float = 0
+
+var tire: RaycastSuspension
 
 func _ready():
 	#set tire based on tire_index variable
@@ -31,8 +32,8 @@ func _process(delta):
 		tire_slip_max_abs = max(clamp(abs(tire.slip_vec.x), 0.0, 1.0), clamp(abs(tire.slip_vec.y), 0.0, 1.0))
 		
 		#calculate the radius of the indicator based on tire load
-		var gripScale = clamp((1.0/max_scale_n) * tire.y_force, 0.0, 1.0)
-		radius_grip_ring = 75 * gripScale
+		var grip_scale = clamp((1.0/max_scale_n) * tire.y_force, 0.0, 1.0)
+		radius_grip_ring = 75 * grip_scale
 	# call draw function
 	queue_redraw()
 
