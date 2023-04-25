@@ -24,10 +24,10 @@ func _process(delta: float) -> void:
 			var amount = clamp((temp-65) / (100.0-65), 0, 1)
 			temp_colors[i].color = lerp(Color.LIME_GREEN, Color.RED, amount)
 	
-	$Panel/TireFL/TemperatureColor/TemperatureLabel.text = "%2.1f c" % temps[0]
-	$Panel/TireFR/TemperatureColor/TemperatureLabel.text = "%2.1f c" % temps[1]
-	$Panel/TireBL/TemperatureColor/TemperatureLabel.text = "%2.1f c" % temps[2]
-	$Panel/TireBR/TemperatureColor/TemperatureLabel.text = "%2.1f c" % temps[3]
+	$Panel/TireFL/TemperatureColor/TemperatureLabel.text = "%2.1f °C" % temps[0]
+	$Panel/TireFR/TemperatureColor/TemperatureLabel.text = "%2.1f °C" % temps[1]
+	$Panel/TireBL/TemperatureColor/TemperatureLabel.text = "%2.1f °C" % temps[2]
+	$Panel/TireBR/TemperatureColor/TemperatureLabel.text = "%2.1f °C" % temps[3]
 	
 	
 
