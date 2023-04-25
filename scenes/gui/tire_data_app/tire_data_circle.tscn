@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4f306pkyaapi"]
+
+[ext_resource type="Script" path="res://scenes/gui/tire_data_app/tire_data_circle.gd" id="1_y6eq5"]
+
+[node name="Circle" type="Control"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("1_y6eq5")
