@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3l5rm7ycg1cx" path="res://assets/models/cars_blend/retro_openwheeler.blend" id="2_0krk4"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_ikkd1"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_4ovfb"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="4_lfvap"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/linear_tire_model.gd" id="4_x2wv3"]
 [ext_resource type="Texture2D" uid="uid://d2lctyqtx7drx" path="res://assets/models/cars_blend/colorpalette8x8.png" id="6_d4olg"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_sj011"]
@@ -17,75 +17,75 @@ loop_end = 141100
 _data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_w61x3"]
-script = ExtResource("4_lfvap")
-tire_stiffness = 0.0
+[sub_resource type="Resource" id="Resource_y0gic"]
+script = ExtResource("4_x2wv3")
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_j80du"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_w61x3")
+tire_model = SubResource("Resource_y0gic")
 spring_length = 0.1
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_xdhwu"]
-script = ExtResource("4_lfvap")
-tire_stiffness = 0.0
+[sub_resource type="Resource" id="Resource_ayykc"]
+script = ExtResource("4_x2wv3")
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_y0ox4"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_xdhwu")
+tire_model = SubResource("Resource_ayykc")
 spring_length = 0.1
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_2w66c"]
-script = ExtResource("4_lfvap")
-tire_stiffness = 0.0
+[sub_resource type="Resource" id="Resource_rnlvo"]
+script = ExtResource("4_x2wv3")
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_go0p2"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_2w66c")
+tire_model = SubResource("Resource_rnlvo")
 spring_length = 0.1
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_vkee2"]
-script = ExtResource("4_lfvap")
-tire_stiffness = 0.0
+[sub_resource type="Resource" id="Resource_rm1qx"]
+script = ExtResource("4_x2wv3")
+tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_6cxmn"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_vkee2")
+tire_model = SubResource("Resource_rm1qx")
 spring_length = 0.1
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 25.0
 ackermann = -0.15
 anti_roll = 50.0
 
@@ -94,7 +94,7 @@ script = ExtResource("2_ikkd1")
 max_steer = 0.3
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 30000.0
+max_brake_force = 20000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 40.0
