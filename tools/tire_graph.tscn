@@ -150,6 +150,26 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
+[node name="SlipUnits" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="SlipUnitLabel" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Units for the slip angle"
+
+[node name="DegreesLabel" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits"]
+layout_mode = 2
+text = "Degrees"
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits"]
+layout_mode = 2
+
+[node name="RadiansLabel" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits"]
+layout_mode = 2
+text = "Radians"
+
 [node name="TireStiffness" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -226,6 +246,7 @@ text = "Tire Load"
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 4
+min_value = 800.0
 max_value = 10000.0
 step = 50.0
 value = 3500.0
@@ -304,6 +325,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 10
 text = "0"
 
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits/CheckButton" to="." method="_on_slip_units_toggled"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness/StiffnessSlider" to="." method="_on_stiffness_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRadius/TireRadiusSlider" to="." method="_on_tire_radius_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireWidth/TireWidthSlider" to="." method="_on_tire_width_slider_value_changed"]

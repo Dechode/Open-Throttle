@@ -42,6 +42,9 @@ var tire_model: BaseTireModel = PacejkaTireModel.new():
 
 var graph_size := Vector2(600, 400)
 
+var use_degrees := true
+
+
 @onready var long_graph: Line2D = get_node("%LongitudinalTireForceGraph")
 @onready var lat_graph:  Line2D = get_node("%LateralTireForceGraph")
 @onready var sat_graph:  Line2D = get_node("%SelfAligningTorqueGraph")
@@ -69,10 +72,19 @@ func _ready() -> void:
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionValue.text = "%1.2f" % mu
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionSlider.value = mu
 	
+	display_graph_numbers(use_degrees)
+	update_graph()
+#	_update_load_sens()
+
+
+func display_graph_numbers(degrees: bool):
 	for i in range(1, 11):
 		var slip_label = $Slip0.duplicate() as Label
 		slip_label.position.x += i * DisplayServer.window_get_size().x * 0.5 / 10 - slip_label.size.x
-		slip_label.text = "%1.2f" % (i * 0.1)
+		var numbers = i * 0.1
+		if degrees:
+			numbers = rad_to_deg(numbers)
+		slip_label.text = "%1.2f" % numbers
 		add_child(slip_label)
 
 
@@ -94,35 +106,24 @@ func update_graph():
 	graph_size = Vector2(DisplayServer.window_get_size().x * 0.5, DisplayServer.window_get_size().y * 0.5)
 	var sample_count := 1000
 	
-	var force_vec_lat_sweep := Vector3.ZERO
+	var force_vec := Vector3.ZERO
 	for i in range(sample_count):
 		var slip: float = i * 0.001
 		var slip_lat = Vector2(slip, 0.0000001)
+		var slip_long = Vector2(0.0000001, slip)
 		
-		force_vec_lat_sweep = tire_model.update_tire_forces(slip_lat, normal_load, mu) #/ tire_model.load_sensitivity
-		var points_lat := Vector2( slip * graph_size.x, -force_vec_lat_sweep.x / normal_load * graph_size.y * 0.5)
-		lat_graph.add_point(points_lat, i)
-	
-	var force_vec_long_sweep := Vector3.ZERO
-	for i in range(sample_count):
-		var slip: float = i * 0.001
-		var slip_vec = Vector2(0.0000001, slip)
+		force_vec = tire_model.update_tire_forces(slip_lat, normal_load, mu) #/ tire_model.load_sensitivity
+		var points_lat := Vector2(slip * graph_size.x, -force_vec.x / normal_load * graph_size.y * 0.5)
+		lat_graph.add_point(points_lat)
 		
-		force_vec_long_sweep = tire_model.update_tire_forces(slip_vec, normal_load, mu) #/ tire_model.load_sensitivity
-		var points_long := Vector2(slip * graph_size.x, -force_vec_long_sweep.y / normal_load * graph_size.y * 0.5)
-		long_graph.add_point(points_long, i)
+		var points_mz := Vector2(slip * graph_size.x, -force_vec.z * 0.005 * graph_size.y * 0.5)
+		sat_graph.add_point(points_mz)
+
+		force_vec = tire_model.update_tire_forces(slip_long, normal_load, mu)
+		var points_long := Vector2(slip * graph_size.x, -force_vec.y / normal_load * graph_size.y * 0.5)
+		long_graph.add_point(points_long)
 	
-	var force_vec_mz := Vector3.ZERO
-	for i in range(sample_count):
-		var slip: float = i * 0.001
-		var slip_lat = Vector2(slip, 0.0000001)
-		
-		force_vec_mz = tire_model.update_tire_forces(slip_lat, normal_load, mu) #/ normal_load #/ tire_model.load_sensitivity
-		var points_mz := Vector2(slip * graph_size.x, -force_vec_mz.z * 0.005 * graph_size.y * 0.5)
-#		var points_mz := Vector2(slip * graph_size.x, -force_vec_mz.z * 4.0 * graph_size.y * 0.5)
-		sat_graph.add_point(points_mz, i)
-	
-	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer2/PeakSlipAngle.text = "Peak Slip Angle = %2.2f deg" % rad_to_deg(tire_model.peak_sa)
+	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer2/PeakSlipAngle.text = "Peak Slip Angle = %2.1f deg / %1.2f rad" % [rad_to_deg(tire_model.peak_sa), tire_model.peak_sa]
 	_update_load_sens()
 
 
@@ -189,3 +190,8 @@ func _on_tire_radius_slider_value_changed(value: float) -> void:
 func _on_tire_width_slider_value_changed(value: float) -> void:
 	tire_width = value
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireWidth/TireWidthValue.text = "%1.3f" % value
+
+
+func _on_slip_units_toggled(button_pressed: bool) -> void:
+	use_degrees = not button_pressed
+	display_graph_numbers(use_degrees)
