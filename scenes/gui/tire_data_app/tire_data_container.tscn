@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://p18ehxphra4"]
+
+[ext_resource type="PackedScene" uid="uid://c4f306pkyaapi" path="res://scenes/gui/tire_data_app/tire_data_circle.tscn" id="2_ev5uf"]
+
+[node name="Panel" type="Panel"]
+self_modulate = Color(1, 1, 1, 0.556863)
+custom_minimum_size = Vector2(300, 300)
+offset_right = 150.0
+offset_bottom = 150.0
+
+[node name="TireDataContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 150.0
+
+[node name="HBoxFrontTires" type="HBoxContainer" parent="TireDataContainer"]
+layout_mode = 2
+
+[node name="CircleFL" parent="TireDataContainer/HBoxFrontTires" instance=ExtResource("2_ev5uf")]
+layout_mode = 2
+
+[node name="CircleFR" parent="TireDataContainer/HBoxFrontTires" instance=ExtResource("2_ev5uf")]
+layout_mode = 2
+tire_index = 1
+
+[node name="HBoxRearTires" type="HBoxContainer" parent="TireDataContainer"]
+layout_mode = 2
+
+[node name="CircleBL" parent="TireDataContainer/HBoxRearTires" instance=ExtResource("2_ev5uf")]
+layout_mode = 2
+tire_index = 2
+
+[node name="CircleBR" parent="TireDataContainer/HBoxRearTires" instance=ExtResource("2_ev5uf")]
+layout_mode = 2
+tire_index = 3
