@@ -25,20 +25,19 @@ var peak_sa := 0.12
 var peak_sr := 0.09
 
 
-
-
 # Override this
 func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
 	return Vector3.ZERO
 
 
-func update_tire_wear(prev_wear: float, friction_power: float, delta: float):
+func update_tire_wear(prev_wear: float, friction_power: float, delta: float) -> float:
 	# From Speed Dreams wiki: https://sourceforge.net/p/speed-dreams/wiki/TireTempDeg
 	var wear_rate := 0.000000015
 	return prev_wear + friction_power * wear_rate * delta
 
 
-func update_tire_temps(prev_temp: float, friction_power: float, speed: float, delta: float, ambient_temp := 20.0):
+func update_tire_temps(prev_temp: float, friction_power: float, speed: float, 
+						delta: float, ambient_temp := 20.0) -> float:
 	# From Speed Dreams wiki: https://sourceforge.net/p/speed-dreams/wiki/TireTempDeg/
 	# dT/SimDeltaTime = P * heatingm - aircoolm * (1 + speedcoolm * v) * (T-Tair)
 	
@@ -65,7 +64,19 @@ func update_load_sensitivity(normal_load: float) -> float:
 	var max_mu = 2.0 - tire_stiffness * 0.9 + width_factor * 0.5 - 0.5
 	var min_mu = 0.6 + tire_stiffness * 0.35 + width_factor * 0.5 - 0.5
 	var load_factor = clamp(normal_load / tire_rated_load, 0.0, 1.0)
-#	load_factor = clamp(load_factor, 0.0, 1.0)
 	load_sensitivity = clamp(min_mu + (1 - load_factor) * (max_mu - min_mu), min_mu, max_mu)
 #	print_debug(load_sensitivity)
 	return load_sensitivity
+
+
+func get_tire_stiffness() -> Vector2:
+	# Returns Vector2 where x is lateral stiffness and y is tangential stiffness
+	var stiffnesses := Vector2.ZERO
+	stiffnesses.x = 1_000_000 + 5_000_000 * tire_stiffness
+	stiffnesses.y = 3_000_000 + 7_000_000 * tire_stiffness
+	return stiffnesses
+
+
+func get_contact_patch_length() -> float:
+	# TODO
+	return 2 * tire_radius * 0.25

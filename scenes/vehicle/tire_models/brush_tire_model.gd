@@ -3,9 +3,10 @@ extends BaseTireModel
 
 
 func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float = 1.0) -> Vector3:
-	var contact_patch = tire_width * 0.75
-	var lat_stiffness := 1_000_000 + 5_000_000 * tire_stiffness
-	var tan_stiffness := 3_000_000 + 7_000_000 * tire_stiffness
+	var stiff_vec := get_tire_stiffness()
+	var contact_patch = get_contact_patch_length()
+	var lat_stiffness := stiff_vec.x
+	var tan_stiffness := stiff_vec.y
 	var cornering_stiffness := 0.5 * lat_stiffness * pow(contact_patch, 2)
 	var longitudinal_stiffness := 0.5 * tan_stiffness * pow(contact_patch, 2)
 	

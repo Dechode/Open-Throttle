@@ -4,8 +4,12 @@ extends BaseTireModel
 
 func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float) -> Vector3:
 	var tire_force_vec := Vector3.ZERO
-	var cornering_stiffness := (300 + tire_stiffness * 500) * 57.2957795 # N / rad
-	var longitudinal_stiffness := (500 + tire_stiffness * 700) * 57.2957795 # N / rad
+	var stiff_vec := get_tire_stiffness()
+	var lat_stiffness := stiff_vec.x
+	var tan_stiffness := stiff_vec.y
+	var contact_patch := get_contact_patch_length()
+	var cornering_stiffness := 0.5 * lat_stiffness * (contact_patch * contact_patch)
+	var longitudinal_stiffness := 0.5 * tan_stiffness * (contact_patch * contact_patch)
 	
 	var wear_mu := TIRE_WEAR_CURVE.sample_baked(tire_wear)
 	var grip := normal_load * surface_mu * wear_mu
