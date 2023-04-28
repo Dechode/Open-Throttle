@@ -10,40 +10,46 @@ enum {
 var normal_load := 4000.0:
 	set(value):
 		normal_load = value
-		update_graph()
+		is_dirty = true
+		_update_graph()
 		
 var mu := 1.0:
 	set(value):
 		mu = value
-		update_graph()
+		is_dirty = true
+		_update_graph()
 
-var stiffness := 1.0:
+var tire_stiffness := 0.5:
 	set(value):
-		stiffness = value
+		tire_stiffness = value
 		tire_model.tire_stiffness = value
-		update_graph()
+		is_dirty = true
+		_update_graph()
 
 var tire_radius := 0.3:
 	set(value):
 		tire_radius = value
 		tire_model.tire_radius = value
-		update_graph()
+		is_dirty = true
+		_update_graph()
 		
 var tire_width := 0.3:
 	set(value):
 		tire_width = value
 		tire_model.tire_width = value
-		update_graph()
+		is_dirty = true
+		_update_graph()
 
 var tire_model: BaseTireModel = PacejkaTireModel.new():
 	set(value):
 		tire_model = value
-		update_graph()
+#		is_dirty = true
+#		_update_graph()
 
 var graph_size := Vector2(600, 400)
-
 var use_degrees := true
 
+var is_dirty := true
 
 @onready var long_graph: Line2D = get_node("%LongitudinalTireForceGraph")
 @onready var lat_graph:  Line2D = get_node("%LateralTireForceGraph")
@@ -54,11 +60,16 @@ var use_degrees := true
 
 
 func _ready() -> void:
+	tire_model = PacejkaTireModel.new()
+	
+	tire_model.tire_radius = tire_radius
+	tire_model.tire_width = tire_width
+	tire_model.tire_stiffness = tire_stiffness
+	
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel/TireModelOption.add_item("Pacejka")
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel/TireModelOption.add_item("Brush")
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel/TireModelOption.add_item("Linear")
 	
-	tire_model = PacejkaTireModel.new()
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel/TireModelOption.select(0)
 	
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness/StiffnessValue.text = "%1.2f" % tire_model.tire_stiffness
@@ -72,23 +83,14 @@ func _ready() -> void:
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionValue.text = "%1.2f" % mu
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionSlider.value = mu
 	
-	display_graph_numbers(use_degrees)
-	update_graph()
-#	_update_load_sens()
+	_update_graph()
+	_display_slip_numbers(use_degrees)
 
 
-func display_graph_numbers(degrees: bool):
-	for i in range(1, 11):
-		var slip_label = $Slip0.duplicate() as Label
-		slip_label.position.x += i * DisplayServer.window_get_size().x * 0.5 / 10 - slip_label.size.x
-		var numbers = i * 0.1
-		if degrees:
-			numbers = rad_to_deg(numbers)
-		slip_label.text = "%1.2f" % numbers
-		add_child(slip_label)
-
-
-func update_graph():
+func _update_graph():
+	if not is_dirty:
+		return
+	
 	if not lat_graph:
 		push_warning("No lateral tire force graph found")
 		return
@@ -112,19 +114,22 @@ func update_graph():
 		var slip_lat = Vector2(slip, 0.0000001)
 		var slip_long = Vector2(0.0000001, slip)
 		
-		force_vec = tire_model.update_tire_forces(slip_lat, normal_load, mu) #/ tire_model.load_sensitivity
+		force_vec = tire_model.update_tire_forces(slip_lat, normal_load, mu) / tire_model.load_sensitivity
 		var points_lat := Vector2(slip * graph_size.x, -force_vec.x / normal_load * graph_size.y * 0.5)
 		lat_graph.add_point(points_lat)
 		
-		var points_mz := Vector2(slip * graph_size.x, -force_vec.z * 0.005 * graph_size.y * 0.5)
+		var points_mz := Vector2(slip * graph_size.x, -force_vec.z / (normal_load * 0.1) * graph_size.y * 0.5)
+#		var points_mz := Vector2(slip * graph_size.x, -force_vec.z / 200 * graph_size.y * 0.5)
+#		var points_mz := Vector2(slip * graph_size.x, -force_vec.z / normal_load * graph_size.y * 0.5)
 		sat_graph.add_point(points_mz)
 
-		force_vec = tire_model.update_tire_forces(slip_long, normal_load, mu)
+		force_vec = tire_model.update_tire_forces(slip_long, normal_load, mu) / tire_model.load_sensitivity
 		var points_long := Vector2(slip * graph_size.x, -force_vec.y / normal_load * graph_size.y * 0.5)
 		long_graph.add_point(points_long)
 	
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer2/PeakSlipAngle.text = "Peak Slip Angle = %2.1f deg / %1.2f rad" % [rad_to_deg(tire_model.peak_sa), tire_model.peak_sa]
 	_update_load_sens()
+	is_dirty = false
 
 
 func _update_load_sens():
@@ -134,10 +139,10 @@ func _update_load_sens():
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer2/LoadSens1.text = "Load Sensitivity @ 9000 N = %1.2f" % load_sens1
 	var curr_load_sens_txt = "Current Load Sensitivity @ %d N = %1.2f" % [int(normal_load), tire_model.update_load_sensitivity(normal_load)]
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer2/LoadSensCurrent.text = curr_load_sens_txt
-	draw_load_sens_graph(load_sens0, load_sens1)
+	_draw_load_sens_graph(load_sens0, load_sens1)
 
 
-func draw_load_sens_graph(mu0, mu1):
+func _draw_load_sens_graph(mu0, mu1):
 	%LoadSensGraph.clear_points()
 	var max_mu := 3.5
 	var min_mu := 0.6
@@ -151,8 +156,25 @@ func draw_load_sens_graph(mu0, mu1):
 	%LoadSensGraph.add_point(load_sens1_pos)
 
 
+func _display_slip_numbers(degrees: bool):	
+	for node in $HBoxContainer/VBoxContainer/SlipNumbers.get_children():
+		node.queue_free()
+	
+	var points := 10
+	for i in range(points):
+		var slip_label := Label.new()
+		var minx = force_container.size.x / points
+		minx -= 0.5 * slip_label.size.x
+		slip_label.custom_minimum_size = Vector2(minx, 0)
+		var number = i * 0.1
+		if degrees:
+			number = rad_to_deg(number)
+		slip_label.text = "%1.2f" % number
+		$HBoxContainer/VBoxContainer/SlipNumbers.add_child(slip_label)
+
+
 func _on_stiffness_slider_value_changed(value: float) -> void:
-	stiffness = value
+	tire_stiffness = value
 	tire_model.tire_stiffness = value
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness/StiffnessValue.text = "%1.2f" % value
 
@@ -165,10 +187,10 @@ func _on_tire_load_slider_value_changed(value: float) -> void:
 func _on_friction_slider_value_changed(value: float) -> void:
 	mu = value
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionValue.text = "%1.2f" % value
-	
 
 
 func _on_tire_model_option_item_selected(index: int) -> void:
+	is_dirty = true
 	match index:
 		PACEJKA:
 			tire_model = PacejkaTireModel.new()
@@ -176,10 +198,11 @@ func _on_tire_model_option_item_selected(index: int) -> void:
 			tire_model = BrushTireModel.new()
 		LINEAR:
 			tire_model = LinearTireModel.new()
-	tire_model.tire_stiffness = stiffness
+	
+	tire_model.tire_stiffness = tire_stiffness
 	tire_model.tire_radius = tire_radius
 	tire_model.tire_width = tire_width
-	update_graph()
+	_update_graph()
 
 
 func _on_tire_radius_slider_value_changed(value: float) -> void:
@@ -194,4 +217,5 @@ func _on_tire_width_slider_value_changed(value: float) -> void:
 
 func _on_slip_units_toggled(button_pressed: bool) -> void:
 	use_degrees = not button_pressed
-	display_graph_numbers(use_degrees)
+	_display_slip_numbers(use_degrees)
+

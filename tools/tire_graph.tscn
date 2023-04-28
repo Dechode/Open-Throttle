@@ -16,6 +16,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -137,6 +138,16 @@ size_flags_horizontal = 0
 size_flags_vertical = 10
 text = "Min Mu"
 vertical_alignment = 1
+
+[node name="SlipNumbers" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Slip0" type="Label" parent="HBoxContainer/VBoxContainer/SlipNumbers"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "0"
 
 [node name="Parameters" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -315,15 +326,6 @@ text = "Load Sensitivity @ x = 1.1"
 [node name="LoadSensCurrent" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer2"]
 layout_mode = 2
 text = "Load Sensitivity @ Current Load = 1.3"
-
-[node name="Slip0" type="Label" parent="."]
-layout_mode = 2
-offset_top = 400.0
-offset_right = 10.0
-offset_bottom = 426.0
-size_flags_horizontal = 0
-size_flags_vertical = 10
-text = "0"
 
 [connection signal="toggled" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits/CheckButton" to="." method="_on_slip_units_toggled"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness/StiffnessSlider" to="." method="_on_stiffness_slider_value_changed"]
