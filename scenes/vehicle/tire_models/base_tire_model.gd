@@ -6,7 +6,6 @@ const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 @export var tire_stiffness := 0.5
 @export var tire_width := 0.225
 @export var tire_radius := 0.3
-@export var tire_rated_load := 7000.0
 
 # Possible input parameters for tire model
 #export var tire_rated_pressure := 2.0
@@ -19,7 +18,9 @@ const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 
 var tire_wear := 0.0
 var load_sensitivity := 1.0
-#var tire_temperature := 20.0
+
+
+var tire_rated_load := 7000.0 # This should probably be calculated from tire input parameters?
 
 var peak_sa := 0.12
 var peak_sr := 0.09
@@ -71,12 +72,23 @@ func update_load_sensitivity(normal_load: float) -> float:
 
 func get_tire_stiffness() -> Vector2:
 	# Returns Vector2 where x is lateral stiffness and y is tangential stiffness
-	var stiffnesses := Vector2.ZERO
-	stiffnesses.x = 1_000_000 + 5_000_000 * tire_stiffness
-	stiffnesses.y = 3_000_000 + 7_000_000 * tire_stiffness
-	return stiffnesses
+	var stiffness := Vector2.ZERO
+	stiffness.x = 1_000_000 + 5_000_000 * tire_stiffness
+	stiffness.y = 3_000_000 + 7_000_000 * tire_stiffness
+	return stiffness
 
 
 func get_contact_patch_length() -> float:
-	# TODO
+	# TODO Make load and possible pressure dependant?
 	return 2 * tire_radius * 0.25
+
+
+func get_pneumatic_trail(slip_angle: float, cornering_stiff: float, grip: float) -> float:
+	var cp := get_contact_patch_length()
+	var tp0 := cp / 6
+	var lf := 1 / grip
+	var tp := 0.0
+	var alpha_si := atan(3 / (cornering_stiff * lf))
+	if abs(slip_angle) < alpha_si:
+		tp = tp0 - tp0 * cornering_stiff / 3 * lf * tan(slip_angle)
+	return tp

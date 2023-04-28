@@ -41,9 +41,6 @@ func update_tire_forces(slip: Vector2, normal_load: float, surface_mu: float) ->
 	tire_force_vec.x *= load_sensitivity
 	tire_force_vec.y *= load_sensitivity
 	
-#	var pneumatic_trail = 0.05 - clamp(normalised_sa, 0.0, 1.0) * 0.05
-	var pneumatic_trail = 0.03 - normalised_sa * 0.03
+	var pneumatic_trail = get_pneumatic_trail(slip.x, cornering_stiffness, grip)
 	tire_force_vec.z = tire_force_vec.x * pneumatic_trail
-#	print(rad_to_deg(peak_sa))
-	
 	return tire_force_vec
