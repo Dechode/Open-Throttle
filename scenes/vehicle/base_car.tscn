@@ -24,7 +24,6 @@ script = ExtResource("8")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_l4xx8"]
 script = ExtResource("4_sel4p")
@@ -42,7 +41,6 @@ script = ExtResource("8")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_88il1"]
 script = ExtResource("4_sel4p")
@@ -60,7 +58,6 @@ script = ExtResource("5_02gb1")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_30yxg"]
 script = ExtResource("4_sel4p")
@@ -78,7 +75,6 @@ script = ExtResource("8")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_ockwl"]
 script = ExtResource("4_sel4p")
@@ -156,6 +152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -1.5)
 [node name="EngineSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.79)
 stream = ExtResource("4_kgrag")
+autoplay = true
 
 [node name="CameraSystem" parent="." instance=ExtResource("8_prruq")]
 

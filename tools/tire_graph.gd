@@ -84,7 +84,7 @@ func _ready() -> void:
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionSlider.value = mu
 	
 	_update_graph()
-	_display_slip_numbers(use_degrees)
+	_draw_slip_numbers(use_degrees)
 
 
 func _update_graph():
@@ -156,7 +156,7 @@ func _draw_load_sens_graph(mu0, mu1):
 	%LoadSensGraph.add_point(load_sens1_pos)
 
 
-func _display_slip_numbers(degrees: bool):	
+func _draw_slip_numbers(degrees: bool):	
 	for node in $HBoxContainer/VBoxContainer/SlipNumbers.get_children():
 		node.queue_free()
 	
@@ -169,7 +169,7 @@ func _display_slip_numbers(degrees: bool):
 		var number = i * 0.1
 		if degrees:
 			number = rad_to_deg(number)
-		slip_label.text = "%1.2f" % number
+		slip_label.text = "|%1.2f" % number
 		$HBoxContainer/VBoxContainer/SlipNumbers.add_child(slip_label)
 
 
@@ -217,5 +217,5 @@ func _on_tire_width_slider_value_changed(value: float) -> void:
 
 func _on_slip_units_toggled(button_pressed: bool) -> void:
 	use_degrees = not button_pressed
-	_display_slip_numbers(use_degrees)
+	_draw_slip_numbers(use_degrees)
 

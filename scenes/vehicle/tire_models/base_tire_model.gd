@@ -36,9 +36,6 @@ func _get_forces(_normal_load: float, _total_mu: float, _grip: float, _contact_p
 	return Vector3.ZERO
 
 
-#func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
-#	return Vector3.ZERO
-
 func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
 	var stiff_vec := get_tire_stiffness()
 	var contact_patch := get_contact_patch_length()

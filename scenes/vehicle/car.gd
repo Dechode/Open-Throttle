@@ -87,7 +87,7 @@ func _ready() -> void:
 	drivetrain.set_front_diff_preload(car_params.front_diff_preload)
 	drivetrain.set_rear_diff_preload(car_params.rear_diff_preload)
 	drivetrain.set_input_inertia(car_params.engine_moment)
-		
+	
 	add_child(clutch)
 	add_child(drivetrain)
 	
@@ -95,6 +95,8 @@ func _ready() -> void:
 	wheel_fr.set_params(car_params.wheel_params_fr)
 	wheel_bl.set_params(car_params.wheel_params_bl)
 	wheel_br.set_params(car_params.wheel_params_br)
+	
+	play_engine_sound()
 
 
 func _physics_process(delta):
@@ -185,7 +187,8 @@ func engine_loop(delta):
 		rpm -= 500.0
 	if rpm <= car_params.rpm_idle + 10: #and abs(local_vel.z) <= 2:
 		clutch_input = 1.0
-	play_engine_sound()
+#	play_engine_sound()
+	update_engine_sound()
 	if fuel <= 0.0:
 		torque_out = 0.0
 		rpm = 0.0
@@ -281,14 +284,17 @@ func shift_down():
 
 
 func play_engine_sound():
-	var pitch_scaler = rpm / 1000
 	if rpm >= car_params.rpm_idle and rpm < car_params.max_engine_rpm:
-
 		if !audioplayer.playing:
 			audioplayer.play()
-	
+
+
+func update_engine_sound():
+	var pitch_scaler = rpm / 1000
 	if pitch_scaler > 0.1:
 		audioplayer.pitch_scale = pitch_scaler
+	else:
+		audioplayer.pitch_scale = 0.1
 
 
 func stop_engine_sound():
