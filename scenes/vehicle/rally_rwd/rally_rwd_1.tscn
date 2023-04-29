@@ -1,67 +1,84 @@
-[gd_scene load_steps=18 format=3 uid="uid://rdg3dlgmp8gl"]
+[gd_scene load_steps=21 format=3 uid="uid://bi2tq5yqycsah"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="3"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="3_5kkr2"]
 [ext_resource type="AudioStream" path="res://resources/audio/engine/EngineSample.tres" id="3_y1qg8"]
 [ext_resource type="Material" uid="uid://cj5h7b80tkud0" path="res://assets/models/BaseMaterial.material" id="4"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_ew8te"]
 [ext_resource type="PackedScene" uid="uid://bjsnhnipobgsx" path="res://assets/models/car_model_scenes/historic_rally_rwd_1_model.tscn" id="5_s1t76"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="5_tbl7x"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_ts823"]
 
 [sub_resource type="Curve" id="Curve_8w45n"]
-_data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
+_data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.74359, 1), 0.0, 0.0, 0, 0, Vector2(0.897436, 0.754545), -2.41091, -2.41091, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_q7tsp"]
-script = ExtResource("3_5kkr2")
+[sub_resource type="Resource" id="Resource_p8qdg"]
+script = ExtResource("5_tbl7x")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_rc4qb"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_q7tsp")
+tire_model = SubResource("Resource_p8qdg")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
-ackermann = 0.15
-anti_roll = 50.0
+wheel_mass = 30.0
+ackermann = 0.0
+anti_roll = 100.0
+
+[sub_resource type="Resource" id="Resource_d7wae"]
+script = ExtResource("5_tbl7x")
+tire_stiffness = 0.5
+tire_width = 0.225
+tire_radius = 0.3
 
 [sub_resource type="Resource" id="Resource_l7g81"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_q7tsp")
+tire_model = SubResource("Resource_d7wae")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
-ackermann = 0.15
-anti_roll = 50.0
+wheel_mass = 30.0
+ackermann = 0.0
+anti_roll = 100.0
+
+[sub_resource type="Resource" id="Resource_rqdud"]
+script = ExtResource("5_tbl7x")
+tire_stiffness = 0.5
+tire_width = 0.225
+tire_radius = 0.3
 
 [sub_resource type="Resource" id="Resource_p6ctj"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_q7tsp")
+tire_model = SubResource("Resource_rqdud")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 30.0
 ackermann = 0.15
-anti_roll = 50.0
+anti_roll = 100.0
+
+[sub_resource type="Resource" id="Resource_a2amg"]
+script = ExtResource("5_tbl7x")
+tire_stiffness = 0.5
+tire_width = 0.225
+tire_radius = 0.3
 
 [sub_resource type="Resource" id="Resource_l325x"]
 script = ExtResource("5_ts823")
-tire_model = SubResource("Resource_q7tsp")
+tire_model = SubResource("Resource_a2amg")
 spring_length = 0.15
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 30.0
 ackermann = -0.15
-anti_roll = 50.0
+anti_roll = 100.0
 
 [sub_resource type="Resource" id="Resource_ysiuk"]
 script = ExtResource("4_ew8te")
@@ -73,8 +90,8 @@ max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 40.0
 fuel_percentage = 100.0
-max_torque = 200.0
-max_engine_rpm = 8000.0
+max_torque = 215.0
+max_engine_rpm = 8200.0
 rpm_idle = 900.0
 torque_curve = SubResource("Curve_8w45n")
 engine_drag = 0.03
@@ -86,7 +103,7 @@ clutch_friction = 300.0
 drivetype = 1
 automatic = false
 transmission_efficiency = 0.9
-gear_ratios = [3.1, 2.61, 2.0, 1.3, 1.0]
+gear_ratios = [3.5, 2.4, 1.85, 1.3, 1.0]
 final_drive = 3.7
 reverse_ratio = 3.9
 gear_inertia = 0.15

@@ -1,10 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://d10e77pxi1e50"]
+[gd_scene load_steps=28 format=3 uid="uid://d10e77pxi1e50"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_d86ei"]
 [ext_resource type="PackedScene" uid="uid://d3l5rm7ycg1cx" path="res://assets/models/cars_blend/retro_openwheeler.blend" id="2_0krk4"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_ikkd1"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_4ovfb"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="5_aar32"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="4_6sx12"]
 [ext_resource type="Texture2D" uid="uid://d2lctyqtx7drx" path="res://assets/models/cars_blend/colorpalette8x8.png" id="6_d4olg"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_sj011"]
@@ -17,61 +17,71 @@ loop_end = 141100
 _data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_xrg58"]
-script = ExtResource("5_aar32")
-tire_stiffness = 0.5
-tire_width = 0.25
-tire_radius = 0.3
-tire_rated_load = 7000.0
-
-[sub_resource type="Resource" id="Resource_j80du"]
-script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_xrg58")
-spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
-wheel_mass = 20.0
-ackermann = 0.15
-anti_roll = 50.0
-
-[sub_resource type="Resource" id="Resource_y0ox4"]
-script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_xrg58")
-spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
-wheel_mass = 20.0
-ackermann = 0.15
-anti_roll = 50.0
-
-[sub_resource type="Resource" id="Resource_lfp63"]
-script = ExtResource("5_aar32")
+[sub_resource type="Resource" id="Resource_munle"]
+script = ExtResource("4_6sx12")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-tire_rated_load = 7000.0
 
-[sub_resource type="Resource" id="Resource_go0p2"]
+[sub_resource type="Resource" id="Resource_j80du"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_lfp63")
+tire_model = SubResource("Resource_munle")
 spring_length = 0.1
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_6cxmn"]
+[sub_resource type="Resource" id="Resource_f0e04"]
+script = ExtResource("4_6sx12")
+tire_stiffness = 0.5
+tire_width = 0.225
+tire_radius = 0.3
+
+[sub_resource type="Resource" id="Resource_y0ox4"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_lfp63")
+tire_model = SubResource("Resource_f0e04")
 spring_length = 0.1
 spring_stiffness = 45000.0
 bump = 10000.0
 rebound = 11000.0
-wheel_mass = 20.0
+wheel_mass = 25.0
+ackermann = 0.15
+anti_roll = 50.0
+
+[sub_resource type="Resource" id="Resource_dgcv6"]
+script = ExtResource("4_6sx12")
+tire_stiffness = 0.5
+tire_width = 0.225
+tire_radius = 0.3
+
+[sub_resource type="Resource" id="Resource_go0p2"]
+script = ExtResource("3_4ovfb")
+tire_model = SubResource("Resource_dgcv6")
+spring_length = 0.1
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 25.0
+ackermann = 0.15
+anti_roll = 50.0
+
+[sub_resource type="Resource" id="Resource_6w84j"]
+script = ExtResource("4_6sx12")
+tire_stiffness = 0.5
+tire_width = 0.225
+tire_radius = 0.3
+
+[sub_resource type="Resource" id="Resource_6cxmn"]
+script = ExtResource("3_4ovfb")
+tire_model = SubResource("Resource_6w84j")
+spring_length = 0.1
+spring_stiffness = 45000.0
+bump = 10000.0
+rebound = 11000.0
+wheel_mass = 25.0
 ackermann = -0.15
 anti_roll = 50.0
 
@@ -80,7 +90,7 @@ script = ExtResource("2_ikkd1")
 max_steer = 0.3
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 30000.0
+max_brake_force = 20000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 40.0
