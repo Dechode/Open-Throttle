@@ -3,7 +3,7 @@ extends BaseTireModel
 
 
 func _get_forces(normal_load: float, total_mu: float, grip: float, contact_patch := 0.0, 
-				peak_slip := Vector2.ZERO, slip := Vector2.ZERO, stiff := Vector2.ZERO,
+				slip := Vector2.ZERO, stiff := Vector2.ZERO,
 				cornering_stiff := Vector2.ZERO) -> Vector3:
 	
 	var critical_length := 0.0
@@ -32,4 +32,7 @@ func _get_forces(normal_load: float, total_mu: float, grip: float, contact_patch
 		var brushy = (1 - grip * (1 - slip.y) / (4 * deflect)) / deflect
 		force_vector.y = grip * cornering_stiff.y * slip.y * brushy
 		force_vector.x = grip * cornering_stiff.x * tan(slip.x) * brushy
+		
+	force_vector.x *= load_sensitivity
+	force_vector.y *= load_sensitivity
 	return force_vector

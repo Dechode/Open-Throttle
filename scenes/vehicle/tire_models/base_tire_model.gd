@@ -31,7 +31,7 @@ var peak_sr := 0.09
 
 # Override this
 func _get_forces(_normal_load: float, _total_mu: float, _grip: float, _contact_patch := 0.0, 
-				_peak_slip := Vector2.ZERO,  _slip := Vector2.ZERO, stiff := Vector2.ZERO,
+				_slip := Vector2.ZERO, stiff := Vector2.ZERO,
 				_cornering_stiff := Vector2.ZERO) -> Vector3:
 	return Vector3.ZERO
 
@@ -47,14 +47,13 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 	var tire_temp_scalar := tire_temperature / max_tire_temperature
 	var temp_mu := TIRE_TEMP_CURVE.sample_baked(tire_temp_scalar)
 	load_sensitivity = update_load_sensitivity(_normal_load)
-	var mu := _surface_mu * wear_mu * temp_mu * load_sensitivity
+	var mu := _surface_mu * wear_mu * temp_mu #* load_sensitivity
 	var grip := _normal_load * mu
 	
 	peak_sa = clamp(grip / cornering_stiffness.x, 0.04, 1.0)
 	peak_sr = clamp(grip / cornering_stiffness.y, 0.01, 1.0)
-	var peak_slip := Vector2(peak_sa, peak_sr)
 	
-	return _get_forces(_normal_load, mu, grip, contact_patch, peak_slip, _slip,
+	return _get_forces(_normal_load, mu, grip, contact_patch, _slip,
 						stiff_vec, cornering_stiffness)
 
 
