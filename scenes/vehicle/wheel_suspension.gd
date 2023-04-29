@@ -17,6 +17,7 @@ var tire_radius := 0.3
 var ackermann := 0.15
 
 var tire_wear := 0.0
+var tire_temp := 20.0
 var surface_mu := 1.0
 var rolling_resistance := 0.0 
 var rolling_resistance_coefficient := 0.02
@@ -51,8 +52,8 @@ func _ready() -> void:
 #	var nominal_load = car.weight * 0.25
 	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
-	peak_slip.x = 0.1
-	peak_slip.y = 0.2
+	peak_slip.x = 0.12
+	peak_slip.y = 0.09
 
 
 func _process(delta: float) -> void:
@@ -65,9 +66,16 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	peak_slip.x = tire_model.peak_sa
 	peak_slip.y = tire_model.peak_sr
+	var larger_slip: float = max(abs(slip_vec.x), abs(slip_vec.y))
+	var friction_power := force_vec.length() * local_vel.length() * larger_slip * 0.01
 	
 	if abs(z_vel) > 2.0:
-		tire_wear = tire_model.update_tire_wear(delta, slip_vec, y_force, surface_mu, tire_wear)
+		friction_power = force_vec.length() * slip_vec.length() * local_vel.length()
+	
+	tire_wear = tire_model.update_tire_wear(tire_wear, friction_power, delta)
+	tire_temp = tire_model.update_tire_temps(tire_temp, friction_power, z_vel, delta)
+	
+#	print(tire_temp)
 	
 	wheelmesh.position.y = -spring_curr_length
 	wheelmesh.rotate_x(wrapf(-spin * delta,0, TAU))
