@@ -16,8 +16,8 @@ func _get_forces(normal_load: float, total_mu: float, grip: float, contact_patch
 	slip_combined.x = resultant_slip * peak_sa * sign(slip.x)
 	slip_combined.y = resultant_slip * peak_sr * -sign(slip.y)
 	
-	force_vec.x = slip_combined.x * cornering_stiff.x * load_sensitivity
-	force_vec.y = slip_combined.y * -cornering_stiff.y * load_sensitivity
+	force_vec.x = slip_combined.x * cornering_stiff.x
+	force_vec.y = slip_combined.y * -cornering_stiff.y
 	
 	if resultant_slip != 0:
 		force_vec.x *= abs(normalised_sa / resultant_slip)
@@ -28,6 +28,9 @@ func _get_forces(normal_load: float, total_mu: float, grip: float, contact_patch
 		
 	if abs(force_vec.y) >= grip:
 		force_vec.y = grip * sign(slip.y)
+	
+	force_vec.x *= load_sensitivity
+	force_vec.y *= load_sensitivity
 	
 	var pneumatic_trail = get_pneumatic_trail(slip.x, cornering_stiff.x, grip)
 	force_vec.z = force_vec.x * pneumatic_trail
