@@ -68,12 +68,12 @@ func update_tire_temps(prev_temp: float, friction_power: float, speed: float,
 	# From Speed Dreams wiki: https://sourceforge.net/p/speed-dreams/wiki/TireTempDeg/
 	# dT/SimDeltaTime = P * heatingm - aircoolm * (1 + speedcoolm * v) * (T-Tair)
 	
-	var tire_mass := 20.0
+	var tire_mass := 15.0
 	var effective_heat_capacity := 2000.0 * tire_mass
 	var heating_multiplier := 1 / effective_heat_capacity
 	var tire_area := 2 * PI * tire_radius * tire_width
 	var air_cooling_multiplier := 20.0 * tire_area / effective_heat_capacity
-	var speed_cooling_multiplier :=  0.25
+	var speed_cooling_multiplier :=  0.50
 	
 	var heating := friction_power * heating_multiplier
 	var cooling: float = air_cooling_multiplier * (1 + speed_cooling_multiplier * abs(speed))
