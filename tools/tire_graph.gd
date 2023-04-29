@@ -84,7 +84,7 @@ func _ready() -> void:
 	$HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionSlider.value = mu
 	
 	_update_graph()
-	_draw_slip_numbers(use_degrees)
+	force_container.connect("resized", _on_force_graph_container_resized)
 
 
 func _update_graph():
@@ -219,3 +219,11 @@ func _on_slip_units_toggled(button_pressed: bool) -> void:
 	use_degrees = not button_pressed
 	_draw_slip_numbers(use_degrees)
 
+
+func _on_load_sens_graph_container_resized() -> void:
+	_update_load_sens()
+
+
+func _on_force_graph_container_resized() -> void:
+	_draw_slip_numbers(use_degrees)
+	pass # Replace with function body.

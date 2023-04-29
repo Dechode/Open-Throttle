@@ -327,6 +327,7 @@ text = "Load Sensitivity @ x = 1.1"
 layout_mode = 2
 text = "Load Sensitivity @ Current Load = 1.3"
 
+[connection signal="resized" from="HBoxContainer/VBoxContainer/GraphsPanel/HBoxContainer/LoadSensGraphContainer" to="." method="_on_load_sens_graph_container_resized"]
 [connection signal="toggled" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits/CheckButton" to="." method="_on_slip_units_toggled"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness/StiffnessSlider" to="." method="_on_stiffness_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRadius/TireRadiusSlider" to="." method="_on_tire_radius_slider_value_changed"]
