@@ -4,6 +4,7 @@ extends TabContainer
 enum TIRE_MODELS {
 	PACEJKA,
 	BRUSH,
+	LINEAR,
 }
 
 
@@ -34,6 +35,7 @@ func update_params(params: CarParameters):
 	$Wheels/VBoxContainer/TireModel/OptionButton.clear()
 	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Pacejka", TIRE_MODELS.PACEJKA)
 	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Brush", TIRE_MODELS.BRUSH)
+	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Linear", TIRE_MODELS.BRUSH)
 	
 	var tire_model_id = -1
 	
@@ -43,6 +45,9 @@ func update_params(params: CarParameters):
 	elif SessionManager.player_car_setup.wheel_params_fl.tire_model is BrushTireModel:
 		tire_model_id = TIRE_MODELS.BRUSH
 		print_debug("Tire model is brush")
+	elif SessionManager.player_car_setup.wheel_params_fl.tire_model is LinearTireModel:
+		tire_model_id = TIRE_MODELS.LINEAR
+		print_debug("Tire model is linear")
 	else:
 		print_debug("Tire model is unknown or not set")
 	
