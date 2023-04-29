@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	var friction_power := force_vec.length() * local_vel.length() * larger_slip * 0.01
 	
 	if abs(z_vel) > 2.0:
-		friction_power = force_vec.length() * local_vel.length() * larger_slip
+		friction_power = force_vec.length() * slip_vec.length() * local_vel.length()
 	
 	tire_wear = tire_model.update_tire_wear(tire_wear, friction_power, delta)
 	tire_temp = tire_model.update_tire_temps(tire_temp, friction_power, z_vel, delta)

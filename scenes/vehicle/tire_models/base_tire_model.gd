@@ -2,6 +2,7 @@ class_name BaseTireModel
 extends Resource
 
 const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
+const TIRE_TEMP_CURVE = preload("res://resources/tire_temp_curve.tres")
 
 @export var tire_stiffness := 0.5
 @export var tire_width := 0.225
@@ -14,21 +15,50 @@ const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 #var tire_pressure := 2.0
 #var tire_ratio := 0.5
 #var tire_rim_size := 16.0
-#var pneumatic_trail = 0.03
 
 var tire_wear := 0.0
 var load_sensitivity := 1.0
 
 
 var tire_rated_load := 7000.0 # This should probably be calculated from tire input parameters?
+var tire_temperature := 20.0
+var max_tire_temperature := 130.0
+
 
 var peak_sa := 0.12
 var peak_sr := 0.09
 
 
 # Override this
-func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
+func _get_forces(_normal_load: float, _total_mu: float, _grip: float, _contact_patch := 0.0, 
+				_peak_slip := Vector2.ZERO,  _slip := Vector2.ZERO, stiff := Vector2.ZERO,
+				_cornering_stiff := Vector2.ZERO) -> Vector3:
 	return Vector3.ZERO
+
+
+#func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
+#	return Vector3.ZERO
+
+func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
+	var stiff_vec := get_tire_stiffness()
+	var contact_patch := get_contact_patch_length()
+	var cornering_stiffness := Vector2.ZERO
+	cornering_stiffness.x = 0.5 * stiff_vec.x * (contact_patch * contact_patch)
+	cornering_stiffness.y = 0.5 * stiff_vec.y * (contact_patch * contact_patch)
+	
+	var wear_mu := TIRE_WEAR_CURVE.sample_baked(tire_wear)
+	var tire_temp_scalar := tire_temperature / max_tire_temperature
+	var temp_mu := TIRE_TEMP_CURVE.sample_baked(tire_temp_scalar)
+	load_sensitivity = update_load_sensitivity(_normal_load)
+	var mu := _surface_mu * wear_mu * temp_mu * load_sensitivity
+	var grip := _normal_load * mu
+	
+	peak_sa = clamp(grip / cornering_stiffness.x, 0.04, 1.0)
+	peak_sr = clamp(grip / cornering_stiffness.y, 0.01, 1.0)
+	var peak_slip := Vector2(peak_sa, peak_sr)
+	
+	return _get_forces(_normal_load, mu, grip, contact_patch, peak_slip, _slip,
+						stiff_vec, cornering_stiffness)
 
 
 func update_tire_wear(prev_wear: float, friction_power: float, delta: float) -> float:
@@ -57,6 +87,7 @@ func update_tire_temps(prev_temp: float, friction_power: float, speed: float,
 #	delta_temp = clamp(delta_temp, -1, 1)
 	
 	prev_temp += delta_temp
+	tire_temperature = prev_temp
 	return prev_temp
 
 
@@ -73,7 +104,7 @@ func update_load_sensitivity(normal_load: float) -> float:
 func get_tire_stiffness() -> Vector2:
 	# Returns Vector2 where x is lateral stiffness and y is tangential stiffness
 	var stiffness := Vector2.ZERO
-	stiffness.x = 1_000_000 + 5_000_000 * tire_stiffness
+	stiffness.x = 1_500_000 + 5_000_000 * tire_stiffness
 	stiffness.y = 3_000_000 + 7_000_000 * tire_stiffness
 	return stiffness
 
