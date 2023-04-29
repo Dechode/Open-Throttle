@@ -35,7 +35,7 @@ func update_params(params: CarParameters):
 	$Wheels/VBoxContainer/TireModel/OptionButton.clear()
 	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Pacejka", TIRE_MODELS.PACEJKA)
 	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Brush", TIRE_MODELS.BRUSH)
-	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Linear", TIRE_MODELS.BRUSH)
+	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Linear", TIRE_MODELS.LINEAR)
 	
 	var tire_model_id = -1
 	
@@ -207,6 +207,10 @@ func _on_tire_model_selected(index: int) -> void:
 		
 	elif index == TIRE_MODELS.BRUSH:
 		tire_model = BrushTireModel.new()
+		
+	elif index == TIRE_MODELS.LINEAR:
+		tire_model = LinearTireModel.new()
+	
 	else:
 		push_warning("Unknown tire model!")
 		return
