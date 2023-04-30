@@ -156,13 +156,15 @@ func apply_forces(opposite_comp, delta):
 	############### Calculate and apply the forces #######################
 	if is_colliding():
 		if abs(z_vel) > 0.01:
+#		if abs(z_vel) > 0.0001:
 			slip_vec.y = (z_vel - spin * tire_radius) / abs(z_vel)
 		else:
-			if is_zero_approx(spin):
-				slip_vec.y = 0.0001 * sign(z_vel)
-			else:
-				slip_vec.y = 0.0001 * abs(spin) * sign(z_vel) # This is to avoid "getting stuck" if local z velocity is absolute 0
-	
+#			print_debug("low vel")
+#			slip_vec.y = (z_vel - spin * tire_radius) / (abs(spin * tire_radius) + 0.0001)
+			slip_vec.y = (z_vel - spin * tire_radius) / (abs(z_vel) + 0.0001)
+
+				
+				
 		force_vec = tire_model.update_tire_forces(slip_vec, y_force, surface_mu)
 		
 		var contact = get_collision_point() - car.global_transform.origin
