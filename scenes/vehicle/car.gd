@@ -137,6 +137,11 @@ func _physics_process(delta):
 	if car_params.automatic:
 		automatic_shifting_logic(torque_out)
 	apply_drag_force()
+	
+	self.linear_damp = 0.0
+	if abs(local_vel.z) < 2.0:
+		self.linear_damp = 1.0
+	
 
 
 func set_driver(new_driver):
@@ -185,7 +190,7 @@ func engine_loop(delta):
 	if rpm >= car_params.max_engine_rpm:
 		torque_out = 0.0
 		rpm -= 500.0
-	if rpm <= car_params.rpm_idle + 10: #and abs(local_vel.z) <= 2:
+	if rpm <= (car_params.rpm_idle + 10) and abs(local_vel.z) <= 5:
 		clutch_input = 1.0
 #	play_engine_sound()
 	update_engine_sound()
