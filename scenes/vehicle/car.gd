@@ -304,3 +304,11 @@ func update_engine_sound():
 
 func stop_engine_sound():
 	audioplayer.stop()
+
+
+func get_self_aligning_torques() -> Vector2:
+	# x is front wheels, y is rear wheels
+	var vec := Vector2.ZERO
+	vec.x = (wheel_fl.force_vec.z + wheel_fr.force_vec.z) * 0.5 #/ (self.mass * 0.1)
+	vec.y = (wheel_bl.force_vec.z + wheel_br.force_vec.z) * 0.5 #/ (self.mass * 0.1)
+	return vec

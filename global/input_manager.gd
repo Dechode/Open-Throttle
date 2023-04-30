@@ -27,7 +27,7 @@ func get_throttle_input():
 		throttle_input_sec = (1 + throttle_input_sec) * 0.5
 	
 	if OptionsManager.get_config_value("throttle_inverted"):
-		print("Throttle inverted")
+#		print("Throttle inverted")
 		throttle_input = 1 - throttle_input
 	
 	if OptionsManager.get_config_value("throttle_inverted_sec"):

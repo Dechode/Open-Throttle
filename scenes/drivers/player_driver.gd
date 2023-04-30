@@ -1,11 +1,27 @@
 class_name PlayerDriver
 extends Driver
 
+var ffb := FFBPlugin.new()
+var has_ffb := false
+var ffb_effect_id := -1
+
 
 func _ready():
 	VehicleAPI.car = car
 	# Has to be call_deferred so the car reference is updated in VehicleAPI when instantiating the gui 
 	car.add_child.call_deferred((load("res://scenes/gui/gui.tscn").instantiate()))
+	
+	var steering_device := 0
+	if ffb.init_ffb(steering_device) < 0:
+		has_ffb = false
+		print_debug("No FFB effects available")
+	else:
+		has_ffb = true
+		ffb_effect_id = ffb.init_constant_force_effect()
+		print_debug("FFB effects are available, effect id = %d" % ffb_effect_id)
+		
+		if ffb.play_constant_force_effect(ffb_effect_id, 0) < 0:
+			push_warning("Playing FFB effect failed!")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -32,6 +48,9 @@ func _physics_process(delta: float) -> void:
 		steering_input = steer_lerp(raw_steering_input, steering_input, steer_speed, delta)
 	else:
 		steering_input = raw_steering_input
+	
+#	if abs(car.local_vel.z) > 2.0:
+	update_ffb()
 
 
 func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float):
@@ -48,4 +67,13 @@ func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float
 	return output
 
 
+func update_ffb():
+	var force_vec: Vector2 = car.get_self_aligning_torques() * 0.05
+	force_vec.x = clamp(force_vec.x, -1, 1)
+#	print(force_vec)
+	if abs(car.local_vel.z) > 5.0:
+		ffb.update_constant_force_effect(force_vec.x, 0, ffb_effect_id)
+	else:
+		ffb.update_constant_force_effect(0.0, 0, ffb_effect_id)
+		
 

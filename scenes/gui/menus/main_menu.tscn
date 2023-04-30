@@ -93,7 +93,6 @@ This work is based on \"Low Poly Rally Cars Pack\" (https://sketchfab.com/3d-mod
 selection_enabled = true
 
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
