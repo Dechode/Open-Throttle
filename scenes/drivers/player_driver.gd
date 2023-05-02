@@ -68,7 +68,7 @@ func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float
 
 
 func update_ffb():
-	var force_vec: Vector2 = car.get_self_aligning_torques() * 0.05
+	var force_vec: Vector2 = car.get_self_aligning_torques() / (car.mass * 0.25) * 10.0
 	force_vec.x = clamp(force_vec.x, -1, 1)
 #	print(force_vec)
 	if abs(car.local_vel.z) > 5.0:
