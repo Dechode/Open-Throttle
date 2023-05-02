@@ -17,11 +17,12 @@ func _ready():
 		print_debug("No FFB effects available")
 	else:
 		has_ffb = true
-		ffb_effect_id = ffb.init_constant_force_effect()
-		print_debug("FFB effects are available, effect id = %d" % ffb_effect_id)
-		
-		if ffb.play_constant_force_effect(ffb_effect_id, 0) < 0:
-			push_warning("Playing FFB effect failed!")
+		if OptionsManager.get_config_value("ffb_enabled"):
+			ffb_effect_id = ffb.init_constant_force_effect()
+			print_debug("FFB effects available, effect id = %d" % ffb_effect_id)
+			
+			if ffb.play_constant_force_effect(ffb_effect_id, 0) < 0:
+				push_warning("Playing FFB effect failed!")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -50,7 +51,8 @@ func _physics_process(delta: float) -> void:
 		steering_input = raw_steering_input
 	
 #	if abs(car.local_vel.z) > 2.0:
-	update_ffb()
+	if OptionsManager.get_config_value("ffb_enabled"):
+		update_ffb()
 
 
 func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float):
@@ -69,10 +71,20 @@ func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float
 
 func update_ffb():
 	var force_vec: Vector2 = car.get_self_aligning_torques() / (car.mass * 0.25) * 10.0
-	force_vec.x = clamp(force_vec.x, -1, 1)
+	var steering_force := 0.0
+	
+	steering_force += OptionsManager.get_config_value("ffb_front_force") * force_vec.x
+	steering_force += OptionsManager.get_config_value("ffb_rear_force") * force_vec.y
+	steering_force = max(abs(steering_force), OptionsManager.get_config_value("ffb_min_force")) * sign(steering_force)
+	steering_force *= OptionsManager.get_config_value("ffb_gain")
+	
+	if OptionsManager.get_config_value("ffb_inverted"):
+		steering_force *= -1
+		
 #	print(force_vec)
-	if abs(car.local_vel.z) > 5.0:
-		ffb.update_constant_force_effect(force_vec.x, 0, ffb_effect_id)
+#	if abs(car.local_vel.z) > 5.0:
+	if abs(car.local_vel.length()) > 5.0:
+		ffb.update_constant_force_effect(steering_force, 0, ffb_effect_id)
 	else:
 		ffb.update_constant_force_effect(0.0, 0, ffb_effect_id)
 		
