@@ -22,6 +22,11 @@ var handbrake_device_sec := -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	update_input_devices()
+
+
+# Updates DeviceID and possible Axises for all of the input actions 
+func update_input_devices():
 	var actions := InputMap.get_actions()
 	for action in actions:
 		var events := InputMap.action_get_events(action)
@@ -73,20 +78,6 @@ func _ready() -> void:
 				if event is InputEventJoypadMotion:
 					handbrake_axis_sec = event.axis
 					handbrake_device_sec = event.device
-		
-#		print("Action %s has the following events: %s" % [action, str(events)])
-	
-	print_debug(throttle_axis)
-	print_debug(brake_axis)
-	print_debug(clutch_axis)
-	print_debug(handbrake_axis)
-	
-	print_debug(throttle_axis_sec)
-	print_debug(brake_axis_sec)
-	print_debug(clutch_axis_sec)
-	print_debug(handbrake_axis_sec)
-	
-#	print(InputMap.get_actions())
 
 
 func get_steering_input():
