@@ -14,11 +14,14 @@ var throttle_device := -1
 var brake_device := -1
 var clutch_device := -1
 var handbrake_device := -1
+var steering_device := -1
 
 var throttle_device_sec := -1
 var brake_device_sec := -1
 var clutch_device_sec := -1
 var handbrake_device_sec := -1
+var steering_device_sec := -1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +33,18 @@ func update_input_devices():
 	var actions := InputMap.get_actions()
 	for action in actions:
 		var events := InputMap.action_get_events(action)
+		
+		if action == "steer_left":
+			for event in events:
+				if event is InputEventJoypadMotion:
+					steering_device = event.device
+		
+		if action == "steer_right":
+			for event in events:
+				if event is InputEventJoypadMotion:
+					if event.device != steering_device:
+						push_warning("Steer right and steer left were not on same device")
+					steering_device = event.device
 		
 		if action == "throttle":
 			for event in events:
@@ -78,6 +93,20 @@ func update_input_devices():
 				if event is InputEventJoypadMotion:
 					handbrake_axis_sec = event.axis
 					handbrake_device_sec = event.device
+		
+		if action == "steer_left_sec":
+			for event in events:
+				if event is InputEventJoypadMotion:
+					steering_device_sec = event.device
+		
+		if action == "steer_right_sec":
+			for event in events:
+				if event is InputEventJoypadMotion:
+					if event.device != steering_device_sec:
+						push_warning("Steer right and steer left were not on same device")
+					steering_device_sec = event.device
+	print_debug(steering_device)
+	print_debug(steering_device_sec)
 
 
 func get_steering_input():

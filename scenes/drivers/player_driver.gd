@@ -5,13 +5,17 @@ var ffb := FFBPlugin.new()
 var has_ffb := false
 var ffb_effect_id := -1
 
+var steering_device := -1
+
 
 func _ready():
 	VehicleAPI.car = car
 	# Has to be call_deferred so the car reference is updated in VehicleAPI when instantiating the gui 
 	car.add_child.call_deferred((load("res://scenes/gui/gui.tscn").instantiate()))
 	
-	var steering_device := 0
+	if InputManager.steering_device >= 0:
+		steering_device = InputManager.steering_device
+	
 	if ffb.init_ffb(steering_device) < 0:
 		has_ffb = false
 		print_debug("No FFB effects available")
