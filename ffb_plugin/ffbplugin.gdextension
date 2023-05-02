@@ -5,5 +5,5 @@ entry_symbol = "ffb_library_init"
 [libraries]
 
 linux.64="res://ffb_plugin/Godot-FFB-SDL/bin/libffbplugin.linux.template_debug.x86_64.so"
-windows.x86_64="res://ffb_plugin/Godot-FFB-SDL/bin/libffbplugin.windows.x86_64.dll"
+windows.x86_64="res://ffb_plugin/Godot-FFB-SDL/bin/libffbplugin.windows.template_debug.x86_64.dll"
 
