@@ -70,7 +70,7 @@ func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float
 
 
 func update_ffb():
-	var force_vec: Vector2 = car.get_self_aligning_torques() / (car.mass * 0.25) * 10.0
+	var force_vec: Vector2 = car.get_self_aligning_torques() / (car.mass * 0.25) * 15.0
 	var steering_force := 0.0
 	
 	steering_force += OptionsManager.get_config_value("ffb_front_force") * force_vec.x
@@ -81,7 +81,7 @@ func update_ffb():
 	if OptionsManager.get_config_value("ffb_inverted"):
 		steering_force *= -1
 		
-#	print(force_vec)
+#	print(steering_force)
 #	if abs(car.local_vel.z) > 5.0:
 	if abs(car.local_vel.length()) > 5.0:
 		ffb.update_constant_force_effect(steering_force, 0, ffb_effect_id)
