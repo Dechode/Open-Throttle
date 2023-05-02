@@ -31,6 +31,7 @@ extends Resource
 "master_audio_vol" : 0.5,
 "shadows" : true,
 "ffb_enabled" : false,
+"ffb_inverted" : false,
 "ffb_gain" : 0.0,
 "ffb_min_force" : 0.0,
 "ffb_front_force": 1.0,
