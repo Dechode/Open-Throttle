@@ -60,34 +60,60 @@ text = "Spring Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspSpringRate"]
 layout_mode = 2
-max_value = 200000.0
-step = 100.0
+max_value = 200.0
+step = 0.1
 
-[node name="FrontSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+[node name="FrontSuspBumpRateLo" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspBumpRate"]
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspBumpRateLo"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Bump Rate"
+text = "LS Bump Rate"
 
-[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspBumpRate"]
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspBumpRateLo"]
 layout_mode = 2
-max_value = 100000.0
-step = 100.0
+max_value = 10.0
+step = 0.1
 
-[node name="FrontSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+[node name="FrontSuspBumpRateHi" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspReboundRate"]
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspBumpRateHi"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Rebound Rate"
+text = "HS Bump Rate"
 
-[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspReboundRate"]
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspBumpRateHi"]
 layout_mode = 2
-max_value = 100000.0
-step = 100.0
+max_value = 10.0
+step = 0.1
+
+[node name="FrontSuspReboundRateLo" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspReboundRateLo"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "LS Rebound Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspReboundRateLo"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+
+[node name="FrontSuspReboundRateHi" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/FrontSuspReboundRateHi"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "HS Rebound Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspReboundRateHi"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
 
 [node name="FrontSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -99,8 +125,8 @@ text = "Anti-Roll Bar Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/FrontSuspAntiRollRate"]
 layout_mode = 2
-max_value = 100000.0
-step = 10.0
+max_value = 10.0
+step = 0.1
 
 [node name="RearSuspension" type="Label" parent="Suspension/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -139,34 +165,60 @@ text = "Spring Rate"
 
 [node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspSpringRate"]
 layout_mode = 2
-max_value = 200000.0
-step = 100.0
+max_value = 200.0
+step = 0.1
 
-[node name="RearSuspBumpRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+[node name="RearSuspBumpRateLo" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspBumpRate"]
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspBumpRateLo"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Bump Rate"
+text = "LS Bump Rate"
 
-[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspBumpRate"]
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspBumpRateLo"]
 layout_mode = 2
-max_value = 100000.0
-step = 100.0
+max_value = 10.0
+step = 0.1
 
-[node name="RearSuspReboundRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+[node name="RearSuspBumpRateHi" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspReboundRate"]
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspBumpRateHi"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Rebound Rate"
+text = "HS Bump Rate"
 
-[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspReboundRate"]
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspBumpRateHi"]
 layout_mode = 2
-max_value = 100000.0
-step = 100.0
+max_value = 10.0
+step = 0.1
+
+[node name="RearSuspReboundRateLo" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspReboundRateLo"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "LS Rebound Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspReboundRateLo"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+
+[node name="RearSuspReboundRateHi" type="HBoxContainer" parent="Suspension/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Suspension/VBoxContainer/RearSuspReboundRateHi"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "HS Rebound Rate"
+
+[node name="SpinBox" type="SpinBox" parent="Suspension/VBoxContainer/RearSuspReboundRateHi"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
 
 [node name="RearSuspAntiRollRate" type="HBoxContainer" parent="Suspension/VBoxContainer"]
 layout_mode = 2
@@ -714,13 +766,17 @@ text = "Back"
 
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspLength/Slider" to="." method="_on_front_spring_length_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspSpringRate/SpinBox" to="." method="_on_front_spring_rate_changed"]
-[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspBumpRate/SpinBox" to="." method="_on_front_bump_rate_changed"]
-[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspReboundRate/SpinBox" to="." method="_on_front_rebound_rate_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspBumpRateLo/SpinBox" to="." method="_on_front_bump_rate_lo_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspBumpRateHi/SpinBox" to="." method="_on_front_bump_rate_hi_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspReboundRateLo/SpinBox" to="." method="_on_front_rebound_rate_lo_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspReboundRateHi/SpinBox" to="." method="_on_front_rebound_rate_hi_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/FrontSuspAntiRollRate/SpinBox" to="." method="_on_front_anti_roll_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspLength/Slider" to="." method="_on_rear_spring_length_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspSpringRate/SpinBox" to="." method="_on_rear_spring_rate_changed"]
-[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspBumpRate/SpinBox" to="." method="_on_rear_bump_rate_changed"]
-[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspReboundRate/SpinBox" to="." method="_on_rear_rebound_rate_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspBumpRateLo/SpinBox" to="." method="_on_rear_bump_rate_lo_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspBumpRateHi/SpinBox" to="." method="_on_rear_bump_rate_hi_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspReboundRateLo/SpinBox" to="." method="_on_rear_rebound_rate_lo_changed"]
+[connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspReboundRateHi/SpinBox" to="." method="_on_rear_rebound_rate_hi_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspAntiRollRate/SpinBox" to="." method="_on_rear_anti_roll_changed"]
 [connection signal="value_changed" from="Wheels/VBoxContainer/BrakeBiasFrontBack/Slider" to="." method="_on_brake_bias_changed"]
 [connection signal="item_selected" from="Wheels/VBoxContainer/TireModel/OptionButton" to="." method="_on_tire_model_selected"]

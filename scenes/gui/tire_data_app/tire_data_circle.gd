@@ -60,6 +60,14 @@ func _draw():
 	var target_z_force = origin_z_force + ((Vector2(0, 61) * (1.0/max_scale_n) * tire.force_vec.y)).rotated(-tire.rotation.y)
 	draw_line(origin_z_force, target_z_force, Color.DARK_BLUE, 1, true)
 	
+	var origin_damp_speed_indicator = Vector2(3, 75)
+	var target_damp_speed_indicator_lo = origin_damp_speed_indicator - Vector2(0,25)
+	var target_damp_speed_indicator_hi = origin_damp_speed_indicator - Vector2(0,75)
+	
+	if abs(tire.spring_speed_mm_per_seconds) <= tire.high_speed_damping_treshold:
+		draw_line(origin_damp_speed_indicator, target_damp_speed_indicator_lo, Color.DARK_GREEN, 6)
+	else :
+		draw_line(origin_damp_speed_indicator, target_damp_speed_indicator_hi, Color.DARK_RED, 6)
 
 #code from examples in godot docs
 func draw_circle_arc(center, radius, angle_from, angle_to, color):

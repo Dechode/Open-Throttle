@@ -19,15 +19,19 @@ func _ready() -> void:
 
 func update_params(params: CarParameters):
 	$Suspension/VBoxContainer/FrontSuspAntiRollRate/SpinBox.value = params.wheel_params_fl.anti_roll
-	$Suspension/VBoxContainer/FrontSuspBumpRate/SpinBox.value = params.wheel_params_fl.bump
-	$Suspension/VBoxContainer/FrontSuspReboundRate/SpinBox.value = params.wheel_params_fl.rebound
+	$Suspension/VBoxContainer/FrontSuspBumpRateLo/SpinBox.value = params.wheel_params_fl.bump_ls
+	$Suspension/VBoxContainer/FrontSuspBumpRateHi/SpinBox.value = params.wheel_params_fl.bump_hs
+	$Suspension/VBoxContainer/FrontSuspReboundRateLo/SpinBox.value = params.wheel_params_fl.rebound_ls
+	$Suspension/VBoxContainer/FrontSuspReboundRateHi/SpinBox.value = params.wheel_params_fl.rebound_hs
 	$Suspension/VBoxContainer/FrontSuspLength/Slider.value = params.wheel_params_fl.spring_length
 	$Suspension/VBoxContainer/FrontSuspLength/Label2.text = str(params.wheel_params_fl.spring_length)
 	$Suspension/VBoxContainer/FrontSuspSpringRate/SpinBox.value = params.wheel_params_fl.spring_stiffness
 	
 	$Suspension/VBoxContainer/RearSuspAntiRollRate/SpinBox.value = params.wheel_params_bl.anti_roll
-	$Suspension/VBoxContainer/RearSuspBumpRate/SpinBox.value = params.wheel_params_bl.bump
-	$Suspension/VBoxContainer/RearSuspReboundRate/SpinBox.value = params.wheel_params_bl.rebound
+	$Suspension/VBoxContainer/RearSuspBumpRateLo/SpinBox.value = params.wheel_params_bl.bump_ls
+	$Suspension/VBoxContainer/RearSuspBumpRateHi/SpinBox.value = params.wheel_params_bl.bump_hs
+	$Suspension/VBoxContainer/RearSuspReboundRateLo/SpinBox.value = params.wheel_params_bl.rebound_ls
+	$Suspension/VBoxContainer/RearSuspReboundRateHi/SpinBox.value = params.wheel_params_bl.rebound_hs
 	$Suspension/VBoxContainer/RearSuspLength/Slider.value = params.wheel_params_bl.spring_length
 	$Suspension/VBoxContainer/RearSuspLength/Label2.text = str(params.wheel_params_bl.spring_length)
 	$Suspension/VBoxContainer/RearSuspSpringRate/SpinBox.value = params.wheel_params_bl.spring_stiffness
@@ -153,16 +157,23 @@ func _on_front_spring_rate_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_fr.spring_stiffness = value
 
 
-func _on_front_bump_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_fl.bump = value
-	SessionManager.player_car_setup.wheel_params_fr.bump = value
+func _on_front_bump_rate_lo_changed(value):
+	SessionManager.player_car_setup.wheel_params_fl.bump_ls = value
+	SessionManager.player_car_setup.wheel_params_fr.bump_ls = value
 
 
-func _on_front_rebound_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_fl.rebound = value
-	SessionManager.player_car_setup.wheel_params_fr.rebound = value
+func _on_front_bump_rate_hi_changed(value):
+	SessionManager.player_car_setup.wheel_params_fl.bump_hs = value
+	SessionManager.player_car_setup.wheel_params_fr.bump_hs = value
 
+func _on_front_rebound_rate_lo_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_fl.rebound_ls = value
+	SessionManager.player_car_setup.wheel_params_fr.rebound_ls = value
 
+func _on_front_rebound_rate_hi_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_fl.rebound_hs = value
+	SessionManager.player_car_setup.wheel_params_fr.rebound_hs = value
+	
 func _on_front_anti_roll_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_fl.anti_roll = value
 	SessionManager.player_car_setup.wheel_params_fr.anti_roll = value
@@ -179,15 +190,21 @@ func _on_rear_spring_rate_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_br.spring_stiffness = value
 
 
-func _on_rear_bump_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_bl.bump = value
-	SessionManager.player_car_setup.wheel_params_br.bump = value
+func _on_rear_bump_rate_lo_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.bump_ls = value
+	SessionManager.player_car_setup.wheel_params_br.bump_ls = value
 
+func _on_rear_bump_rate_hi_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.bump_hs = value
+	SessionManager.player_car_setup.wheel_params_br.bump_hs = value
 
-func _on_rear_rebound_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_bl.rebound = value
-	SessionManager.player_car_setup.wheel_params_br.rebound = value
+func _on_rear_rebound_rate_lo_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.rebound_ls = value
+	SessionManager.player_car_setup.wheel_params_br.rebound_ls = value
 
+func _on_rear_rebound_rate_hi_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.rebound_hs = value
+	SessionManager.player_car_setup.wheel_params_br.rebound_hs = value
 
 func _on_rear_anti_roll_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_bl.anti_roll = value
@@ -328,3 +345,9 @@ func _on_rear_diff_power_ratio_changed(value: float) -> void:
 func _on_rear_diff_coast_ratio_changed(value: float) -> void:
 	SessionManager.player_car_setup.rear_diff_coast_ratio = value
 	$Drivetrain/VBoxContainer/RearDiffCoastRatio/Label2.text = str(value)
+
+
+
+
+
+
