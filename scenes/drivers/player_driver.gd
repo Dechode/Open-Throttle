@@ -13,17 +13,31 @@ func _ready():
 	# Has to be call_deferred so the car reference is updated in VehicleAPI when instantiating the gui 
 	car.add_child.call_deferred((load("res://scenes/gui/gui.tscn").instantiate()))
 	
+	var devices := []
 	if InputManager.steering_device >= 0:
-		steering_device = InputManager.steering_device
+		devices.append(InputManager.steering_device)
+#		steering_device = InputManager.steering_device
+	if InputManager.steering_device_sec >= 0:
+		devices.append(InputManager.steering_device_sec)
 	
-	if ffb.init_ffb(steering_device) < 0:
+	var ffb_devices := []
+	for dev in devices:
+		if ffb.init_ffb(dev) >= 0:
+			ffb_devices.append(dev)
+	
+	if ffb_devices.size() >= 2:
+		push_warning("Cant have more than 1 force feedback device connected atm")
+	if ffb_devices.size() == 0:
+		print_debug("No FFB supported devices found")
 		has_ffb = false
-		print_debug("No FFB effects available")
 	else:
+		steering_device = ffb_devices[0]
 		has_ffb = true
+	
+	if has_ffb:
 		if OptionsManager.get_config_value("ffb_enabled"):
 			ffb_effect_id = ffb.init_constant_force_effect()
-			print_debug("FFB effects available, effect id = %d" % ffb_effect_id)
+			print_debug("Constant Force FFB effect initialised, effect id = %d" % ffb_effect_id)
 			
 			if ffb.play_constant_force_effect(ffb_effect_id, 0) < 0:
 				push_warning("Playing FFB effect failed!")
