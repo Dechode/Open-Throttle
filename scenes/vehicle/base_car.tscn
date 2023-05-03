@@ -180,4 +180,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47318, -2.21026)
 [node name="CameraLookAtTarget" parent="CameraSystem/HoodCam" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.569255, -4.08343)
 
+[node name="Headlights" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.450309, -2.00388)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Headlights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51134, 0, 0)
+light_energy = 10.0
+distance_fade_enabled = true
+spot_range = 563.491
+spot_angle = 50.3
+spot_angle_attenuation = 2.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Headlights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.511, 0, 0)
+light_energy = 10.0
+distance_fade_enabled = true
+spot_range = 563.491
+spot_attenuation = 0.5
+spot_angle = 50.3
+spot_angle_attenuation = 2.0
+
 [editable path="CameraSystem"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d10e77pxi1e50"]
+[gd_scene load_steps=26 format=3 uid="uid://d10e77pxi1e50"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_d86ei"]
 [ext_resource type="PackedScene" uid="uid://d3l5rm7ycg1cx" path="res://assets/models/cars_blend/retro_openwheeler.blend" id="2_0krk4"]
@@ -17,72 +17,60 @@ loop_end = 141100
 _data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_munle"]
+[sub_resource type="Resource" id="Resource_mmuao"]
 script = ExtResource("4_6sx12")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 
-[sub_resource type="Resource" id="Resource_j80du"]
+[sub_resource type="Resource" id="Resource_liual"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_munle")
+tire_model = SubResource("Resource_mmuao")
 spring_length = 0.1
-spring_stiffness = 45000.0
+spring_stiffness = 25000.0
+bump = 7000.0
+rebound = 11000.0
+wheel_mass = 25.0
+ackermann = 0.15
+anti_roll = 50.0
+
+[sub_resource type="Resource" id="Resource_p5du8"]
+script = ExtResource("3_4ovfb")
+tire_model = SubResource("Resource_mmuao")
+spring_length = 0.1
+spring_stiffness = 25000.0
+bump = 7000.0
+rebound = 11000.0
+wheel_mass = 25.0
+ackermann = 0.15
+anti_roll = 50.0
+
+[sub_resource type="Resource" id="Resource_lrs7a"]
+script = ExtResource("4_6sx12")
+tire_stiffness = 0.5
+tire_width = 0.225
+tire_radius = 0.3
+
+[sub_resource type="Resource" id="Resource_6ugsc"]
+script = ExtResource("3_4ovfb")
+tire_model = SubResource("Resource_lrs7a")
+spring_length = 0.1
+spring_stiffness = 35000.0
 bump = 10000.0
 rebound = 11000.0
 wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
 
-[sub_resource type="Resource" id="Resource_f0e04"]
-script = ExtResource("4_6sx12")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_y0ox4"]
+[sub_resource type="Resource" id="Resource_a0k13"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_f0e04")
+tire_model = SubResource("Resource_lrs7a")
 spring_length = 0.1
-spring_stiffness = 45000.0
+spring_stiffness = 35000.0
 bump = 10000.0
 rebound = 11000.0
 wheel_mass = 25.0
 ackermann = 0.15
-anti_roll = 50.0
-
-[sub_resource type="Resource" id="Resource_dgcv6"]
-script = ExtResource("4_6sx12")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_go0p2"]
-script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_dgcv6")
-spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
-wheel_mass = 25.0
-ackermann = 0.15
-anti_roll = 50.0
-
-[sub_resource type="Resource" id="Resource_6w84j"]
-script = ExtResource("4_6sx12")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_6cxmn"]
-script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_6w84j")
-spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
-wheel_mass = 25.0
-ackermann = -0.15
 anti_roll = 50.0
 
 [sub_resource type="Resource" id="Resource_ra4m1"]
@@ -124,10 +112,10 @@ center_split_fr = 0.4
 cd = 0.1
 air_density = 1.225
 frontal_area = 1.0
-wheel_params_fl = SubResource("Resource_go0p2")
-wheel_params_fr = SubResource("Resource_6cxmn")
-wheel_params_bl = SubResource("Resource_j80du")
-wheel_params_br = SubResource("Resource_y0ox4")
+wheel_params_fl = SubResource("Resource_6ugsc")
+wheel_params_fr = SubResource("Resource_a0k13")
+wheel_params_bl = SubResource("Resource_liual")
+wheel_params_br = SubResource("Resource_p5du8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8g84"]
 albedo_color = Color(0.137255, 0.137255, 0.137255, 1)
@@ -245,6 +233,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.218306, -0.950466)
 
 [node name="CameraLookAtTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.218, -4.083)
+
+[node name="Headlights" parent="RigidBodyCar" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205154, -2.00388)
+
+[node name="SpotLight3D" parent="RigidBodyCar/Headlights" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539991, 0, 0)
+
+[node name="SpotLight3D2" parent="RigidBodyCar/Headlights" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054, 0, 0)
 
 [node name="retro_openwheeler" parent="RigidBodyCar" instance=ExtResource("2_0krk4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.000576198, 0.000522614)

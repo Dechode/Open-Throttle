@@ -14,7 +14,7 @@ loop_mode = 1
 loop_end = 141100
 
 [sub_resource type="Curve" id="Curve_exsnv"]
-_data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.74359, 1), 0.0, 0.0, 0, 0, Vector2(0.897436, 0.754545), -2.41091, -2.41091, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
+_data = [Vector2(0, 0.654545), 0.0, 0.0, 0, 0, Vector2(0.74359, 1), 0.0, 0.0, 0, 0, Vector2(0.893401, 0.709091), -2.41091, -2.41091, 0, 0, Vector2(1, 0.227273), -1.61405, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_ytxhn"]
@@ -90,7 +90,7 @@ script = ExtResource("4_ew8te")
 max_steer = 0.4
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 20000.0
+max_brake_force = 40000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 40.0
@@ -195,6 +195,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545, 0.6, -4.083)
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47318, -1.15006)
+
+[node name="Headlights" parent="RigidBodyCar" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0821751, -1.75407)
+
+[node name="SpotLight3D" parent="RigidBodyCar/Headlights" index="0"]
+distance_fade_begin = 100.0
+distance_fade_length = 20.0
+
+[node name="SpotLight3D2" parent="RigidBodyCar/Headlights" index="1"]
+distance_fade_begin = 100.0
+distance_fade_length = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBodyCar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00266775, 0.204892)
