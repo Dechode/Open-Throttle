@@ -62,3 +62,11 @@ func _on_car_setup_button_pressed() -> void:
 func _on_car_setup_back_button_pressed() -> void:
 	$HBoxContainer.show()
 	$CarSetupMenu.hide()
+
+
+func _on_time_of_day_slider_value_changed(value: float) -> void:
+	SessionManager.time_of_day = value
+
+
+func _on_time_multiplier_value_changed(value: float) -> void:
+	SessionManager.time_multiplier = value

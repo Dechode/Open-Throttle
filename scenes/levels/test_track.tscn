@@ -89,7 +89,7 @@ polygon = PackedVector2Array(-11, -0.1, 11, -0.1, 20, -4.01, 20.1, -4.1, -20.1, 
 [node name="Lighting" parent="." instance=ExtResource("4")]
 
 [node name="DirectionalLight3D" parent="Lighting" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.237821, 0.971309, 0, -0.971309, 0.237821, 0, 2.08716, -0.5831)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08716, -0.5831)
 
 [node name="PitArea" parent="." instance=ExtResource("3")]
 transform = Transform3D(0.864573, 0, 0.502507, 0, 1, 0, -0.502507, 0, 0.864573, 58.8525, 0.12774, 38.0513)
