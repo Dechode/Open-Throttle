@@ -145,6 +145,7 @@ func get_throttle_input():
 		throttle_input_sec = 1 - throttle_input_sec
 	
 	throttle_input = max(throttle_input, throttle_input_sec)
+	throttle_input = clamp(throttle_input, 0, 1)
 #	throttle_input = throttle_axis_input
 	return throttle_input
 
@@ -176,6 +177,8 @@ func get_brake_input():
 		brake_input_sec = 1 - brake_input_sec
 	
 	brake_input = max(brake_input, brake_input_sec)
+	brake_input = clamp(brake_input, 0, 1)
+	
 	return brake_input
 
 
@@ -206,6 +209,7 @@ func get_clutch_input():
 		clutch_input_sec = 1 - clutch_input_sec
 	
 	clutch_input = max(clutch_input, clutch_input_sec)
+	clutch_input = clamp(clutch_input, 0, 1)
 	return clutch_input
 
 
@@ -236,5 +240,6 @@ func get_handbrake_input():
 		handbrake_input_sec = 1 - handbrake_input_sec
 	
 	handbrake_input = max(handbrake_input, handbrake_input_sec)
+	handbrake_input = clamp(handbrake_input, 0, 1)
 	return handbrake_input
 	
