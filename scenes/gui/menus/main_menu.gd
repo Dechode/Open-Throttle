@@ -16,7 +16,9 @@ var current_menu = -1
 
 
 # Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
+func _ready() -> void:
+	update_session_info()
+	$HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeMultiplier/TimeMultiplier.value = SessionManager.time_multiplier
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,3 +64,24 @@ func _on_car_setup_button_pressed() -> void:
 func _on_car_setup_back_button_pressed() -> void:
 	$HBoxContainer.show()
 	$CarSetupMenu.hide()
+
+
+func update_session_info():
+	var track = "Track: %s \n" % SessionManager.track_path
+	var car = "Car: %s \n" % SessionManager.player_car_path
+	var time = "Time: %2.2f \n" % SessionManager.time_of_day
+	var time_mul = "Time Multiplier: %d" % SessionManager.time_multiplier
+	var info_text = track + car + time + time_mul
+	$HBoxContainer/PlayMenu/Start/HBoxContainer/SessionInfo/InfoLabel.text = info_text
+
+
+func _on_time_of_day_slider_value_changed(value: float) -> void:
+	SessionManager.time_of_day = value
+	$HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeOfDay/Label2.text = str(value)
+	update_session_info()
+	
+
+
+func _on_time_multiplier_value_changed(value: float) -> void:
+	SessionManager.time_multiplier = value
+	update_session_info()

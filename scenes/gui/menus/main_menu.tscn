@@ -130,11 +130,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Track" type="TabBar" parent="HBoxContainer/PlayMenu"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Track"]
@@ -246,7 +246,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer"]
 handle_input_locally = false
-size = Vector2i(256, 256)
+size = Vector2i(557, 256)
 render_target_update_mode = 0
 
 [node name="CarPreview" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport" instance=ExtResource("8")]
@@ -266,18 +266,74 @@ layout_mode = 2
 text = "Car Setup"
 
 [node name="Start" type="TabBar" parent="HBoxContainer/PlayMenu"]
-visible = false
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="HBoxContainer/PlayMenu/Start"]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 1.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Start"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="HBoxContainer/PlayMenu/Start/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeOfDay" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeOfDay"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Time Of Day:"
+
+[node name="TimeOfDaySlider" type="HSlider" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeOfDay"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+max_value = 24.0
+step = 0.5
+value = 12.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeOfDay"]
+layout_mode = 2
+text = "12:00"
+
+[node name="TimeMultiplier" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeMultiplier"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Time Multiplier"
+
+[node name="TimeMultiplier" type="SpinBox" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeMultiplier"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+max_value = 1000.0
+value = 100.0
+
+[node name="SessionInfo" type="VBoxContainer" parent="HBoxContainer/PlayMenu/Start/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InfoLabel" type="Label" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/SessionInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Track:
+Car:
+Time Of Day: 
+Time Multiplier: "
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="HBoxContainer/PlayMenu/Start/HBoxContainer/SessionInfo"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
 disabled = true
 text = "Play"
 script = ExtResource("5")
@@ -294,7 +350,7 @@ layout_mode = 1
 [connection signal="pressed" from="HBoxContainer/MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="tab_changed" from="HBoxContainer/PlayMenu" to="HBoxContainer/PlayMenu/Start/PlayButton" method="_on_tab_changed"]
+[connection signal="tab_changed" from="HBoxContainer/PlayMenu" to="HBoxContainer/PlayMenu/Start/HBoxContainer/SessionInfo/PlayButton" method="_on_tab_changed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" method="_on_TrackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" method="_on_TrackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" method="_on_TrackButton_pressed"]
@@ -305,7 +361,9 @@ layout_mode = 1
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" method="_on_car_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarPreview/CarSetupButton" to="." method="_on_car_setup_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/PlayMenu/Start/PlayButton" to="HBoxContainer/PlayMenu/Start/PlayButton" method="_on_PlayButton_pressed"]
+[connection signal="value_changed" from="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeOfDay/TimeOfDaySlider" to="." method="_on_time_of_day_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeMultiplier/TimeMultiplier" to="." method="_on_time_multiplier_value_changed"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Start/HBoxContainer/SessionInfo/PlayButton" to="HBoxContainer/PlayMenu/Start/HBoxContainer/SessionInfo/PlayButton" method="_on_PlayButton_pressed"]
 [connection signal="confirmed" from="QuitPopUp" to="." method="_on_QuitPopUp_confirmed"]
 [connection signal="pressed" from="CarSetupMenu/Suspension/VBoxContainer/BackButton" to="." method="_on_car_setup_back_button_pressed"]
 [connection signal="pressed" from="CarSetupMenu/Wheels/VBoxContainer/BackButton" to="." method="_on_car_setup_back_button_pressed"]
