@@ -93,10 +93,8 @@ This work is based on \"Low Poly Rally Cars Pack\" (https://sketchfab.com/3d-mod
 selection_enabled = true
 
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
+visible = false
 layout_mode = 2
-
-[node name="GamePlay" parent="HBoxContainer/Options" index="1"]
-visible = true
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
 anchor_right = 0.0
@@ -118,9 +116,6 @@ custom_minimum_size = Vector2(50, 0)
 anchor_right = 0.0
 anchor_bottom = 0.0
 
-[node name="Input" parent="HBoxContainer/Options" index="4"]
-visible = false
-
 [node name="VBoxContainer" parent="HBoxContainer/Options/Input" index="0"]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -130,11 +125,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Track" type="TabBar" parent="HBoxContainer/PlayMenu"]
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Track"]
@@ -246,7 +241,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer"]
 handle_input_locally = false
-size = Vector2i(557, 256)
+size = Vector2i(256, 256)
 render_target_update_mode = 0
 
 [node name="CarPreview" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport" instance=ExtResource("8")]
@@ -266,6 +261,7 @@ layout_mode = 2
 text = "Car Setup"
 
 [node name="Start" type="TabBar" parent="HBoxContainer/PlayMenu"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Start"]
