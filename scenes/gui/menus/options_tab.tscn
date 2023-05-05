@@ -12,6 +12,7 @@ size_flags_horizontal = 3
 script = ExtResource("1")
 
 [node name="GamePlay" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GamePlay"]
@@ -141,7 +142,6 @@ layout_mode = 2
 text = "50"
 
 [node name="Input" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Input"]
@@ -504,6 +504,32 @@ toggle_mode = true
 script = ExtResource("2")
 action = "change_camera_secondary"
 
+[node name="ToggleLights" type="HBoxContainer" parent="Input/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+text = "Toggle Lights"
+
+[node name="BindButton" type="Button" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "toggle_lights"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+
+[node name="BindButton2" type="Button" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "toggle_lights_secondary"
+
 [node name="FFB" type="TabBar" parent="."]
 visible = false
 layout_mode = 2
@@ -635,6 +661,8 @@ suffix = "%"
 [connection signal="toggled" from="Input/VBoxContainer/ShiftDown/BindButton2" to="Input/VBoxContainer/ShiftDown/BindButton2" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ChangeCamera/BindButton" to="Input/VBoxContainer/ChangeCamera/BindButton" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ChangeCamera/BindButton2" to="Input/VBoxContainer/ChangeCamera/BindButton2" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ToggleLights/BindButton" to="Input/VBoxContainer/ToggleLights/BindButton" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ToggleLights/BindButton2" to="Input/VBoxContainer/ToggleLights/BindButton2" method="_toggled"]
 [connection signal="toggled" from="FFB/VBoxContainer/Options/Values/FFBEnabled" to="." method="_on_ffb_enabled_toggled"]
 [connection signal="toggled" from="FFB/VBoxContainer/Options/Values/FFBInverted" to="." method="_on_ffb_inverted_toggled"]
 [connection signal="value_changed" from="FFB/VBoxContainer/Options/Values/FFBGain" to="." method="_on_ffb_gain_value_changed"]
