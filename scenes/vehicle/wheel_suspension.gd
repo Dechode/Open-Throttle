@@ -14,10 +14,10 @@ var rebound_hs := 3.5
 var high_speed_damping_treshold := 200.0
 var anti_roll := 0.0
 
-var spring_load_mm := 0
-var prev_spring_load_mm := 0
-var spring_speed_mm_per_seconds := 0
-var spring_load_newton := 0
+var spring_load_mm := 0.0
+var prev_spring_load_mm := 0.0
+var spring_speed_mm_per_seconds := 0.0
+var spring_load_newton := 0.0
 
 ############# Tire stuff #############
 var wheel_mass := 15.0
@@ -158,17 +158,17 @@ func apply_forces(opposite_comp, delta):
 	#
 	#low-speed damping:
 	if abs(spring_speed_mm_per_seconds) <= high_speed_damping_treshold:
-		if spring_speed_mm_per_seconds >= 0:
-			spring_load_newton += spring_speed_mm_per_seconds * bump_ls # bump
-		else :
-			spring_load_newton += spring_speed_mm_per_seconds * rebound_ls # rebound
+		if spring_speed_mm_per_seconds >= 0:# bump
+			spring_load_newton += spring_speed_mm_per_seconds * bump_ls 
+		else :# rebound
+			spring_load_newton += spring_speed_mm_per_seconds * rebound_ls 
 	#high-speed damping
 	else:
-		if spring_speed_mm_per_seconds >= 0:
+		if spring_speed_mm_per_seconds >= 0:# bump
 			var low_speed_part = high_speed_damping_treshold * sign(spring_speed_mm_per_seconds) * bump_ls
 			var high_speed_part = (abs(spring_speed_mm_per_seconds) - high_speed_damping_treshold) * sign(spring_speed_mm_per_seconds) * bump_hs
 			spring_load_newton += low_speed_part + high_speed_part
-		else :
+		else :# rebound
 			var low_speed_part = high_speed_damping_treshold * sign(spring_speed_mm_per_seconds) * rebound_ls
 			var high_speed_part = (abs(spring_speed_mm_per_seconds) - high_speed_damping_treshold) * sign(spring_speed_mm_per_seconds) * rebound_hs
 			spring_load_newton += low_speed_part + high_speed_part

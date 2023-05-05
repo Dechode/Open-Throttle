@@ -27,9 +27,12 @@ tire_radius = 0.3
 script = ExtResource("3_4ovfb")
 tire_model = SubResource("Resource_munle")
 spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
+spring_stiffness = 70.0
+bump_ls = 6.0
+bump_hs = 4.0
+rebound_ls = 7.0
+rebound_hs = 5.0
+lo_hi_threshold = 400.0
 wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
@@ -44,9 +47,12 @@ tire_radius = 0.3
 script = ExtResource("3_4ovfb")
 tire_model = SubResource("Resource_f0e04")
 spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
+spring_stiffness = 70.0
+bump_ls = 6.0
+bump_hs = 4.0
+rebound_ls = 7.0
+rebound_hs = 5.0
+lo_hi_threshold = 400.0
 wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
@@ -61,9 +67,12 @@ tire_radius = 0.3
 script = ExtResource("3_4ovfb")
 tire_model = SubResource("Resource_dgcv6")
 spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
+spring_stiffness = 60.0
+bump_ls = 6.0
+bump_hs = 4.0
+rebound_ls = 7.0
+rebound_hs = 5.0
+lo_hi_threshold = 400.0
 wheel_mass = 25.0
 ackermann = 0.15
 anti_roll = 50.0
@@ -78,9 +87,12 @@ tire_radius = 0.3
 script = ExtResource("3_4ovfb")
 tire_model = SubResource("Resource_6w84j")
 spring_length = 0.1
-spring_stiffness = 45000.0
-bump = 10000.0
-rebound = 11000.0
+spring_stiffness = 60.0
+bump_ls = 6.0
+bump_hs = 4.0
+rebound_ls = 7.0
+rebound_hs = 5.0
+lo_hi_threshold = 400.0
 wheel_mass = 25.0
 ackermann = -0.15
 anti_roll = 50.0
@@ -203,8 +215,6 @@ size = Vector3(1.74447, 0.34, 0.39)
 
 [node name="RigidBodyCar" parent="." instance=ExtResource("1_d86ei")]
 mass = 500.0
-center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0, 0.2)
 car_params = SubResource("Resource_ra4m1")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
@@ -224,6 +234,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.758826, 0, -0.952586)
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.759, 0, -0.952586)
+
+[node name="Camera3D" parent="RigidBodyCar/CameraSystem" index="0"]
+current = true
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/ThirdPersonCam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63382, 4.02454)
