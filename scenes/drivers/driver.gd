@@ -11,7 +11,7 @@ var steer_speed := 5.0
 var driver_number := -1
 var driver_name := ""
 
-@onready var car = get_parent()
+@onready var car := get_parent() as BaseCar
 
 #func _ready() -> void:
 #	VehicleAPI.cars.append(car)

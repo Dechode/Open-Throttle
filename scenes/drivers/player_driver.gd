@@ -48,6 +48,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		car.shift_up()
 	if event.is_action_pressed("shift_down") or event.is_action_pressed("shift_down_secondary"):
 		car.shift_down()
+	if event.is_action_pressed("toggle_lights") or event.is_action_pressed("toggle_lights_secondary"):
+		car.headlights.toggle_lights()
+		car.taillights.toggle_lights()
+
+
+func _process(delta: float) -> void:
+	if brake_input > 0.15:
+		car.taillights.set_brake_lights(true)
+	else:
+		car.taillights.set_brake_lights(false)
 
 
 func _physics_process(delta: float) -> void:
@@ -71,6 +81,7 @@ func _physics_process(delta: float) -> void:
 #	if abs(car.local_vel.z) > 2.0:
 	if OptionsManager.get_config_value("ffb_enabled"):
 		update_ffb()
+	
 
 
 func steer_lerp(input: float, prev_input: float, lerp_speed: float, delta: float):

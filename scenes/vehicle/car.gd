@@ -56,6 +56,8 @@ var driver: Driver
 @onready var wheel_bl = $Wheel_bl as RaycastSuspension
 @onready var wheel_br = $Wheel_br as RaycastSuspension
 @onready var audioplayer = $EngineSound
+@onready var taillights = $TailLights as TailLights
+@onready var headlights = $HeadLights as HeadLights
 
 
 func _init() -> void:
