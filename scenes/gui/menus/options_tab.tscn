@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct2poygblqrg5"]
+[gd_scene load_steps=4 format=3 uid="uid://ct2poygblqrg5"]
 
 [ext_resource type="Script" path="res://scenes/gui/menus/options_tab.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/gui/menus/bind_button.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://dbhema4vhnlcq" path="res://scenes/gui/input_app.tscn" id="3_a07ff"]
 
 [node name="Options" type="TabContainer"]
 unique_name_in_owner = true
@@ -529,6 +530,9 @@ layout_mode = 2
 toggle_mode = true
 script = ExtResource("2")
 action = "toggle_lights_secondary"
+
+[node name="InputApp" parent="Input" instance=ExtResource("3_a07ff")]
+layout_mode = 1
 
 [node name="FFB" type="TabBar" parent="."]
 visible = false
