@@ -92,6 +92,7 @@ func set_params(params: WheelSuspensionParameters):
 	ackermann = params.ackermann
 	anti_roll = params.anti_roll
 	
+	tire_model.tire_mass = params.wheel_mass * 0.5
 	
 	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
