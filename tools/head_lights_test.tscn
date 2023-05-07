@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bicp83jkt8e5g"]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="PackedScene" uid="uid://1kdu82q2oqo8" path="res://scenes/lighting.tscn" id="1_ut1r6"]
-[ext_resource type="PackedScene" uid="uid://bi2tq5yqycsah" path="res://scenes/vehicle/rally_rwd/rally_rwd_1.tscn" id="2_jryj2"]
+[ext_resource type="PackedScene" uid="uid://bi2tq5yqycsah" path="res://scenes/cars/rally_rwd_1.tscn" id="2_jryj2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3mnu0"]
 

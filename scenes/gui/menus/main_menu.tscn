@@ -215,7 +215,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Historic Rally Rwd mk2"
 script = ExtResource("6")
-car_path = "res://scenes/vehicle/rally_rwd/rally_rwd_1.tscn"
+car_path = "res://scenes/cars/rally_rwd_1.tscn"
+
+[node name="Button7" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Historic Rally Rwd 2"
+script = ExtResource("6")
+car_path = "res://scenes/cars/historic_rally_rwd_2.tscn"
 
 [node name="Button2" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
 custom_minimum_size = Vector2(250, 0)
@@ -223,7 +231,39 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Historic Open Wheeler 1960's"
 script = ExtResource("6")
-car_path = "res://scenes/vehicle/historic_open_wheeler60/historic_open_wheeler_60.tscn"
+car_path = "res://scenes/cars/historic_open_wheeler_60.tscn"
+
+[node name="Button3" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Modern Prototype"
+script = ExtResource("6")
+car_path = "res://scenes/cars/modern_prototype.tscn"
+
+[node name="Button4" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Historic Rally FWD 1"
+script = ExtResource("6")
+car_path = "res://scenes/cars/historic_rally_fwd_1.tscn"
+
+[node name="Button6" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Historic Rally FWD 2"
+script = ExtResource("6")
+car_path = "res://scenes/cars/historic_rally_fwd_2.tscn"
+
+[node name="Button5" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CrossKart"
+script = ExtResource("6")
+car_path = "res://scenes/cars/cross_kart.tscn"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/PlayMenu/Car/Cars"]
 layout_mode = 2
@@ -353,9 +393,24 @@ layout_mode = 1
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button7" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button7" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button7" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button7" method="_on_car_button_pressed"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button2" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button3" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button3" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button3" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button3" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button4" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button4" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button4" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button4" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button6" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button6" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button6" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button6" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button5" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button5" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button5" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button5" method="_on_car_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarPreview/CarSetupButton" to="." method="_on_car_setup_button_pressed"]
 [connection signal="value_changed" from="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeOfDay/TimeOfDaySlider" to="." method="_on_time_of_day_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeMultiplier/TimeMultiplier" to="." method="_on_time_multiplier_value_changed"]
