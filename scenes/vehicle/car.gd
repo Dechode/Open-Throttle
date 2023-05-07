@@ -50,14 +50,15 @@ var last_shift_time = 0
 var clutch: Clutch
 var drivetrain: DriveTrain
 var driver: Driver
-
+var taillights: TailLights
+var headlights: HeadLights
 @onready var wheel_fl = $Wheel_fl as RaycastSuspension
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
 @onready var wheel_bl = $Wheel_bl as RaycastSuspension
 @onready var wheel_br = $Wheel_br as RaycastSuspension
 @onready var audioplayer = $EngineSound
-@onready var taillights = $TailLights as TailLights
-@onready var headlights = $HeadLights as HeadLights
+#@onready var taillights = $TailLights as TailLights
+#@onready var headlights = $HeadLights as HeadLights
 
 
 func _init() -> void:
@@ -99,6 +100,11 @@ func _ready() -> void:
 	wheel_br.set_params(car_params.wheel_params_br)
 	
 	play_engine_sound()
+	taillights = get_node("TailLights") #as TailLights
+	headlights = get_node("HeadLights") #as HeadLights
+#	print(taillights)
+	assert(taillights)
+	assert(headlights)
 
 
 func _physics_process(delta):

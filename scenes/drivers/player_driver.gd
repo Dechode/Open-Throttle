@@ -54,10 +54,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if brake_input > 0.15:
-		car.taillights.set_brake_lights(true)
-	else:
-		car.taillights.set_brake_lights(false)
+	if car.headlights and car.taillights:
+		if brake_input > 0.15:
+			car.taillights.set_brake_lights(true)
+		else:
+			car.taillights.set_brake_lights(false)
 
 
 func _physics_process(delta: float) -> void:
