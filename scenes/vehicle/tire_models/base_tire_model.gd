@@ -18,7 +18,7 @@ const TIRE_TEMP_CURVE = preload("res://resources/tire_temp_curve.tres")
 
 var tire_wear := 0.0
 var load_sensitivity := 1.0
-
+var tire_mass := 15.0
 
 var tire_rated_load := 7000.0 # This should probably be calculated from tire input parameters?
 var tire_temperature := 20.0
@@ -67,13 +67,12 @@ func update_tire_temps(prev_temp: float, friction_power: float, speed: float,
 						delta: float, ambient_temp := 20.0) -> float:
 	# From Speed Dreams wiki: https://sourceforge.net/p/speed-dreams/wiki/TireTempDeg/
 	# dT/SimDeltaTime = P * heatingm - aircoolm * (1 + speedcoolm * v) * (T-Tair)
-	
-	var tire_mass := 15.0
-	var effective_heat_capacity := 2000.0 * tire_mass
+	var specific_heat_capacity := 1000.0
+	var effective_heat_capacity := specific_heat_capacity * tire_mass
 	var heating_multiplier := 1 / effective_heat_capacity
 	var tire_area := 2 * PI * tire_radius * tire_width
-	var air_cooling_multiplier := 20.0 * tire_area / effective_heat_capacity
-	var speed_cooling_multiplier :=  0.50
+	var air_cooling_multiplier := 10.0 * tire_area / specific_heat_capacity
+	var speed_cooling_multiplier :=  0.10
 	
 	var heating := friction_power * heating_multiplier
 	var cooling: float = air_cooling_multiplier * (1 + speed_cooling_multiplier * abs(speed))
