@@ -290,6 +290,14 @@ text = "Rally Group A  AWD 2"
 script = ExtResource("6")
 car_path = "res://scenes/cars/rally_awd_group_a_2.tscn"
 
+[node name="Button11" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Rally Group A  AWD 3"
+script = ExtResource("6")
+car_path = "res://scenes/cars/rally_awd_group_a_3.tscn"
+
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/PlayMenu/Car/Cars"]
 layout_mode = 2
 
@@ -445,6 +453,9 @@ layout_mode = 1
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button10" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button10" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button10" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button10" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button11" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button11" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button11" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button11" method="_on_car_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarPreview/CarSetupButton" to="." method="_on_car_setup_button_pressed"]
 [connection signal="value_changed" from="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeOfDay/TimeOfDaySlider" to="." method="_on_time_of_day_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeMultiplier/TimeMultiplier" to="." method="_on_time_multiplier_value_changed"]
