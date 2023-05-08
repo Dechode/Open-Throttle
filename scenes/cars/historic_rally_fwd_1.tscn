@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bg4xahatinlxq"]
+[gd_scene load_steps=20 format=3 uid="uid://bg4xahatinlxq"]
 
 [ext_resource type="PackedScene" uid="uid://cdrxae36f64vu" path="res://assets/models/car_model_scenes/historic_rally_fwd_1_model.tscn" id="1_l0d8y"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_h6sjs"]
@@ -23,15 +23,43 @@ tire_stiffness = 0.5
 tire_width = 0.1
 tire_radius = 0.254
 
+[sub_resource type="Resource" id="Resource_i77oc"]
+script = ExtResource("3_48ch5")
+tire_model = SubResource("Resource_gmoob")
+spring_length = 0.15
+spring_stiffness = 40.0
+bump_ls = 4.0
+bump_hs = 4.0
+rebound_ls = 4.0
+rebound_hs = 4.0
+lo_hi_threshold = 100.0
+wheel_mass = 30.0
+ackermann = 0.15
+anti_roll = 1.0
+
+[sub_resource type="Resource" id="Resource_r5ef4"]
+script = ExtResource("3_48ch5")
+tire_model = SubResource("Resource_gmoob")
+spring_length = 0.15
+spring_stiffness = 40.0
+bump_ls = 4.0
+bump_hs = 4.0
+rebound_ls = 4.0
+rebound_hs = 4.0
+lo_hi_threshold = 100.0
+wheel_mass = 30.0
+ackermann = 0.15
+anti_roll = 1.0
+
 [sub_resource type="Resource" id="Resource_53c5d"]
 script = ExtResource("3_48ch5")
 tire_model = SubResource("Resource_gmoob")
 spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 6.0
-bump_hs = 0.0
-rebound_ls = 7.0
-rebound_hs = 0.0
+spring_stiffness = 40.0
+bump_ls = 4.0
+bump_hs = 4.0
+rebound_ls = 4.0
+rebound_hs = 4.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
 ackermann = 0.15
@@ -41,11 +69,11 @@ anti_roll = 1.0
 script = ExtResource("3_48ch5")
 tire_model = SubResource("Resource_gmoob")
 spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 6.0
-bump_hs = 0.0
-rebound_ls = 7.0
-rebound_hs = 0.0
+spring_stiffness = 40.0
+bump_ls = 4.0
+bump_hs = 4.0
+rebound_ls = 4.0
+rebound_hs = 4.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
 ackermann = -0.15
@@ -54,7 +82,7 @@ anti_roll = 1.0
 [sub_resource type="Resource" id="Resource_pekcx"]
 script = ExtResource("2_h6sjs")
 max_steer = 0.3
-front_brake_bias = 0.5
+front_brake_bias = 0.6
 steer_speed = 5.0
 max_brake_force = 15000.0
 max_handbrake_force = 1500.0
@@ -66,8 +94,8 @@ max_engine_rpm = 6500.0
 rpm_idle = 900.0
 torque_curve = SubResource("Curve_fnlhd")
 engine_drag = 0.02
-engine_brake = 10.0
-engine_moment = 0.25
+engine_brake = 3.0
+engine_moment = 0.15
 engine_bsfc = 0.3
 engine_sound = SubResource("AudioStreamWAV_ch482")
 clutch_friction = 150.0
@@ -92,8 +120,8 @@ air_density = 1.225
 frontal_area = 2.0
 wheel_params_fl = SubResource("Resource_53c5d")
 wheel_params_fr = SubResource("Resource_517uw")
-wheel_params_bl = SubResource("Resource_53c5d")
-wheel_params_br = SubResource("Resource_53c5d")
+wheel_params_bl = SubResource("Resource_i77oc")
+wheel_params_br = SubResource("Resource_r5ef4")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dk4x"]
 resource_name = "Default_OBJ.059"
@@ -147,47 +175,44 @@ mass = 560.0
 car_params = SubResource("Resource_pekcx")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.15, 1.22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.17, 0.98)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_br" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_w4r0f")
 
 [node name="Wheel_bl" parent="RigidBodyCar" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.15, 1.22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.17, 0.98)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_bl" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_w4r0f")
 
 [node name="Wheel_fr" parent="RigidBodyCar" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.15, -0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.17, -0.99)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fr" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_w4r0f")
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.15, -0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.17, -0.99)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_w4r0f")
 
 [node name="EngineSound" parent="RigidBodyCar" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21, 1.09)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21, 0.85)
 
 [node name="CameraSystem" parent="RigidBodyCar" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.3)
-
-[node name="IndoorCam" parent="RigidBodyCar/CameraSystem" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.06)
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22169, 0.043644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27169, -0.116356)
 
 [node name="CameraLookAtTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.233, -4.083)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.283, -4.243)
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72318, -0.90026)
@@ -196,23 +221,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72318, -0.90026)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.819255, -2.94343)
 
 [node name="HeadLights" parent="RigidBodyCar" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100309, -1.25388)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100309, -1.49388)
 
 [node name="TailLights" parent="RigidBodyCar" index="7"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.00030905, 1.76573)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.00030905, 1.52573)
 
 [node name="HistoricRallyFwd1Model" parent="RigidBodyCar" instance=ExtResource("1_l0d8y")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2, 0.3)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2, 0.06)
 
 [node name="L_front_wheel" parent="RigidBodyCar/HistoricRallyFwd1Model" index="1"]
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBodyCar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.06)
 shape = SubResource("BoxShape3D_60dim")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBodyCar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0.26)
 shape = SubResource("BoxShape3D_ceacs")
 
 [editable path="RigidBodyCar"]
