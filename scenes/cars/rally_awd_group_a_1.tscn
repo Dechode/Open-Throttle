@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cafvcju63ehro"]
+[gd_scene load_steps=20 format=3 uid="uid://cafvcju63ehro"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_mejm6"]
 [ext_resource type="Texture2D" uid="uid://qfmdeyepjegi" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.068_baseColor.png" id="2_8n5bo"]
@@ -14,84 +14,66 @@ loop_mode = 1
 loop_end = 141100
 
 [sub_resource type="Curve" id="Curve_hhq50"]
-_data = [Vector2(0, 0.572727), 0.0, 0.0, 0, 0, Vector2(0.650155, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Resource" id="Resource_7eqsh"]
-script = ExtResource("4_kwqox")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_y2bwn"]
-script = ExtResource("3_gawus")
-tire_model = SubResource("Resource_7eqsh")
-spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 10.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-ackermann = 0.15
-anti_roll = 5.0
-
-[sub_resource type="Resource" id="Resource_ilk7d"]
-script = ExtResource("4_kwqox")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_jujem"]
-script = ExtResource("3_gawus")
-tire_model = SubResource("Resource_ilk7d")
-spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 10.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-ackermann = 0.15
-anti_roll = 5.0
+_data = [Vector2(0, 0.390909), 0.0, 0.0, 0, 0, Vector2(0.448916, 0.690909), 1.50233, 1.50233, 0, 0, Vector2(0.643963, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Resource" id="Resource_xduy2"]
 script = ExtResource("4_kwqox")
-tire_stiffness = 0.5
+tire_stiffness = 0.75
 tire_width = 0.225
 tire_radius = 0.3
+
+[sub_resource type="Resource" id="Resource_4vbc8"]
+script = ExtResource("3_gawus")
+tire_model = SubResource("Resource_xduy2")
+spring_length = 0.15
+spring_stiffness = 60.0
+bump_ls = 4.0
+bump_hs = 3.0
+rebound_ls = 5.0
+rebound_hs = 4.0
+lo_hi_threshold = 100.0
+wheel_mass = 30.0
+ackermann = 0.15
+anti_roll = 5.0
+
+[sub_resource type="Resource" id="Resource_vqacr"]
+script = ExtResource("3_gawus")
+tire_model = SubResource("Resource_xduy2")
+spring_length = 0.15
+spring_stiffness = 60.0
+bump_ls = 4.0
+bump_hs = 3.0
+rebound_ls = 5.0
+rebound_hs = 4.0
+lo_hi_threshold = 100.0
+wheel_mass = 30.0
+ackermann = 0.15
+anti_roll = 5.0
 
 [sub_resource type="Resource" id="Resource_7e63x"]
 script = ExtResource("3_gawus")
 tire_model = SubResource("Resource_xduy2")
 spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 10.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
+spring_stiffness = 70.0
+bump_ls = 4.0
+bump_hs = 3.0
+rebound_ls = 5.0
+rebound_hs = 4.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
 ackermann = 0.15
 anti_roll = 5.0
 
-[sub_resource type="Resource" id="Resource_wsnri"]
-script = ExtResource("4_kwqox")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_koqw4"]
+[sub_resource type="Resource" id="Resource_r1ho0"]
 script = ExtResource("3_gawus")
-tire_model = SubResource("Resource_wsnri")
+tire_model = SubResource("Resource_xduy2")
 spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 10.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
+spring_stiffness = 70.0
+bump_ls = 4.0
+bump_hs = 3.0
+rebound_ls = 5.0
+rebound_hs = 4.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
 ackermann = -0.15
@@ -102,7 +84,7 @@ script = ExtResource("2_aaw7r")
 max_steer = 0.35
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 40000.0
+max_brake_force = 50000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 50.0
@@ -137,9 +119,9 @@ cd = 0.3
 air_density = 1.225
 frontal_area = 2.0
 wheel_params_fl = SubResource("Resource_7e63x")
-wheel_params_fr = SubResource("Resource_koqw4")
-wheel_params_bl = SubResource("Resource_y2bwn")
-wheel_params_br = SubResource("Resource_jujem")
+wheel_params_fr = SubResource("Resource_r1ho0")
+wheel_params_bl = SubResource("Resource_4vbc8")
+wheel_params_br = SubResource("Resource_vqacr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4i5p"]
 resource_name = "Default_OBJ.069"
@@ -193,14 +175,14 @@ mass = 1200.0
 car_params = SubResource("Resource_icbmt")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.21, 1.59)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.18, 1.59)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_br" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4ja4q")
 
 [node name="Wheel_bl" parent="RigidBodyCar" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.21, 1.59)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.18, 1.59)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_bl" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
