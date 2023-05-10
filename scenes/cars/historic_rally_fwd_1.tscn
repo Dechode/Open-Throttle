@@ -14,7 +14,7 @@ loop_mode = 1
 loop_end = 141100
 
 [sub_resource type="Curve" id="Curve_fnlhd"]
-_data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
+_data = [Vector2(0, 0.654545), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.857585, 0.927273), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_gmoob"]
@@ -33,7 +33,7 @@ bump_hs = 4.0
 rebound_ls = 4.0
 rebound_hs = 4.0
 lo_hi_threshold = 100.0
-wheel_mass = 30.0
+wheel_mass = 20.0
 ackermann = 0.15
 anti_roll = 1.0
 
@@ -47,7 +47,7 @@ bump_hs = 4.0
 rebound_ls = 4.0
 rebound_hs = 4.0
 lo_hi_threshold = 100.0
-wheel_mass = 30.0
+wheel_mass = 20.0
 ackermann = 0.15
 anti_roll = 1.0
 
@@ -61,7 +61,7 @@ bump_hs = 4.0
 rebound_ls = 4.0
 rebound_hs = 4.0
 lo_hi_threshold = 100.0
-wheel_mass = 30.0
+wheel_mass = 20.0
 ackermann = 0.15
 anti_roll = 1.0
 
@@ -75,14 +75,14 @@ bump_hs = 4.0
 rebound_ls = 4.0
 rebound_hs = 4.0
 lo_hi_threshold = 100.0
-wheel_mass = 30.0
+wheel_mass = 20.0
 ackermann = -0.15
 anti_roll = 1.0
 
 [sub_resource type="Resource" id="Resource_pekcx"]
 script = ExtResource("2_h6sjs")
 max_steer = 0.3
-front_brake_bias = 0.6
+front_brake_bias = 0.65
 steer_speed = 5.0
 max_brake_force = 15000.0
 max_handbrake_force = 1500.0
@@ -90,23 +90,23 @@ brake_effective_radius = 0.2
 fuel_tank_size = 40.0
 fuel_percentage = 100.0
 max_torque = 85.0
-max_engine_rpm = 6500.0
+max_engine_rpm = 6700.0
 rpm_idle = 900.0
 torque_curve = SubResource("Curve_fnlhd")
-engine_drag = 0.02
-engine_brake = 3.0
-engine_moment = 0.15
+engine_drag = 0.015
+engine_brake = 5.0
+engine_moment = 0.18
 engine_bsfc = 0.3
 engine_sound = SubResource("AudioStreamWAV_ch482")
 clutch_friction = 150.0
 drivetype = 0
 automatic = false
 transmission_efficiency = 0.9
-gear_ratios = [3.3, 2.0, 1.3, 1.0]
+gear_ratios = [3.3, 2.0, 1.35, 1.05]
 final_drive = 3.7
 reverse_ratio = 3.9
-gear_inertia = 0.2
-front_diff = 0
+gear_inertia = 0.15
+front_diff = 1
 front_diff_preload = 50.0
 front_diff_power_ratio = 2.0
 front_diff_coast_ratio = 1.0
@@ -117,7 +117,7 @@ rear_diff_coast_ratio = 1.0
 center_split_fr = 0.4
 cd = 0.3
 air_density = 1.225
-frontal_area = 2.0
+frontal_area = 1.5
 wheel_params_fl = SubResource("Resource_53c5d")
 wheel_params_fr = SubResource("Resource_517uw")
 wheel_params_bl = SubResource("Resource_i77oc")
