@@ -28,10 +28,10 @@ script = ExtResource("3_aseou")
 tire_model = SubResource("Resource_n6jss")
 spring_length = 0.15
 spring_stiffness = 20.0
-bump_ls = 6.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
+bump_ls = 2.0
+bump_hs = 1.0
+rebound_ls = 2.0
+rebound_hs = 1.0
 lo_hi_threshold = 100.0
 wheel_mass = 15.0
 ackermann = 0.15
@@ -48,10 +48,10 @@ script = ExtResource("3_aseou")
 tire_model = SubResource("Resource_2532i")
 spring_length = 0.15
 spring_stiffness = 20.0
-bump_ls = 6.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
+bump_ls = 2.0
+bump_hs = 1.0
+rebound_ls = 2.0
+rebound_hs = 1.0
 lo_hi_threshold = 100.0
 wheel_mass = 15.0
 ackermann = 0.15
@@ -68,10 +68,10 @@ script = ExtResource("3_aseou")
 tire_model = SubResource("Resource_oo0u0")
 spring_length = 0.15
 spring_stiffness = 20.0
-bump_ls = 6.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
+bump_ls = 2.0
+bump_hs = 1.0
+rebound_ls = 2.0
+rebound_hs = 1.0
 lo_hi_threshold = 100.0
 wheel_mass = 15.0
 ackermann = 0.15
@@ -88,10 +88,10 @@ script = ExtResource("3_aseou")
 tire_model = SubResource("Resource_ukwsl")
 spring_length = 0.15
 spring_stiffness = 20.0
-bump_ls = 6.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
+bump_ls = 2.0
+bump_hs = 1.0
+rebound_ls = 2.0
+rebound_hs = 1.0
 lo_hi_threshold = 100.0
 wheel_mass = 15.0
 ackermann = -0.15
@@ -102,8 +102,8 @@ script = ExtResource("2_qsndr")
 max_steer = 0.3
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 17000.0
-max_handbrake_force = 400.0
+max_brake_force = 20000.0
+max_handbrake_force = 600.0
 brake_effective_radius = 0.1
 fuel_tank_size = 10.0
 fuel_percentage = 100.0
@@ -116,7 +116,7 @@ engine_brake = 5.0
 engine_moment = 0.05
 engine_bsfc = 0.3
 engine_sound = SubResource("AudioStreamWAV_d0u2w")
-clutch_friction = 100.0
+clutch_friction = 120.0
 drivetype = 1
 automatic = false
 transmission_efficiency = 0.9
@@ -171,46 +171,55 @@ mass = 420.0
 car_params = SubResource("Resource_ycd65")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 1.21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.27, 0.93)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_br" index="0"]
 mesh = SubResource("CylinderMesh_6xe0q")
 
 [node name="Wheel_bl" parent="RigidBodyCar" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, 1.21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.27, 0.93)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_bl" index="0"]
 mesh = SubResource("CylinderMesh_6xe0q")
 
 [node name="Wheel_fr" parent="RigidBodyCar" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, -0.81)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.27, -1.09)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fr" index="0"]
 mesh = SubResource("CylinderMesh_6xe0q")
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, -0.81)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.27, -1.09)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 mesh = SubResource("CylinderMesh_6xe0q")
 
-[node name="IndoorCam" parent="RigidBodyCar/CameraSystem" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="EngineSound" parent="RigidBodyCar" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18, 0.51)
+
+[node name="CameraSystem" parent="RigidBodyCar" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27, -0.28)
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81169, 0.193644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78169, -0.066356)
 
 [node name="CameraLookAtTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.823, -4.083)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.793, -4.343)
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58318, -0.72026)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58318, -0.60026)
 
 [node name="CameraLookAtTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679255, -2.59343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679255, -2.47343)
+
+[node name="HeadLights" parent="RigidBodyCar" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180309, -2.28388)
+
+[node name="TailLights" parent="RigidBodyCar" index="7"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.180309, 2.07573)
 
 [node name="crosskart" parent="RigidBodyCar" instance=ExtResource("1_dnk1y")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.09, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.18, -0.28)
 
 [node name="CrosskartFrame" parent="RigidBodyCar/crosskart" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_j4veo")
@@ -219,15 +228,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j4veo")
 surface_material_override/0 = SubResource("StandardMaterial3D_0u63i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBodyCar"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.33, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0600001, -0.28)
 shape = SubResource("CapsuleShape3D_ac3ro")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBodyCar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27, 0.93)
 shape = SubResource("BoxShape3D_n1vy1")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBodyCar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.81)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27, -1.09)
 shape = SubResource("BoxShape3D_n1vy1")
 
 [editable path="RigidBodyCar"]
