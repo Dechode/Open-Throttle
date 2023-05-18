@@ -101,6 +101,7 @@ mesh = SubResource("12")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.120648, -0.193694, 0.973615, 0.00962482, 0.980505, 0.196257, -0.992649, 0.033049, -0.116432, 2.89599, 2.53073, -2.08861)
+current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ks385")
