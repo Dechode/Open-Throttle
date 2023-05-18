@@ -68,10 +68,10 @@ func _physics_process(delta: float) -> void:
 	handbrake_input = InputManager.get_handbrake_input()
 	clutch_input = InputManager.get_clutch_input()
 	
-	VehicleAPI.car.wheel_bl.tire_wear = car.wheel_bl.tire_wear
-	VehicleAPI.car.wheel_br.tire_wear = car.wheel_br.tire_wear
-	VehicleAPI.car.wheel_fl.tire_wear = car.wheel_fl.tire_wear
-	VehicleAPI.car.wheel_fr.tire_wear = car.wheel_fr.tire_wear
+#	VehicleAPI.car.wheel_bl.tire_wear = car.wheel_bl.tire_wear
+#	VehicleAPI.car.wheel_br.tire_wear = car.wheel_br.tire_wear
+#	VehicleAPI.car.wheel_fl.tire_wear = car.wheel_fl.tire_wear
+#	VehicleAPI.car.wheel_fr.tire_wear = car.wheel_fr.tire_wear
 	
 		##### Steerin with steer speed #####
 	if OptionsManager.get_config_value("steering_interpolation"):

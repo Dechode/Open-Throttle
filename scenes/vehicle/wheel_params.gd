@@ -10,5 +10,6 @@ extends Resource
 @export var rebound_hs := 5.0
 @export var lo_hi_threshold := 100.0
 @export var wheel_mass := 20.0 # Including brake disc and drive shaft
-@export var ackermann := 0.15
 @export var anti_roll := 5.0
+
+var ackermann := 0.15

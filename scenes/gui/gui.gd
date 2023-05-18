@@ -15,7 +15,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	speed_label.text = "Speed = %d" % int(VehicleAPI.car.speedo)
-	gear_label.text = "gear = %d" % VehicleAPI.car.selected_gear
+	gear_label.text = "gear = %d" % VehicleAPI.car.drivetrain.selected_gear
 	rpm_label.text = "RPM = %d" % int(VehicleAPI.car.rpm)
 	fuel_label.text = "Fuel = %3.2f" % VehicleAPI.car.fuel
 
