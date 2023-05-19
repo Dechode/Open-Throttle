@@ -16,6 +16,9 @@ var brake_input: float = 0.0
 var handbrake_input: float = 0.0
 var clutch_input: float = 0.0
 
+######### Signals #########
+signal on_gear_change(gear: int)
+
 ######### Misc #########
 var air_density = 1.225
 
@@ -252,10 +255,12 @@ func burn_fuel(torque, delta):
 
 func shift_up():
 	drivetrain.shift_up()
+	on_gear_change.emit(drivetrain.selected_gear)
 
 
 func shift_down():
 	drivetrain.shift_down()
+	on_gear_change.emit(drivetrain.selected_gear)
 
 
 func get_self_aligning_torques() -> Vector2:
