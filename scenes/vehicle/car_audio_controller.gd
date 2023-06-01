@@ -10,32 +10,32 @@ extends Node
 @export_group("Engine")
 @export var db_blend_curve_on:Curve = Curve.new()
 @export var db_blend_curve_off:Curve = Curve.new()
-@export_range(-80.0, 0, 0.1) var db_engine_on := -20.0#db of the on throttle file
-@export_range(-80.0, 0, 0.1) var db_engine_off := -20.0#db of the off throttle file
-@export var db_rpm_curve:Curve = Curve.new()#db curve to influence db per rpm(to rise db on low rpm)
+@export_range(-80.0, 0, 0.1) var db_engine_on := -20.0 #db of the on throttle file
+@export_range(-80.0, 0, 0.1) var db_engine_off := -20.0 #db of the off throttle file
+@export var db_rpm_curve:Curve = Curve.new() #db curve to influence db per rpm(to rise db on low rpm)
 @export var recorded_rpm_on := 1000 #rpm on which on_throttle sample is recorded
 @export var recorded_rpm_off := 1000 #rpm on which off_throttle sample is recorded
-@export_range(1, 10, 1) var rpm_interpolation_frames := 5.0#frames to interpolate sound because of rpm spikes
-@export_range(0.0, 10.0, 0.1) var idle_noise_speed := 3.0#how FAST the engine fluctuates rpm in idle
-@export_range(0.0, 0.5, 0.01) var idle_noise_octave := 0.5#how MUCH the engine fluctuates rpm in idle (+/- in absolute pitch scale)
-@export var filter_off_throttle = false#influence off-throttle with filters
-@export var filter_on_throttle = false#influence on-throttle with filters
-@export_range(0.0, 1000.0, 0.1) var high_pass_cutoff_freq := 0#influence off gas sound per high_pass_filter (0 is no effect)
-@export_range(10, 22500, 0.1) var low_pass_cutoff_freq := 22500#influence off gas sound per low_pass_filter (22500 is no effect)
+@export_range(1, 10, 1) var rpm_interpolation_frames := 5.0 #frames to interpolate sound because of rpm spikes
+@export_range(0.0, 10.0, 0.1) var idle_noise_speed := 3.0 #how FAST the engine fluctuates rpm in idle
+@export_range(0.0, 0.5, 0.01) var idle_noise_octave := 0.5 #how MUCH the engine fluctuates rpm in idle (+/- in absolute pitch scale)
+@export var filter_off_throttle = false #influence off-throttle with filters
+@export var filter_on_throttle = false #influence on-throttle with filters
+@export_range(0.0, 1000.0, 0.1) var high_pass_cutoff_freq := 0 #influence off gas sound per high_pass_filter (0 is no effect)
+@export_range(10, 22500, 0.1) var low_pass_cutoff_freq := 22500 #influence off gas sound per low_pass_filter (22500 is no effect)
 
 @export_group("Exhaust")
-@export_range(-80.0, 0, 0.1) var db_back_fire := -20.0#db of exhaust back fireing
-@export_range(1.0, 100.0, 0.1) var back_fire_frequence := 15.0#
-@export_range(-1.0, 1.0, 0.1) var back_fire_probability := 0.7# higher value is more back fire
-@export_range(0.0, 10.0, 0.1) var back_fire_time := 1.5#how long exhaust is back fireing after release throttle
-@export_range(0.0, 1.0, 0.01) var back_fire_rpm_treshold := 0.6#just back fire when release throttle above normalized rpm (set to 0 to back-fire on any rpms)
+@export_range(-80.0, 0, 0.1) var db_back_fire := -20.0 #db of exhaust back fireing
+@export_range(1.0, 100.0, 0.1) var back_fire_frequence := 15.0 #
+@export_range(-1.0, 1.0, 0.1) var back_fire_probability := 0.7 # higher value is more back fire
+@export_range(0.0, 10.0, 0.1) var back_fire_time := 1.5 #how long exhaust is back fireing after release throttle
+@export_range(0.0, 1.0, 0.01) var back_fire_rpm_treshold := 0.6 #just back fire when release throttle above normalized rpm (set to 0 to back-fire on any rpms)
 
 @export_group("Brakes")
-@export_range(-80.0, 0, 0.1) var db_brake_noise := -20.0#loudness of brake noise
-@export_range(0.0, 10.0, 0.1) var brake_noise_time_offset := 1.0#timeoffset to play noise
-@export_range(0.0, 1.0, 0.05) var brake_noise_brake_force := 0.5#only play above normalized brake power
-@export_range(1.0, 5.0, 0.1) var brake_noise_fade_in_time := 1.0#time to fade in brake noise
-@export_range(0.2, 1.0, 0.1) var brake_noise_pitch := 1.0#pitch scale of brake noise
+@export_range(-80.0, 0, 0.1) var db_brake_noise := -20.0 #loudness of brake noise
+@export_range(0.0, 10.0, 0.1) var brake_noise_time_offset := 1.0 #timeoffset to play noise
+@export_range(0.0, 1.0, 0.05) var brake_noise_brake_force := 0.5 #only play above normalized brake power
+@export_range(1.0, 5.0, 0.1) var brake_noise_fade_in_time := 1.0 #time to fade in brake noise
+@export_range(0.2, 1.0, 0.1) var brake_noise_pitch := 1.0 #pitch scale of brake noise
 
 var min_rpm := 700.0
 var max_rpm := 7000.0

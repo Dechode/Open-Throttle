@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cdrxae36f64vu" path="res://assets/models/car_model_scenes/historic_rally_fwd_1_model.tscn" id="1_l0d8y"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_h6sjs"]
-[ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="2_vyg6r"]
+[ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="2_vyg6r"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_48ch5"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="4_sh1d8"]
 [ext_resource type="Texture2D" uid="uid://5wtlobmhgrjy" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.052_baseColor.png" id="5_a8sv0"]

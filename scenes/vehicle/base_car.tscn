@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bgkpgeq00bws2"]
+[gd_scene load_steps=26 format=3 uid="uid://3cfvp8l547ts"]
 
 [ext_resource type="Script" path="res://scenes/vehicle/car.gd" id="1_ekicj"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_skbd3"]
@@ -9,10 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://cq8yp3n484d1e" path="res://assets/audio/engines/R4/R4_1.3_2000_off.wav" id="8_efvjd"]
 [ext_resource type="PackedScene" uid="uid://cecdjwrkufhri" path="res://scenes/camera/camera_system.tscn" id="8_prruq"]
 [ext_resource type="PackedScene" uid="uid://nelgdfamj8jh" path="res://scenes/vehicle/wheel_suspension.tscn" id="9"]
-[ext_resource type="AudioStream" uid="uid://c17s7xjhymb65" path="res://assets/audio/car_noise/engin_back_fire.wav" id="9_6w0nw"]
+[ext_resource type="AudioStream" uid="uid://c17s7xjhymb65" path="res://assets/audio/car_noise/engine_back_fire.wav" id="9_klc5f"]
 [ext_resource type="Script" path="res://scenes/vehicle/head_lights.gd" id="9_mltt5"]
-[ext_resource type="AudioStream" uid="uid://cbk76kqx6fgnw" path="res://assets/audio/car_noise/Wind_loop_01.wav" id="10_jnxy1"]
 [ext_resource type="Script" path="res://scenes/vehicle/tail_lights.gd" id="10_oax6i"]
+[ext_resource type="AudioStream" uid="uid://cbk76kqx6fgnw" path="res://assets/audio/car_noise/wind_loop_01.wav" id="10_pcri3"]
 [ext_resource type="AudioStream" uid="uid://dc6l53si0v55b" path="res://assets/audio/car_noise/brakes.wav" id="11_sgumw"]
 [ext_resource type="AudioStream" uid="uid://cj8dg5hdjixog" path="res://assets/audio/car_noise/gear_change_01.wav" id="12_tc31d"]
 [ext_resource type="Curve" uid="uid://bmgk3lwlgey2c" path="res://resources/engine_blend_curve_on.tres" id="13_6kf17"]
@@ -123,8 +123,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -1.5)
 script = ExtResource("7_qci14")
 stream_engine_main_on = ExtResource("7_efc2v")
 stream_engine_main_off = ExtResource("8_efvjd")
-stream_back_fire = ExtResource("9_6w0nw")
-stream_drag_wind = ExtResource("10_jnxy1")
+stream_back_fire = ExtResource("9_klc5f")
+stream_drag_wind = ExtResource("10_pcri3")
 stream_brakes = ExtResource("11_sgumw")
 stream_gear_change = ExtResource("12_tc31d")
 db_blend_curve_on = ExtResource("13_6kf17")
