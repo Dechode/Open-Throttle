@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgqq6vyvdvh8l"]
+[gd_scene load_steps=22 format=3 uid="uid://cgqq6vyvdvh8l"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_7ykc1"]
 [ext_resource type="PackedScene" uid="uid://x64rjv3eqmdd" path="res://assets/models/cars_blend/modern_prototype.blend" id="2_h61lx"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_xuxxc"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_xg1ia"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="4_f6co7"]
+[ext_resource type="AudioStream" uid="uid://clpwkrewxb6y5" path="res://assets/audio/engines/wankel/W4_2.2_6000_on.wav" id="6_cc6sa"]
+[ext_resource type="AudioStream" uid="uid://e8e2534siar0" path="res://assets/audio/engines/wankel/W4_2.2_6000_off.wav" id="7_txa2s"]
 [ext_resource type="PackedScene" path="res://scenes/vehicle/wang.tscn" id="7_yjusf"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_sj011"]
@@ -35,12 +37,12 @@ rebound_ls = 9.0
 rebound_hs = 6.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
-ackermann = 0.15
 anti_roll = 10.0
 
 [sub_resource type="Resource" id="Resource_kc7uj"]
 script = ExtResource("2_xuxxc")
 max_steer = 0.3
+ackermann = 0.15
 front_brake_bias = 0.6
 steer_speed = 5.0
 max_brake_force = 60000.0
@@ -58,22 +60,6 @@ engine_moment = 0.25
 engine_bsfc = 0.3
 engine_sound = SubResource("AudioStreamWAV_sj011")
 clutch_friction = 1000.0
-drivetype = 1
-automatic = false
-transmission_efficiency = 0.9
-gear_ratios = [2.61, 2.3, 1.9, 1.5, 1.05, 0.9, 0.8]
-final_drive = 4.7
-reverse_ratio = 3.9
-gear_inertia = 0.2
-front_diff = 0
-front_diff_preload = 50.0
-front_diff_power_ratio = 2.0
-front_diff_coast_ratio = 1.0
-rear_diff = 0
-rear_diff_preload = 50.0
-rear_diff_power_ratio = 2.0
-rear_diff_coast_ratio = 1.0
-center_split_fr = 0.4
 cd = 0.2
 air_density = 1.225
 frontal_area = 2.0
@@ -113,6 +99,20 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f4rqs")
+
+[sub_resource type="Curve" id="Curve_5585a"]
+_data = [Vector2(0, 0), 0.0, 2.47917, 0, 1, Vector2(0.403361, 1), -5.06639e-07, -5.06639e-07, 0, 0, Vector2(1, 1), 4.94857e-07, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_uksov"]
+_data = [Vector2(0, 1), 0.0, -5.18997e-07, 0, 0, Vector2(0.7, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_8duj4"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, 7), 0.0, -57.0519, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxfeu"]
 size = Vector3(1.96, 0.66, 4.17)
@@ -154,17 +154,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.0885312, -1.31173)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ym5fw")
 
-[node name="EngineSound" parent="RigidBodyCar" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.449707, 0.79)
-
-[node name="IndoorCam" parent="RigidBodyCar/CameraSystem" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60169, -0.866356)
-
-[node name="CameraLookAtTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613, -4.083)
+[node name="AudioController" parent="RigidBodyCar" index="4"]
+stream_engine_main_on = ExtResource("6_cc6sa")
+stream_engine_main_off = ExtResource("7_txa2s")
+db_blend_curve_on = SubResource("Curve_5585a")
+db_blend_curve_off = SubResource("Curve_uksov")
+db_rpm_curve = SubResource("Curve_8duj4")
+recorded_rpm_on = 6000
+recorded_rpm_off = 6000
+rpm_interpolation_frames = 8.0
+idle_noise_speed = 5.0
+plopping_rpm_treshold = 0.2
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13318, -1.67026)
