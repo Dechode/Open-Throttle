@@ -376,28 +376,28 @@ mass = 2400.0
 car_params = SubResource("Resource_gxtuh")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.143101, 1.58879)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.905327, -0.143101, 1.58879)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_br" index="0"]
 transform = Transform3D(0.807, 0, 0, 0, 0.807, 0, 0, 0, 0.807, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ketcv")
 
 [node name="Wheel_bl" parent="RigidBodyCar" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.143101, 1.58879)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.905, -0.143101, 1.58879)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_bl" index="0"]
 transform = Transform3D(0.807, 0, 0, 0, 0.807, 0, 0, 0, 0.807, 0, 0, 0)
 mesh = SubResource("ArrayMesh_75lxm")
 
 [node name="Wheel_fr" parent="RigidBodyCar" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.143101, -1.60681)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.905327, -0.143101, -1.60681)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fr" index="0"]
 transform = Transform3D(0.807, 0, 0, 0, 0.807, 0, 0, 0, 0.807, 0, 0, 0)
 mesh = SubResource("ArrayMesh_75lxm")
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.143101, -1.60681)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.905, -0.143101, -1.60681)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 transform = Transform3D(0.807, 0, 0, 0, 0.807, 0, 0, 0, 0.807, 0, 0, 0)
