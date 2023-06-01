@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d10e77pxi1e50"]
+[gd_scene load_steps=30 format=3 uid="uid://d10e77pxi1e50"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_d86ei"]
 [ext_resource type="PackedScene" uid="uid://d3l5rm7ycg1cx" path="res://assets/models/cars_blend/retro_openwheeler.blend" id="2_0krk4"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_4ovfb"]
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_biv70"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="4_6sx12"]
+[ext_resource type="AudioStream" uid="uid://d1aosyxli7dw4" path="res://assets/audio/engines/V8/V8_USA_7.4_3000_mid.wav" id="5_d25r0"]
 [ext_resource type="Texture2D" uid="uid://d2lctyqtx7drx" path="res://assets/models/cars_blend/colorpalette8x8.png" id="6_d4olg"]
+[ext_resource type="AudioStream" uid="uid://c4wmy7tgttoxj" path="res://assets/audio/engines/V8/V8_USA_7.4_3000_off.wav" id="6_h5d5v"]
 
 [sub_resource type="Resource" id="Resource_cf6aj"]
 script = ExtResource("2_oxhmh")
@@ -157,6 +159,20 @@ bottom_radius = 0.3
 height = 0.25
 radial_segments = 16
 
+[sub_resource type="Curve" id="Curve_p20dr"]
+_data = [Vector2(0, 0), 0.0, 2.47917, 0, 1, Vector2(0.403361, 1), -5.06639e-07, -5.06639e-07, 0, 0, Vector2(1, 1), 4.94857e-07, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_av7sy"]
+_data = [Vector2(0, 1), 0.0, -5.18997e-07, 0, 0, Vector2(0.7, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_dflc8"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, 7), 0.0, -57.0519, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_an0l8"]
 resource_name = "CarBaseNaterial"
 albedo_texture = ExtResource("6_d4olg")
@@ -230,6 +246,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.738234, 0, -0.952586)
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.738, 0, -0.953)
+
+[node name="AudioController" parent="RigidBodyCar" index="4"]
+stream_engine_main_on = ExtResource("5_d25r0")
+stream_engine_main_off = ExtResource("6_h5d5v")
+db_blend_curve_on = SubResource("Curve_p20dr")
+db_blend_curve_off = SubResource("Curve_av7sy")
+db_rpm_curve = SubResource("Curve_dflc8")
+recorded_rpm_on = 3000
+recorded_rpm_off = 3000
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/ThirdPersonCam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63382, 4.02454)

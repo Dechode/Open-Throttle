@@ -1,16 +1,24 @@
-[gd_scene load_steps=23 format=3 uid="uid://bgkpgeq00bws2"]
+[gd_scene load_steps=26 format=3 uid="uid://3cfvp8l547ts"]
 
 [ext_resource type="Script" path="res://scenes/vehicle/car.gd" id="1_ekicj"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_ojki4"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_skbd3"]
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_254a5"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="4_fl2ao"]
-[ext_resource type="AudioStream" path="res://resources/audio/engine/EngineSample.tres" id="4_kgrag"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="4_sel4p"]
+[ext_resource type="AudioStream" uid="uid://dvlxffb1taic" path="res://assets/audio/engines/R4/R4_1.3_2000_on.wav" id="7_efc2v"]
+[ext_resource type="Script" path="res://scenes/vehicle/car_audio_controller.gd" id="7_qci14"]
+[ext_resource type="AudioStream" uid="uid://cq8yp3n484d1e" path="res://assets/audio/engines/R4/R4_1.3_2000_off.wav" id="8_efvjd"]
 [ext_resource type="PackedScene" uid="uid://cecdjwrkufhri" path="res://scenes/camera/camera_system.tscn" id="8_prruq"]
 [ext_resource type="PackedScene" uid="uid://nelgdfamj8jh" path="res://scenes/vehicle/wheel_suspension.tscn" id="9"]
+[ext_resource type="AudioStream" uid="uid://c17s7xjhymb65" path="res://assets/audio/car_noise/engine_back_fire.wav" id="9_klc5f"]
 [ext_resource type="Script" path="res://scenes/vehicle/head_lights.gd" id="9_mltt5"]
 [ext_resource type="Script" path="res://scenes/vehicle/tail_lights.gd" id="10_oax6i"]
+[ext_resource type="AudioStream" uid="uid://cbk76kqx6fgnw" path="res://assets/audio/car_noise/wind_loop_01.wav" id="10_pcri3"]
+[ext_resource type="AudioStream" uid="uid://dc6l53si0v55b" path="res://assets/audio/car_noise/brakes.wav" id="11_sgumw"]
+[ext_resource type="AudioStream" uid="uid://cj8dg5hdjixog" path="res://assets/audio/car_noise/gear_change_01.wav" id="12_tc31d"]
+[ext_resource type="Curve" uid="uid://bmgk3lwlgey2c" path="res://resources/engine_blend_curve_on.tres" id="13_6kf17"]
+[ext_resource type="Curve" uid="uid://bqwcv7dik2ixl" path="res://resources/engine_blend_curve_off.tres" id="14_nu42f"]
 
 [sub_resource type="Resource" id="Resource_d7g5x"]
 script = ExtResource("2_ojki4")
@@ -125,6 +133,12 @@ wheel_params_fr = SubResource("Resource_yqyvv")
 wheel_params_bl = SubResource("Resource_30yxg")
 wheel_params_br = SubResource("Resource_30yxg")
 
+[sub_resource type="Curve" id="Curve_mibwd"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, 7), 0.0, -57.0519, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
 [node name="RigidBodyCar" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 2
@@ -143,10 +157,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, -1.5)
 [node name="Wheel_fl" parent="." instance=ExtResource("9")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -1.5)
 
-[node name="EngineSound" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.79)
-stream = ExtResource("4_kgrag")
-autoplay = true
+[node name="AudioController" type="Node3D" parent="."]
+script = ExtResource("7_qci14")
+stream_engine_main_on = ExtResource("7_efc2v")
+stream_engine_main_off = ExtResource("8_efvjd")
+stream_back_fire = ExtResource("9_klc5f")
+stream_drag_wind = ExtResource("10_pcri3")
+stream_brakes = ExtResource("11_sgumw")
+stream_gear_change = ExtResource("12_tc31d")
+db_blend_curve_on = ExtResource("13_6kf17")
+db_blend_curve_off = ExtResource("14_nu42f")
+db_rpm_curve = SubResource("Curve_mibwd")
+recorded_rpm_on = 2000
+recorded_rpm_off = 2000
+
+[node name="StreamEngineOn" type="AudioStreamPlayer3D" parent="AudioController"]
+bus = &"Car_Bus"
+
+[node name="StreamEngineOff" type="AudioStreamPlayer3D" parent="AudioController"]
+bus = &"Car_Bus"
+
+[node name="StreamBackFire" type="AudioStreamPlayer3D" parent="AudioController"]
+
+[node name="StreamDriveWind" type="AudioStreamPlayer3D" parent="AudioController"]
+
+[node name="StreamBrakes" type="AudioStreamPlayer3D" parent="AudioController"]
+
+[node name="StreamGearChange" type="AudioStreamPlayer3D" parent="AudioController"]
+volume_db = -15.0
 
 [node name="CameraSystem" parent="." instance=ExtResource("8_prruq")]
 
@@ -217,5 +255,7 @@ spot_range = 563.491
 spot_attenuation = 0.5
 spot_angle = 50.3
 spot_angle_attenuation = 2.0
+
+[connection signal="on_gear_change" from="." to="AudioController" method="_on_gear_change"]
 
 [editable path="CameraSystem"]

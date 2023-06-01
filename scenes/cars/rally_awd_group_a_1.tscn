@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cafvcju63ehro"]
+[gd_scene load_steps=25 format=3 uid="uid://cafvcju63ehro"]
 
 [ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_mejm6"]
 [ext_resource type="Texture2D" uid="uid://qfmdeyepjegi" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.068_baseColor.png" id="2_8n5bo"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_gawus"]
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_ylnng"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="4_kwqox"]
+[ext_resource type="AudioStream" uid="uid://c026vaq4jjq2h" path="res://assets/audio/engines/R4/R4_2.0_4000_mid.wav" id="6_qge3m"]
+[ext_resource type="AudioStream" uid="uid://bqu2iqu8hn3gw" path="res://assets/audio/engines/R4/R4_2.0_4000_on.wav" id="7_uvcw2"]
 
 [sub_resource type="Resource" id="Resource_0bdjd"]
 script = ExtResource("2_e48up")
@@ -181,6 +183,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_oukj5")
 
+[sub_resource type="Curve" id="Curve_d8st0"]
+_data = [Vector2(0, 0), 0.0, 2.47917, 0, 1, Vector2(0.403361, 1), -5.06639e-07, -5.06639e-07, 0, 0, Vector2(1, 1), 4.94857e-07, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_32piu"]
+_data = [Vector2(0, 1), 0.0, -5.18997e-07, 0, 0, Vector2(0.7, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_mhdr5"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, 7), 0.0, -57.0519, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_aqs2a"]
 size = Vector3(1.64, 0.71, 4.35)
 
@@ -221,8 +237,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.18, -1.04)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4ja4q")
 
-[node name="EngineSound" parent="RigidBodyCar" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 1.08)
+[node name="AudioController" parent="RigidBodyCar" index="4"]
+stream_engine_main_on = ExtResource("6_qge3m")
+stream_engine_main_off = ExtResource("7_uvcw2")
+db_blend_curve_on = SubResource("Curve_d8st0")
+db_blend_curve_off = SubResource("Curve_32piu")
+db_engine_on = -15.0
+db_engine_off = -15.0
+db_rpm_curve = SubResource("Curve_mhdr5")
+recorded_rpm_on = 4000
+recorded_rpm_off = 4000
+filter_off_throttle = true
+high_pass_cutoff_freq = 185
+low_pass_cutoff_freq = 6981
 
 [node name="CameraSystem" parent="RigidBodyCar" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0.29)

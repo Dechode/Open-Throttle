@@ -16,6 +16,9 @@ var brake_input: float = 0.0
 var handbrake_input: float = 0.0
 var clutch_input: float = 0.0
 
+######### Signals #########
+signal on_gear_change(gear: int)
+
 ######### Misc #########
 var air_density = 1.225
 
@@ -54,7 +57,6 @@ var headlights: HeadLights
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
 @onready var wheel_bl = $Wheel_bl as RaycastSuspension
 @onready var wheel_br = $Wheel_br as RaycastSuspension
-@onready var audioplayer = $EngineSound
 
 
 func _init() -> void:
@@ -84,7 +86,6 @@ func _ready() -> void:
 	wheel_bl.set_params(car_params.wheel_params_bl.duplicate(true))
 	wheel_br.set_params(car_params.wheel_params_br.duplicate(true))
 	
-	play_engine_sound()
 	taillights = get_node("TailLights") #as TailLights
 	headlights = get_node("HeadLights") #as HeadLights
 #	print(taillights)
@@ -169,13 +170,11 @@ func engine_loop(delta):
 		
 	if rpm <= (car_params.rpm_idle + 10) and abs(local_vel.z) <= 5 and throttle_input <= 0.1:
 		clutch_input = 1.0
-		
-	update_engine_sound()
+	
 	
 	if fuel <= 0.0:
 		torque_out = 0.0
 		rpm = 0.0
-		stop_engine_sound()
 	
 	burn_fuel(torque_out, delta)
 	rpm = max(rpm , car_params.rpm_idle)
@@ -256,28 +255,12 @@ func burn_fuel(torque, delta):
 
 func shift_up():
 	drivetrain.shift_up()
+	on_gear_change.emit(drivetrain.selected_gear)
 
 
 func shift_down():
 	drivetrain.shift_down()
-
-
-func play_engine_sound():
-	if rpm >= car_params.rpm_idle and rpm < car_params.max_engine_rpm:
-		if !audioplayer.playing:
-			audioplayer.play()
-
-
-func update_engine_sound():
-	var pitch_scaler = rpm / 1000
-	if pitch_scaler > 0.1:
-		audioplayer.pitch_scale = pitch_scaler
-	else:
-		audioplayer.pitch_scale = 0.1
-
-
-func stop_engine_sound():
-	audioplayer.stop()
+	on_gear_change.emit(drivetrain.selected_gear)
 
 
 func get_self_aligning_torques() -> Vector2:
