@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://lxfmirruspen"]
 
-[ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_rstyd"]
+[ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_rstyd"]
 [ext_resource type="Texture2D" uid="uid://d2lctyqtx7drx" path="res://assets/models/cars_blend/colorpalette8x8.png" id="2_52i1p"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_lfcxs"]
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_qt0rg"]
@@ -402,9 +402,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.905, -0.143101, -1.60681)
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 transform = Transform3D(0.807, 0, 0, 0, 0.807, 0, 0, 0, 0.807, 0, 0, 0)
 mesh = SubResource("ArrayMesh_75lxm")
-
-[node name="EngineSound" parent="RigidBodyCar" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.172352, 0.999881)
 
 [node name="CameraSystem" parent="RigidBodyCar" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.262352, 0.209881)

@@ -1,6 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://b5qjxqdb38vms"]
+[gd_scene load_steps=34 format=3 uid="uid://b5qjxqdb38vms"]
 
-[ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_c6grn"]
+[ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_c6grn"]
 [ext_resource type="PackedScene" uid="uid://chegbitu4wqtg" path="res://assets/models/cars_blend/crosskart.blend" id="1_dnk1y"]
 [ext_resource type="Material" path="res://resources/materials/tire.tres" id="2_725d1"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_qsndr"]
@@ -239,7 +239,6 @@ recorded_rpm_on = 4000
 recorded_rpm_off = 4000
 rpm_interpolation_frames = 10.0
 idle_noise_speed = 5.0
-plopping_rpm_treshold = 0.2
 
 [node name="CameraSystem" parent="RigidBodyCar" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27, -0.28)

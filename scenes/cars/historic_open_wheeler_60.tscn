@@ -1,6 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://d10e77pxi1e50"]
+[gd_scene load_steps=36 format=3 uid="uid://d10e77pxi1e50"]
 
-[ext_resource type="PackedScene" uid="uid://bgkpgeq00bws2" path="res://scenes/vehicle/base_car.tscn" id="1_d86ei"]
+[ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_d86ei"]
 [ext_resource type="PackedScene" uid="uid://d3l5rm7ycg1cx" path="res://assets/models/cars_blend/retro_openwheeler.blend" id="2_0krk4"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_ikkd1"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_oxhmh"]
