@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://n8fwgevja7q8"]
+[gd_scene load_steps=31 format=3 uid="uid://n8fwgevja7q8"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_qqi1h"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_6j55d"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_powap"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="6_bvuh2"]
 [ext_resource type="AudioStream" uid="uid://c026vaq4jjq2h" path="res://assets/audio/engines/R4/R4_2.0_4000_mid.wav" id="8_ug7dv"]
+[ext_resource type="AudioStream" uid="uid://dwytx4h1aipd7" path="res://assets/audio/engines/R4/R4_2.0_4000_off.wav" id="9_stcek"]
 
 [sub_resource type="Resource" id="Resource_n1kmb"]
 script = ExtResource("2_6j55d")
@@ -244,7 +245,10 @@ mesh = SubResource("ArrayMesh_ulfc4")
 [node name="AudioController" parent="RigidBodyCar" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.357752, 0.119251)
 stream_engine_main_on = ExtResource("8_ug7dv")
+stream_engine_main_off = ExtResource("9_stcek")
 recorded_rpm_on = 4000
+recorded_rpm_off = 4000
+rpm_interpolation_frames = 3.0
 
 [node name="CameraSystem" parent="RigidBodyCar" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.357752, 0.119251)
