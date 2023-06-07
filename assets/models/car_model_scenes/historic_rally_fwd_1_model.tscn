@@ -82,10 +82,10 @@ shadow_mesh = SubResource("ArrayMesh_s55dq")
 
 [node name="HistoricRallyFwd1Model" type="Node3D"]
 
-[node name="HistoricRallyFwd1Model" type="Node3D" parent="."]
+[node name="CarModel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0, 0, 0)
 
-[node name="HistoricRallyFwd1Mesh" type="MeshInstance3D" parent="HistoricRallyFwd1Model"]
+[node name="CarMesh" type="MeshInstance3D" parent="CarModel"]
 mesh = SubResource("ArrayMesh_sasx6")
 skeleton = NodePath("")
 
