@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bjsnhnipobgsx" path="res://assets/models/car_model_scenes/historic_rally_rwd_1_model.tscn" id="5_s1t76"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="5_tbl7x"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_ts823"]
-[ext_resource type="AudioStream" uid="uid://x2v4sbh7bal2" path="res://assets/audio/engines/V6/V6_60deg_2000_mid.wav" id="6_t3ogg"]
-[ext_resource type="AudioStream" uid="uid://dm3mbbhhqts8e" path="res://assets/audio/engines/V6/V6_60deg_2000_on.wav" id="7_7pqdi"]
+[ext_resource type="AudioStream" uid="uid://ccsvp4u5w6k2o" path="res://assets/audio/engines/R4/R4_1.6_3000_on.wav" id="8_0mugb"]
+[ext_resource type="AudioStream" uid="uid://cw3r6j1dtxhno" path="res://assets/audio/engines/R4/R4_1.6_3000_off.wav" id="9_mqhru"]
 
 [sub_resource type="Resource" id="Resource_j8qg8"]
 script = ExtResource("2_f8a51")
@@ -200,7 +200,7 @@ size = Vector3(1.06005, 0.354276, 1.56064)
 
 [node name="RigidBodyCar" parent="." instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395646, 0)
-mass = 1000.0
+mass = 800.0
 can_sleep = false
 car_params = SubResource("Resource_1n4i8")
 
@@ -232,11 +232,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.722, -0.111579, -1.1884)
 mesh = SubResource("3")
 
 [node name="AudioController" parent="RigidBodyCar" index="4"]
-stream_engine_main_on = ExtResource("7_7pqdi")
-stream_engine_main_off = ExtResource("6_t3ogg")
+stream_engine_main_on = ExtResource("8_0mugb")
+stream_engine_main_off = ExtResource("9_mqhru")
 db_blend_curve_on = SubResource("Curve_8kyg3")
 db_blend_curve_off = SubResource("Curve_g7d5g")
 db_rpm_curve = SubResource("Curve_pajdu")
+recorded_rpm_on = 3000
+recorded_rpm_off = 3000
 
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/IndoorCam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.646079, -0.137652)
