@@ -362,6 +362,22 @@ text = "Rally Group B AWD 3"
 script = ExtResource("6")
 car_path = "res://scenes/cars/rally_awd_group_b_3.tscn"
 
+[node name="Button21" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Rally Group B AWD 4"
+script = ExtResource("6")
+car_path = "res://scenes/cars/rally_awd_group_b_4.tscn"
+
+[node name="Button22" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Rally Group B RWD 1"
+script = ExtResource("6")
+car_path = "res://scenes/cars/rally_rwd_group_b_1.tscn"
+
 [node name="Button12" type="Button" parent="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -552,6 +568,12 @@ layout_mode = 1
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button19" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button19" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button19" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button19" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button21" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button21" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button21" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button21" method="_on_car_button_pressed"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button22" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
+[connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button22" to="CarSetupMenu" method="_on_car_selected"]
+[connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button22" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button22" method="_on_car_button_pressed"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button12" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button12" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button12" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button12" method="_on_car_button_pressed"]
