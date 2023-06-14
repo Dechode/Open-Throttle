@@ -72,8 +72,7 @@ func _ready() -> void:
 	
 	clutch.friction = car_params.clutch_friction
 	
-	drivetrain.drivetrain_params = car_params.drivetrain_params
-	drivetrain.set_input_inertia(car_params.engine_moment)
+	drivetrain.set_params(car_params.drivetrain_params.duplicate(true), car_params.engine_moment)
 	
 	add_child(clutch)
 	add_child(drivetrain)

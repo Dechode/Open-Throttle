@@ -19,7 +19,7 @@ enum DRIVE_TYPE{
 	AWD,
 }
 
-@export var drivetrain_params := DriveTrainParameters.new()
+@export var drivetrain_params: DriveTrainParameters
 
 var selected_gear := 0
 var _diff_clutch := Clutch.new()
@@ -30,6 +30,11 @@ var drive_inertia := 10.0
 
 var avg_rear_spin := 0.0
 var avg_front_spin := 0.0
+
+
+func set_params(params: DriveTrainParameters, input_inertia: float):
+	drivetrain_params = params
+	_engine_inertia = input_inertia
 
 
 func automatic_shifting(cur_torque, lower_gear_torque, higher_gear_torque, rpm, max_rpm, brake_input, speed):
@@ -88,10 +93,6 @@ func get_gearing() -> float:
 	if selected_gear == -1:
 		return -drivetrain_params.reverse_ratio * drivetrain_params.final_drive
 	return 0.0
-
-
-func set_input_inertia(value):
-	_engine_inertia =  value
 
 
 func differential(torque: float, brake_torque, wheels, diff: DiffParameters, delta: float):
@@ -173,6 +174,9 @@ func drivetrain(torque: float, rear_brake_torque: float, front_brake_torque: flo
 	
 	drive_inertia = (_engine_inertia + pow(abs(get_gearing()), 2) * drivetrain_params.gear_inertia) * (1 - clutch_input)
 	var drive_torque = torque * get_gearing() * drivetrain_params.drivetrain_efficiency
+	
+#	print_debug(get_gearing())
+#	print_debug(drivetrain_params.gear_ratios)
 	
 	if drivetrain_params.drivetype == DRIVE_TYPE.RWD:
 		differential(drive_torque, rear_brake_torque, rear_wheels, drivetrain_params.rear_diff, delta)
