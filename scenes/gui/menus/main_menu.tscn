@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cloowpy63vyph"]
+[gd_scene load_steps=9 format=3 uid="uid://cloowpy63vyph"]
 
 [ext_resource type="Script" path="res://scenes/gui/menus/main_menu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://ct2poygblqrg5" path="res://scenes/gui/menus/options_tab.tscn" id="2"]
+[ext_resource type="Script" path="res://scenes/gui/menus/credits.gd" id="2_h2fkf"]
 [ext_resource type="Script" path="res://scenes/gui/menus/track_button.gd" id="4"]
 [ext_resource type="Script" path="res://scenes/gui/menus/play_button.gd" id="5"]
 [ext_resource type="Script" path="res://scenes/gui/menus/car_button.gd" id="6"]
@@ -49,47 +50,24 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
-[node name="CreditsLabel" type="RichTextLabel" parent="HBoxContainer"]
+[node name="Credits" type="Panel" parent="HBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_h2fkf")
+
+[node name="CreditsLabel" type="RichTextLabel" parent="HBoxContainer/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 2
-text = "
-Source code is available at: https://github.com/Dechode/Unnamed-Racing-Sim
-License notice is located in the root directory of this program.
-
-    Open source racing / rally simulator
-    Copyright (C) 2023 Veeti Väisänen
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-Low Poly Rally Cars Pack:
-Model Information:
-* title:	Low Poly Rally Cars Pack
-* source:	https://sketchfab.com/3d-models/low-poly-rally-cars-pack-aa5eb26008474c88a04d0ea6a3c424a2
-* author:	MuhammadOkky (https://sketchfab.com/muhammad.oky2018)
-
-Model License:
-* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
-* requirements:	Author must be credited. Commercial use is allowed.
-
-If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
-This work is based on \"Low Poly Rally Cars Pack\" (https://sketchfab.com/3d-models/low-poly-rally-cars-pack-aa5eb26008474c88a04d0ea6a3c424a2) by MuhammadOkky (https://sketchfab.com/muhammad.oky2018) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
-"
 selection_enabled = true
 
 [node name="Options" parent="HBoxContainer" instance=ExtResource("2")]
@@ -125,6 +103,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="PlayMenu" type="TabContainer" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
