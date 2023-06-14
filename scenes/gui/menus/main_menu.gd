@@ -9,7 +9,7 @@ var current_menu = -1
 @onready var credits_button = $"%CreditsButton"
 @onready var quit_button = $"%QuitButton"
 
-@onready var credits_label = $"%CreditsLabel"
+@onready var credits_label = $"%Credits"
 @onready var options_tab = $"%Options"
 @onready var play_menu = $HBoxContainer/PlayMenu
 @onready var menus := [play_menu, options_tab, credits_label]
