@@ -82,8 +82,6 @@ shadow_mesh = SubResource("ArrayMesh_uf4ix")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_othsn"]
 resource_name = "Default_OBJ.038"
-cull_mode = 2
-vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_wd6kg")
 roughness = 0.821115
 
