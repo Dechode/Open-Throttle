@@ -80,12 +80,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_obqp3")
 
-[node name="RallyAwdGroupB3Model" type="Node3D"]
+[node name="RallyAwdGroupB2Model" type="Node3D"]
 
-[node name="RallyAwdGroupB3Model" type="Node3D" parent="."]
+[node name="Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0, 0, 0)
 
-[node name="RallyAwdGroupB3Mesh" type="MeshInstance3D" parent="RallyAwdGroupB3Model"]
+[node name="Mesh" type="MeshInstance3D" parent="Model"]
 mesh = SubResource("ArrayMesh_yd20e")
 skeleton = NodePath("")
 
