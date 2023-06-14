@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dfj7hipow25nm"]
+[gd_scene load_steps=48 format=3 uid="uid://dfj7hipow25nm"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_tmcvk"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_7i1ct"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_8lx4l"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_3g13y"]
 [ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="6_1trev"]
+[ext_resource type="AudioStream" uid="uid://dq5b0io5xo271" path="res://assets/audio/engines/V2/V2_USA_1.3_2000_mid.wav" id="8_k6agx"]
+[ext_resource type="AudioStream" uid="uid://cqgr8oa3yb2r5" path="res://assets/audio/engines/V2/V2_USA_1.3_2000_off.wav" id="9_kj14v"]
 
 [sub_resource type="Resource" id="Resource_cn01b"]
 script = ExtResource("2_7i1ct")
@@ -566,6 +568,8 @@ mesh = SubResource("ArrayMesh_830i3")
 
 [node name="AudioController" parent="RigidBodyCar" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105183, -0.354117)
+stream_engine_main_on = ExtResource("8_k6agx")
+stream_engine_main_off = ExtResource("9_kj14v")
 
 [node name="CameraSystem" parent="RigidBodyCar" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105183, -0.354117)
