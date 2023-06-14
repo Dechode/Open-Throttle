@@ -129,7 +129,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Track" type="TabBar" parent="HBoxContainer/PlayMenu"]
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Track"]
@@ -193,6 +192,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 
 [node name="Car" type="TabBar" parent="HBoxContainer/PlayMenu"]
+visible = false
 layout_mode = 2
 
 [node name="Cars" type="HBoxContainer" parent="HBoxContainer/PlayMenu/Car"]
@@ -426,8 +426,8 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer"]
 handle_input_locally = false
-size = Vector2i(557, 256)
-render_target_update_mode = 4
+size = Vector2i(256, 256)
+render_target_update_mode = 0
 
 [node name="CarPreview" parent="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport" instance=ExtResource("8")]
 
