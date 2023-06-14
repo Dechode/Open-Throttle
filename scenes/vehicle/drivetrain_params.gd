@@ -9,7 +9,7 @@ enum DRIVE_TYPE{
 }
 
 @export var drivetype := DRIVE_TYPE.RWD
-@export var gear_ratios := [ 3.1, 2.61, 2.1, 1.72, 1.2, 1.0 ] 
+@export var gear_ratios := [ 3.1, 2.61, 2.1, 1.72, 1.2, 0.8 ] 
 @export var final_drive := 3.7
 @export var reverse_ratio := 3.9
 @export var gear_inertia := 0.20

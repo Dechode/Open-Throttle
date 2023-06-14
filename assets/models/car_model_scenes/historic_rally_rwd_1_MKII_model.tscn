@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://c8ne8wev3lji1"]
 
-[ext_resource type="Texture2D" uid="uid://cuog0xaawxe40" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.103_baseColor.png" id="1_2422s"]
+[ext_resource type="Texture2D" uid="uid://cuog0xaawxe40" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.103_baseColor.png" id="1_xthml"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evn7g"]
 resource_name = "Default_OBJ.102"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_2422s")
+albedo_texture = ExtResource("1_xthml")
 roughness = 0.821115
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_78ukd"]
@@ -45,7 +45,7 @@ shadow_mesh = SubResource("ArrayMesh_78ukd")
 resource_name = "Default_OBJ.101"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_2422s")
+albedo_texture = ExtResource("1_xthml")
 roughness = 0.821115
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_o5xuq"]
@@ -80,12 +80,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_o5xuq")
 
-[node name="HistoricRallyRwd6Model" type="Node3D"]
+[node name="HistoricRallyRwd1MKIIModel" type="Node3D"]
 
-[node name="HistoricRallyRwd5Model" type="Node3D" parent="."]
+[node name="CarModel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, -1.62921e-07, 0, 1.62921e-07, 1, 0, 0, 0)
 
-[node name="HistoricRallyRwd5Mesh" type="MeshInstance3D" parent="HistoricRallyRwd5Model"]
+[node name="CarMesh" type="MeshInstance3D" parent="CarModel"]
 mesh = SubResource("ArrayMesh_27mln")
 skeleton = NodePath("")
 
