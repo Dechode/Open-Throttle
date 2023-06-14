@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dv81034u4rrsy"]
+[gd_scene load_steps=18 format=3 uid="uid://dv81034u4rrsy"]
 
 [ext_resource type="PackedScene" path="res://scenes/road.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/pit_area.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://1kdu82q2oqo8" path="res://scenes/lighting.tscn" id="4"]
 [ext_resource type="Material" uid="uid://c5qtub8gof6vs" path="res://resources/materials/terrain/grass.tres" id="5"]
 [ext_resource type="Material" uid="uid://cn4h37ik23u0s" path="res://resources/materials/terrain/rock.tres" id="6"]
+[ext_resource type="PackedScene" uid="uid://c4fyi5b3uwgru" path="res://scenes/checkpoint.tscn" id="6_xel0h"]
 
 [sub_resource type="BoxMesh" id="2"]
 material = ExtResource("5")
@@ -169,6 +170,10 @@ surface_material_override/0 = ExtResource("6")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="RockPile"]
 transform = Transform3D(0.324347, -0.191973, -0.926253, -0.940224, 0.0420379, -0.337952, 0.103815, 0.980499, -0.166863, -120.853, 12.3536, -25.8092)
 mesh = SubResource("CapsuleMesh_wwah0")
+
+[node name="CheckPoint" parent="." instance=ExtResource("6_xel0h")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 23.3, 0.9, 45.3)
+is_finish_line = true
 
 [editable path="Track"]
 [editable path="Lighting"]

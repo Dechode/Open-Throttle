@@ -52,6 +52,7 @@ text = "Quit"
 
 [node name="Credits" type="Panel" parent="HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_h2fkf")

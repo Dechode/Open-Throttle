@@ -52,6 +52,7 @@ var drivetrain: DriveTrain
 var driver: Driver
 var taillights: TailLights
 var headlights: HeadLights
+var lap_timer := LapTimer.new()
 
 @onready var wheel_fl = $Wheel_fl as RaycastSuspension
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
