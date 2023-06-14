@@ -20,6 +20,8 @@ func _ready() -> void:
 	load_options()
 	set_resolution(options_config.config["resolution"])
 	set_vsync(options_config.config["vsync"])
+	
+	AudioServer.set_bus_volume_db(0, linear_to_db(options_config.config["master_audio_vol"]))
 
 
 func load_options():
@@ -43,6 +45,8 @@ func save_options():
 	var error = ResourceSaver.save(options_config, "user://options.tres")
 	if error != OK:
 		push_error("Error saving game options")
+	
+	AudioServer.set_bus_volume_db(0, linear_to_db(options_config.config["master_audio_vol"]))
 
 
 func _save_inputmap():
