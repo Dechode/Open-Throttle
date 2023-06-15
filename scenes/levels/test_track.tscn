@@ -77,7 +77,11 @@ shape = SubResource("ConcavePolygonShape3D_id5kb")
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 23.3, 0.9, 45.3)
 
 [node name="CheckPoint2" parent="." instance=ExtResource("6_xel0h")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 15.1, 0.9, 30.2)
+transform = Transform3D(0.797278, 0, 0.603612, 0, 1, 0, -0.603612, 0, 0.797278, -10, 0.9, -8.2)
+is_start_or_finish = false
+
+[node name="CheckPoint3" parent="." instance=ExtResource("6_xel0h")]
+transform = Transform3D(0.871402, 0, 0.490569, 0, 1, 0, -0.490569, 0, 0.871402, -71.7235, 0.9, 28.0777)
 is_start_or_finish = false
 
 [node name="Track" parent="." instance=ExtResource("2")]
