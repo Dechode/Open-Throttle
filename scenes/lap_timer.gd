@@ -7,12 +7,13 @@ var last_lap_time_usec := 0
 var lap_start_time_usec := 0
 var lap := 0
 
-var checkpoints_done := 0
+var checkpoints_done := []
 var checkpoints_count := 0
 
+var checkpoints := []
 
 func _ready() -> void:
-	var checkpoints = []
+	
 #	TODO Get checkpoint count from RaceControl by making a Track class and make it responsible for 
 #	getting the checkpoint count and setting it in RaceControl
 	
@@ -22,29 +23,33 @@ func _ready() -> void:
 			if not child.is_start_or_finish:
 				checkpoints.append(child)
 				continue
+		
 		for gc in child.get_children(true):
 			if gc is CheckPoint:
 				print_debug("Checkpoint found")
 				if not gc.is_start_or_finish:
 					checkpoints.append(gc)
 					continue
+	
 	print_debug(checkpoints)
 	checkpoints_count = checkpoints.size()
 
 
 func cross_finish_line():
-	if checkpoints_done < checkpoints_count and lap > 0:
+	if checkpoints_done.size() < checkpoints_count and lap > 0:
 		print_debug("Missed checkpoint(s)")
 		return
+	
 	last_lap_time_usec = Time.get_ticks_usec() - lap_start_time_usec
 	lap_start_time_usec = Time.get_ticks_usec()
 	lap += 1
-	checkpoints_done = 0
+	checkpoints_done.clear()
 	lap_finished.emit()
 
 
-func cross_checkpoint():
-	checkpoints_done += 1
+func cross_checkpoint(checkpoint):
+	if not checkpoint in checkpoints_done:
+		checkpoints_done.append(checkpoint)
 
 
 func get_lap_time_str(usec: int) -> String:

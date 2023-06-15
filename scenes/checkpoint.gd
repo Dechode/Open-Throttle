@@ -11,4 +11,4 @@ func _on_checkpoint_body_entered(body: Node3D) -> void:
 	if is_start_or_finish:
 		body.lap_timer.cross_finish_line()
 	else:
-		body.lap_timer.cross_checkpoint()
+		body.lap_timer.cross_checkpoint(self)
