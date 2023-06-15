@@ -7,6 +7,7 @@ size = Vector3(20, 3.9, 1)
 
 [node name="CheckPoint" type="Node3D"]
 script = ExtResource("1_mfcax")
+is_start_or_finish = true
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 2
