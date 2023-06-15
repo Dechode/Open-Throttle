@@ -77,6 +77,7 @@ func _ready() -> void:
 	
 	add_child(clutch)
 	add_child(drivetrain)
+	add_child(lap_timer)
 	
 	car_params.wheel_params_fl.ackermann = car_params.ackermann
 	car_params.wheel_params_fr.ackermann = -car_params.ackermann

@@ -73,6 +73,13 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_id5kb")
 
+[node name="CheckPoint" parent="." instance=ExtResource("6_xel0h")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 23.3, 0.9, 45.3)
+
+[node name="CheckPoint2" parent="." instance=ExtResource("6_xel0h")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 15.1, 0.9, 30.2)
+is_start_or_finish = false
+
 [node name="Track" parent="." instance=ExtResource("2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927131, 0)
 
@@ -94,6 +101,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08716, -0.5831)
 
 [node name="PitArea" parent="." instance=ExtResource("3")]
 transform = Transform3D(0.864573, 0, 0.502507, 0, 1, 0, -0.502507, 0, 0.864573, 58.8525, 0.12774, 38.0513)
+
+[node name="CarSpawner" parent="PitArea" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.0922, 1.4, -2.02055)
 
 [node name="Mountains" type="Node3D" parent="."]
 
@@ -170,9 +180,6 @@ surface_material_override/0 = ExtResource("6")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="RockPile"]
 transform = Transform3D(0.324347, -0.191973, -0.926253, -0.940224, 0.0420379, -0.337952, 0.103815, 0.980499, -0.166863, -120.853, 12.3536, -25.8092)
 mesh = SubResource("CapsuleMesh_wwah0")
-
-[node name="CheckPoint" parent="." instance=ExtResource("6_xel0h")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 23.3, 0.9, 45.3)
 
 [editable path="Track"]
 [editable path="Lighting"]
