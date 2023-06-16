@@ -13,9 +13,10 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var cur_lap_time: int = Time.get_ticks_usec() - VehicleAPI.car.lap_timer.lap_start_time_usec
-	var str: String = VehicleAPI.car.lap_timer.get_lap_time_str(cur_lap_time)
-	$HBoxContainer/VBoxContainer/CurLapTime.text = "Current: %s" % str
+	if VehicleAPI.car.lap_timer.lap > 0:
+		var cur_lap_time: int = Time.get_ticks_usec() - VehicleAPI.car.lap_timer.lap_start_time_usec
+		var str: String = VehicleAPI.car.lap_timer.get_lap_time_str(cur_lap_time)
+		$HBoxContainer/VBoxContainer/CurLapTime.text = "Current: %s" % str
 
 
 func _on_lap_finished():
