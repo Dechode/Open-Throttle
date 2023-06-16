@@ -21,8 +21,10 @@ func _process(delta: float) -> void:
 
 func _on_lap_finished():
 	var lap := VehicleAPI.car.lap_timer.lap
-	var t := VehicleAPI.car.lap_timer.last_lap_time_usec
-	var last: String = VehicleAPI.car.lap_timer.get_lap_time_str(t)
+	var last: String = "00:00:000"
+	if lap > 1:
+		var t := VehicleAPI.car.lap_timer.last_lap_time_usec
+		last = VehicleAPI.car.lap_timer.get_lap_time_str(t)
 #	print_debug("Lap %d finished" % lap)
 	update_lap_info(lap, last, "00:00:000")
 
