@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct2poygblqrg5"]
+[gd_scene load_steps=4 format=3 uid="uid://ct2poygblqrg5"]
 
 [ext_resource type="Script" path="res://scenes/gui/menus/options_tab.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/gui/menus/bind_button.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://dbhema4vhnlcq" path="res://scenes/gui/input_app.tscn" id="3_a07ff"]
 
 [node name="Options" type="TabContainer"]
 unique_name_in_owner = true
@@ -504,6 +505,35 @@ toggle_mode = true
 script = ExtResource("2")
 action = "change_camera_secondary"
 
+[node name="ToggleLights" type="HBoxContainer" parent="Input/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+text = "Toggle Lights"
+
+[node name="BindButton" type="Button" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "toggle_lights"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+
+[node name="BindButton2" type="Button" parent="Input/VBoxContainer/ToggleLights"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "toggle_lights_secondary"
+
+[node name="InputApp" parent="Input" instance=ExtResource("3_a07ff")]
+layout_mode = 1
+
 [node name="FFB" type="TabBar" parent="."]
 visible = false
 layout_mode = 2
@@ -529,32 +559,32 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="FFBEnabled" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Enabled"
 
 [node name="FFBInverted" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Inverted"
 
 [node name="FFBGain" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Gain"
 
 [node name="FFBMinForce" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Min force"
 
 [node name="FFBFrontForce" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Front force"
 
 [node name="FFBRearForce" type="Label" parent="FFB/VBoxContainer/Options/Actions"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Rear force"
 
@@ -562,33 +592,33 @@ text = "Rear force"
 layout_mode = 2
 
 [node name="FFBEnabled" type="CheckBox" parent="FFB/VBoxContainer/Options/Values"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="FFBEnabled2" type="CheckBox" parent="FFB/VBoxContainer/Options/Values"]
-custom_minimum_size = Vector2(0, 20)
+[node name="FFBInverted" type="CheckBox" parent="FFB/VBoxContainer/Options/Values"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="FFBGain" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 suffix = "%"
 
 [node name="FFBMinForce" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-max_value = 150.0
 suffix = "%"
 
 [node name="FFBFrontForce" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 min_value = -150.0
 max_value = 150.0
+value = 100.0
 suffix = "%"
 
 [node name="FFBRearForce" type="SpinBox" parent="FFB/VBoxContainer/Options/Values"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 min_value = -150.0
 max_value = 150.0
@@ -635,3 +665,11 @@ suffix = "%"
 [connection signal="toggled" from="Input/VBoxContainer/ShiftDown/BindButton2" to="Input/VBoxContainer/ShiftDown/BindButton2" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ChangeCamera/BindButton" to="Input/VBoxContainer/ChangeCamera/BindButton" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ChangeCamera/BindButton2" to="Input/VBoxContainer/ChangeCamera/BindButton2" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ToggleLights/BindButton" to="Input/VBoxContainer/ToggleLights/BindButton" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ToggleLights/BindButton2" to="Input/VBoxContainer/ToggleLights/BindButton2" method="_toggled"]
+[connection signal="toggled" from="FFB/VBoxContainer/Options/Values/FFBEnabled" to="." method="_on_ffb_enabled_toggled"]
+[connection signal="toggled" from="FFB/VBoxContainer/Options/Values/FFBInverted" to="." method="_on_ffb_inverted_toggled"]
+[connection signal="value_changed" from="FFB/VBoxContainer/Options/Values/FFBGain" to="." method="_on_ffb_gain_value_changed"]
+[connection signal="value_changed" from="FFB/VBoxContainer/Options/Values/FFBMinForce" to="." method="_on_ffb_min_force_value_changed"]
+[connection signal="value_changed" from="FFB/VBoxContainer/Options/Values/FFBFrontForce" to="." method="_on_ffb_front_force_value_changed"]
+[connection signal="value_changed" from="FFB/VBoxContainer/Options/Values/FFBRearForce" to="." method="_on_ffb_rear_force_value_changed"]

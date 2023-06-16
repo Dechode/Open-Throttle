@@ -49,6 +49,11 @@ custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 value = 50.0
 
+[node name="HandbrakehInput" type="ProgressBar" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+value = 50.0
+
 [node name="SteeringInput" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 

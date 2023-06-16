@@ -57,6 +57,8 @@ func remap_action(event: InputEvent):
 		InputMap.action_add_event(action, event)
 		OptionsManager.save_options()
 		self.button_pressed = false
+	
+	InputManager.update_input_devices()
 
 
 func display_current_bind():

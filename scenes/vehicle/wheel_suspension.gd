@@ -6,10 +6,18 @@ var tire_model: BaseTireModel
 
 ############# Suspension stuff #############
 var spring_length := 0.2
-var spring_stiffness := 20000.0
-var bump := 5000.0
-var rebound := 3000.0
+var spring_stiffness := 45.0
+var bump_ls := 4.0
+var bump_hs := 3.0
+var rebound_ls := 4.5
+var rebound_hs := 3.5
+var high_speed_damping_treshold := 200.0
 var anti_roll := 0.0
+
+var spring_load_mm := 0.0
+var prev_spring_load_mm := 0.0
+var spring_speed_mm_per_seconds := 0.0
+var spring_load_newton := 0.0
 
 ############# Tire stuff #############
 var wheel_mass := 15.0
@@ -85,13 +93,17 @@ func set_params(params: WheelSuspensionParameters):
 	tire_model =  params.tire_model
 	spring_length = params.spring_length
 	spring_stiffness = params.spring_stiffness
-	bump = params.bump
-	rebound = params.rebound
+	bump_ls = params.bump_ls
+	bump_hs = params.bump_hs
+	rebound_ls = params.rebound_ls
+	rebound_hs = params.rebound_hs
+	high_speed_damping_treshold = params.lo_hi_threshold
 	wheel_mass = params.wheel_mass
 	tire_radius = params.tire_model.tire_radius
 	ackermann = params.ackermann
 	anti_roll = params.anti_roll
 	
+	tire_model.tire_mass = params.wheel_mass * 0.5
 	
 	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
@@ -129,17 +141,42 @@ func apply_forces(opposite_comp, delta):
 		rolling_resistance_coefficient = 0.0
 		spring_curr_length = spring_length
 	
-	var compress = clamp(1 - spring_curr_length / spring_length, 0.0, 1.0)
-	y_force = spring_stiffness * compress * spring_length
+	#
+	#Calculate the spring load in mm (absolut)
+	spring_load_mm = (spring_length - spring_curr_length) * 1000
+	#
+	#Calculate spring movement in mm per seconds
+	spring_speed_mm_per_seconds = (spring_load_mm - prev_spring_load_mm) / delta
+	prev_spring_load_mm = spring_load_mm
+	#
+	#Calculate the force of the spring in N (mm * N/mm  equals m * kN/m)
+	spring_load_newton = spring_load_mm * spring_stiffness
 	
-	if (compress - prev_compress) >= 0:
-		y_force += (bump + wheel_mass * 9.81) * (compress - prev_compress) * spring_length / delta
+	
+	
+	#
+	#Calculate the damping force in N and add it to spring_load_newton
+	#
+	#low-speed damping:
+	if abs(spring_speed_mm_per_seconds) <= high_speed_damping_treshold:
+		if spring_speed_mm_per_seconds >= 0:# bump
+			spring_load_newton += spring_speed_mm_per_seconds * bump_ls 
+		else :# rebound
+			spring_load_newton += spring_speed_mm_per_seconds * rebound_ls 
+	#high-speed damping
 	else:
-		y_force += rebound * (compress - prev_compress) * spring_length  / delta
+		if spring_speed_mm_per_seconds >= 0:# bump
+			var low_speed_part = high_speed_damping_treshold * sign(spring_speed_mm_per_seconds) * bump_ls
+			var high_speed_part = (abs(spring_speed_mm_per_seconds) - high_speed_damping_treshold) * sign(spring_speed_mm_per_seconds) * bump_hs
+			spring_load_newton += low_speed_part + high_speed_part
+		else :# rebound
+			var low_speed_part = high_speed_damping_treshold * sign(spring_speed_mm_per_seconds) * rebound_ls
+			var high_speed_part = (abs(spring_speed_mm_per_seconds) - high_speed_damping_treshold) * sign(spring_speed_mm_per_seconds) * rebound_hs
+			spring_load_newton += low_speed_part + high_speed_part
 	
+	y_force = spring_load_newton
+
 	y_force = max(0, y_force)
-	
-	prev_compress = compress
 	
 	# Somewhat made up speed relative rolling resistance
 	rolling_resistance_coefficient *= abs(z_vel) / 27
@@ -156,13 +193,15 @@ func apply_forces(opposite_comp, delta):
 	############### Calculate and apply the forces #######################
 	if is_colliding():
 		if abs(z_vel) > 0.01:
+#		if abs(z_vel) > 0.0001:
 			slip_vec.y = (z_vel - spin * tire_radius) / abs(z_vel)
 		else:
-			if is_zero_approx(spin):
-				slip_vec.y = 0.0001 * sign(z_vel)
-			else:
-				slip_vec.y = 0.0001 * abs(spin) * sign(z_vel) # This is to avoid "getting stuck" if local z velocity is absolute 0
-	
+#			print_debug("low vel")
+#			slip_vec.y = (z_vel - spin * tire_radius) / (abs(spin * tire_radius) + 0.0001)
+			slip_vec.y = (z_vel - spin * tire_radius) / (abs(z_vel) + 0.0001)
+
+				
+				
 		force_vec = tire_model.update_tire_forces(slip_vec, y_force, surface_mu)
 		
 		var contact = get_collision_point() - car.global_transform.origin
@@ -173,10 +212,9 @@ func apply_forces(opposite_comp, delta):
 		car.apply_force(global_transform.basis.z * force_vec.y, contact)
 		
 		### Return suspension compress info for the car bodys antirollbar calculations
-		if compress !=0:
-			compress = 1 - (spring_curr_length / spring_length)
-			y_force += anti_roll * (compress - opposite_comp)
-		return compress
+		if spring_load_mm !=0:
+			y_force += anti_roll * (spring_load_mm - opposite_comp)
+		return spring_load_mm
 	else:
 		### stop wheels not colliding from spinning endlessly
 		spin -= sign(spin) * delta * 2 / wheel_inertia 

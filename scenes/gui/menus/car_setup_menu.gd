@@ -19,15 +19,19 @@ func _ready() -> void:
 
 func update_params(params: CarParameters):
 	$Suspension/VBoxContainer/FrontSuspAntiRollRate/SpinBox.value = params.wheel_params_fl.anti_roll
-	$Suspension/VBoxContainer/FrontSuspBumpRate/SpinBox.value = params.wheel_params_fl.bump
-	$Suspension/VBoxContainer/FrontSuspReboundRate/SpinBox.value = params.wheel_params_fl.rebound
+	$Suspension/VBoxContainer/FrontSuspBumpRateLo/SpinBox.value = params.wheel_params_fl.bump_ls
+	$Suspension/VBoxContainer/FrontSuspBumpRateHi/SpinBox.value = params.wheel_params_fl.bump_hs
+	$Suspension/VBoxContainer/FrontSuspReboundRateLo/SpinBox.value = params.wheel_params_fl.rebound_ls
+	$Suspension/VBoxContainer/FrontSuspReboundRateHi/SpinBox.value = params.wheel_params_fl.rebound_hs
 	$Suspension/VBoxContainer/FrontSuspLength/Slider.value = params.wheel_params_fl.spring_length
 	$Suspension/VBoxContainer/FrontSuspLength/Label2.text = str(params.wheel_params_fl.spring_length)
 	$Suspension/VBoxContainer/FrontSuspSpringRate/SpinBox.value = params.wheel_params_fl.spring_stiffness
 	
 	$Suspension/VBoxContainer/RearSuspAntiRollRate/SpinBox.value = params.wheel_params_bl.anti_roll
-	$Suspension/VBoxContainer/RearSuspBumpRate/SpinBox.value = params.wheel_params_bl.bump
-	$Suspension/VBoxContainer/RearSuspReboundRate/SpinBox.value = params.wheel_params_bl.rebound
+	$Suspension/VBoxContainer/RearSuspBumpRateLo/SpinBox.value = params.wheel_params_bl.bump_ls
+	$Suspension/VBoxContainer/RearSuspBumpRateHi/SpinBox.value = params.wheel_params_bl.bump_hs
+	$Suspension/VBoxContainer/RearSuspReboundRateLo/SpinBox.value = params.wheel_params_bl.rebound_ls
+	$Suspension/VBoxContainer/RearSuspReboundRateHi/SpinBox.value = params.wheel_params_bl.rebound_hs
 	$Suspension/VBoxContainer/RearSuspLength/Slider.value = params.wheel_params_bl.spring_length
 	$Suspension/VBoxContainer/RearSuspLength/Label2.text = str(params.wheel_params_bl.spring_length)
 	$Suspension/VBoxContainer/RearSuspSpringRate/SpinBox.value = params.wheel_params_bl.spring_stiffness
@@ -64,70 +68,70 @@ func update_params(params: CarParameters):
 	$Wheels/VBoxContainer/TireRatedLoad/Slider.value = params.wheel_params_fl.tire_model.tire_rated_load
 	$Wheels/VBoxContainer/TireRatedLoad/Label2.text = str(params.wheel_params_fl.tire_model.tire_rated_load)
 	
-	$Drivetrain/VBoxContainer/TorqueSplit/Slider.value = params.center_split_fr
-	$Drivetrain/VBoxContainer/TorqueSplit/Label2.text = str(params.center_split_fr)
-	$Drivetrain/VBoxContainer/FinalRatio/Slider.value = params.final_drive
-	$Drivetrain/VBoxContainer/FinalRatio/Label2.text = str(params.final_drive)
-	$Drivetrain/VBoxContainer/ReverseRatio/Slider.value = params.reverse_ratio
-	$Drivetrain/VBoxContainer/ReverseRatio/Label2.text = str(params.reverse_ratio)
-	$Drivetrain/VBoxContainer/FrontDiffPreload/Label2.text = str(params.front_diff_preload)
-	$Drivetrain/VBoxContainer/FrontDiffPowerRatio/Label2.text = str(params.front_diff_power_ratio)
-	$Drivetrain/VBoxContainer/FrontDiffCoastRatio/Label2.text = str(params.front_diff_coast_ratio)
-	$Drivetrain/VBoxContainer/RearDiffPreload/Label2.text = str(params.rear_diff_preload)
-	$Drivetrain/VBoxContainer/RearDiffPowerRatio/Label2.text = str(params.rear_diff_power_ratio)
-	$Drivetrain/VBoxContainer/RearDiffCoastRatio/Label2.text = str(params.rear_diff_coast_ratio)
+	$Drivetrain/VBoxContainer/TorqueSplit/Slider.value = params.drivetrain_params.center_split_fr
+	$Drivetrain/VBoxContainer/TorqueSplit/Label2.text = str(params.drivetrain_params.center_split_fr)
+	$Drivetrain/VBoxContainer/FinalRatio/Slider.value = params.drivetrain_params.final_drive
+	$Drivetrain/VBoxContainer/FinalRatio/Label2.text = str(params.drivetrain_params.final_drive)
+	$Drivetrain/VBoxContainer/ReverseRatio/Slider.value = params.drivetrain_params.reverse_ratio
+	$Drivetrain/VBoxContainer/ReverseRatio/Label2.text = str(params.drivetrain_params.reverse_ratio)
+	$Drivetrain/VBoxContainer/FrontDiffPreload/Label2.text = str(params.drivetrain_params.front_diff.diff_preload)
+	$Drivetrain/VBoxContainer/FrontDiffPowerRatio/Label2.text = str(params.drivetrain_params.front_diff.power_ratio)
+	$Drivetrain/VBoxContainer/FrontDiffCoastRatio/Label2.text = str(params.drivetrain_params.front_diff.coast_ratio)
+	$Drivetrain/VBoxContainer/RearDiffPreload/Label2.text = str(params.drivetrain_params.rear_diff.diff_preload)
+	$Drivetrain/VBoxContainer/RearDiffPowerRatio/Label2.text = str(params.drivetrain_params.rear_diff.power_ratio)
+	$Drivetrain/VBoxContainer/RearDiffCoastRatio/Label2.text = str(params.drivetrain_params.rear_diff.coast_ratio)
 	
-	var gear_amount := params.gear_ratios.size()
+	var gear_amount := params.drivetrain_params.gear_ratios.size()
 	
 	match gear_amount:
 		1:
-			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.gear_ratios[0]
-			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.gear_ratios[0])
+			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.drivetrain_params.gear_ratios[0]
+			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.drivetrain_params.gear_ratios[0])
 		2:
-			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.gear_ratios[0]
-			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.gear_ratios[0])
-			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.gear_ratios[1]
-			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.gear_ratios[1])
+			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.drivetrain_params.gear_ratios[0]
+			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.drivetrain_params.gear_ratios[0])
+			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.drivetrain_params.gear_ratios[1]
+			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.drivetrain_params.gear_ratios[1])
 		3:
-			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.gear_ratios[0]
-			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.gear_ratios[0])
-			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.gear_ratios[1]
-			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.gear_ratios[1])
-			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.gear_ratios[2]
-			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.gear_ratios[2])
+			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.drivetrain_params.gear_ratios[0]
+			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.drivetrain_params.gear_ratios[0])
+			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.drivetrain_params.gear_ratios[1]
+			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.drivetrain_params.gear_ratios[1])
+			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.drivetrain_params.gear_ratios[2]
+			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.drivetrain_params.gear_ratios[2])
 		4:
-			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.gear_ratios[0]
-			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.gear_ratios[0])
-			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.gear_ratios[1]
-			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.gear_ratios[1])
-			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.gear_ratios[2]
-			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.gear_ratios[2])
-			$Drivetrain/VBoxContainer/Gear4/Slider.value = params.gear_ratios[3]
-			$Drivetrain/VBoxContainer/Gear4/Label2.text = str(params.gear_ratios[3])
+			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.drivetrain_params.gear_ratios[0]
+			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.drivetrain_params.gear_ratios[0])
+			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.drivetrain_params.gear_ratios[1]
+			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.drivetrain_params.gear_ratios[1])
+			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.drivetrain_params.gear_ratios[2]
+			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.drivetrain_params.gear_ratios[2])
+			$Drivetrain/VBoxContainer/Gear4/Slider.value = params.drivetrain_params.gear_ratios[3]
+			$Drivetrain/VBoxContainer/Gear4/Label2.text = str(params.drivetrain_params.gear_ratios[3])
 		5:
-			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.gear_ratios[0]
-			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.gear_ratios[0])
-			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.gear_ratios[1]
-			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.gear_ratios[1])
-			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.gear_ratios[2]
-			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.gear_ratios[2])
-			$Drivetrain/VBoxContainer/Gear4/Slider.value = params.gear_ratios[3]
-			$Drivetrain/VBoxContainer/Gear4/Label2.text = str(params.gear_ratios[3])
-			$Drivetrain/VBoxContainer/Gear5/Slider.value = params.gear_ratios[4]
-			$Drivetrain/VBoxContainer/Gear5/Label2.text = str(params.gear_ratios[4])
+			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.drivetrain_params.gear_ratios[0]
+			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.drivetrain_params.gear_ratios[0])
+			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.drivetrain_params.gear_ratios[1]
+			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.drivetrain_params.gear_ratios[1])
+			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.drivetrain_params.gear_ratios[2]
+			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.drivetrain_params.gear_ratios[2])
+			$Drivetrain/VBoxContainer/Gear4/Slider.value = params.drivetrain_params.gear_ratios[3]
+			$Drivetrain/VBoxContainer/Gear4/Label2.text = str(params.drivetrain_params.gear_ratios[3])
+			$Drivetrain/VBoxContainer/Gear5/Slider.value = params.drivetrain_params.gear_ratios[4]
+			$Drivetrain/VBoxContainer/Gear5/Label2.text = str(params.drivetrain_params.gear_ratios[4])
 		6:
-			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.gear_ratios[0]
-			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.gear_ratios[0])
-			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.gear_ratios[1]
-			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.gear_ratios[1])
-			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.gear_ratios[2]
-			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.gear_ratios[2])
-			$Drivetrain/VBoxContainer/Gear4/Slider.value = params.gear_ratios[3]
-			$Drivetrain/VBoxContainer/Gear4/Label2.text = str(params.gear_ratios[3])
-			$Drivetrain/VBoxContainer/Gear5/Slider.value = params.gear_ratios[4]
-			$Drivetrain/VBoxContainer/Gear5/Label2.text = str(params.gear_ratios[4])
-			$Drivetrain/VBoxContainer/Gear6/Slider.value = params.gear_ratios[5]
-			$Drivetrain/VBoxContainer/Gear6/Label2.text = str(params.gear_ratios[5])
+			$Drivetrain/VBoxContainer/Gear1/Slider.value = params.drivetrain_params.gear_ratios[0]
+			$Drivetrain/VBoxContainer/Gear1/Label2.text = str(params.drivetrain_params.gear_ratios[0])
+			$Drivetrain/VBoxContainer/Gear2/Slider.value = params.drivetrain_params.gear_ratios[1]
+			$Drivetrain/VBoxContainer/Gear2/Label2.text = str(params.drivetrain_params.gear_ratios[1])
+			$Drivetrain/VBoxContainer/Gear3/Slider.value = params.drivetrain_params.gear_ratios[2]
+			$Drivetrain/VBoxContainer/Gear3/Label2.text = str(params.drivetrain_params.gear_ratios[2])
+			$Drivetrain/VBoxContainer/Gear4/Slider.value = params.drivetrain_params.gear_ratios[3]
+			$Drivetrain/VBoxContainer/Gear4/Label2.text = str(params.drivetrain_params.gear_ratios[3])
+			$Drivetrain/VBoxContainer/Gear5/Slider.value = params.drivetrain_params.gear_ratios[4]
+			$Drivetrain/VBoxContainer/Gear5/Label2.text = str(params.drivetrain_params.gear_ratios[4])
+			$Drivetrain/VBoxContainer/Gear6/Slider.value = params.drivetrain_params.gear_ratios[5]
+			$Drivetrain/VBoxContainer/Gear6/Label2.text = str(params.drivetrain_params.gear_ratios[5])
 
 
 func update_tire_model(tire_model: BaseTireModel):
@@ -153,16 +157,23 @@ func _on_front_spring_rate_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_fr.spring_stiffness = value
 
 
-func _on_front_bump_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_fl.bump = value
-	SessionManager.player_car_setup.wheel_params_fr.bump = value
+func _on_front_bump_rate_lo_changed(value):
+	SessionManager.player_car_setup.wheel_params_fl.bump_ls = value
+	SessionManager.player_car_setup.wheel_params_fr.bump_ls = value
 
 
-func _on_front_rebound_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_fl.rebound = value
-	SessionManager.player_car_setup.wheel_params_fr.rebound = value
+func _on_front_bump_rate_hi_changed(value):
+	SessionManager.player_car_setup.wheel_params_fl.bump_hs = value
+	SessionManager.player_car_setup.wheel_params_fr.bump_hs = value
 
+func _on_front_rebound_rate_lo_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_fl.rebound_ls = value
+	SessionManager.player_car_setup.wheel_params_fr.rebound_ls = value
 
+func _on_front_rebound_rate_hi_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_fl.rebound_hs = value
+	SessionManager.player_car_setup.wheel_params_fr.rebound_hs = value
+	
 func _on_front_anti_roll_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_fl.anti_roll = value
 	SessionManager.player_car_setup.wheel_params_fr.anti_roll = value
@@ -179,15 +190,21 @@ func _on_rear_spring_rate_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_br.spring_stiffness = value
 
 
-func _on_rear_bump_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_bl.bump = value
-	SessionManager.player_car_setup.wheel_params_br.bump = value
+func _on_rear_bump_rate_lo_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.bump_ls = value
+	SessionManager.player_car_setup.wheel_params_br.bump_ls = value
 
+func _on_rear_bump_rate_hi_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.bump_hs = value
+	SessionManager.player_car_setup.wheel_params_br.bump_hs = value
 
-func _on_rear_rebound_rate_changed(value:float):
-	SessionManager.player_car_setup.wheel_params_bl.rebound = value
-	SessionManager.player_car_setup.wheel_params_br.rebound = value
+func _on_rear_rebound_rate_lo_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.rebound_ls = value
+	SessionManager.player_car_setup.wheel_params_br.rebound_ls = value
 
+func _on_rear_rebound_rate_hi_changed(value:float):
+	SessionManager.player_car_setup.wheel_params_bl.rebound_hs = value
+	SessionManager.player_car_setup.wheel_params_br.rebound_hs = value
 
 func _on_rear_anti_roll_changed(value:float):
 	SessionManager.player_car_setup.wheel_params_bl.anti_roll = value
@@ -256,75 +273,80 @@ func _on_tire_rated_load_changed(value: float) -> void:
 
 
 func _on_torque_split_changed(value: float) -> void:
-	SessionManager.player_car_setup.center_split_fr = value
+	SessionManager.player_car_setup.drivetrain_params.center_split_fr = value
 	$Drivetrain/VBoxContainer/TorqueSplit/Label2.text = str(value)
 
 
 func _on_final_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.final_drive = value
+	SessionManager.player_car_setup.drivetrain_params.final_drive = value
 	$Drivetrain/VBoxContainer/FinalRatio/Label2.text = str(value)
 
 func _on_gear1_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.gear_ratios[0] = value
+	SessionManager.player_car_setup.drivetrain_params.gear_ratios[0] = value
 	$Drivetrain/VBoxContainer/Gear1/Label2.text = str(value)
 
 
 func _on_gear2_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.gear_ratios[1] = value
+	SessionManager.player_car_setup.drivetrain_params.gear_ratios[1] = value
 	$Drivetrain/VBoxContainer/Gear2/Label2.text = str(value)
 
 
 func _on_gear3_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.gear_ratios[2] = value
+	SessionManager.player_car_setup.drivetrain_params.gear_ratios[2] = value
 	$Drivetrain/VBoxContainer/Gear3/Label2.text = str(value)
 
 
 func _on_gear4_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.gear_ratios[3] = value
+	SessionManager.player_car_setup.drivetrain_params.gear_ratios[3] = value
 	$Drivetrain/VBoxContainer/Gear4/Label2.text = str(value)
 
 
 func _on_gear5_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.gear_ratios[4] = value
+	SessionManager.player_car_setup.drivetrain_params.gear_ratios[4] = value
 	$Drivetrain/VBoxContainer/Gear5/Label2.text = str(value)
 
 
 func _on_gear6_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.gear_ratios[5] = value
+	SessionManager.player_car_setup.drivetrain_params.gear_ratios[5] = value
 	$Drivetrain/VBoxContainer/Gear6/Label2.text = str(value)
 
 
 func _on_reverse_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.reverse_ratio = value
+	SessionManager.player_car_setup.drivetrain_params.reverse_ratio = value
 	$Drivetrain/VBoxContainer/ReverseRatio/Label2.text = str(value)
 
 
 func _on_front_diff_preload_changed(value: float) -> void:
-	SessionManager.player_car_setup.front_diff_preload = value
+	SessionManager.player_car_setup.drivetrain_params.front_diff.diff_preload = value
 	$Drivetrain/VBoxContainer/FrontDiffPreload/Label2.text = str(value)
 
 
 func _on_front_diff_power_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.front_diff_power_ratio = value
+	SessionManager.player_car_setup.drivetrain_params.front_diff.power_ratio = value
 	$Drivetrain/VBoxContainer/FrontDiffPowerRatio/Label2.text = str(value)
 
 
-
 func _on_front_diff_coast_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.front_diff_coast_ratio = value
+	SessionManager.player_car_setup.drivetrain_params.front_diff_coast.ratio = value
 	$Drivetrain/VBoxContainer/FrontDiffCoastRatio/Label2.text = str(value)
 
 
 func _on_rear_diff_preload_changed(value: float) -> void:
-	SessionManager.player_car_setup.rear_diff_preload = value
+	SessionManager.player_car_setup.drivetrain_params.rear_diff.diff_preload = value
 	$Drivetrain/VBoxContainer/RearDiffPreload/Label2.text = str(value)
 
 
 func _on_rear_diff_power_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.rear_diff_power_ratio = value
+	SessionManager.player_car_setup.drivetrain_params.rear_diff.power_ratio = value
 	$Drivetrain/VBoxContainer/RearDiffPowerRatio/Label2.text = str(value)
 
 
 func _on_rear_diff_coast_ratio_changed(value: float) -> void:
-	SessionManager.player_car_setup.rear_diff_coast_ratio = value
+	SessionManager.player_car_setup.drivetrain_params.rear_diff.coast_ratio = value
 	$Drivetrain/VBoxContainer/RearDiffCoastRatio/Label2.text = str(value)
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+[submodule "ffb_plugin/Godot-FFB-SDL"]
+	path = ffb_plugin/Godot-FFB-SDL
+	url = git@github.com:Dechode/Godot-FFB-SDL.git
+	branch = refactor

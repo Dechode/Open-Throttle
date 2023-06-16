@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	$Panel/VBoxContainer/ThrottleInput.value = InputManager.get_throttle_input() * 100
 	$Panel/VBoxContainer/BrakeInput.value = InputManager.get_brake_input() * 100
 	$Panel/VBoxContainer/ClutchInput.value = InputManager.get_clutch_input() * 100
+	$Panel/VBoxContainer/HandbrakehInput.value = InputManager.get_handbrake_input() * 100
 	
 	var steer = InputManager.get_steering_input() * 100
 	if steer > 0:

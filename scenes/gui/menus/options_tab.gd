@@ -5,6 +5,26 @@ var aspect_ratios := [Vector2(4,3), Vector2(16,9), Vector2(19,10)]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Input/VBoxContainer/Throttle/OptionButton.add_item("0..1")
+	$Input/VBoxContainer/Throttle/OptionButton2.add_item("0..1")
+	$Input/VBoxContainer/Brake/OptionButton.add_item("0..1")
+	$Input/VBoxContainer/Brake/OptionButton2.add_item("0..1")
+	
+	$Input/VBoxContainer/Throttle/OptionButton.add_item("-1..1")
+	$Input/VBoxContainer/Throttle/OptionButton2.add_item("-1..1")
+	$Input/VBoxContainer/Brake/OptionButton.add_item("-1..1")
+	$Input/VBoxContainer/Brake/OptionButton2.add_item("-1..1")
+	
+	$Input/VBoxContainer/Clutch/OptionButton.add_item("0...1")
+	$Input/VBoxContainer/Clutch/OptionButton2.add_item("0...1")
+	$Input/VBoxContainer/Handbrake/OptionButton.add_item("0...1")
+	$Input/VBoxContainer/Handbrake/OptionButton2.add_item("0...1")
+	
+	$Input/VBoxContainer/Clutch/OptionButton.add_item("-1...1")
+	$Input/VBoxContainer/Clutch/OptionButton2.add_item("-1...1")
+	$Input/VBoxContainer/Handbrake/OptionButton.add_item("-1...1")
+	$Input/VBoxContainer/Handbrake/OptionButton2.add_item("-1...1")
+	
 	$GamePlay/VBoxContainer/SteeringInterpolation/CheckButton.button_pressed = OptionsManager.get_config_value("steering_interpolation")
 	$Graphics/VBoxContainer/Fullscreen/CheckButton.button_pressed = OptionsManager.get_config_value("fullscreen")
 	$Graphics/VBoxContainer/VSync/CheckButton.button_pressed = OptionsManager.get_config_value("vsync")
@@ -43,7 +63,14 @@ func _ready() -> void:
 	$Input/VBoxContainer/Clutch/OptionButton2.selected = OptionsManager.get_config_value("clutch_minus_one_to_one_sec")
 	$Input/VBoxContainer/Handbrake/OptionButton.selected = OptionsManager.get_config_value("handbrake_minus_one_to_one")
 	$Input/VBoxContainer/Handbrake/OptionButton2.selected = OptionsManager.get_config_value("handbrake_minus_one_to_one_sec")
-
+	
+	$FFB/VBoxContainer/Options/Values/FFBEnabled.button_pressed = OptionsManager.get_config_value("ffb_enabled")
+	$FFB/VBoxContainer/Options/Values/FFBInverted.button_pressed = OptionsManager.get_config_value("ffb_inverted")
+	$FFB/VBoxContainer/Options/Values/FFBGain.value = OptionsManager.get_config_value("ffb_gain") * 100
+	$FFB/VBoxContainer/Options/Values/FFBMinForce.value = OptionsManager.get_config_value("ffb_min_force") * 100
+	$FFB/VBoxContainer/Options/Values/FFBFrontForce.value = OptionsManager.get_config_value("ffb_front_force") * 100
+	$FFB/VBoxContainer/Options/Values/FFBRearForce.value = OptionsManager.get_config_value("ffb_rear_force") * 100
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
@@ -149,3 +176,26 @@ func _on_handbrake_inverted_toggled(button_pressed: bool) -> void:
 func _on_handbrake_sec_inverted_toggled(button_pressed: bool) -> void:
 	OptionsManager.set_config_value("handbrake_inverted_sec", button_pressed)
 
+
+func _on_ffb_enabled_toggled(button_pressed: bool) -> void:
+	OptionsManager.set_config_value("ffb_enabled", button_pressed)
+
+
+func _on_ffb_inverted_toggled(button_pressed: bool) -> void:
+	OptionsManager.set_config_value("ffb_inverted", button_pressed)
+
+
+func _on_ffb_gain_value_changed(value: float) -> void:
+	OptionsManager.set_config_value("ffb_gain", value * 0.01)
+
+
+func _on_ffb_min_force_value_changed(value: float) -> void:
+	OptionsManager.set_config_value("ffb_min_force", value * 0.01)
+
+
+func _on_ffb_front_force_value_changed(value: float) -> void:
+	OptionsManager.set_config_value("ffb_front_force", value * 0.01)
+
+
+func _on_ffb_rear_force_value_changed(value: float) -> void:
+	OptionsManager.set_config_value("ffb_rear_force", value * 0.01)
