@@ -52,6 +52,7 @@ var drivetrain: DriveTrain
 var driver: Driver
 var taillights: TailLights
 var headlights: HeadLights
+var lap_timer := LapTimer.new()
 
 @onready var wheel_fl = $Wheel_fl as RaycastSuspension
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
@@ -76,6 +77,7 @@ func _ready() -> void:
 	
 	add_child(clutch)
 	add_child(drivetrain)
+	add_child(lap_timer)
 	
 	car_params.wheel_params_fl.ackermann = car_params.ackermann
 	car_params.wheel_params_fr.ackermann = -car_params.ackermann
