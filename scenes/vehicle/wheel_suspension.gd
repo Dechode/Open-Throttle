@@ -69,24 +69,23 @@ func _process(delta: float) -> void:
 		$TireMarks.emitting = self.is_colliding()
 	else:
 		$TireMarks.emitting = false
+	
+	wheelmesh.position.y = -spring_curr_length
+	wheelmesh.rotate_x(wrapf(-spin * delta, 0, TAU))
 
 
 func _physics_process(delta: float) -> void:
 	peak_slip.x = tire_model.peak_sa
 	peak_slip.y = tire_model.peak_sr
-	var larger_slip: float = max(abs(slip_vec.x), abs(slip_vec.y))
-	var friction_power := force_vec.length() * local_vel.length() * larger_slip * 0.01
 	
-	if abs(z_vel) > 2.0:
-		friction_power = force_vec.length() * slip_vec.length() * local_vel.length()
+	var friction_power := force_vec.length() * local_vel.length() * slip_vec.length()
+	var low_speed_cutoff := 2.0
+	
+	if abs(z_vel) < low_speed_cutoff:
+		friction_power *= abs(z_vel) / low_speed_cutoff
 	
 	tire_wear = tire_model.update_tire_wear(tire_wear, friction_power, delta)
 	tire_temp = tire_model.update_tire_temps(tire_temp, friction_power, z_vel, delta)
-	
-#	print(tire_temp)
-	
-	wheelmesh.position.y = -spring_curr_length
-	wheelmesh.rotate_x(wrapf(-spin * delta,0, TAU))
 
 
 func set_params(params: WheelSuspensionParameters):
