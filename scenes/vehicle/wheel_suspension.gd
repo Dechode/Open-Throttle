@@ -202,6 +202,10 @@ func apply_forces(opposite_comp, delta):
 
 				
 				
+		### Return suspension compress info for the car bodys antirollbar calculations
+		if spring_load_mm !=0:
+			y_force += anti_roll * (spring_load_mm - opposite_comp)
+		
 		force_vec = tire_model.update_tire_forces(slip_vec, y_force, surface_mu)
 		
 		var contact = get_collision_point() - car.global_transform.origin
@@ -211,9 +215,6 @@ func apply_forces(opposite_comp, delta):
 		car.apply_force(global_transform.basis.x * force_vec.x, contact)
 		car.apply_force(global_transform.basis.z * force_vec.y, contact)
 		
-		### Return suspension compress info for the car bodys antirollbar calculations
-		if spring_load_mm !=0:
-			y_force += anti_roll * (spring_load_mm - opposite_comp)
 		return spring_load_mm
 	else:
 		### stop wheels not colliding from spinning endlessly
