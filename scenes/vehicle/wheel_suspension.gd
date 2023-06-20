@@ -42,7 +42,10 @@ var local_vel := Vector3.ZERO
 var force_vec := Vector3.ZERO
 var slip_vec := Vector2.ZERO
 var peak_slip := Vector2.ZERO
+
 var prev_pos := Vector3.ZERO
+var prev_slip := Vector2.ZERO
+var prev_spin := 0.0
 
 var prev_compress := 0.0
 var spring_curr_length := spring_length
@@ -57,11 +60,12 @@ func _init() -> void:
 
 
 func _ready() -> void:
-#	var nominal_load = car.weight * 0.25
 	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
-	peak_slip.x = 0.12
-	peak_slip.y = 0.09
+	
+	# Some sensible peak slip values just in case tire model fails to have them
+	peak_slip.x = 0.12 
+	peak_slip.y = 0.09 
 
 
 func _process(delta: float) -> void:
@@ -140,22 +144,17 @@ func apply_forces(opposite_comp, delta):
 		rolling_resistance_coefficient = 0.0
 		spring_curr_length = spring_length
 	
-	#
 	#Calculate the spring load in mm (absolut)
 	spring_load_mm = (spring_length - spring_curr_length) * 1000
-	#
+	
 	#Calculate spring movement in mm per seconds
 	spring_speed_mm_per_seconds = (spring_load_mm - prev_spring_load_mm) / delta
 	prev_spring_load_mm = spring_load_mm
-	#
+	
 	#Calculate the force of the spring in N (mm * N/mm  equals m * kN/m)
 	spring_load_newton = spring_load_mm * spring_stiffness
-	
-	
-	
-	#
+
 	#Calculate the damping force in N and add it to spring_load_newton
-	#
 	#low-speed damping:
 	if abs(spring_speed_mm_per_seconds) <= high_speed_damping_treshold:
 		if spring_speed_mm_per_seconds >= 0:# bump
@@ -184,23 +183,22 @@ func apply_forces(opposite_comp, delta):
 	rolling_resistance = rolling_resistance_coefficient * y_force
 	
 	############### Slip #######################
-	slip_vec.x = asin(clamp(-planar_vect.x, -1, 1)) # X slip is lateral slip
-	slip_vec.y = 0.0 # Y slip is the longitudinal Z slip
+	slip_vec.x = asin(clamp(-planar_vect.x, -1, 1)) # X slip is lateral slip angle
+	slip_vec.y = 0.0 # Y slip is the longitudinal Z slip ratio
 	force_vec = Vector3.ZERO
-	
 	
 	############### Calculate and apply the forces #######################
 	if is_colliding():
-		if abs(z_vel) > 0.01:
-#		if abs(z_vel) > 0.0001:
-			slip_vec.y = (z_vel - spin * tire_radius) / abs(z_vel)
+		var delta_spin_vel := z_vel - spin * tire_radius
+		if abs(z_vel) > 0.1:
+			slip_vec.y = delta_spin_vel / abs(z_vel)
 		else:
-#			print_debug("low vel")
-#			slip_vec.y = (z_vel - spin * tire_radius) / (abs(spin * tire_radius) + 0.0001)
-			slip_vec.y = (z_vel - spin * tire_radius) / (abs(z_vel) + 0.0001)
-
-				
-				
+#			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.000000001 * sign(spin - z_vel))
+			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.000000001 * sign(z_vel - spin))
+			slip_vec.y = 0.5 * (prev_slip.y + low_speed_sr)
+		
+		prev_slip = slip_vec
+		
 		### Return suspension compress info for the car bodys antirollbar calculations
 		if spring_load_mm !=0:
 			y_force += anti_roll * (spring_load_mm - opposite_comp)
@@ -217,13 +215,14 @@ func apply_forces(opposite_comp, delta):
 		return spring_load_mm
 	else:
 		### stop wheels not colliding from spinning endlessly
+		prev_slip = slip_vec
 		spin -= sign(spin) * delta * 2 / wheel_inertia 
 		return 0.0
 
 
+# Called by drivetrain/car script when driving/freewheeling
 func apply_torque(drive_torque, brake_torque, drive_inertia, delta):
-#	print(drive_torque)
-	var prev_spin = spin
+	prev_spin = spin
 	var net_torque = force_vec.y * tire_radius
 	net_torque += drive_torque
 	
@@ -249,6 +248,7 @@ func get_spin():
 
 
 func set_spin(value):
+	prev_spin = spin
 	spin = value
 
 
