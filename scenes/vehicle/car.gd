@@ -70,9 +70,7 @@ func _init() -> void:
 func _ready() -> void:
 	fuel = car_params.fuel_tank_size * car_params.fuel_percentage * 0.01
 	self.mass += fuel * PETROL_KG_L
-	
 	clutch.friction = car_params.clutch_friction
-	
 	drivetrain.set_params(car_params.drivetrain_params.duplicate(true), car_params.engine_moment)
 	
 	add_child(clutch)

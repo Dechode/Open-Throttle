@@ -218,6 +218,7 @@ func drivetrain(torque: float, rear_brake_torque: float, front_brake_torque: flo
 				wheels[3].set_spin(spin)
 			
 			DIFF_TYPE.LIMITED_SLIP:
+				# When center diff is limited slip use center_split_fr (front / rear) param
 				var rear_drive = drive_torque * (1 - drivetrain_params.center_split_fr)
 				var front_drive = drive_torque * drivetrain_params.center_split_fr
 				
@@ -225,6 +226,7 @@ func drivetrain(torque: float, rear_brake_torque: float, front_brake_torque: flo
 				differential(front_drive, front_brake_torque, front_wheels, drivetrain_params.front_diff, delta)
 			
 			DIFF_TYPE.OPEN_DIFF:
+				# What should we do here?
 				var rear_drive = drive_torque * 0.5
 				var front_drive = drive_torque * 0.5
 				
