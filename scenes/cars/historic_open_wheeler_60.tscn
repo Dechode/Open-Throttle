@@ -88,15 +88,15 @@ lo_hi_threshold = 100.0
 wheel_mass = 25.0
 anti_roll = 1.0
 
-[sub_resource type="Resource" id="Resource_yoxq6"]
+[sub_resource type="Resource" id="Resource_4woqn"]
 script = ExtResource("4_6sx12")
 tire_stiffness = 0.5
-tire_width = 0.2
+tire_width = 0.225
 tire_radius = 0.3
 
 [sub_resource type="Resource" id="Resource_1fd6p"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_yoxq6")
+tire_model = SubResource("Resource_4woqn")
 spring_length = 0.1
 spring_stiffness = 35.0
 bump_ls = 4.0

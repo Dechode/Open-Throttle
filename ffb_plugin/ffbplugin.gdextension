@@ -1,6 +1,8 @@
 [configuration]
 
 entry_symbol = "ffb_library_init"
+compatibility_minimum = 4.1
+
 
 [libraries]
 
