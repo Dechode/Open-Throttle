@@ -126,16 +126,19 @@ func apply_forces(opposite_comp, delta):
 			surface = get_collider().get_groups()[0]
 		surface_mu = 1.0
 		if surface:
-			if surface == "Tarmac":
+			if surface == "tarmac":
 				surface_mu = 1.0 
 				rolling_resistance_coefficient = 0.01
-			elif surface == "Gravel":
+			elif surface == "gravel":
 				surface_mu = 0.7
 				rolling_resistance_coefficient = 0.025
-			elif surface == "Grass":
+			elif surface == "grass":
 				surface_mu = 0.6  
 				rolling_resistance_coefficient = 0.03
-			elif surface == "Snow":
+			elif surface == "sand":
+				surface_mu = 0.65
+				rolling_resistance_coefficient = 0.05
+			elif surface == "snow":
 				surface_mu = 0.4
 				rolling_resistance_coefficient = 0.035
 		
