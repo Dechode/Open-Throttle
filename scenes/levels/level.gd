@@ -15,10 +15,14 @@ enum LEVEL_TYPE {
 var pit_spawns := []
 var grid_spawns := []
 
+var car_spawner := CarSpawner.new()
+
 
 func _ready() -> void:
 	process_children()
+	reset_spawn_points()
 	add_child(lighting_scene.instantiate())
+	car_spawner.reset_grid()
 
 
 func process_children():
@@ -28,9 +32,11 @@ func process_children():
 	for child in children:
 		if child.name.begins_with("gridspawn-"):
 			print_debug("Found grid spawn point")
+			grid_spawns.append(child)
 		
 		elif child.name.begins_with("pitspawn-"):
 			print_debug("Found pit spawn point")
+			pit_spawns.append(child)
 		
 		elif child.name.begins_with("tarmac-"):
 			print_debug("Found tarmac")
@@ -64,3 +70,9 @@ func process_children():
 		
 	if grid_spawns.size() == 0 and pit_spawns.size() == 0:
 		push_warning("No spawn points found")
+
+
+func reset_spawn_points():
+	# TODO Make spawn point based on game mode / state
+	for point in grid_spawns:
+		car_spawner.add_spawn_point(point)

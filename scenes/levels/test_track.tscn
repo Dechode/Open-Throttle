@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://dv81034u4rrsy"]
+[gd_scene load_steps=5 format=3 uid="uid://dv81034u4rrsy"]
 
-[ext_resource type="PackedScene" path="res://scenes/pit_area.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://cttappl0m3krw" path="res://assets/textures/chicken_wire.png" id="5_8g2bn"]
 [ext_resource type="PackedScene" uid="uid://bjjy32i7bu207" path="res://scenes/levels/race_tracks/test_track.blend" id="6_8augd"]
 [ext_resource type="PackedScene" uid="uid://c4fyi5b3uwgru" path="res://scenes/checkpoint.tscn" id="6_xel0h"]
@@ -21,28 +20,12 @@ texture_filter = 5
 transform = Transform3D(-0.968873, 0, 0.247557, 0, 1, 0, -0.247557, 0, -0.968873, 246.626, -2.00977, 103.711)
 
 [node name="CheckPoint2" parent="." instance=ExtResource("6_xel0h")]
-transform = Transform3D(-0.904976, 0, 0.425463, 0, 1, 0, -0.425463, 0, -0.904976, 202.296, -2.00977, 245.28)
+transform = Transform3D(0.28373, 0, 0.958904, 0, 1, 0, -0.958904, 0, 0.28373, 135.51, -2.00977, 312.178)
 is_start_or_finish = false
 
 [node name="CheckPoint3" parent="." instance=ExtResource("6_xel0h")]
-transform = Transform3D(-0.113359, 0, 0.993554, 0, 1, 0, -0.993554, 0, -0.113359, 147.748, -2.00977, 313.293)
+transform = Transform3D(-0.113359, 0, 0.993554, 0, 1, 0, -0.993554, 0, -0.113359, 6.90474, -2.00974, 23.4554)
 is_start_or_finish = false
-
-[node name="PitArea" parent="." instance=ExtResource("3")]
-transform = Transform3D(0.864573, 0, 0.502507, 0, 1, 0, -0.502507, 0, 0.864573, 219.638, 0.12774, -7.11659)
-
-[node name="Tarmac" parent="PitArea" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.7094, 0)
-visible = false
-
-[node name="PitBuilding" parent="PitArea" index="1"]
-visible = false
-
-[node name="CarSpawner" parent="PitArea" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.0922, 1.4, -2.02055)
-
-[node name="Marker3D" parent="PitArea/CarSpawner" index="0"]
-transform = Transform3D(-0.912227, 0, 0.409684, 0, 1, 0, -0.409684, 0, -0.912227, 11.1642, 0, -12.0217)
 
 [node name="test_track" parent="." instance=ExtResource("6_8augd")]
 
@@ -55,6 +38,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6khby")
 [node name="FenceTransparentR_001" parent="test_track" index="36"]
 surface_material_override/0 = SubResource("StandardMaterial3D_6khby")
 
-[editable path="PitArea"]
-[editable path="PitArea/CarSpawner"]
 [editable path="test_track"]
