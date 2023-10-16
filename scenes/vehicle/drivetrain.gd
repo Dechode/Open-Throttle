@@ -72,7 +72,7 @@ func set_selected_gear(gear):
 
 
 func shift_up():
-	if selected_gear < drivetrain_params.gear_ratios.size():
+	if selected_gear + 1 <= drivetrain_params.gear_ratios.size():
 		selected_gear += 1
 		last_shift_time = Time.get_ticks_msec()
 #		set_selected_gear(selected_gear)
