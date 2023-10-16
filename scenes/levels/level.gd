@@ -116,6 +116,7 @@ func set_checkpoints():
 	for pos in checkpoint_positions:
 		var checkpoint = checkpoint_scene.instantiate()
 		checkpoint.transform = pos.transform
+		checkpoint.is_start_or_finish = false
 		add_child(checkpoint)
 		checkpoints.append(checkpoint)
 	
