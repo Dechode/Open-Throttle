@@ -2,6 +2,7 @@ class_name GameLevel
 extends Node3D
 
 const lighting_scene = preload("res://scenes/lighting.tscn")
+const checkpoint_scene = preload("res://scenes/checkpoint.tscn")
 
 enum LEVEL_TYPE {
 	RACE_TRACK,
@@ -16,11 +17,17 @@ var pit_spawns := []
 var grid_spawns := []
 
 var car_spawner := CarSpawner.new()
+var start_position: Node3D = null
+var end_position: Node3D = null
+var checkpoint_positions := [] # Used for imported positions
+var checkpoints := []
 
 
 func _ready() -> void:
 	process_children()
 	reset_spawn_points()
+	set_checkpoints()
+	
 	add_child(lighting_scene.instantiate())
 	car_spawner.reset_grid()
 
@@ -37,6 +44,21 @@ func process_children():
 		elif child.name.begins_with("pitspawn-"):
 			print_debug("Found pit spawn point")
 			pit_spawns.append(child)
+		
+		elif child.name.begins_with("checkpoint-"):
+			if child is Node3D:
+				print_debug("Found checkpoint")
+				checkpoint_positions.append(child)
+		
+		elif child.name.begins_with("start-checkpoint-"):
+			if child is Node3D:
+				print_debug("Found start checkpoint")
+				start_position = child
+		
+		elif child.name.begins_with("end-checkpoint-"):
+			if child is Node3D:
+				print_debug("Found end checkpoint")
+				end_position = child
 		
 		elif child.name.begins_with("tarmac-"):
 			print_debug("Found tarmac")
@@ -68,8 +90,42 @@ func process_children():
 				if grand_child is StaticBody3D:
 					grand_child.add_to_group("grass", true)
 		
+		if child is CheckPoint:
+			print_debug("Found Checkpoint")
+			checkpoints.append(child)
+		
 	if grid_spawns.size() == 0 and pit_spawns.size() == 0:
 		push_warning("No spawn points found")
+
+
+func set_checkpoints():
+	if checkpoints.size() > 0:
+		print_debug("Checkpoints already set")
+		return
+	
+	if start_position != null:
+		var start_checkpoint := checkpoint_scene.instantiate()
+		start_checkpoint.transform = start_position.transform
+		start_checkpoint.is_start_or_finish = true
+		add_child(start_checkpoint)
+		
+		checkpoints.append(start_checkpoint)
+	else:
+		push_warning("No start position found")
+	
+	for pos in checkpoint_positions:
+		var checkpoint = checkpoint_scene.instantiate()
+		checkpoint.transform = pos.transform
+		add_child(checkpoint)
+		checkpoints.append(checkpoint)
+	
+	if end_position != null:
+		var end_checkpoint := checkpoint_scene.instantiate()
+		end_checkpoint.transform = end_position.transform
+		end_checkpoint.is_start_or_finish = true
+		add_child(end_checkpoint)
+		
+		checkpoints.append(end_checkpoint)
 
 
 func reset_spawn_points():
