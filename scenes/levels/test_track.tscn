@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv81034u4rrsy"]
+[gd_scene load_steps=4 format=3 uid="uid://dv81034u4rrsy"]
 
 [ext_resource type="Texture2D" uid="uid://cttappl0m3krw" path="res://assets/textures/chicken_wire.png" id="5_8g2bn"]
 [ext_resource type="PackedScene" uid="uid://bjjy32i7bu207" path="res://scenes/levels/race_tracks/test_track.blend" id="6_8augd"]
-[ext_resource type="PackedScene" uid="uid://c4fyi5b3uwgru" path="res://scenes/checkpoint.tscn" id="6_xel0h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6khby"]
 transparency = 2
@@ -16,17 +15,6 @@ texture_filter = 5
 
 [node name="world" type="Node3D"]
 
-[node name="CheckPoint" parent="." instance=ExtResource("6_xel0h")]
-transform = Transform3D(-0.968873, 0, 0.247557, 0, 1, 0, -0.247557, 0, -0.968873, 246.626, -2.00977, 103.711)
-
-[node name="CheckPoint2" parent="." instance=ExtResource("6_xel0h")]
-transform = Transform3D(0.28373, 0, 0.958904, 0, 1, 0, -0.958904, 0, 0.28373, 135.51, -2.00977, 312.178)
-is_start_or_finish = false
-
-[node name="CheckPoint3" parent="." instance=ExtResource("6_xel0h")]
-transform = Transform3D(-0.113359, 0, 0.993554, 0, 1, 0, -0.993554, 0, -0.113359, 6.90474, -2.00974, 23.4554)
-is_start_or_finish = false
-
 [node name="test_track" parent="." instance=ExtResource("6_8augd")]
 
 [node name="FenceTransparentR" parent="test_track" index="18"]
@@ -37,5 +25,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6khby")
 
 [node name="FenceTransparentR_001" parent="test_track" index="36"]
 surface_material_override/0 = SubResource("StandardMaterial3D_6khby")
+
+[node name="Tree2Particle" parent="test_track" index="60"]
+visible = false
+
+[node name="Tree2Mesh" parent="test_track" index="65"]
+visible = false
 
 [editable path="test_track"]
