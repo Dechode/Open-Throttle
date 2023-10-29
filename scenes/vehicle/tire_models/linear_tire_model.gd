@@ -2,8 +2,8 @@ class_name LinearTireModel
 extends BaseTireModel
 
 
-func _get_forces(normal_load: float, total_mu: float, grip: float, contact_patch := 0.0, 
-				slip := Vector2.ZERO, stiff := Vector2.ZERO,
+func _get_forces(_normal_load: float, _total_mu: float, grip: float, _contact_patch := 0.0, 
+				slip := Vector2.ZERO, _stiff := Vector2.ZERO,
 				cornering_stiff := Vector2.ZERO) -> Vector3:
 	
 	var normalised_sa: float = abs(slip.x) / peak_sa

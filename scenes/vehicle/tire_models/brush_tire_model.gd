@@ -2,7 +2,7 @@ class_name BrushTireModel
 extends BaseTireModel
 
 
-func _get_forces(normal_load: float, total_mu: float, grip: float, contact_patch := 0.0, 
+func _get_forces(_normal_load: float, _total_mu: float, grip: float, contact_patch := 0.0, 
 				slip := Vector2.ZERO, stiff := Vector2.ZERO,
 				cornering_stiff := Vector2.ZERO) -> Vector3:
 	
