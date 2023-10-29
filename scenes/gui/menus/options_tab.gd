@@ -70,6 +70,7 @@ func _ready() -> void:
 	$FFB/VBoxContainer/Options/Values/FFBMinForce.value = OptionsManager.get_config_value("ffb_min_force") * 100
 	$FFB/VBoxContainer/Options/Values/FFBFrontForce.value = OptionsManager.get_config_value("ffb_front_force") * 100
 	$FFB/VBoxContainer/Options/Values/FFBRearForce.value = OptionsManager.get_config_value("ffb_rear_force") * 100
+	$GamePlay/VBoxContainer/GamepadSteering/HSlider.value = OptionsManager.get_config_value("gamepad_steering")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -199,3 +200,7 @@ func _on_ffb_front_force_value_changed(value: float) -> void:
 
 func _on_ffb_rear_force_value_changed(value: float) -> void:
 	OptionsManager.set_config_value("ffb_rear_force", value * 0.01)
+
+
+func _on_steering_linearity_changed(value: float) -> void:
+	OptionsManager.set_config_value("gamepad_steering", value)
