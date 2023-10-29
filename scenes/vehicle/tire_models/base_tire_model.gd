@@ -11,10 +11,10 @@ const TIRE_TEMP_CURVE = preload("res://resources/tire_temp_curve.tres")
 # Possible input parameters for tire model
 #export var tire_rated_pressure := 2.0
 
-# Possible variables for force calculations
 #var tire_pressure := 2.0
 #var tire_ratio := 0.5
 #var tire_rim_size := 16.0
+#var camber := 0.0 # Camber angle in degrees
 
 var tire_wear := 0.0
 var load_sensitivity := 1.0
@@ -31,7 +31,7 @@ var peak_sr := 0.09
 
 # Override this
 func _get_forces(_normal_load: float, _total_mu: float, _grip: float, _contact_patch := 0.0, 
-				_slip := Vector2.ZERO, stiff := Vector2.ZERO,
+				_slip := Vector2.ZERO, _stiff := Vector2.ZERO,
 				_cornering_stiff := Vector2.ZERO) -> Vector3:
 	return Vector3.ZERO
 
@@ -59,8 +59,11 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 
 func update_tire_wear(prev_wear: float, friction_power: float, delta: float) -> float:
 	# From Speed Dreams wiki: https://sourceforge.net/p/speed-dreams/wiki/TireTempDeg
+	tire_wear = prev_wear
 	var wear_rate := 0.000000015
-	return prev_wear + friction_power * wear_rate * delta
+	var delta_wear := clampf(friction_power * wear_rate * delta, -0.1, 0.1)
+	tire_wear += delta_wear
+	return tire_wear
 
 
 func update_tire_temps(prev_temp: float, friction_power: float, speed: float, 
@@ -79,11 +82,11 @@ func update_tire_temps(prev_temp: float, friction_power: float, speed: float,
 	
 	var delta_temp := heating - cooling * (prev_temp - ambient_temp)
 	delta_temp *= delta
-#	delta_temp = clamp(delta_temp, -1, 1)
+	delta_temp = clamp(delta_temp, -0.2, 0.2)
 	
 	prev_temp += delta_temp
 	tire_temperature = prev_temp
-	return prev_temp
+	return tire_temperature
 
 
 func update_load_sensitivity(normal_load: float) -> float:
@@ -106,7 +109,7 @@ func get_tire_stiffness() -> Vector2:
 
 func get_contact_patch_length() -> float:
 	# TODO Make load and possible pressure dependant?
-	return 2 * tire_radius * 0.25
+	return 0.5 * tire_radius
 
 
 func get_pneumatic_trail(slip_angle: float, cornering_stiff: float, grip: float) -> float:
