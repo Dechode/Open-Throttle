@@ -109,12 +109,12 @@ func update_input_devices():
 	print_debug(steering_device_sec)
 
 
-func get_steering_input():
-	var steer_left = max(Input.get_action_strength("steer_left"), 
+func get_steering_input() -> float:
+	var steer_left := maxf(Input.get_action_strength("steer_left"), 
 						Input.get_action_strength("steer_left_secondary"))
-	var steer_right = max(Input.get_action_strength("steer_right"), 
+	var steer_right := maxf(Input.get_action_strength("steer_right"), 
 						Input.get_action_strength("steer_right_secondary"))
-	var steering_input = steer_left - steer_right
+	var steering_input := steer_left - steer_right
 	return steering_input
 
 
