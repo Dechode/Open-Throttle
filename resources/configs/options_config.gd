@@ -28,6 +28,7 @@ extends Resource
 "fullscreen" : false,
 "vsync" : true,
 "steering_interpolation" : true,
+"gamepad_steering" : 1.0,
 "master_audio_vol" : 0.5,
 "shadows" : true,
 "ffb_enabled" : false,

@@ -1,6 +1,8 @@
 class_name PlayerDriver
 extends Driver
 
+const GAMEPAD_STEERING_CURVE = preload("res://resources/gamepad_steering_curve.tres")
+
 var ffb := FFBPlugin.new()
 var has_ffb := false
 var ffb_effect_id := -1
@@ -63,21 +65,20 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	brake_input = InputManager.get_brake_input()
-	var raw_steering_input = InputManager.get_steering_input()
+	var raw_steering_input := InputManager.get_steering_input()
 	throttle_input = InputManager.get_throttle_input()
 	handbrake_input = InputManager.get_handbrake_input()
 	clutch_input = InputManager.get_clutch_input()
 	
-#	VehicleAPI.car.wheel_bl.tire_wear = car.wheel_bl.tire_wear
-#	VehicleAPI.car.wheel_br.tire_wear = car.wheel_br.tire_wear
-#	VehicleAPI.car.wheel_fl.tire_wear = car.wheel_fl.tire_wear
-#	VehicleAPI.car.wheel_fr.tire_wear = car.wheel_fr.tire_wear
+	var pad_steering: float = GAMEPAD_STEERING_CURVE.sample_baked(abs(raw_steering_input)) * sign(raw_steering_input)
+	
+	var steering := lerpf(raw_steering_input, pad_steering, OptionsManager.get_config_value("gamepad_steering"))
 	
 		##### Steerin with steer speed #####
 	if OptionsManager.get_config_value("steering_interpolation"):
-		steering_input = steer_lerp(raw_steering_input, steering_input, steer_speed, delta)
+		steering_input = steer_lerp(steering, steering_input, steer_speed, delta)
 	else:
-		steering_input = raw_steering_input
+		steering_input = steering
 	
 #	if abs(car.local_vel.z) > 2.0:
 	if OptionsManager.get_config_value("ffb_enabled"):

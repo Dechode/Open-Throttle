@@ -36,6 +36,25 @@ text = "Use steering interpolation"
 [node name="CheckButton" type="CheckButton" parent="GamePlay/VBoxContainer/SteeringInterpolation"]
 layout_mode = 2
 
+[node name="GamepadSteering" type="HBoxContainer" parent="GamePlay/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GamePlay/VBoxContainer/GamepadSteering"]
+layout_mode = 2
+text = "Steering linearity:	    Linear"
+
+[node name="HSlider" type="HSlider" parent="GamePlay/VBoxContainer/GamepadSteering"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Label2" type="Label" parent="GamePlay/VBoxContainer/GamepadSteering"]
+layout_mode = 2
+text = "Non linear"
+
 [node name="Graphics" type="TabBar" parent="."]
 visible = false
 layout_mode = 2
@@ -625,6 +644,7 @@ max_value = 150.0
 suffix = "%"
 
 [connection signal="toggled" from="GamePlay/VBoxContainer/SteeringInterpolation/CheckButton" to="." method="_on_steering_interpolation_toggled"]
+[connection signal="value_changed" from="GamePlay/VBoxContainer/GamepadSteering/HSlider" to="." method="_on_steering_linearity_changed"]
 [connection signal="item_selected" from="Graphics/VBoxContainer/AspectRatio/OptionButton" to="." method="_on_aspect_ratio_selected"]
 [connection signal="item_selected" from="Graphics/VBoxContainer/Resolution/OptionButton" to="." method="_on_resolution_selected"]
 [connection signal="toggled" from="Graphics/VBoxContainer/Fullscreen/CheckButton" to="." method="_on_fullscreen_toggled"]
