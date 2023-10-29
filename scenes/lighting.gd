@@ -10,7 +10,6 @@ func _ready() -> void:
 	time_multiplier = SessionManager.time_multiplier
 	$DirectionalLight3D.shadow_enabled = OptionsManager.get_config_value("shadows")
 	var mult := 1.0 / 86400 * time_multiplier
-	print_debug(mult)
 	$AnimationPlayer.play("day_night_cycle", -1, mult)
 	$AnimationPlayer.seek(wrapf((time_of_day / 24) + 0.25, 0.0, 1.0))
 

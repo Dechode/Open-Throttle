@@ -6,8 +6,8 @@ func pacejka(slip, B, C, D, E, normal_load):
 	return normal_load * D * sin(C * atan(B * slip - E * (B * slip - atan(B * slip))))
 
 
-func _get_forces(normal_load: float, total_mu: float, grip: float, contact_patch := 0.0, 
-				slip := Vector2.ZERO, stiff := Vector2.ZERO,
+func _get_forces(normal_load: float, total_mu: float, grip: float, _contact_patch := 0.0, 
+				slip := Vector2.ZERO, _stiff := Vector2.ZERO,
 				cornering_stiff := Vector2.ZERO) -> Vector3:
 	
 	var c_lat  := 0.7 + tire_stiffness * 0.50
