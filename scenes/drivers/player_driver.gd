@@ -15,6 +15,8 @@ func _ready():
 	# Has to be call_deferred so the car reference is updated in VehicleAPI when instantiating the gui 
 	car.add_child.call_deferred((load("res://scenes/gui/gui.tscn").instantiate()))
 	
+	steer_speed = OptionsManager.get_config_value("steer_speed")
+	
 	var devices := []
 	if InputManager.steering_device >= 0:
 		devices.append(InputManager.steering_device)
