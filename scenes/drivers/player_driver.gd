@@ -55,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_lights") or event.is_action_pressed("toggle_lights_secondary"):
 		car.headlights.toggle_lights()
 		car.taillights.toggle_lights()
-	if event.is_action_pressed("reset_car"):
+	if event.is_action_pressed("reset_car") or event.is_action_pressed("reset_car_secondary"):
 		car.reset_car()
 
 
