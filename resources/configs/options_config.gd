@@ -3,6 +3,7 @@ extends Resource
 
 @export var config := {
 "input_map": {},
+"steer_speed": 1.0,
 "steer_left_inverted": 0,
 "steer_left_inverted_sec": 0,
 "steer_right_inverted": 0,
