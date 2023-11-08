@@ -26,13 +26,11 @@ var clutch_reaction_torque = 0.0
 var drive_reaction_torque = 0.0
 
 var fuel: float = 0.0
-#var torque_out: float = 0.0
 var rpm: float = 0.0
 
 var rear_brake_torque: float = 0.0
 var front_brake_torque: float = 0.0
 
-#var selected_gear: int = 0
 
 var speedo: float = 0.0
 
@@ -54,6 +52,8 @@ var taillights: TailLights
 var headlights: HeadLights
 var lap_timer := LapTimer.new()
 
+var wheels := []
+
 @onready var wheel_fl = $Wheel_fl as RaycastSuspension
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
 @onready var wheel_bl = $Wheel_bl as RaycastSuspension
@@ -65,9 +65,11 @@ func _init() -> void:
 	drivetrain = DriveTrain.new()
 	car_params = CarParameters.new()
 	driver = Driver.new()
+	
 
 
 func _ready() -> void:
+	wheels = [wheel_bl, wheel_br, wheel_fl, wheel_fr]
 	fuel = car_params.fuel_tank_size * car_params.fuel_percentage * 0.01
 	self.mass += fuel * PETROL_KG_L
 	clutch.friction = car_params.clutch_friction
@@ -85,11 +87,10 @@ func _ready() -> void:
 	wheel_bl.set_params(car_params.wheel_params_bl.duplicate(true))
 	wheel_br.set_params(car_params.wheel_params_br.duplicate(true))
 	
-	taillights = get_node("TailLights") #as TailLights
-	headlights = get_node("HeadLights") #as HeadLights
-#	print(taillights)
-	assert(taillights)
-	assert(headlights)
+	taillights = get_node("TailLights") 
+	headlights = get_node("HeadLights") 
+	
+	apply_central_force(Vector3.UP * 1000.0)
 
 
 func _physics_process(delta):
@@ -138,9 +139,9 @@ func _physics_process(delta):
 									brake_input, local_vel.z)
 	
 	apply_drag_force()
-	
+
 	self.linear_damp = 0.0
-	if abs(local_vel.z) < 2.0:
+	if local_vel.length() < 2.0:
 		self.linear_damp = 1.0
 	
 	##### Anti-Roll Bar and Apply Forces #####
@@ -268,3 +269,24 @@ func get_self_aligning_torques() -> Vector2:
 	vec.x = (wheel_fl.force_vec.z + wheel_fr.force_vec.z) * 0.5 #/ (self.mass * 0.1)
 	vec.y = (wheel_bl.force_vec.z + wheel_br.force_vec.z) * 0.5 #/ (self.mass * 0.1)
 	return vec
+
+
+func reset_car():
+	if local_vel.length() > 1.0:
+		return
+	
+	print_debug("Car reset called")
+	
+	freeze = true
+	
+	var new_pos := global_position
+	new_pos.y += 2.0
+	
+	var new_rot := rotation
+	new_rot.z = 0.0
+	
+	call_deferred("set_global_position", new_pos)
+	call_deferred("set_rotation", new_rot)
+	
+	call_deferred("set_freeze_enabled", false)
+	
