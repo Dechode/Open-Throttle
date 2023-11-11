@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc7kakpgsssyj"]
+[gd_scene load_steps=3 format=3 uid="uid://dc7kakpgsssyj"]
 
 [ext_resource type="Script" path="res://scenes/gui/menus/pause_menu.gd" id="1_e071d"]
+[ext_resource type="PackedScene" uid="uid://ct2poygblqrg5" path="res://scenes/gui/menus/options_tab.tscn" id="2_slckx"]
 
 [node name="PauseMenu" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e071d")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="MenuPanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 13
@@ -21,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,33 +38,72 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="Resume" type="Button" parent="Panel/VBoxContainer"]
+[node name="Resume" type="Button" parent="MenuPanel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
+focus_neighbor_top = NodePath("../QuitToMenu")
+focus_neighbor_bottom = NodePath("../ResetCar")
 text = "Resume"
 
-[node name="ResetCar" type="Button" parent="Panel/VBoxContainer"]
+[node name="ResetCar" type="Button" parent="MenuPanel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../GotoPits")
 text = "Reset car"
 
-[node name="GotoPits" type="Button" parent="Panel/VBoxContainer"]
+[node name="GotoPits" type="Button" parent="MenuPanel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
+focus_neighbor_top = NodePath("../ResetCar")
+focus_neighbor_bottom = NodePath("../Options")
 text = "Go to pits"
 
-[node name="Options" type="Button" parent="Panel/VBoxContainer"]
+[node name="Options" type="Button" parent="MenuPanel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
+focus_neighbor_top = NodePath("../GotoPits")
+focus_neighbor_bottom = NodePath("../QuitToMenu")
 text = "Options"
 
-[node name="QuitToMenu" type="Button" parent="Panel/VBoxContainer"]
+[node name="QuitToMenu" type="Button" parent="MenuPanel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Resume")
 text = "Quit To Menu"
 
-[connection signal="pressed" from="Panel/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/ResetCar" to="." method="_on_reset_car_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/GotoPits" to="." method="_on_goto_pits_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
+[node name="OptionsPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" parent="." instance=ExtResource("2_slckx")]
+visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HideOptionsButtons" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 45.0
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/ResetCar" to="." method="_on_reset_car_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/GotoPits" to="." method="_on_goto_pits_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
+[connection signal="pressed" from="HideOptionsButtons" to="." method="_on_hide_options_pressed"]
+
+[editable path="Options"]
