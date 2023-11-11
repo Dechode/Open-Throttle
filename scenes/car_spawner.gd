@@ -12,11 +12,12 @@ func _ready():
 func reset_grid():
 	if RaceControl.grid.size() > spawn_points.size():
 		push_warning("No more spawn points in spawn_points")
-	else:
-		var count = 0
-		for car in RaceControl.grid:
-			add_car(car, count)
-			count += 1
+		return
+	
+	var count = 0
+	for car in RaceControl.grid:
+		add_car(car, count)
+		count += 1
 
 
 func add_spawn_point(node: Node3D):
@@ -35,6 +36,10 @@ func get_grid():
 
 
 func add_car(car, grid_id):
+	if not car:
+		push_warning("Car is not valid")
+		return
+	
 	for child in car.get_children():
 		if not child is BaseCar:
 			continue
