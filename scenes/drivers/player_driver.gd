@@ -2,12 +2,14 @@ class_name PlayerDriver
 extends Driver
 
 const GAMEPAD_STEERING_CURVE = preload("res://resources/gamepad_steering_curve.tres")
+const PAUSE_MENU_SCENE = preload("res://scenes/gui/menus/pause_menu.tscn")
 
 var ffb := FFBPlugin.new()
 var has_ffb := false
 var ffb_effect_id := -1
 
 var steering_device := -1
+var pause_menu: Node = null
 
 
 func _ready():
@@ -16,6 +18,9 @@ func _ready():
 	car.add_child.call_deferred((load("res://scenes/gui/gui.tscn").instantiate()))
 	
 	steer_speed = OptionsManager.get_config_value("steer_speed")
+	pause_menu = PAUSE_MENU_SCENE.instantiate()
+	
+	get_tree().root.add_child(pause_menu)
 	
 	var devices := []
 	if InputManager.steering_device >= 0:
@@ -57,6 +62,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		car.taillights.toggle_lights()
 	if event.is_action_pressed("reset_car") or event.is_action_pressed("reset_car_secondary"):
 		car.reset_car()
+	if event.is_action_pressed("pause"):
+		pause_menu.pause()
 
 
 func _process(delta: float) -> void:
