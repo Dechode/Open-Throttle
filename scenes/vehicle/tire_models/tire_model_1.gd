@@ -4,12 +4,22 @@ extends Resource
 const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 const TIRE_TEMP_CURVE = preload("res://resources/tire_temp_curve.tres")
 
-@export var tire_stiffness := 0.5
+@export var tire_stiffness := 0.25
 @export var tire_width := 0.225
 @export var tire_radius := 0.3
+@export var tire_rated_pressure := 2.0
+
+@export var lateral_buildup := Curve.new()
+@export var longitudinal_buildup := Curve.new()
+
+@export var lateral_falloff := Curve.new()
+@export var longitudinal_falloff := Curve.new()
+
+@export var load_sens0 := 1.5
+@export var load_sens1 := 0.9
+@export var tire_rated_load := 6000.0 # This should probably be calculated from tire input parameters?
 
 # Possible input parameters for tire model
-#export var tire_rated_pressure := 2.0
 
 #var tire_pressure := 2.0
 #var tire_ratio := 0.5
@@ -20,7 +30,6 @@ var tire_wear := 0.0
 var load_sensitivity := 1.0
 var tire_mass := 15.0
 
-var tire_rated_load := 7000.0 # This should probably be calculated from tire input parameters?
 var tire_temperature := 20.0
 var max_tire_temperature := 130.0
 
@@ -33,15 +42,53 @@ var peak_sr := 0.09
 func _get_forces(_normal_load: float, _total_mu: float, _grip: float, _contact_patch := 0.0, 
 				_slip := Vector2.ZERO, _stiff := Vector2.ZERO,
 				_cornering_stiff := Vector2.ZERO) -> Vector3:
-	return Vector3.ZERO
+	
+	var mu := _total_mu
+	
+	var load_factor := _normal_load / tire_rated_load
+	var peak_sa_deg: float = lerp(12.0, 3.0, tire_stiffness)
+	var delta_sa_deg: float = lerp(4.0, 0.8, tire_stiffness)
+	
+	var sa0 := peak_sa_deg + 0.5 * delta_sa_deg
+	var sa1 := peak_sa_deg - 0.5 * delta_sa_deg
+	peak_sa = deg_to_rad(lerp(sa1, sa0, load_factor))
+	peak_sr = peak_sa * 0.5
+	
+	var normalised_sr := _slip.y / peak_sr
+	var normalised_sa := _slip.x / peak_sa
+	var resultant_slip := sqrt(pow(normalised_sr, 2) + pow(normalised_sa, 2))
+#
+	var sr_modified := resultant_slip * peak_sr
+	var sa_modified := resultant_slip * peak_sa
+	
+	var tire_forces := Vector3.ZERO
+	
+	if abs(_slip.x) < peak_sa:
+		tire_forces.x = lateral_buildup.sample_baked(resultant_slip) * sign(_slip.x)
+	else:
+		tire_forces.x = lateral_falloff.sample_baked(sa_modified - peak_sa) * sign(_slip.x)
+		
+	if abs(_slip.y) < peak_sr:
+		tire_forces.y = longitudinal_buildup.sample_baked(resultant_slip) * sign(_slip.y)
+	else:
+		tire_forces.y = longitudinal_falloff.sample_baked(sr_modified - peak_sr) * sign(_slip.y)
+	
+	tire_forces *= mu * _normal_load * load_sensitivity
+	
+	if resultant_slip != 0:
+		tire_forces.x *= abs(normalised_sa / resultant_slip)
+		tire_forces.y *= abs(normalised_sr / resultant_slip)
+		
+	var pneumatic_trail = get_pneumatic_trail(_slip.x, _cornering_stiff.x, _grip)
+	tire_forces.z = tire_forces.x * pneumatic_trail
+	return tire_forces
 
 
 func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
 	var stiff_vec := get_tire_stiffness()
 	var contact_patch := get_contact_patch_length()
 	var cornering_stiffness := Vector2.ZERO
-	cornering_stiffness.x = 0.5 * stiff_vec.x * (contact_patch * contact_patch)
-	cornering_stiffness.y = 0.5 * stiff_vec.y * (contact_patch * contact_patch)
+	cornering_stiffness = 0.5 * stiff_vec * (contact_patch * contact_patch)
 	
 	var wear_mu := TIRE_WEAR_CURVE.sample_baked(tire_wear)
 	var tire_temp_scalar := tire_temperature / max_tire_temperature
@@ -90,20 +137,15 @@ func update_tire_temps(prev_temp: float, friction_power: float, speed: float,
 
 
 func update_load_sensitivity(normal_load: float) -> float:
-	var width_factor = tire_width / 0.225
-	var max_mu = 2.0 - tire_stiffness * 0.9 + width_factor * 0.5 - 0.5
-	var min_mu = 0.6 + tire_stiffness * 0.35 + width_factor * 0.5 - 0.5
-	var load_factor = clamp(normal_load / tire_rated_load, 0.0, 1.0)
-	load_sensitivity = clamp(min_mu + (1 - load_factor) * (max_mu - min_mu), min_mu, max_mu)
-#	print_debug(load_sensitivity)
+	load_sensitivity = lerpf(load_sens0, load_sens1, normal_load / tire_rated_load)
+	load_sensitivity = clampf(load_sensitivity, 0.1, 4.0)
 	return load_sensitivity
 
 
 func get_tire_stiffness() -> Vector2:
 	# Returns Vector2 where x is lateral stiffness and y is tangential stiffness
 	var stiffness := Vector2.ZERO
-	stiffness.x = 1_500_000 + 5_000_000 * tire_stiffness
-	stiffness.y = 3_000_000 + 7_000_000 * tire_stiffness
+	stiffness = Vector2.ONE * (1_500_000 + 5_000_000 * tire_stiffness)
 	return stiffness
 
 
