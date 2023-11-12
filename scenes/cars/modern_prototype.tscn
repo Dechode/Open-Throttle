@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cgqq6vyvdvh8l"]
+[gd_scene load_steps=31 format=3 uid="uid://cgqq6vyvdvh8l"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_7ykc1"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_a2ien"]
@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_xuxxc"]
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_4kqyc"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_xg1ia"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="6_awec4"]
 [ext_resource type="AudioStream" uid="uid://clpwkrewxb6y5" path="res://assets/audio/engines/wankel/W4_2.2_6000_on.wav" id="6_cc6sa"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_dq5oa"]
 [ext_resource type="AudioStream" uid="uid://e8e2534siar0" path="res://assets/audio/engines/wankel/W4_2.2_6000_off.wav" id="7_txa2s"]
 [ext_resource type="PackedScene" path="res://scenes/vehicle/wang.tscn" id="7_yjusf"]
 
@@ -48,23 +48,47 @@ center_diff = SubResource("Resource_1vt47")
 center_split_fr = 0.4
 
 [sub_resource type="Curve" id="Curve_e345l"]
-_data = [Vector2(0, 0.305263), 0.0, 0.0, 0, 0, Vector2(0.30031, 0.515789), 1.30769, 1.30769, 0, 0, Vector2(0.526316, 1), 0.0, 0.0, 0, 0, Vector2(0.854489, 0.810526), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0433437, 0.305263), 0.0, 0.0, 0, 0, Vector2(0.30031, 0.515789), 1.30769, 1.30769, 0, 0, Vector2(0.526316, 1), 0.0, 0.0, 0, 0, Vector2(0.854489, 0.810526), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
+point_count = 6
 
-[sub_resource type="Resource" id="Resource_ik4h2"]
-script = ExtResource("6_awec4")
+[sub_resource type="Curve" id="Curve_3k576"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yx75p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_f3qwe"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_hhtep"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_nwyik"]
+script = ExtResource("6_dq5oa")
 tire_stiffness = 0.5
 tire_width = 0.335
 tire_radius = 0.345
+tire_rated_pressure = 2.0
+lateral_buildup = SubResource("Curve_3k576")
+longitudinal_buildup = SubResource("Curve_f3qwe")
+lateral_falloff = SubResource("Curve_yx75p")
+longitudinal_falloff = SubResource("Curve_hhtep")
+load_sens0 = 2.8
+load_sens1 = 1.7
+tire_rated_load = 8000.0
 
 [sub_resource type="Resource" id="Resource_6cxmn"]
 script = ExtResource("3_xg1ia")
-tire_model = SubResource("Resource_ik4h2")
-spring_length = 0.13
-spring_stiffness = 100.0
-bump_ls = 9.0
+tire_model = SubResource("Resource_nwyik")
+spring_length = 0.1
+spring_stiffness = 130.0
+bump_ls = 10.0
 bump_hs = 8.0
-rebound_ls = 12.0
+rebound_ls = 13.0
 rebound_hs = 9.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
@@ -146,10 +170,10 @@ _data = [Vector2(0, 7), 0.0, -57.0519, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, V
 point_count = 5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxfeu"]
-size = Vector3(1.96, 0.66, 4.17)
+size = Vector3(1.96, 0.66, 4.26579)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qyfyt"]
-size = Vector3(0.838463, 1, 2.07087)
+size = Vector3(0.838463, 0.938971, 2.07087)
 
 [node name="ModernPrototype" type="Node3D"]
 
@@ -158,34 +182,35 @@ mass = 850.0
 car_params = SubResource("Resource_kc7uj")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.104363, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.0268244, 1.52585)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_br" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ym5fw")
 
 [node name="Wheel_bl" parent="RigidBodyCar" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.104363, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.0268244, 1.52585)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_bl" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ym5fw")
 
 [node name="Wheel_fr" parent="RigidBodyCar" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.104363, -1.31173)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.0268244, -1.28588)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fr" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ym5fw")
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.104363, -1.31173)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.0268244, -1.28588)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ym5fw")
 
 [node name="AudioController" parent="RigidBodyCar" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103385, 0.025846)
 stream_engine_main_on = ExtResource("6_cc6sa")
 stream_engine_main_off = ExtResource("7_txa2s")
 db_blend_curve_on = SubResource("Curve_5585a")
@@ -196,6 +221,9 @@ recorded_rpm_off = 6000
 rpm_interpolation_frames = 8.0
 idle_noise_speed = 5.0
 
+[node name="CameraSystem" parent="RigidBodyCar" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103385, 0.025846)
+
 [node name="CameraPosTarget" parent="RigidBodyCar/CameraSystem/HoodCam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13318, -1.67026)
 
@@ -203,7 +231,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13318, -1.67026)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229255, -3.54343)
 
 [node name="HeadLights" parent="RigidBodyCar" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0594146, -2.00388)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0439702, -1.97803)
 
 [node name="SpotLight3D" parent="RigidBodyCar/HeadLights" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.680705, 0, 0)
@@ -212,7 +240,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.680705, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681, 0, 0)
 
 [node name="TailLights" parent="RigidBodyCar" index="7"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.0182949, 2.05648)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0850899, 2.08233)
 
 [node name="SpotLight3D" parent="RigidBodyCar/TailLights" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.727692, 0, 0)
@@ -221,30 +249,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.727692, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.728, 0, 0)
 
 [node name="modern_prototype" parent="RigidBodyCar" instance=ExtResource("2_h61lx")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.539707, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.436322, 0.025846)
 
 [node name="WheelFL" parent="RigidBodyCar/modern_prototype" index="0"]
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBodyCar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.068, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0353848, -0.0121496)
 shape = SubResource("BoxShape3D_fxfeu")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBodyCar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162298, 0.025846)
 shape = SubResource("BoxShape3D_qyfyt")
 
 [node name="Wang" parent="RigidBodyCar" instance=ExtResource("7_yjusf")]
-transform = Transform3D(1, 0, 0, 0, 0.987688, 0.156434, 0, -0.156434, 0.987688, 0, 0.44, 2.04)
+transform = Transform3D(1, 0, 0, 0, 0.987688, 0.156434, 0, -0.156434, 0.987688, 0, 0.543385, 2.06585)
 max_lift_coeff = 3.0
 max_drag_coeff = 1.5
 
 [node name="Wang2" parent="RigidBodyCar" instance=ExtResource("7_yjusf")]
-transform = Transform3D(1, 0, 0, 0, 0.987688, 0.156434, 0, -0.156434, 0.987688, 0, 0.00999999, -1.77)
+transform = Transform3D(1, 0, 0, 0, 0.987688, 0.156434, 0, -0.156434, 0.987688, 0, 0.113385, -1.74415)
 max_lift_coeff = 1.0
 max_drag_coeff = 0.6
 
 [node name="Wang3" parent="RigidBodyCar" instance=ExtResource("7_yjusf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.326615, 0.025846)
 max_lift_coeff = 0.7
 max_drag_coeff = 0.4
 
