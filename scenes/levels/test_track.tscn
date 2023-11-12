@@ -26,10 +26,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6khby")
 [node name="FenceTransparentR_001" parent="test_track" index="36"]
 surface_material_override/0 = SubResource("StandardMaterial3D_6khby")
 
-[node name="Tree2Particle" parent="test_track" index="60"]
+[node name="Tree2Particle" parent="test_track" index="59"]
 visible = false
 
-[node name="Tree2Mesh" parent="test_track" index="65"]
+[node name="Tree2Mesh" parent="test_track" index="67"]
 visible = false
+
+[node name="Spot" parent="test_track" index="73"]
+spot_range = 55.336
+
+[node name="Spot_001" parent="test_track" index="74"]
+spot_range = 55.336
+
+[node name="Spot_002" parent="test_track" index="75"]
+spot_range = 55.336
 
 [editable path="test_track"]
