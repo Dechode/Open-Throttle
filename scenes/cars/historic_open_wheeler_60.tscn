@@ -11,54 +11,54 @@
 [ext_resource type="Texture2D" uid="uid://d2lctyqtx7drx" path="res://assets/models/cars_blend/colorpalette8x8.png" id="6_d4olg"]
 [ext_resource type="AudioStream" uid="uid://c4wmy7tgttoxj" path="res://assets/audio/engines/V8/V8_USA_7.4_3000_off.wav" id="6_h5d5v"]
 
-[sub_resource type="Resource" id="Resource_s88iw"]
+[sub_resource type="Resource" id="Resource_6hd1t"]
 script = ExtResource("2_oxhmh")
 diff_preload = 50.0
 power_ratio = 2.0
 coast_ratio = 1.0
 diff_type = 0
 
-[sub_resource type="Resource" id="Resource_gpwk8"]
+[sub_resource type="Resource" id="Resource_wncv6"]
 script = ExtResource("2_oxhmh")
 diff_preload = 50.0
 power_ratio = 2.0
 coast_ratio = 1.0
 diff_type = 0
 
-[sub_resource type="Resource" id="Resource_0m8n6"]
+[sub_resource type="Resource" id="Resource_s0t74"]
 script = ExtResource("2_oxhmh")
 diff_preload = 50.0
 power_ratio = 2.0
 coast_ratio = 1.0
 diff_type = 0
 
-[sub_resource type="Resource" id="Resource_evuw5"]
+[sub_resource type="Resource" id="Resource_3vdgl"]
 script = ExtResource("3_biv70")
 drivetype = 1
-gear_ratios = [2.65, 1.8, 1.4, 1.0, 0.9]
+gear_ratios = [2.65, 1.8, 1.4, 1.0, 0.85]
 final_drive = 3.7
 reverse_ratio = 3.0
 gear_inertia = 0.15
 automatic = false
 drivetrain_efficiency = 0.9
-rear_diff = SubResource("Resource_0m8n6")
-front_diff = SubResource("Resource_gpwk8")
-center_diff = SubResource("Resource_s88iw")
+rear_diff = SubResource("Resource_s0t74")
+front_diff = SubResource("Resource_wncv6")
+center_diff = SubResource("Resource_6hd1t")
 center_split_fr = 0.4
 
-[sub_resource type="Curve" id="Curve_byysv"]
+[sub_resource type="Curve" id="Curve_8ukdf"]
 _data = [Vector2(0, 0.354545), 0.0, 0.238084, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_l638h"]
+[sub_resource type="Resource" id="Resource_bdq3w"]
 script = ExtResource("4_6sx12")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 
-[sub_resource type="Resource" id="Resource_b3h5i"]
+[sub_resource type="Resource" id="Resource_x0ox1"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_l638h")
+tire_model = SubResource("Resource_bdq3w")
 spring_length = 0.1
 spring_stiffness = 25.0
 bump_ls = 4.0
@@ -69,15 +69,15 @@ lo_hi_threshold = 100.0
 wheel_mass = 25.0
 anti_roll = 1.0
 
-[sub_resource type="Resource" id="Resource_sh40l"]
+[sub_resource type="Resource" id="Resource_a4a7h"]
 script = ExtResource("4_6sx12")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 
-[sub_resource type="Resource" id="Resource_cxeff"]
+[sub_resource type="Resource" id="Resource_lfyjq"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_sh40l")
+tire_model = SubResource("Resource_a4a7h")
 spring_length = 0.1
 spring_stiffness = 25.0
 bump_ls = 4.0
@@ -88,15 +88,15 @@ lo_hi_threshold = 100.0
 wheel_mass = 25.0
 anti_roll = 1.0
 
-[sub_resource type="Resource" id="Resource_4woqn"]
+[sub_resource type="Resource" id="Resource_5ojli"]
 script = ExtResource("4_6sx12")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
 
-[sub_resource type="Resource" id="Resource_1fd6p"]
+[sub_resource type="Resource" id="Resource_w3kfc"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_4woqn")
+tire_model = SubResource("Resource_5ojli")
 spring_length = 0.1
 spring_stiffness = 35.0
 bump_ls = 4.0
@@ -107,15 +107,15 @@ lo_hi_threshold = 100.0
 wheel_mass = 25.0
 anti_roll = 1.0
 
-[sub_resource type="Resource" id="Resource_n5m4a"]
+[sub_resource type="Resource" id="Resource_mv03o"]
 script = ExtResource("4_6sx12")
 tire_stiffness = 0.5
 tire_width = 0.2
 tire_radius = 0.3
 
-[sub_resource type="Resource" id="Resource_buxol"]
+[sub_resource type="Resource" id="Resource_wqfud"]
 script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_n5m4a")
+tire_model = SubResource("Resource_mv03o")
 spring_length = 0.1
 spring_stiffness = 35.0
 bump_ls = 4.0
@@ -126,7 +126,7 @@ lo_hi_threshold = 100.0
 wheel_mass = 25.0
 anti_roll = 1.0
 
-[sub_resource type="Resource" id="Resource_t3dhu"]
+[sub_resource type="Resource" id="Resource_borcw"]
 script = ExtResource("2_ikkd1")
 max_steer = 0.3
 ackermann = 0.15
@@ -140,20 +140,20 @@ fuel_percentage = 100.0
 max_torque = 300.0
 max_engine_rpm = 10000.0
 rpm_idle = 1500.0
-torque_curve = SubResource("Curve_byysv")
+torque_curve = SubResource("Curve_8ukdf")
 engine_drag = 0.03
 engine_brake = 5.0
 engine_moment = 0.2
 engine_bsfc = 0.3
 clutch_friction = 400.0
-drivetrain_params = SubResource("Resource_evuw5")
+drivetrain_params = SubResource("Resource_3vdgl")
 cd = 0.1
 air_density = 1.225
 frontal_area = 1.0
-wheel_params_fl = SubResource("Resource_1fd6p")
-wheel_params_fr = SubResource("Resource_buxol")
-wheel_params_bl = SubResource("Resource_b3h5i")
-wheel_params_br = SubResource("Resource_cxeff")
+wheel_params_fl = SubResource("Resource_w3kfc")
+wheel_params_fr = SubResource("Resource_wqfud")
+wheel_params_bl = SubResource("Resource_x0ox1")
+wheel_params_br = SubResource("Resource_lfyjq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8g84"]
 albedo_color = Color(0.137255, 0.137255, 0.137255, 1)
@@ -243,7 +243,7 @@ size = Vector3(1.74447, 0.34, 0.39)
 
 [node name="RigidBodyCar" parent="." instance=ExtResource("1_d86ei")]
 mass = 500.0
-car_params = SubResource("Resource_t3dhu")
+car_params = SubResource("Resource_borcw")
 
 [node name="Wheel_br" parent="RigidBodyCar" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.758826, 0, 1.5)

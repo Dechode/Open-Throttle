@@ -7,6 +7,9 @@ const PETROL_KG_L: float = 0.7489
 const NM_2_KW: int = 9549
 const AV_2_RPM: float = 60 / TAU
 
+######### Signals #########
+signal on_gear_change(gear: int)
+
 @export var car_params := CarParameters.new()
 
 ######### inputs #########
@@ -15,9 +18,6 @@ var steering_input: float = 0.0
 var brake_input: float = 0.0
 var handbrake_input: float = 0.0
 var clutch_input: float = 0.0
-
-######### Signals #########
-signal on_gear_change(gear: int)
 
 ######### Misc #########
 var air_density = 1.225
@@ -52,8 +52,6 @@ var taillights: TailLights
 var headlights: HeadLights
 var lap_timer := LapTimer.new()
 
-var wheels := []
-
 @onready var wheel_fl = $Wheel_fl as RaycastSuspension
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
 @onready var wheel_bl = $Wheel_bl as RaycastSuspension
@@ -69,7 +67,6 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	wheels = [wheel_bl, wheel_br, wheel_fl, wheel_fr]
 	fuel = car_params.fuel_tank_size * car_params.fuel_percentage * 0.01
 	self.mass += fuel * PETROL_KG_L
 	clutch.friction = car_params.clutch_friction
@@ -90,7 +87,6 @@ func _ready() -> void:
 	taillights = get_node("TailLights") 
 	headlights = get_node("HeadLights") 
 	
-	apply_central_force(Vector3.UP * 1000.0)
 
 
 func _physics_process(delta):
@@ -139,7 +135,7 @@ func _physics_process(delta):
 									brake_input, local_vel.z)
 	
 	apply_drag_force()
-
+	
 	self.linear_damp = 0.0
 	if local_vel.length() < 2.0:
 		self.linear_damp = 1.0

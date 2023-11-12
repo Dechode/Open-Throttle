@@ -136,6 +136,7 @@ point_count = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 2
 mass = 700.0
+can_sleep = false
 script = ExtResource("1_ekicj")
 car_params = SubResource("Resource_gl4qt")
 
