@@ -9,8 +9,8 @@ enum TIRE_MODELS {
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	update_params(SessionManager.player_car_setup)
+#func _ready() -> void:
+#	update_params(SessionManager.player_car_setup)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
