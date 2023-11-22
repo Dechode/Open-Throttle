@@ -32,7 +32,7 @@ func update_params(params: CarParameters):
 	$Wheels/VBoxContainer/TireRatio/Slider.value = params.wheel_params_fl.tire_model.tire_ratio
 	$Wheels/VBoxContainer/TireRatio/Label2.text = "%2.2f" % params.wheel_params_fl.tire_model.tire_ratio
 	$Wheels/VBoxContainer/RimSize/Slider.value = params.wheel_params_fl.tire_model.tire_rim_size
-	$Wheels/VBoxContainer/RimSize/Label2.text = "%2.0f" % params.wheel_params_fl.tire_model.tire_rim_size
+	$Wheels/VBoxContainer/RimSize/Label2.text = "%2.1f" % params.wheel_params_fl.tire_model.tire_rim_size
 	
 	$Wheels/VBoxContainer/RearTireStiffness/Slider.value = params.wheel_params_bl.tire_model.tire_stiffness
 	$Wheels/VBoxContainer/RearTireStiffness/Label2.text = str(params.wheel_params_bl.tire_model.tire_stiffness)
@@ -43,7 +43,7 @@ func update_params(params: CarParameters):
 	$Wheels/VBoxContainer/RearTireRatio/Slider.value = params.wheel_params_bl.tire_model.tire_ratio
 	$Wheels/VBoxContainer/RearTireRatio/Label2.text = "%2.2f" % params.wheel_params_bl.tire_model.tire_ratio
 	$Wheels/VBoxContainer/RearRimSize/Slider.value = params.wheel_params_bl.tire_model.tire_rim_size
-	$Wheels/VBoxContainer/RearRimSize/Label2.text = "%2.0f" % params.wheel_params_bl.tire_model.tire_rim_size
+	$Wheels/VBoxContainer/RearRimSize/Label2.text = "%2.1f" % params.wheel_params_bl.tire_model.tire_rim_size
 	
 	$Drivetrain/VBoxContainer/TorqueSplit/Slider.value = params.drivetrain_params.center_split_fr
 	$Drivetrain/VBoxContainer/TorqueSplit/Label2.text = str(params.drivetrain_params.center_split_fr)
@@ -245,13 +245,13 @@ func _on_rear_tire_ratio_changed(value: float) -> void:
 func _on_rim_size_changed(value: float) -> void:
 	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_rim_size = value
 	SessionManager.player_car_setup.wheel_params_fr.tire_model.tire_rim_size = value
-	$Wheels/VBoxContainer/RimSize/Label2.text = "%2.0f" % value
+	$Wheels/VBoxContainer/RimSize/Label2.text = "%2.1f" % value
 
 
 func _on_rear_rim_size_changed(value: float) -> void:
 	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_rim_size = value
 	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_rim_size = value
-	$Wheels/VBoxContainer/RearRimSize/Label2.text = "%2.0f" % value
+	$Wheels/VBoxContainer/RearRimSize/Label2.text = "%2.1f" % value
 
 func _on_torque_split_changed(value: float) -> void:
 	SessionManager.player_car_setup.drivetrain_params.center_split_fr = value
