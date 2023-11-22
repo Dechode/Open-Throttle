@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cafvcju63ehro"]
+[gd_scene load_steps=31 format=3 uid="uid://cafvcju63ehro"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_mejm6"]
 [ext_resource type="Texture2D" uid="uid://qfmdeyepjegi" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.068_baseColor.png" id="2_8n5bo"]
@@ -66,106 +66,26 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_q4k2k"]
-script = ExtResource("6_vkwoq")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-tire_rated_pressure = 2.0
-lateral_buildup = SubResource("Curve_3k576")
-longitudinal_buildup = SubResource("Curve_f3qwe")
-lateral_falloff = SubResource("Curve_yx75p")
-longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.6
-load_sens1 = 1.2
-tire_rated_load = 6000.0
-
-[sub_resource type="Resource" id="Resource_4vbc8"]
-script = ExtResource("3_gawus")
-tire_model = SubResource("Resource_q4k2k")
-spring_length = 0.15
-spring_stiffness = 60.0
-bump_ls = 4.0
-bump_hs = 3.0
-rebound_ls = 5.0
-rebound_hs = 4.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-anti_roll = 5.0
-
-[sub_resource type="Resource" id="Resource_g4m7x"]
-script = ExtResource("6_vkwoq")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-tire_rated_pressure = 2.0
-lateral_buildup = SubResource("Curve_3k576")
-longitudinal_buildup = SubResource("Curve_f3qwe")
-lateral_falloff = SubResource("Curve_yx75p")
-longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.6
-load_sens1 = 1.2
-tire_rated_load = 6000.0
-
-[sub_resource type="Resource" id="Resource_vqacr"]
-script = ExtResource("3_gawus")
-tire_model = SubResource("Resource_g4m7x")
-spring_length = 0.15
-spring_stiffness = 60.0
-bump_ls = 4.0
-bump_hs = 3.0
-rebound_ls = 5.0
-rebound_hs = 4.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-anti_roll = 5.0
-
 [sub_resource type="Resource" id="Resource_1s11v"]
 script = ExtResource("6_vkwoq")
 tire_stiffness = 0.5
+thread_length = 1.6
 tire_width = 0.225
-tire_radius = 0.3
+tire_ratio = 0.4
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.6
-load_sens1 = 1.2
-tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_7e63x"]
 script = ExtResource("3_gawus")
 tire_model = SubResource("Resource_1s11v")
 spring_length = 0.15
-spring_stiffness = 70.0
-bump_ls = 4.0
-bump_hs = 3.0
-rebound_ls = 5.0
-rebound_hs = 4.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-anti_roll = 5.0
-
-[sub_resource type="Resource" id="Resource_en514"]
-script = ExtResource("6_vkwoq")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-tire_rated_pressure = 2.0
-lateral_buildup = SubResource("Curve_3k576")
-longitudinal_buildup = SubResource("Curve_f3qwe")
-lateral_falloff = SubResource("Curve_yx75p")
-longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.6
-load_sens1 = 1.2
-tire_rated_load = 6000.0
-
-[sub_resource type="Resource" id="Resource_r1ho0"]
-script = ExtResource("3_gawus")
-tire_model = SubResource("Resource_en514")
-spring_length = 0.15
-spring_stiffness = 70.0
+spring_stiffness = 50.0
 bump_ls = 4.0
 bump_hs = 3.0
 rebound_ls = 5.0
@@ -180,7 +100,7 @@ max_steer = 0.35
 ackermann = 0.15
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 50000.0
+max_brake_force = 90000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 50.0
@@ -199,9 +119,9 @@ cd = 0.3
 air_density = 1.225
 frontal_area = 2.0
 wheel_params_fl = SubResource("Resource_7e63x")
-wheel_params_fr = SubResource("Resource_r1ho0")
-wheel_params_bl = SubResource("Resource_4vbc8")
-wheel_params_br = SubResource("Resource_vqacr")
+wheel_params_fr = SubResource("Resource_7e63x")
+wheel_params_bl = SubResource("Resource_7e63x")
+wheel_params_br = SubResource("Resource_7e63x")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4i5p"]
 resource_name = "Default_OBJ.069"

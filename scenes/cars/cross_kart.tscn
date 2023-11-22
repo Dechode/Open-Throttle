@@ -84,15 +84,15 @@ longitudinal_falloff = SubResource("Curve_hhtep")
 [sub_resource type="Resource" id="Resource_nevf6"]
 script = ExtResource("3_aseou")
 tire_model = SubResource("Resource_efdg6")
-spring_length = 0.2
-spring_stiffness = 15.0
+spring_length = 0.25
+spring_stiffness = 9.0
 bump_ls = 3.0
 bump_hs = 1.0
 rebound_ls = 2.0
 rebound_hs = 1.0
 lo_hi_threshold = 100.0
 wheel_mass = 15.0
-anti_roll = 0.0
+anti_roll = 0.5
 
 [sub_resource type="Resource" id="Resource_xqq27"]
 script = ExtResource("6_w81if")
@@ -112,11 +112,11 @@ longitudinal_falloff = SubResource("Curve_hhtep")
 [sub_resource type="Resource" id="Resource_qox6u"]
 script = ExtResource("3_aseou")
 tire_model = SubResource("Resource_xqq27")
-spring_length = 0.15
-spring_stiffness = 20.0
-bump_ls = 3.0
+spring_length = 0.2
+spring_stiffness = 10.0
+bump_ls = 2.0
 bump_hs = 1.0
-rebound_ls = 2.0
+rebound_ls = 1.0
 rebound_hs = 1.0
 lo_hi_threshold = 100.0
 wheel_mass = 15.0
@@ -128,7 +128,7 @@ max_steer = 0.3
 ackermann = 0.15
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 20000.0
+max_brake_force = 40000.0
 max_handbrake_force = 600.0
 brake_effective_radius = 0.1
 fuel_tank_size = 10.0
@@ -209,13 +209,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.0599999, 0.78)
 mesh = SubResource("CylinderMesh_6xe0q")
 
 [node name="Wheel_fr" parent="RigidBodyCar" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.0599999, -1.24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 0.06, -1.24)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fr" index="0"]
 mesh = SubResource("CylinderMesh_6xe0q")
 
 [node name="Wheel_fl" parent="RigidBodyCar" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.0599999, -1.24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0.06, -1.24)
 
 [node name="MeshInstance3D" parent="RigidBodyCar/Wheel_fl" index="0"]
 mesh = SubResource("CylinderMesh_6xe0q")

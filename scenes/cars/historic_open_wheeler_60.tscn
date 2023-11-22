@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d10e77pxi1e50"]
+[gd_scene load_steps=38 format=3 uid="uid://d10e77pxi1e50"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_d86ei"]
 [ext_resource type="PackedScene" uid="uid://d3l5rm7ycg1cx" path="res://assets/models/cars_blend/retro_openwheeler.blend" id="2_0krk4"]
@@ -85,20 +85,7 @@ longitudinal_falloff = SubResource("Curve_hhtep")
 script = ExtResource("3_4ovfb")
 tire_model = SubResource("Resource_kawv6")
 spring_length = 0.1
-spring_stiffness = 25.0
-bump_ls = 4.0
-bump_hs = 2.0
-rebound_ls = 5.0
-rebound_hs = 3.0
-lo_hi_threshold = 100.0
-wheel_mass = 25.0
-anti_roll = 1.0
-
-[sub_resource type="Resource" id="Resource_lfyjq"]
-script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_kawv6")
-spring_length = 0.1
-spring_stiffness = 25.0
+spring_stiffness = 20.0
 bump_ls = 4.0
 bump_hs = 2.0
 rebound_ls = 5.0
@@ -126,20 +113,7 @@ longitudinal_falloff = SubResource("Curve_hhtep")
 script = ExtResource("3_4ovfb")
 tire_model = SubResource("Resource_ku6ak")
 spring_length = 0.1
-spring_stiffness = 35.0
-bump_ls = 4.0
-bump_hs = 2.0
-rebound_ls = 5.0
-rebound_hs = 3.0
-lo_hi_threshold = 100.0
-wheel_mass = 25.0
-anti_roll = 1.0
-
-[sub_resource type="Resource" id="Resource_wqfud"]
-script = ExtResource("3_4ovfb")
-tire_model = SubResource("Resource_ku6ak")
-spring_length = 0.1
-spring_stiffness = 35.0
+spring_stiffness = 25.0
 bump_ls = 4.0
 bump_hs = 2.0
 rebound_ls = 5.0
@@ -173,9 +147,9 @@ cd = 0.1
 air_density = 1.225
 frontal_area = 1.0
 wheel_params_fl = SubResource("Resource_w3kfc")
-wheel_params_fr = SubResource("Resource_wqfud")
+wheel_params_fr = SubResource("Resource_w3kfc")
 wheel_params_bl = SubResource("Resource_x0ox1")
-wheel_params_br = SubResource("Resource_lfyjq")
+wheel_params_br = SubResource("Resource_x0ox1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8g84"]
 albedo_color = Color(0.137255, 0.137255, 0.137255, 1)
