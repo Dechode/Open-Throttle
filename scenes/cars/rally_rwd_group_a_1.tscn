@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_8ayns"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_0wice"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_powap"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_d37ig"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_d37ig"]
 [ext_resource type="AudioStream" uid="uid://c026vaq4jjq2h" path="res://assets/audio/engines/R4/R4_2.0_4000_mid.wav" id="8_ug7dv"]
 [ext_resource type="AudioStream" uid="uid://dwytx4h1aipd7" path="res://assets/audio/engines/R4/R4_2.0_4000_off.wav" id="9_stcek"]
 

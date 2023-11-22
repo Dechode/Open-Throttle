@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_qt0rg"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_xgp43"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_keqya"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_bt4lb"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_bt4lb"]
 
 [sub_resource type="Resource" id="Resource_w3jcw"]
 script = ExtResource("2_lfcxs")
@@ -66,16 +66,17 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_sv0xx"]
 script = ExtResource("6_bt4lb")
 tire_stiffness = 0.0
-tire_width = 0.4
-tire_radius = 0.5
+thread_length = 2.0
+tire_width = 0.445
+tire_ratio = 0.7
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 18.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 2.2
-load_sens1 = 0.85
-tire_rated_load = 7000.0
 
 [sub_resource type="Resource" id="Resource_ggguf"]
 script = ExtResource("5_keqya")

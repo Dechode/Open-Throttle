@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bvbjjsrrmsa14"]
+[gd_scene load_steps=33 format=3 uid="uid://bvbjjsrrmsa14"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_v6hd3"]
 [ext_resource type="PackedScene" uid="uid://dgqulq1ragjm7" path="res://assets/models/car_model_scenes/historic_rally_rwd_2_model.tscn" id="2_3emgq"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_j8p6g"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_mm8he"]
 [ext_resource type="Texture2D" uid="uid://c7jasxrjuy45p" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.109_baseColor.png" id="5_lnptb"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_mf7uu"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_mf7uu"]
 [ext_resource type="AudioStream" uid="uid://dviiuk4y7vqnu" path="res://assets/audio/engines/V8/V8_USA_5.3_2000_on.wav" id="7_sc5mv"]
 
 [sub_resource type="Resource" id="Resource_2bp2l"]
@@ -65,23 +65,24 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_tm12a"]
+[sub_resource type="Resource" id="Resource_4g2ae"]
 script = ExtResource("6_mf7uu")
-tire_stiffness = 0.5
+tire_stiffness = 0.75
+thread_length = 1.6
 tire_width = 0.225
-tire_radius = 0.3
+tire_ratio = 0.3
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.4
-load_sens1 = 0.9
-tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_sattd"]
 script = ExtResource("3_mm8he")
-tire_model = SubResource("Resource_tm12a")
+tire_model = SubResource("Resource_4g2ae")
 spring_length = 0.15
 spring_stiffness = 45.0
 bump_ls = 10.0
@@ -91,24 +92,10 @@ rebound_hs = 5.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
 anti_roll = 2.0
-
-[sub_resource type="Resource" id="Resource_46vqb"]
-script = ExtResource("6_mf7uu")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-tire_rated_pressure = 2.0
-lateral_buildup = SubResource("Curve_3k576")
-longitudinal_buildup = SubResource("Curve_f3qwe")
-lateral_falloff = SubResource("Curve_yx75p")
-longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.4
-load_sens1 = 0.9
-tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_dbcy2"]
 script = ExtResource("3_mm8he")
-tire_model = SubResource("Resource_46vqb")
+tire_model = SubResource("Resource_4g2ae")
 spring_length = 0.15
 spring_stiffness = 45.0
 bump_ls = 10.0
@@ -118,20 +105,6 @@ rebound_hs = 5.0
 lo_hi_threshold = 100.0
 wheel_mass = 30.0
 anti_roll = 2.0
-
-[sub_resource type="Resource" id="Resource_4g2ae"]
-script = ExtResource("6_mf7uu")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-tire_rated_pressure = 2.0
-lateral_buildup = SubResource("Curve_3k576")
-longitudinal_buildup = SubResource("Curve_f3qwe")
-lateral_falloff = SubResource("Curve_yx75p")
-longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.4
-load_sens1 = 0.9
-tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_epuuv"]
 script = ExtResource("3_mm8he")
@@ -146,23 +119,9 @@ lo_hi_threshold = 100.0
 wheel_mass = 30.0
 anti_roll = 2.0
 
-[sub_resource type="Resource" id="Resource_kq6xw"]
-script = ExtResource("6_mf7uu")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-tire_rated_pressure = 2.0
-lateral_buildup = SubResource("Curve_3k576")
-longitudinal_buildup = SubResource("Curve_f3qwe")
-lateral_falloff = SubResource("Curve_yx75p")
-longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.4
-load_sens1 = 0.9
-tire_rated_load = 6000.0
-
 [sub_resource type="Resource" id="Resource_y48t6"]
 script = ExtResource("3_mm8he")
-tire_model = SubResource("Resource_kq6xw")
+tire_model = SubResource("Resource_4g2ae")
 spring_length = 0.15
 spring_stiffness = 45.0
 bump_ls = 10.0

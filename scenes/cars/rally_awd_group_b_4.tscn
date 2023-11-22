@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_2g3tp"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_b3qwa"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_vjxy0"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_uon75"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_uon75"]
 [ext_resource type="Texture2D" uid="uid://bglw1gacsadab" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.005_baseColor.png" id="7_ntide"]
 
 [sub_resource type="Resource" id="Resource_xsilc"]

@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_f8401"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_2rx04"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_oy43m"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_0scgu"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_0scgu"]
 [ext_resource type="AudioStream" uid="uid://c1xqfu5w7bi85" path="res://assets/audio/engines/V8/V8_ITA_3.6_3000_on.wav" id="8_xc7ra"]
 [ext_resource type="AudioStream" uid="uid://b2gtxsilqjdmj" path="res://assets/audio/engines/V8/V8_ITA_3.6_3000_off.wav" id="9_fabpn"]
 [ext_resource type="PackedScene" path="res://scenes/vehicle/wang.tscn" id="11_uvccg"]
@@ -69,17 +69,18 @@ point_count = 2
 
 [sub_resource type="Resource" id="Resource_j6avs"]
 script = ExtResource("6_0scgu")
-tire_stiffness = 0.5
-tire_width = 0.45
-tire_radius = 0.36
+tire_stiffness = 0.0
+thread_length = 0.0
+tire_width = 0.405
+tire_ratio = 0.3
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 18.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 2.8
-load_sens1 = 1.7
-tire_rated_load = 8000.0
 
 [sub_resource type="Resource" id="Resource_4mvs7"]
 script = ExtResource("5_oy43m")
@@ -109,17 +110,18 @@ anti_roll = 5.0
 
 [sub_resource type="Resource" id="Resource_8sn1k"]
 script = ExtResource("6_0scgu")
-tire_stiffness = 0.5
-tire_width = 0.4
-tire_radius = 0.36
+tire_stiffness = 0.0
+thread_length = 0.0
+tire_width = 0.3
+tire_ratio = 0.4
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 18.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 2.8
-load_sens1 = 1.7
-tire_rated_load = 8000.0
 
 [sub_resource type="Resource" id="Resource_rmpwc"]
 script = ExtResource("5_oy43m")

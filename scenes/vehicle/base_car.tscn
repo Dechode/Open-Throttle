@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://3cfvp8l547ts"]
+[gd_scene load_steps=34 format=3 uid="uid://3cfvp8l547ts"]
 
 [ext_resource type="Script" path="res://scenes/vehicle/car.gd" id="1_ekicj"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_ojki4"]
@@ -71,9 +71,9 @@ point_count = 2
 _data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_hhtep"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="Curve" id="Curve_tfdxx"]
+_data = [Vector2(0, 1), 0.0, -1.71678, 0, 0, Vector2(0.117264, 0.884211), -0.28514, -0.28514, 0, 0, Vector2(1, 0.694737), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_186tc"]
 script = ExtResource("6_agkd6")
@@ -88,7 +88,7 @@ max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
-longitudinal_falloff = SubResource("Curve_hhtep")
+longitudinal_falloff = SubResource("Curve_tfdxx")
 
 [sub_resource type="Resource" id="Resource_30yxg"]
 script = ExtResource("4_sel4p")
@@ -103,20 +103,9 @@ lo_hi_threshold = 100.0
 wheel_mass = 30.0
 anti_roll = 5.0
 
-[sub_resource type="Resource" id="Resource_12fyp"]
-script = ExtResource("6_agkd6")
-tire_stiffness = 0.25
-thread_length = 1.0
-tire_width = 0.225
-tire_ratio = 0.5
-tire_rated_pressure = 2.0
-tire_pressure = 2.0
-tire_rim_size = 15.0
-max_tire_temperature = 130.0
-
 [sub_resource type="Resource" id="Resource_yqyvv"]
 script = ExtResource("4_sel4p")
-tire_model = SubResource("Resource_12fyp")
+tire_model = SubResource("Resource_186tc")
 spring_length = 0.15
 spring_stiffness = 45.0
 bump_ls = 10.0

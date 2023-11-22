@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_vlk5m"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_nqn3v"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_886ly"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_2fqc2"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_2fqc2"]
 [ext_resource type="AudioStream" uid="uid://bqu2iqu8hn3gw" path="res://assets/audio/engines/R4/R4_2.0_4000_on.wav" id="8_yc8qr"]
 [ext_resource type="AudioStream" uid="uid://dwytx4h1aipd7" path="res://assets/audio/engines/R4/R4_2.0_4000_off.wav" id="9_ocukk"]
 
@@ -65,23 +65,24 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_it40n"]
+[sub_resource type="Resource" id="Resource_e4kid"]
 script = ExtResource("6_2fqc2")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
+tire_stiffness = 0.75
+thread_length = 1.6
+tire_width = 0.205
+tire_ratio = 0.5
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.5
-load_sens1 = 0.9
-tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_3cx5m"]
 script = ExtResource("5_886ly")
-tire_model = SubResource("Resource_it40n")
+tire_model = SubResource("Resource_e4kid")
 spring_length = 0.15
 spring_stiffness = 65.0
 bump_ls = 6.0
@@ -92,23 +93,24 @@ lo_hi_threshold = 100.0
 wheel_mass = 30.0
 anti_roll = 1.0
 
-[sub_resource type="Resource" id="Resource_getxi"]
+[sub_resource type="Resource" id="Resource_gkfqu"]
 script = ExtResource("6_2fqc2")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
+tire_stiffness = 0.75
+thread_length = 1.6
+tire_width = 0.205
+tire_ratio = 0.5
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.4
-load_sens1 = 0.9
-tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_153kg"]
 script = ExtResource("5_886ly")
-tire_model = SubResource("Resource_getxi")
+tire_model = SubResource("Resource_gkfqu")
 spring_length = 0.15
 spring_stiffness = 65.0
 bump_ls = 6.0

@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_4kqyc"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_xg1ia"]
 [ext_resource type="AudioStream" uid="uid://clpwkrewxb6y5" path="res://assets/audio/engines/wankel/W4_2.2_6000_on.wav" id="6_cc6sa"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_dq5oa"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_dq5oa"]
 [ext_resource type="AudioStream" uid="uid://e8e2534siar0" path="res://assets/audio/engines/wankel/W4_2.2_6000_off.wav" id="7_txa2s"]
 [ext_resource type="PackedScene" path="res://scenes/vehicle/wang.tscn" id="7_yjusf"]
 

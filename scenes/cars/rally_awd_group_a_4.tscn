@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_cse2a"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_li8gv"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_0lsl0"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model_1.gd" id="6_oc2eo"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_oc2eo"]
 
 [sub_resource type="Resource" id="Resource_ss41j"]
 script = ExtResource("2_ydx5e")
