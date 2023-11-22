@@ -5,7 +5,7 @@ const TIRE_WEAR_CURVE = preload("res://resources/tire_wear_curve.tres")
 const TIRE_TEMP_CURVE = preload("res://resources/tire_temp_curve.tres")
 
 @export var tire_stiffness := 0.25
-@export var thread_length := 1.0 ## mm
+@export_range(0.05, 2.0) var thread_length := 1.6 ## mm
 @export var tire_width := 0.225
 @export var tire_ratio := 0.5
 @export var tire_rated_pressure := 2.0
@@ -50,12 +50,20 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 	var thread_reduction := 0.85
 	var softness_gain := 1.05
 	
+	var basepeak := 4.5
+	var widthpeak := -4.0
+	var aspectpeak := 5.0
+	
+	var base_elasticity := 0.2
+	var width_elasticity := -0.1
+	var aspect_elasticity := 0.2
+	
 	var slickness := 1 - thread_length / 1.8
 	var slickness_peak := slickness * (thread_reduction - 1) + 1
 	var softness := 1.0 - tire_stiffness
 	var softness_peak := softness * (softness_gain - 1) + 1
 	
-	var springrate := get_total_springrate(slickness, _normal_load)
+	var springrate := get_total_springrate(slickness)
 	tire_rated_load = get_rated_load(springrate)
 	var contact_patch := get_contact_patch_length(_normal_load, springrate)
 	
@@ -66,21 +74,11 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 	var temp_mu := TIRE_TEMP_CURVE.sample_baked(tire_temp_scalar)
 	load_sensitivity = update_load_sensitivity(_normal_load)
 	var mu := _surface_mu * wear_mu * temp_mu #* load_sensitivity
-	var grip := _normal_load * mu
-	
-	var load_factor := _normal_load / tire_rated_load
-	
-	var basepeak := 4.5
-	var widthpeak := -4.0
-	var aspectpeak := 5.0
-	
-	var base_elasticity := 0.2
-	var width_elasticity := -0.1
-	var aspect_elasticity := 0.2
 	
 	var peak_sa_min_deg := (basepeak + widthpeak * tire_width + aspectpeak * tire_ratio) * slickness_peak * softness_peak
 	var peak_sa_max_deg := (1.0 + (base_elasticity + width_elasticity * tire_width + aspect_elasticity * tire_ratio)) * peak_sa_min_deg
 	
+	var load_factor := _normal_load / tire_rated_load
 	peak_sa = deg_to_rad(lerp(peak_sa_min_deg, peak_sa_max_deg, load_factor))
 	peak_sr = peak_sa * 0.65
 	
@@ -120,7 +118,6 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 func get_rated_load(springrate: float) -> float:
 	var radius_compression_force := springrate * 0.12 * tire_radius
 	var sidewall_compression_force := springrate * 0.11 * tire_width * tire_radius
-	
 	return 0.5 * radius_compression_force + 0.5 * sidewall_compression_force
 
 
@@ -132,7 +129,7 @@ func get_springrate_sae() -> float:
 	return kz * 9.81 * 1000.0
 
 
-func get_total_springrate(slickness: float, normal_load: float) -> float:
+func get_total_springrate(slickness: float) -> float:
 	# Air springrate calculations
 	var nom_pressure := 2.0
 	var nom_radius := 0.3
@@ -168,8 +165,8 @@ func get_total_springrate(slickness: float, normal_load: float) -> float:
 	var max_threaded_area := 0.9
 	
 	var patch_length := 2.0 * sqrt(pow(tire_radius, 2) - pow(simple_compressed_radius, 2)) 
-	var path_area_usage := lerpf(min_threaded_area, max_threaded_area, slickness)
-	var patch_area := patch_length * tire_width * path_area_usage
+	var patch_area_usage := lerpf(min_threaded_area, max_threaded_area, slickness)
+	var patch_area := patch_length * tire_width * patch_area_usage
 	var thread_thickness := radius_factor * thread_length
 	
 	var soft_rate := 600000
@@ -180,7 +177,7 @@ func get_total_springrate(slickness: float, normal_load: float) -> float:
 	# Sidewall springrate calculations
 	var side_wall_spring_aspect := pow(1 - tire_ratio, 2) * radius_factor * 75000
 	var nominal_load := 6000
-	var load_factor := normal_load / nominal_load
+	var load_factor := simple_load / nominal_load
 	var sidewall_spring_load := pow(load_factor, 0.75) * 25000
 	
 	var sidewall_springrate := side_wall_spring_aspect + sidewall_spring_load
@@ -244,12 +241,10 @@ func update_load_sensitivity(normal_load: float) -> float:
 func get_contact_patch_length(normal_load: float, springrate: float) -> float:
 	var compression := normal_load / springrate
 	var half_flat := 0.825 * sqrt(tire_radius*tire_radius-pow(tire_radius - compression, 2))
-#	return tire_width * 2 * half_flat
 	return 2 * half_flat
 
 
 func get_pneumatic_trail(slip_angle: float, patch_length: float) -> float:
 	var tp0 := patch_length * 0.15 #/ normal_load
 	var tp := clampf(lerpf(tp0, 0.0, abs(slip_angle) / peak_sa), 0.0, 1.0)
-		
-	return tp #* 10000.0
+	return tp
