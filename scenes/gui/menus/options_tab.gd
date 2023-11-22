@@ -28,6 +28,8 @@ func _ready() -> void:
 	$GamePlay/VBoxContainer/SteeringInterpolation/CheckButton.button_pressed = OptionsManager.get_config_value("steering_interpolation")
 	$Graphics/VBoxContainer/Fullscreen/CheckButton.button_pressed = OptionsManager.get_config_value("fullscreen")
 	$Graphics/VBoxContainer/VSync/CheckButton.button_pressed = OptionsManager.get_config_value("vsync")
+	$Graphics/VBoxContainer/Fov/HSlider.value = OptionsManager.get_config_value("fov")
+	$Graphics/VBoxContainer/Fov/Label2.text = "%3.0f" % OptionsManager.get_config_value("fov")
 	$Audio/VBoxContainer/MasterVolume/HSlider.value = OptionsManager.get_config_value("master_audio_vol") * 100
 	
 	$Graphics/VBoxContainer/AspectRatio/OptionButton.clear()
@@ -211,3 +213,6 @@ func _on_steer_speed_changed(value: float) -> void:
 	OptionsManager.set_config_value("steer_speed", value)
 
 
+func _on_fov_changed(value: float) -> void:
+	OptionsManager.set_config_value("fov", value)
+	$Graphics/VBoxContainer/Fov/Label2.text = "%3.0f" % value
