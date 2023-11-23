@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ui45fn8ctmup"]
+[gd_scene load_steps=30 format=3 uid="uid://ui45fn8ctmup"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_8cb4c"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_3qh7i"]
@@ -43,6 +43,10 @@ front_diff = SubResource("Resource_p886o")
 center_diff = SubResource("Resource_r60fx")
 center_split_fr = 0.35
 
+[sub_resource type="Curve" id="Curve_eiwqy"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_7e13x"]
 _data = [Vector2(0, 0.409091), 0.0, 0.0, 0, 0, Vector2(0.501548, 0.854545), 2.27331, 2.27331, 0, 0, Vector2(0.848297, 0.736364), -2.0974, -2.0974, 0, 0, Vector2(1, 0.2), -6.50194, 0.0, 0, 0]
 point_count = 4
@@ -66,16 +70,17 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_u08ac"]
 script = ExtResource("6_og18c")
 tire_stiffness = 0.5
+thread_length = 1.6
 tire_width = 0.225
-tire_radius = 0.3
+tire_ratio = 0.5
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 1.6
-load_sens1 = 1.2
-tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_jpn1x"]
 script = ExtResource("5_h7acm")
@@ -96,7 +101,7 @@ max_steer = 0.4
 ackermann = 0.15
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 50000.0
+max_brake_force = 90000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 80.0
@@ -105,9 +110,9 @@ max_torque = 450.0
 max_engine_rpm = 8400.0
 rpm_idle = 900.0
 torque_curve = SubResource("Curve_7e13x")
-engine_drag = 0.025
-engine_brake = 10.0
+engine_brake = 240.0
 engine_moment = 0.2
+throttle_model = SubResource("Curve_eiwqy")
 engine_bsfc = 0.3
 clutch_friction = 530.0
 drivetrain_params = SubResource("Resource_odbg3")

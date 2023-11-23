@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgqq6vyvdvh8l"]
+[gd_scene load_steps=32 format=3 uid="uid://cgqq6vyvdvh8l"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_7ykc1"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_a2ien"]
@@ -47,6 +47,10 @@ front_diff = SubResource("Resource_trix6")
 center_diff = SubResource("Resource_1vt47")
 center_split_fr = 0.4
 
+[sub_resource type="Curve" id="Curve_e1x1b"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_e345l"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0433437, 0.305263), 0.0, 0.0, 0, 0, Vector2(0.30031, 0.515789), 1.30769, 1.30769, 0, 0, Vector2(0.526316, 1), 0.0, 0.0, 0, 0, Vector2(0.854489, 0.810526), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 6
@@ -70,16 +74,17 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_nwyik"]
 script = ExtResource("6_dq5oa")
 tire_stiffness = 0.5
+thread_length = 1.6
 tire_width = 0.335
-tire_radius = 0.345
+tire_ratio = 0.5
 tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
 lateral_buildup = SubResource("Curve_3k576")
 longitudinal_buildup = SubResource("Curve_f3qwe")
 lateral_falloff = SubResource("Curve_yx75p")
 longitudinal_falloff = SubResource("Curve_hhtep")
-load_sens0 = 2.8
-load_sens1 = 1.7
-tire_rated_load = 8000.0
 
 [sub_resource type="Resource" id="Resource_6cxmn"]
 script = ExtResource("3_xg1ia")
@@ -109,9 +114,9 @@ max_torque = 500.0
 max_engine_rpm = 10000.0
 rpm_idle = 1200.0
 torque_curve = SubResource("Curve_e345l")
-engine_drag = 0.03
-engine_brake = 10.0
+engine_brake = 250.0
 engine_moment = 0.25
+throttle_model = SubResource("Curve_e1x1b")
 engine_bsfc = 0.3
 clutch_friction = 1000.0
 drivetrain_params = SubResource("Resource_vlhmn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d10e77pxi1e50"]
+[gd_scene load_steps=39 format=3 uid="uid://d10e77pxi1e50"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_d86ei"]
 [ext_resource type="PackedScene" uid="uid://d3l5rm7ycg1cx" path="res://assets/models/cars_blend/retro_openwheeler.blend" id="2_0krk4"]
@@ -45,6 +45,10 @@ rear_diff = SubResource("Resource_s0t74")
 front_diff = SubResource("Resource_wncv6")
 center_diff = SubResource("Resource_6hd1t")
 center_split_fr = 0.4
+
+[sub_resource type="Curve" id="Curve_fpua6"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_8ukdf"]
 _data = [Vector2(0, 0.354545), 0.0, 0.238084, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
@@ -137,9 +141,9 @@ max_torque = 300.0
 max_engine_rpm = 10000.0
 rpm_idle = 1500.0
 torque_curve = SubResource("Curve_8ukdf")
-engine_drag = 0.03
-engine_brake = 5.0
+engine_brake = 130.0
 engine_moment = 0.2
+throttle_model = SubResource("Curve_fpua6")
 engine_bsfc = 0.3
 clutch_friction = 400.0
 drivetrain_params = SubResource("Resource_3vdgl")

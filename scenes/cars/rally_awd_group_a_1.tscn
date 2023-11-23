@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cafvcju63ehro"]
+[gd_scene load_steps=32 format=3 uid="uid://cafvcju63ehro"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_mejm6"]
 [ext_resource type="Texture2D" uid="uid://qfmdeyepjegi" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.068_baseColor.png" id="2_8n5bo"]
@@ -45,6 +45,10 @@ rear_diff = SubResource("Resource_j0kn6")
 front_diff = SubResource("Resource_1fh6h")
 center_diff = SubResource("Resource_0bdjd")
 center_split_fr = 0.4
+
+[sub_resource type="Curve" id="Curve_2j8ve"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_hhq50"]
 _data = [Vector2(0, 0.390909), 0.0, 0.0, 0, 0, Vector2(0.448916, 0.690909), 1.50233, 1.50233, 0, 0, Vector2(0.643963, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
@@ -109,9 +113,9 @@ max_torque = 520.0
 max_engine_rpm = 6000.0
 rpm_idle = 1500.0
 torque_curve = SubResource("Curve_hhq50")
-engine_drag = 0.02
-engine_brake = 10.0
+engine_brake = 260.0
 engine_moment = 0.2
+throttle_model = SubResource("Curve_2j8ve")
 engine_bsfc = 0.3
 clutch_friction = 600.0
 drivetrain_params = SubResource("Resource_sfu35")

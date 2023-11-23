@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dfj7hipow25nm"]
+[gd_scene load_steps=52 format=3 uid="uid://dfj7hipow25nm"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_tmcvk"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_7i1ct"]
@@ -44,6 +44,10 @@ rear_diff = SubResource("Resource_whxvd")
 front_diff = SubResource("Resource_pq4j2")
 center_diff = SubResource("Resource_cn01b")
 center_split_fr = 0.4
+
+[sub_resource type="Curve" id="Curve_ajybn"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_t4tfi"]
 _data = [Vector2(0, 0.718182), 0.0, 0.39681, 0, 0, Vector2(0.659443, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.809091), -0.897222, 0.0, 0, 0]
@@ -134,9 +138,9 @@ max_torque = 20.0
 max_engine_rpm = 10000.0
 rpm_idle = 1500.0
 torque_curve = SubResource("Curve_t4tfi")
-engine_drag = 0.003
-engine_brake = 0.0
+engine_brake = 7.0
 engine_moment = 0.02
+throttle_model = SubResource("Curve_ajybn")
 engine_bsfc = 0.3
 clutch_friction = 20.0
 drivetrain_params = SubResource("Resource_4wh3o")
