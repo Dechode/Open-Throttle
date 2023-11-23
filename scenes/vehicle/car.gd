@@ -45,25 +45,17 @@ var prev_pos: Vector3 = Vector3.ZERO
 
 
 ######### Instances ######### 
-var clutch: Clutch
-var drivetrain: DriveTrain
-var driver: Driver
-var taillights: TailLights
-var headlights: HeadLights
-var lap_timer := LapTimer.new()
+var clutch := Clutch.new()
+var drivetrain := DriveTrain.new()
+var driver := Driver.new()
+var taillights := TailLights.new()
+var headlights := HeadLights.new()
+var lap_timer  := LapTimer.new()
 
 @onready var wheel_fl = $Wheel_fl as RaycastSuspension
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
 @onready var wheel_bl = $Wheel_bl as RaycastSuspension
 @onready var wheel_br = $Wheel_br as RaycastSuspension
-
-
-func _init() -> void:
-	clutch = Clutch.new()
-	drivetrain = DriveTrain.new()
-	car_params = CarParameters.new()
-	driver = Driver.new()
-	
 
 
 func _ready() -> void:

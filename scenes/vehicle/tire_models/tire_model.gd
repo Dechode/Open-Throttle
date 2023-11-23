@@ -109,6 +109,7 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 		
 	var pneumatic_trail = get_pneumatic_trail(_slip.x, contact_patch)
 	tire_forces.z = tire_forces.x * pneumatic_trail
+	
 	if tire_forces.is_finite():
 		return tire_forces
 	else:
