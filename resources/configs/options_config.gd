@@ -28,6 +28,7 @@ extends Resource
 "resolution" : 2, # index to resolutions array
 "fullscreen" : false,
 "vsync" : true,
+"fov": 60.0,
 "steering_interpolation" : true,
 "gamepad_steering" : 1.0,
 "master_audio_vol" : 0.5,
