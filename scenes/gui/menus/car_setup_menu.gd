@@ -1,21 +1,6 @@
 class_name CarSetupMenu
 extends TabContainer
 
-enum TIRE_MODELS {
-	PACEJKA,
-	BRUSH,
-	LINEAR,
-}
-
-
-# Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
-#	update_params(SessionManager.player_car_setup)
-	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
 
 func update_params(params: CarParameters):
 	$Suspension/VBoxContainer/FrontSuspAntiRollRate/SpinBox.value = params.wheel_params_fl.anti_roll
@@ -36,37 +21,29 @@ func update_params(params: CarParameters):
 	$Suspension/VBoxContainer/RearSuspLength/Label2.text = str(params.wheel_params_bl.spring_length)
 	$Suspension/VBoxContainer/RearSuspSpringRate/SpinBox.value = params.wheel_params_bl.spring_stiffness
 	
-	$Wheels/VBoxContainer/TireModel/OptionButton.clear()
-	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Pacejka", TIRE_MODELS.PACEJKA)
-	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Brush", TIRE_MODELS.BRUSH)
-	$Wheels/VBoxContainer/TireModel/OptionButton.add_item("Linear", TIRE_MODELS.LINEAR)
-	
-	var tire_model_id = -1
-	
-	if SessionManager.player_car_setup.wheel_params_fl.tire_model is PacejkaTireModel:
-		tire_model_id = TIRE_MODELS.PACEJKA
-		print_debug("Tire model is pacejka")
-	elif SessionManager.player_car_setup.wheel_params_fl.tire_model is BrushTireModel:
-		tire_model_id = TIRE_MODELS.BRUSH
-		print_debug("Tire model is brush")
-	elif SessionManager.player_car_setup.wheel_params_fl.tire_model is LinearTireModel:
-		tire_model_id = TIRE_MODELS.LINEAR
-		print_debug("Tire model is linear")
-	else:
-		print_debug("Tire model is unknown or not set")
-	
-	$Wheels/VBoxContainer/TireModel/OptionButton.selected = tire_model_id
-	
 	$Wheels/VBoxContainer/BrakeBiasFrontBack/Slider.value = params.front_brake_bias
 	$Wheels/VBoxContainer/BrakeBiasFrontBack/Label2.text = str(params.front_brake_bias)
 	$Wheels/VBoxContainer/TireStiffness/Slider.value = params.wheel_params_fl.tire_model.tire_stiffness
 	$Wheels/VBoxContainer/TireStiffness/Label2.text = str(params.wheel_params_fl.tire_model.tire_stiffness)
-	$Wheels/VBoxContainer/TireRadius/Slider.value = params.wheel_params_fl.tire_model.tire_radius
-	$Wheels/VBoxContainer/TireRadius/Label2.text = str(params.wheel_params_fl.tire_model.tire_radius)
+	$Wheels/VBoxContainer/ThreadLength/Slider.value = params.wheel_params_fl.tire_model.thread_length
+	$Wheels/VBoxContainer/ThreadLength/Label2.text = "%2.2f" % params.wheel_params_fl.tire_model.thread_length
 	$Wheels/VBoxContainer/TireWidth/Slider.value = params.wheel_params_fl.tire_model.tire_width
 	$Wheels/VBoxContainer/TireWidth/Label2.text = str(params.wheel_params_fl.tire_model.tire_width)
-	$Wheels/VBoxContainer/TireRatedLoad/Slider.value = params.wheel_params_fl.tire_model.tire_rated_load
-	$Wheels/VBoxContainer/TireRatedLoad/Label2.text = str(params.wheel_params_fl.tire_model.tire_rated_load)
+	$Wheels/VBoxContainer/TireRatio/Slider.value = params.wheel_params_fl.tire_model.tire_ratio
+	$Wheels/VBoxContainer/TireRatio/Label2.text = "%2.2f" % params.wheel_params_fl.tire_model.tire_ratio
+	$Wheels/VBoxContainer/RimSize/Slider.value = params.wheel_params_fl.tire_model.tire_rim_size
+	$Wheels/VBoxContainer/RimSize/Label2.text = "%2.1f" % params.wheel_params_fl.tire_model.tire_rim_size
+	
+	$Wheels/VBoxContainer/RearTireStiffness/Slider.value = params.wheel_params_bl.tire_model.tire_stiffness
+	$Wheels/VBoxContainer/RearTireStiffness/Label2.text = str(params.wheel_params_bl.tire_model.tire_stiffness)
+	$Wheels/VBoxContainer/RearThreadLength/Slider.value = params.wheel_params_bl.tire_model.thread_length
+	$Wheels/VBoxContainer/RearThreadLength/Label2.text = "%2.2f" % params.wheel_params_bl.tire_model.thread_length
+	$Wheels/VBoxContainer/RearTireWidth/Slider.value = params.wheel_params_bl.tire_model.tire_width
+	$Wheels/VBoxContainer/RearTireWidth/Label2.text = str(params.wheel_params_bl.tire_model.tire_width)
+	$Wheels/VBoxContainer/RearTireRatio/Slider.value = params.wheel_params_bl.tire_model.tire_ratio
+	$Wheels/VBoxContainer/RearTireRatio/Label2.text = "%2.2f" % params.wheel_params_bl.tire_model.tire_ratio
+	$Wheels/VBoxContainer/RearRimSize/Slider.value = params.wheel_params_bl.tire_model.tire_rim_size
+	$Wheels/VBoxContainer/RearRimSize/Label2.text = "%2.1f" % params.wheel_params_bl.tire_model.tire_rim_size
 	
 	$Drivetrain/VBoxContainer/TorqueSplit/Slider.value = params.drivetrain_params.center_split_fr
 	$Drivetrain/VBoxContainer/TorqueSplit/Label2.text = str(params.drivetrain_params.center_split_fr)
@@ -136,9 +113,10 @@ func update_params(params: CarParameters):
 
 func update_tire_model(tire_model: BaseTireModel):
 	tire_model.tire_stiffness = $Wheels/VBoxContainer/TireStiffness/Slider.value
-	tire_model.tire_radius = $Wheels/VBoxContainer/TireRadius/Slider.value
-	tire_model.tire_rated_load = $Wheels/VBoxContainer/TireRatedLoad/Slider.value
+	tire_model.thread_length = $Wheels/VBoxContainer/ThreadLength/Slider.value
 	tire_model.tire_width = $Wheels/VBoxContainer/TireWidth/Slider.value
+	tire_model.tire_ratio = $Wheels/VBoxContainer/TireRatio/Slider.value
+	tire_model.tire_rim_size = $Wheels/VBoxContainer/RimSize/Slider.value
 
 
 func _on_car_selected():
@@ -216,61 +194,64 @@ func _on_brake_bias_changed(value: float) -> void:
 	$Wheels/VBoxContainer/BrakeBiasFrontBack/Label2.text = str(value)
 
 
-func _on_tire_model_selected(index: int) -> void:
-	var tire_model := BaseTireModel.new()
-	
-	if index == TIRE_MODELS.PACEJKA:
-		tire_model = PacejkaTireModel.new()
-		
-	elif index == TIRE_MODELS.BRUSH:
-		tire_model = BrushTireModel.new()
-		
-	elif index == TIRE_MODELS.LINEAR:
-		tire_model = LinearTireModel.new()
-	
-	else:
-		push_warning("Unknown tire model!")
-		return
-	
-	update_tire_model(tire_model)
-	
-	SessionManager.player_car_setup.wheel_params_fl.tire_model = tire_model
-	SessionManager.player_car_setup.wheel_params_fr.tire_model = tire_model
-	SessionManager.player_car_setup.wheel_params_bl.tire_model = tire_model
-	SessionManager.player_car_setup.wheel_params_br.tire_model = tire_model
-
-
 func _on_tire_stiffness_changed(value: float) -> void:
-	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_stiffness = value
 	SessionManager.player_car_setup.wheel_params_fr.tire_model.tire_stiffness = value
-	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_stiffness = value
-	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_stiffness = value
+	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_stiffness = value
 	$Wheels/VBoxContainer/TireStiffness/Label2.text = str(value)
 
 
-func _on_tire_radius_changed(value: float) -> void:
-	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_radius = value
-	SessionManager.player_car_setup.wheel_params_fr.tire_model.tire_radius = value
-	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_radius = value
-	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_radius = value
-	$Wheels/VBoxContainer/TireRadius/Label2.text = str(value)
+func _on_rear_tire_stiffness_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_stiffness = value
+	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_stiffness = value
+	$Wheels/VBoxContainer/RearTireStiffness/Label2.text = str(value)
 
 
 func _on_tire_width_changed(value: float) -> void:
 	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_width = value
 	SessionManager.player_car_setup.wheel_params_fr.tire_model.tire_width = value
-	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_width = value
-	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_width = value
 	$Wheels/VBoxContainer/TireWidth/Label2.text = "%2.3f" % value
 
 
-func _on_tire_rated_load_changed(value: float) -> void:
-	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_rated_load = value
-	SessionManager.player_car_setup.wheel_params_fr.tire_model.tire_rated_load = value
-	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_rated_load = value
-	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_rated_load = value
-	$Wheels/VBoxContainer/TireRatedLoad/Label2.text = str(value)
+func _on_rear_tire_width_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_width = value
+	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_width = value
+	$Wheels/VBoxContainer/RearTireWidth/Label2.text = "%2.3f" % value
 
+
+func _on_thread_length_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_fl.tire_model.thread_length = value
+	SessionManager.player_car_setup.wheel_params_fr.tire_model.thread_length = value
+	$Wheels/VBoxContainer/ThreadLength/Label2.text = "%2.2f" % value
+
+
+func _on_rear_thread_length_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_bl.tire_model.thread_length = value
+	SessionManager.player_car_setup.wheel_params_br.tire_model.thread_length = value
+	$Wheels/VBoxContainer/RearThreadLength/Label2.text = "%2.2f" % value
+
+
+func _on_tire_aspect_ratio_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_ratio = value
+	SessionManager.player_car_setup.wheel_params_fr.tire_model.tire_ratio = value
+	$Wheels/VBoxContainer/TireRatio/Label2.text = "%2.2f" % value
+
+
+func _on_rear_tire_ratio_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_ratio = value
+	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_ratio = value
+	$Wheels/VBoxContainer/RearTireRatio/Label2.text = "%2.2f" % value
+
+
+func _on_rim_size_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_fl.tire_model.tire_rim_size = value
+	SessionManager.player_car_setup.wheel_params_fr.tire_model.tire_rim_size = value
+	$Wheels/VBoxContainer/RimSize/Label2.text = "%2.1f" % value
+
+
+func _on_rear_rim_size_changed(value: float) -> void:
+	SessionManager.player_car_setup.wheel_params_bl.tire_model.tire_rim_size = value
+	SessionManager.player_car_setup.wheel_params_br.tire_model.tire_rim_size = value
+	$Wheels/VBoxContainer/RearRimSize/Label2.text = "%2.1f" % value
 
 func _on_torque_split_changed(value: float) -> void:
 	SessionManager.player_car_setup.drivetrain_params.center_split_fr = value
@@ -344,9 +325,4 @@ func _on_rear_diff_power_ratio_changed(value: float) -> void:
 func _on_rear_diff_coast_ratio_changed(value: float) -> void:
 	SessionManager.player_car_setup.drivetrain_params.rear_diff.coast_ratio = value
 	$Drivetrain/VBoxContainer/RearDiffCoastRatio/Label2.text = str(value)
-
-
-
-
-
 

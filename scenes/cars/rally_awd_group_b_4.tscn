@@ -1,11 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://b12bnuli6qwf1"]
+[gd_scene load_steps=29 format=3 uid="uid://b12bnuli6qwf1"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_svyaj"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_ccioe"]
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_2g3tp"]
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="4_b3qwa"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="5_vjxy0"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/brush_tire_model.gd" id="6_4grjt"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_uon75"]
 [ext_resource type="Texture2D" uid="uid://bglw1gacsadab" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.005_baseColor.png" id="7_ntide"]
 
 [sub_resource type="Resource" id="Resource_xsilc"]
@@ -47,76 +47,43 @@ center_split_fr = 0.4
 _data = [Vector2(0, 0.463636), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_mtwg2"]
-script = ExtResource("6_4grjt")
+[sub_resource type="Curve" id="Curve_3k576"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yx75p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_f3qwe"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_hhtep"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_3vcef"]
+script = ExtResource("6_uon75")
 tire_stiffness = 0.5
 tire_width = 0.225
 tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_1p0g8"]
-script = ExtResource("5_vjxy0")
-tire_model = SubResource("Resource_mtwg2")
-spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 10.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-anti_roll = 5.0
-
-[sub_resource type="Resource" id="Resource_5vhsl"]
-script = ExtResource("6_4grjt")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_pvm6x"]
-script = ExtResource("5_vjxy0")
-tire_model = SubResource("Resource_5vhsl")
-spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 10.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-anti_roll = 5.0
-
-[sub_resource type="Resource" id="Resource_6eu0q"]
-script = ExtResource("6_4grjt")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
+tire_rated_pressure = 2.0
+lateral_buildup = SubResource("Curve_3k576")
+longitudinal_buildup = SubResource("Curve_f3qwe")
+lateral_falloff = SubResource("Curve_yx75p")
+longitudinal_falloff = SubResource("Curve_hhtep")
+load_sens0 = 1.6
+load_sens1 = 1.2
+tire_rated_load = 6000.0
 
 [sub_resource type="Resource" id="Resource_18qwq"]
 script = ExtResource("5_vjxy0")
-tire_model = SubResource("Resource_6eu0q")
+tire_model = SubResource("Resource_3vcef")
 spring_length = 0.15
-spring_stiffness = 50.0
-bump_ls = 6.0
-bump_hs = 4.0
-rebound_ls = 7.0
-rebound_hs = 5.0
-lo_hi_threshold = 100.0
-wheel_mass = 30.0
-anti_roll = 5.0
-
-[sub_resource type="Resource" id="Resource_m5fv6"]
-script = ExtResource("6_4grjt")
-tire_stiffness = 0.5
-tire_width = 0.225
-tire_radius = 0.3
-
-[sub_resource type="Resource" id="Resource_g2qmi"]
-script = ExtResource("5_vjxy0")
-tire_model = SubResource("Resource_m5fv6")
-spring_length = 0.15
-spring_stiffness = 45.0
-bump_ls = 10.0
-bump_hs = 4.0
+spring_stiffness = 90.0
+bump_ls = 9.0
+bump_hs = 6.0
 rebound_ls = 7.0
 rebound_hs = 5.0
 lo_hi_threshold = 100.0
@@ -148,9 +115,9 @@ cd = 0.4
 air_density = 1.225
 frontal_area = 2.0
 wheel_params_fl = SubResource("Resource_18qwq")
-wheel_params_fr = SubResource("Resource_g2qmi")
-wheel_params_bl = SubResource("Resource_1p0g8")
-wheel_params_br = SubResource("Resource_pvm6x")
+wheel_params_fr = SubResource("Resource_18qwq")
+wheel_params_bl = SubResource("Resource_18qwq")
+wheel_params_br = SubResource("Resource_18qwq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2i4a"]
 resource_name = "Default_OBJ.006"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://qf7loivyr64l"]
+[gd_scene load_steps=31 format=3 uid="uid://qf7loivyr64l"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_lu1aq"]
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_3l1yx"]
@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://scenes/vehicle/car_params.gd" id="2_pj163"]
 [ext_resource type="Script" path="res://scenes/vehicle/drivetrain_params.gd" id="3_m3qgw"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_params.gd" id="3_wegm3"]
-[ext_resource type="Script" path="res://scenes/vehicle/tire_models/pacejka_tire_model.gd" id="4_o1kcy"]
 [ext_resource type="Texture2D" uid="uid://bqjorj75ne5qw" path="res://assets/models/low_poly_rally_cars_pack/textures/Default_OBJ.088_baseColor.png" id="5_jihje"]
 [ext_resource type="AudioStream" uid="uid://so2l3eth5v5e" path="res://assets/audio/engines/R4/R4_1.6_3000_mid.wav" id="6_8u20u"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="6_mktjc"]
 [ext_resource type="AudioStream" uid="uid://ccsvp4u5w6k2o" path="res://assets/audio/engines/R4/R4_1.6_3000_on.wav" id="7_is4u5"]
 
 [sub_resource type="Resource" id="Resource_sxgku"]
@@ -50,15 +50,40 @@ center_split_fr = 0.4
 _data = [Vector2(0, 0.563636), 0.0, 0.0, 0, 0, Vector2(0.736842, 1), 0.0, 0.0, 0, 0, Vector2(0.916409, 0.827273), -2.64273, -2.64273, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Resource" id="Resource_imwng"]
-script = ExtResource("4_o1kcy")
-tire_stiffness = 0.5
+[sub_resource type="Curve" id="Curve_3k576"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yx75p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_f3qwe"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_hhtep"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_8wvek"]
+script = ExtResource("6_mktjc")
+tire_stiffness = 0.75
+thread_length = 1.6
 tire_width = 0.175
-tire_radius = 0.315
+tire_ratio = 0.4
+tire_rated_pressure = 1.8
+tire_pressure = 1.8
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
+lateral_buildup = SubResource("Curve_3k576")
+longitudinal_buildup = SubResource("Curve_f3qwe")
+lateral_falloff = SubResource("Curve_yx75p")
+longitudinal_falloff = SubResource("Curve_hhtep")
 
 [sub_resource type="Resource" id="Resource_wgqnr"]
 script = ExtResource("3_wegm3")
-tire_model = SubResource("Resource_imwng")
+tire_model = SubResource("Resource_8wvek")
 spring_length = 0.15
 spring_stiffness = 40.0
 bump_ls = 3.0
@@ -71,7 +96,7 @@ anti_roll = 1.0
 
 [sub_resource type="Resource" id="Resource_6xscj"]
 script = ExtResource("3_wegm3")
-tire_model = SubResource("Resource_imwng")
+tire_model = SubResource("Resource_8wvek")
 spring_length = 0.15
 spring_stiffness = 40.0
 bump_ls = 3.0
@@ -84,7 +109,7 @@ anti_roll = 1.0
 
 [sub_resource type="Resource" id="Resource_ddaw3"]
 script = ExtResource("3_wegm3")
-tire_model = SubResource("Resource_imwng")
+tire_model = SubResource("Resource_8wvek")
 spring_length = 0.15
 spring_stiffness = 50.0
 bump_ls = 3.0
@@ -97,7 +122,7 @@ anti_roll = 1.0
 
 [sub_resource type="Resource" id="Resource_byktr"]
 script = ExtResource("3_wegm3")
-tire_model = SubResource("Resource_imwng")
+tire_model = SubResource("Resource_8wvek")
 spring_length = 0.15
 spring_stiffness = 50.0
 bump_ls = 3.0
@@ -114,7 +139,7 @@ max_steer = 0.3
 ackermann = 0.15
 front_brake_bias = 0.65
 steer_speed = 5.0
-max_brake_force = 30000.0
+max_brake_force = 50000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.2
 fuel_tank_size = 40.0
