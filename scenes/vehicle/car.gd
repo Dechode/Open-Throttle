@@ -127,8 +127,8 @@ func _physics_process(delta):
 		if drivetrain.selected_gear - 1 > 0:
 			prev_gear_rpm = car_params.drivetrain_params.gear_ratios[drivetrain.selected_gear - 1] * car_params.drivetrain_params.final_drive * avg_front_spin * AV_2_RPM
 		
-		var next_gear_torque := get_engine_torque(next_gear_rpm)
-		var prev_gear_torque := get_engine_torque(prev_gear_rpm)
+		var next_gear_torque := get_engine_torque(next_gear_rpm, throttle_input)
+		var prev_gear_torque := get_engine_torque(prev_gear_rpm, throttle_input)
 		
 		drivetrain.automatic_shifting(torque_out - clutch_reaction_torque, prev_gear_torque,
 									next_gear_torque, rpm, car_params.max_engine_rpm,
@@ -155,9 +155,8 @@ func set_driver(new_driver):
 
 
 func engine_loop(delta):
-	var drag_torque = car_params.engine_brake + rpm * car_params.engine_drag
-	var torque_out = (get_engine_torque(rpm) + drag_torque ) * throttle_input
-	var engine_net_torque = torque_out + clutch_reaction_torque - drag_torque
+	var torque_out = get_engine_torque(rpm, throttle_input)
+	var engine_net_torque = torque_out + clutch_reaction_torque
 	rpm += AV_2_RPM * delta * engine_net_torque / car_params.engine_moment
 	
 	if rpm >= car_params.max_engine_rpm:
@@ -166,7 +165,6 @@ func engine_loop(delta):
 		
 	if rpm <= (car_params.rpm_idle + 10) and abs(local_vel.z) <= 5 and throttle_input <= 0.1:
 		clutch_input = 1.0
-	
 	
 	if fuel <= 0.0:
 		torque_out = 0.0
@@ -178,10 +176,13 @@ func engine_loop(delta):
 	return torque_out
 
 
-func get_engine_torque(p_rpm) -> float: 
+func get_engine_torque(p_rpm: float, p_throttle_input: float) -> float: 
 	var rpm_factor = clamp(p_rpm / car_params.max_engine_rpm, 0.0, 1.0)
+	var t0: float = -car_params.engine_brake * rpm_factor
 	var torque_factor = car_params.torque_curve.sample_baked(rpm_factor)
-	return torque_factor * car_params.max_torque
+	var t1: float = torque_factor * car_params.max_torque
+	var amount := car_params.throttle_model.sample_baked(p_throttle_input)
+	return lerpf(t0, t1, amount)
 
 
 func get_brake_torques(p_brake_input: float):
