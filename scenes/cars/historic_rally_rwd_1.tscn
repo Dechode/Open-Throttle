@@ -51,8 +51,8 @@ _data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_h7fip"]
-_data = [Vector2(0, 0.654545), 0.0, 0.0, 0, 0, Vector2(0.74359, 1), 0.0, 0.0, 0, 0, Vector2(0.893401, 0.709091), -2.41091, -2.41091, 0, 0, Vector2(1, 0.227273), -1.61405, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0.0210526), 0.0, 0.0, 0, 0, Vector2(0.105263, 0.4), 0.0, 0.0, 0, 0, Vector2(0.4613, 0.884211), 0.793332, 0.793332, 0, 0, Vector2(0.74359, 1), 0.0, 0.0, 0, 0, Vector2(0.893401, 0.709091), -2.41091, -2.41091, 0, 0, Vector2(1, 0.227273), -1.61405, 0.0, 0, 0]
+point_count = 6
 
 [sub_resource type="Curve" id="Curve_3k576"]
 _data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -152,11 +152,11 @@ max_torque = 150.0
 max_engine_rpm = 7000.0
 rpm_idle = 900.0
 torque_curve = SubResource("Curve_h7fip")
-engine_brake = 80.0
+engine_brake = 60.0
 engine_moment = 0.14
 throttle_model = SubResource("Curve_8xhd1")
 engine_bsfc = 0.3
-clutch_friction = 300.0
+clutch_friction = 200.0
 drivetrain_params = SubResource("Resource_mnpqv")
 cd = 0.3
 air_density = 1.225

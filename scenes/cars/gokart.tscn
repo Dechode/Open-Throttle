@@ -121,7 +121,7 @@ rebound_ls = 2.0
 rebound_hs = 1.0
 lo_hi_threshold = 100.0
 wheel_mass = 5.0
-anti_roll = 1.0
+anti_roll = 5.0
 
 [sub_resource type="Resource" id="Resource_bhvka"]
 script = ExtResource("4_8lx4l")
