@@ -215,7 +215,7 @@ func engage(delta, torque):
 		gearbox_av = (avg_front_spin + avg_rear_spin) * 0.5 * drivetrain.get_gearing()
 	
 	var delta_av := engine_av - gearbox_av
-	var clutch_kick: float = abs(delta_av) * 0.002
+	var clutch_kick: float = abs(delta_av) * 0.2
 	var tr = drivetrain.reaction_torque
 	var clutch_slip_torque := clutch.friction 
 	var reaction_torques := clutch.get_reaction_torques(engine_av, gearbox_av, torque, tr, clutch_slip_torque, clutch_kick)

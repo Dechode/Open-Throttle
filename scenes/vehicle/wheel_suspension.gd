@@ -198,7 +198,7 @@ func apply_forces(opposite_comp, delta):
 			slip_vec.y = delta_spin_vel / abs(z_vel)
 		else:
 #			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.000000001 * sign(spin - z_vel))
-			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.000000001 * sign(z_vel - spin))
+			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.0001 * sign(z_vel - spin))
 			slip_vec.y = 0.5 * (prev_slip.y + low_speed_sr)
 		
 		prev_slip = slip_vec

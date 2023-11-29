@@ -106,10 +106,10 @@ func differential(torque: float, brake_torque, wheels, diff: DiffParameters, del
 	
 	if tr1 >= tr2:
 		bias = tr1 / tr2
-		delta_torque = tr1 - tr2
 	else:
 		bias = tr2 / tr1
-		delta_torque = tr2 - tr1
+	
+	delta_torque = tr1 - tr2
 	
 	var t1 := torque * 0.5
 	var t2 := torque * 0.5
