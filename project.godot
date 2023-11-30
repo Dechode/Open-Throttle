@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Open Throttle"
 run/main_scene="res://scenes/gui/menus/main_menu.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
@@ -31,6 +31,17 @@ window/size/viewport_height=720
 [dotnet]
 
 project/assembly_name="Open Throttle"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://ffb_plugin/": "orange",
+"res://global/": "yellow",
+"res://resources/": "green",
+"res://scenes/": "pink",
+"res://tools/": "purple"
+}
 
 [gui]
 

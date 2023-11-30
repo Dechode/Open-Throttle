@@ -1,7 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv81034u4rrsy"]
+[gd_scene load_steps=8 format=3 uid="uid://dv81034u4rrsy"]
 
 [ext_resource type="Texture2D" uid="uid://cttappl0m3krw" path="res://assets/textures/chicken_wire.png" id="5_8g2bn"]
 [ext_resource type="PackedScene" uid="uid://bjjy32i7bu207" path="res://scenes/levels/race_tracks/test_track.blend" id="6_8augd"]
+
+[sub_resource type="Gradient" id="Gradient_evh57"]
+colors = PackedColorArray(0, 0, 0, 1, 0.366595, 0.366595, 0.366595, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vy1cj"]
+frequency = 0.313
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7lm3v"]
+seamless = true
+color_ramp = SubResource("Gradient_evh57")
+noise = SubResource("FastNoiseLite_vy1cj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bvs0f"]
+albedo_texture = SubResource("NoiseTexture2D_7lm3v")
+uv1_scale = Vector3(0.4, 1.42, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6khby"]
 transparency = 2
@@ -16,6 +31,9 @@ texture_filter = 5
 [node name="world" type="Node3D"]
 
 [node name="test_track" parent="." instance=ExtResource("6_8augd")]
+
+[node name="tarmac-Road" parent="test_track" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bvs0f")
 
 [node name="FenceTransparentR" parent="test_track" index="18"]
 surface_material_override/0 = SubResource("StandardMaterial3D_6khby")
