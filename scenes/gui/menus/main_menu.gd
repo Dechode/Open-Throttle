@@ -21,11 +21,6 @@ func _ready() -> void:
 	$HBoxContainer/PlayMenu/Start/HBoxContainer/Buttons/TimeMultiplier/TimeMultiplier.value = SessionManager.time_multiplier
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
-
-
 func toggle_current_menu(idx):
 	if idx == current_menu:
 		menus[idx].visible = not menus[idx].visible

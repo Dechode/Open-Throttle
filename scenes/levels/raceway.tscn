@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4khpq1q2yxga"]
+
+[ext_resource type="PackedScene" uid="uid://bpohqb85x2vvg" path="res://scenes/levels/race_tracks/raceway.blend" id="1_ln5p4"]
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="2_lecbx"]
+
+[sub_resource type="Gradient" id="Gradient_qn4rg"]
+colors = PackedColorArray(0, 0, 0, 1, 0.377919, 0.377919, 0.377919, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ym7vq"]
+frequency = 0.9114
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_abnhj"]
+seamless = true
+color_ramp = SubResource("Gradient_qn4rg")
+noise = SubResource("FastNoiseLite_ym7vq")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q1bnv"]
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_qn4rg")
+noise = SubResource("FastNoiseLite_ym7vq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74kq5"]
+albedo_texture = SubResource("NoiseTexture2D_abnhj")
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_q1bnv")
+
+[node name="raceway" instance=ExtResource("1_ln5p4")]
+script = ExtResource("2_lecbx")
+
+[node name="tarmac-Road" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_74kq5")
+
+[node name="Hangar" parent="." index="20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="EditorLight" type="DirectionalLight3D" parent="." index="26"]
+transform = Transform3D(1, 0, 0, 0, 0.0814689, 0.996676, 0, -0.996676, 0.0814689, 0, 6.98641, 0)
+editor_only = true
