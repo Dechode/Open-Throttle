@@ -1,8 +1,8 @@
 extends Control
 
-@onready var fps_label = $Info/FPS
-@onready var draw_calls_label = $Info/DrawCalls
-@onready var objects_label = $Info/Objects
+@onready var fps_label = $Panel/Info/FPS
+@onready var draw_calls_label = $Panel/Info/DrawCalls
+@onready var objects_label = $Panel/Info/Objects
 
 
 func _process(delta: float) -> void:

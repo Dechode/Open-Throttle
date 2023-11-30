@@ -26,28 +26,29 @@ offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Info" type="VBoxContainer" parent="."]
+[node name="Info" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(265, 86)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -134.0
+offset_left = -133.5
 offset_top = -43.0
-offset_right = -44.0
+offset_right = 131.5
 offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FPS" type="Label" parent="Info"]
+[node name="FPS" type="Label" parent="Panel/Info"]
 layout_mode = 2
 text = "FPS: "
 
-[node name="DrawCalls" type="Label" parent="Info"]
+[node name="DrawCalls" type="Label" parent="Panel/Info"]
 layout_mode = 2
 text = "Draw Calls: "
 
-[node name="Objects" type="Label" parent="Info"]
+[node name="Objects" type="Label" parent="Panel/Info"]
 layout_mode = 2
 text = "Objects: "
