@@ -216,9 +216,9 @@ func engage(delta, torque):
 	
 	var delta_av := engine_av - gearbox_av
 	var clutch_kick: float = abs(delta_av) * 0.2
-	var tr = drivetrain.reaction_torque
+	var wheel_reaction = drivetrain.reaction_torque
 	var clutch_slip_torque := clutch.friction 
-	var reaction_torques := clutch.get_reaction_torques(engine_av, gearbox_av, torque, tr, clutch_slip_torque, clutch_kick)
+	var reaction_torques := clutch.get_reaction_torques(engine_av, gearbox_av, torque, wheel_reaction, clutch_slip_torque, clutch_kick)
 	
 	if clutch.locked:
 		reaction_torques.x = torque
