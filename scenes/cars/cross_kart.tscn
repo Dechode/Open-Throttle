@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b5qjxqdb38vms"]
+[gd_scene load_steps=35 format=3 uid="uid://b5qjxqdb38vms"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_c6grn"]
 [ext_resource type="PackedScene" uid="uid://chegbitu4wqtg" path="res://assets/models/cars_blend/crosskart.blend" id="1_dnk1y"]
@@ -45,6 +45,10 @@ rear_diff = SubResource("Resource_sbyxl")
 front_diff = SubResource("Resource_7lyl2")
 center_diff = SubResource("Resource_n4rnm")
 center_split_fr = 0.4
+
+[sub_resource type="Curve" id="Curve_12yd0"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_teqnf"]
 _data = [Vector2(0, 0.221053), 0.0, 3.1875, 0, 0, Vector2(0.0185759, 0.705263), 0.0, 0.0, 0, 0, Vector2(0.569892, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
@@ -137,9 +141,9 @@ max_torque = 75.0
 max_engine_rpm = 14000.0
 rpm_idle = 1500.0
 torque_curve = SubResource("Curve_teqnf")
-engine_drag = 0.005
-engine_brake = 5.0
+engine_brake = 30.0
 engine_moment = 0.05
+throttle_model = SubResource("Curve_12yd0")
 engine_bsfc = 0.3
 clutch_friction = 120.0
 drivetrain_params = SubResource("Resource_e46oe")

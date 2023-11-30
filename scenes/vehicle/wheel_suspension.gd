@@ -88,8 +88,9 @@ func _physics_process(delta: float) -> void:
 	if abs(z_vel) < low_speed_cutoff:
 		friction_power *= abs(z_vel) / low_speed_cutoff
 	
-	tire_wear = tire_model.update_tire_wear(tire_wear, friction_power, delta)
-	tire_temp = tire_model.update_tire_temps(tire_temp, friction_power, z_vel, delta)
+	if is_finite(friction_power):
+		tire_wear = tire_model.update_tire_wear(tire_wear, friction_power, delta)
+		tire_temp = tire_model.update_tire_temps(tire_temp, friction_power, z_vel, delta)
 
 
 func set_params(params: WheelSuspensionParameters):
@@ -197,7 +198,7 @@ func apply_forces(opposite_comp, delta):
 			slip_vec.y = delta_spin_vel / abs(z_vel)
 		else:
 #			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.000000001 * sign(spin - z_vel))
-			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.000000001 * sign(z_vel - spin))
+			var low_speed_sr: float = delta_spin_vel / (abs(z_vel) + 0.0001 * sign(z_vel - spin))
 			slip_vec.y = 0.5 * (prev_slip.y + low_speed_sr)
 		
 		prev_slip = slip_vec
@@ -210,10 +211,11 @@ func apply_forces(opposite_comp, delta):
 		
 		var contact = get_collision_point() - car.global_transform.origin
 		var normal = get_collision_normal()
-		
-		car.apply_force(normal * y_force, contact)
-		car.apply_force(global_transform.basis.x * force_vec.x, contact)
-		car.apply_force(global_transform.basis.z * force_vec.y, contact)
+		if is_finite(y_force):
+			car.apply_force(normal * y_force, contact)
+		if force_vec.is_finite():
+			car.apply_force(global_transform.basis.x * force_vec.x, contact)
+			car.apply_force(global_transform.basis.z * force_vec.y, contact)
 		
 		return spring_load_mm
 	else:

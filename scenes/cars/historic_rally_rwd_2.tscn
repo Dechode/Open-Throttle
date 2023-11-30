@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bvbjjsrrmsa14"]
+[gd_scene load_steps=34 format=3 uid="uid://bvbjjsrrmsa14"]
 
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="1_v6hd3"]
 [ext_resource type="PackedScene" uid="uid://dgqulq1ragjm7" path="res://assets/models/car_model_scenes/historic_rally_rwd_2_model.tscn" id="2_3emgq"]
@@ -44,6 +44,10 @@ rear_diff = SubResource("Resource_7fdfn")
 front_diff = SubResource("Resource_srj2e")
 center_diff = SubResource("Resource_2bp2l")
 center_split_fr = 0.4
+
+[sub_resource type="Curve" id="Curve_675c6"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_8xi3o"]
 _data = [Vector2(0, 0.663636), 0.0, 0.0, 0, 0, Vector2(0.712074, 1), 0.0, 0.0, 0, 0, Vector2(0.854839, 0.890909), -1.10559, -1.10559, 0, 0, Vector2(0.994624, 0.418182), -1.61405, 0.0, 0, 0]
@@ -138,7 +142,7 @@ max_steer = 0.3
 ackermann = 0.15
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 30000.0
+max_brake_force = 80000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.25
 fuel_tank_size = 80.0
@@ -147,9 +151,9 @@ max_torque = 250.0
 max_engine_rpm = 8000.0
 rpm_idle = 900.0
 torque_curve = SubResource("Curve_8xi3o")
-engine_drag = 0.02
-engine_brake = 10.0
+engine_brake = 120.0
 engine_moment = 0.15
+throttle_model = SubResource("Curve_675c6")
 engine_bsfc = 0.3
 clutch_friction = 350.0
 drivetrain_params = SubResource("Resource_tlycd")

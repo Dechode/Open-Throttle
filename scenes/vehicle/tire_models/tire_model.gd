@@ -38,7 +38,11 @@ var peak_sa := 0.12
 var peak_sr := 0.09
 
 
-func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
+func _init() -> void:
+	init_tire_model()
+
+
+func init_tire_model():
 	var rim := tire_rim_size * 2.54 * 0.01
 	var rim_radius := rim * 0.5
 	tire_radius = ((tire_width * tire_ratio * 2) + rim) * 0.5
@@ -46,7 +50,9 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 	var area_in := PI * rim_radius * rim_radius
 	var area_ring := area_out - area_in
 	tire_volume = area_ring * tire_width
-	
+
+
+func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float) -> Vector3:
 	var thread_reduction := 0.85
 	var softness_gain := 1.05
 	
@@ -109,6 +115,7 @@ func update_tire_forces(_slip: Vector2, _normal_load: float, _surface_mu: float)
 		
 	var pneumatic_trail = get_pneumatic_trail(_slip.x, contact_patch)
 	tire_forces.z = tire_forces.x * pneumatic_trail
+	
 	if tire_forces.is_finite():
 		return tire_forces
 	else:

@@ -45,25 +45,17 @@ var prev_pos: Vector3 = Vector3.ZERO
 
 
 ######### Instances ######### 
-var clutch: Clutch
-var drivetrain: DriveTrain
-var driver: Driver
-var taillights: TailLights
-var headlights: HeadLights
-var lap_timer := LapTimer.new()
+var clutch := Clutch.new()
+var drivetrain := DriveTrain.new()
+var driver := Driver.new()
+var taillights := TailLights.new()
+var headlights := HeadLights.new()
+var lap_timer  := LapTimer.new()
 
 @onready var wheel_fl = $Wheel_fl as RaycastSuspension
 @onready var wheel_fr = $Wheel_fr as RaycastSuspension
 @onready var wheel_bl = $Wheel_bl as RaycastSuspension
 @onready var wheel_br = $Wheel_br as RaycastSuspension
-
-
-func _init() -> void:
-	clutch = Clutch.new()
-	drivetrain = DriveTrain.new()
-	car_params = CarParameters.new()
-	driver = Driver.new()
-	
 
 
 func _ready() -> void:
@@ -86,7 +78,6 @@ func _ready() -> void:
 	
 	taillights = get_node("TailLights") 
 	headlights = get_node("HeadLights") 
-	
 
 
 func _physics_process(delta):
@@ -116,7 +107,7 @@ func _physics_process(delta):
 	if drivetrain.selected_gear == 0:
 		freewheel(delta)
 	else:
-		engage(delta)
+		engage(delta, torque_out)
 	
 	if car_params.drivetrain_params.automatic:
 		var next_gear_rpm = 0
@@ -127,8 +118,8 @@ func _physics_process(delta):
 		if drivetrain.selected_gear - 1 > 0:
 			prev_gear_rpm = car_params.drivetrain_params.gear_ratios[drivetrain.selected_gear - 1] * car_params.drivetrain_params.final_drive * avg_front_spin * AV_2_RPM
 		
-		var next_gear_torque := get_engine_torque(next_gear_rpm)
-		var prev_gear_torque := get_engine_torque(prev_gear_rpm)
+		var next_gear_torque := get_engine_torque(next_gear_rpm, throttle_input)
+		var prev_gear_torque := get_engine_torque(prev_gear_rpm, throttle_input)
 		
 		drivetrain.automatic_shifting(torque_out - clutch_reaction_torque, prev_gear_torque,
 									next_gear_torque, rpm, car_params.max_engine_rpm,
@@ -155,33 +146,34 @@ func set_driver(new_driver):
 
 
 func engine_loop(delta):
-	var drag_torque = car_params.engine_brake + rpm * car_params.engine_drag
-	var torque_out = (get_engine_torque(rpm) + drag_torque ) * throttle_input
-	var engine_net_torque = torque_out + clutch_reaction_torque - drag_torque
+	var rpm_under_idle := rpm < car_params.rpm_idle
+	var throttle := throttle_input
+	if rpm_under_idle:
+		throttle = maxf(0.05, throttle_input)
+	var torque_out = get_engine_torque(rpm, throttle)
+	var engine_net_torque = torque_out + clutch_reaction_torque
 	rpm += AV_2_RPM * delta * engine_net_torque / car_params.engine_moment
 	
 	if rpm >= car_params.max_engine_rpm:
 		torque_out = 0.0
 		rpm -= 500.0
-		
-	if rpm <= (car_params.rpm_idle + 10) and abs(local_vel.z) <= 5 and throttle_input <= 0.1:
-		clutch_input = 1.0
-	
 	
 	if fuel <= 0.0:
 		torque_out = 0.0
 		rpm = 0.0
 	
 	burn_fuel(torque_out, delta)
-	rpm = max(rpm , car_params.rpm_idle)
-#	rpm = max(rpm , 0) # TODO make engine able to shutoff?
+	rpm = max(rpm , 0)
 	return torque_out
 
 
-func get_engine_torque(p_rpm) -> float: 
+func get_engine_torque(p_rpm: float, p_throttle_input: float) -> float: 
 	var rpm_factor = clamp(p_rpm / car_params.max_engine_rpm, 0.0, 1.0)
+	var t0: float = -car_params.engine_brake * rpm_factor
 	var torque_factor = car_params.torque_curve.sample_baked(rpm_factor)
-	return torque_factor * car_params.max_torque
+	var t1: float = torque_factor * car_params.max_torque
+	var amount := car_params.throttle_model.sample_baked(p_throttle_input)
+	return lerpf(t0, t1, amount)
 
 
 func get_brake_torques(p_brake_input: float):
@@ -209,12 +201,10 @@ func freewheel(delta):
 	speedo = avg_front_spin * wheel_fl.tire_radius * 3.6
 
 
-func engage(delta):
+func engage(delta, torque):
 	var gearbox_av: float
-	avg_rear_spin = 0.0
-	avg_front_spin = 0.0
-	avg_rear_spin += (wheel_bl.get_spin() + wheel_br.get_spin()) * 0.5
-	avg_front_spin += (wheel_fl.get_spin() + wheel_fr.get_spin()) * 0.5
+	avg_rear_spin = (wheel_bl.get_spin() + wheel_br.get_spin()) * 0.5
+	avg_front_spin = (wheel_fl.get_spin() + wheel_fr.get_spin()) * 0.5
 	
 	var engine_av := rpm / AV_2_RPM
 	if drivetrain.drivetrain_params.drivetype == drivetrain.DRIVE_TYPE.RWD:
@@ -226,9 +216,14 @@ func engage(delta):
 	
 	var delta_av := engine_av - gearbox_av
 	var clutch_kick: float = abs(delta_av) * 0.2
-	var reaction_torques = clutch.get_reaction_torques(engine_av, gearbox_av, clutch_input, clutch_kick)
-	drive_reaction_torque = reaction_torques.x
-	clutch_reaction_torque = reaction_torques.y
+	var wheel_reaction = drivetrain.reaction_torque
+	var clutch_slip_torque := clutch.friction 
+	var reaction_torques := clutch.get_reaction_torques(engine_av, gearbox_av, torque, wheel_reaction, clutch_slip_torque, clutch_kick)
+	
+	if clutch.locked:
+		reaction_torques.x = torque
+	drive_reaction_torque = reaction_torques.x * (1.0 - clutch_input)
+	clutch_reaction_torque = reaction_torques.y * (1.0 - clutch_input)
 	
 	drivetrain.drivetrain(drive_reaction_torque, rear_brake_torque, front_brake_torque,
 						[wheel_bl, wheel_br, wheel_fl, wheel_fr], clutch_input, delta)

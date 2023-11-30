@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bi2tq5yqycsah"]
+[gd_scene load_steps=33 format=3 uid="uid://bi2tq5yqycsah"]
 
 [ext_resource type="Script" path="res://scenes/vehicle/diff_params.gd" id="2_f8a51"]
 [ext_resource type="PackedScene" uid="uid://3cfvp8l547ts" path="res://scenes/vehicle/base_car.tscn" id="3"]
@@ -46,9 +46,13 @@ front_diff = SubResource("Resource_urxyl")
 center_diff = SubResource("Resource_j8qg8")
 center_split_fr = 0.4
 
+[sub_resource type="Curve" id="Curve_8xhd1"]
+_data = [Vector2(0, 0), 0.0, 2.60667, 0, 0, Vector2(1, 1), 0.283333, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_h7fip"]
-_data = [Vector2(0, 0.654545), 0.0, 0.0, 0, 0, Vector2(0.74359, 1), 0.0, 0.0, 0, 0, Vector2(0.893401, 0.709091), -2.41091, -2.41091, 0, 0, Vector2(1, 0.227273), -1.61405, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0.0210526), 0.0, 0.0, 0, 0, Vector2(0.105263, 0.4), 0.0, 0.0, 0, 0, Vector2(0.4613, 0.884211), 0.793332, 0.793332, 0, 0, Vector2(0.74359, 1), 0.0, 0.0, 0, 0, Vector2(0.893401, 0.709091), -2.41091, -2.41091, 0, 0, Vector2(1, 0.227273), -1.61405, 0.0, 0, 0]
+point_count = 6
 
 [sub_resource type="Curve" id="Curve_3k576"]
 _data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -139,7 +143,7 @@ max_steer = 0.4
 ackermann = 0.15
 front_brake_bias = 0.6
 steer_speed = 5.0
-max_brake_force = 40000.0
+max_brake_force = 60000.0
 max_handbrake_force = 3000.0
 brake_effective_radius = 0.2
 fuel_tank_size = 40.0
@@ -148,11 +152,11 @@ max_torque = 150.0
 max_engine_rpm = 7000.0
 rpm_idle = 900.0
 torque_curve = SubResource("Curve_h7fip")
-engine_drag = 0.02
-engine_brake = 10.0
-engine_moment = 0.17
+engine_brake = 60.0
+engine_moment = 0.14
+throttle_model = SubResource("Curve_8xhd1")
 engine_bsfc = 0.3
-clutch_friction = 300.0
+clutch_friction = 200.0
 drivetrain_params = SubResource("Resource_mnpqv")
 cd = 0.3
 air_density = 1.225

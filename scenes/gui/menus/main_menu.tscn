@@ -75,15 +75,9 @@ selection_enabled = true
 visible = false
 layout_mode = 2
 
-[node name="GamePlay" parent="HBoxContainer/Options" index="1"]
-visible = true
-
 [node name="VBoxContainer" parent="HBoxContainer/Options/GamePlay" index="0"]
 anchor_right = 0.0
 anchor_bottom = 0.0
-
-[node name="Graphics" parent="HBoxContainer/Options" index="2"]
-visible = false
 
 [node name="VBoxContainer" parent="HBoxContainer/Options/Graphics" index="0"]
 layout_mode = 1
