@@ -3,7 +3,7 @@ Open source racing / rally simulator. Builds on top of my [Advanced Vehicle](htt
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Game Screenshot](https://github.com/Dechode/Open-Throttle/blob/Dechode-Update-README/Images/Screenshot_20240122_200828.png)
 
 
 ## Features
