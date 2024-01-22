@@ -10,6 +10,9 @@ Open source racing / rally simulator. Builds on top of my [Advanced Vehicle](htt
 
 - Wheel and force feedback support
 - Cross platform
+- Rear / front / all -wheel-driven cars
+- Customisable car setups
+- Day / night cycle
 
 ## License
 
