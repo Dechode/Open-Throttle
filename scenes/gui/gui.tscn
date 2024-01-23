@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj3nxdbc2e1wv"]
+[gd_scene load_steps=7 format=3 uid="uid://dj3nxdbc2e1wv"]
 
 [ext_resource type="Script" path="res://scenes/gui/gui.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://dbhema4vhnlcq" path="res://scenes/gui/input_app.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://p18ehxphra4" path="res://scenes/gui/tire_data_app/tire_data_container.tscn" id="4_kkw3q"]
 [ext_resource type="PackedScene" uid="uid://d3u6g8p68o0bb" path="res://scenes/gui/tire_info_app.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cj0k2rs60ffh3" path="res://scenes/gui/lap_time_app.tscn" id="5_mnn8s"]
+[ext_resource type="PackedScene" uid="uid://cjffhmkmq6hyd" path="res://scenes/gui/debug_performance_info.tscn" id="6_h3vfn"]
 
 [node name="Gui" type="Control"]
 layout_mode = 3
@@ -79,3 +80,13 @@ grow_horizontal = 0
 
 [node name="LapTimeApp" parent="." instance=ExtResource("5_mnn8s")]
 layout_mode = 1
+
+[node name="DebugPerformanceInfo" parent="." instance=ExtResource("6_h3vfn")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_top = 60.0
+offset_bottom = 60.0
+grow_vertical = 1
