@@ -17,8 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://cbk76kqx6fgnw" path="res://assets/audio/car_noise/Wind_loop_01.wav" id="10_pcri3"]
 [ext_resource type="AudioStream" uid="uid://dc6l53si0v55b" path="res://assets/audio/car_noise/brakes.wav" id="11_sgumw"]
 [ext_resource type="AudioStream" uid="uid://cj8dg5hdjixog" path="res://assets/audio/car_noise/gear_change_01.wav" id="12_tc31d"]
-[ext_resource type="Curve" uid="uid://bmgk3lwlgey2c" path="res://resources/engine_blend_curve_on.tres" id="13_6kf17"]
-[ext_resource type="Curve" uid="uid://bqwcv7dik2ixl" path="res://resources/engine_blend_curve_off.tres" id="14_nu42f"]
+[ext_resource type="Curve" path="res://resources/engine_blend_curve_on.tres" id="13_6kf17"]
+[ext_resource type="Curve" path="res://resources/engine_blend_curve_off.tres" id="14_nu42f"]
 
 [sub_resource type="Resource" id="Resource_d7g5x"]
 script = ExtResource("2_ojki4")

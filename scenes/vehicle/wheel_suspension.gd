@@ -69,10 +69,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	$TireMarks.emitting = false
 	if abs(slip_vec.x) >= peak_slip.x or abs(slip_vec.y) >= peak_slip.y:
-		$TireMarks.emitting = self.is_colliding()
-	else:
-		$TireMarks.emitting = false
+		if local_vel.length() > 2.0:
+			$TireMarks.emitting = self.is_colliding()
+	
+	_update_tire_squeal()
 	
 	wheelmesh.position.y = -spring_curr_length
 	wheelmesh.rotate_x(wrapf(-spin * delta, 0, TAU))
@@ -111,6 +113,21 @@ func set_params(params: WheelSuspensionParameters):
 	
 	wheel_inertia = 0.5 * wheel_mass * pow(tire_radius, 2)
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
+
+
+func _update_tire_squeal():
+	if local_vel.length() < 2.0:
+		$TireSqueal.stop()
+		return
+		
+	if slip_vec.length() < peak_slip.length() * 0.65:
+		$TireSqueal.stop()
+		return
+
+	if not $TireSqueal.playing:
+		$TireSqueal.play()
+	
+	$TireSqueal.pitch_scale = clampf(slip_vec.length() * 0.7 / peak_slip.length(), 0.65, 1.05)
 
 
 func apply_forces(opposite_comp, delta):
