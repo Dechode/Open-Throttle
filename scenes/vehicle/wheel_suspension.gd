@@ -116,18 +116,28 @@ func set_params(params: WheelSuspensionParameters):
 
 
 func _update_tire_squeal():
-	if local_vel.length() < 2.0:
+	if not is_colliding():
 		$TireSqueal.stop()
 		return
-		
-	if slip_vec.length() < peak_slip.length() * 0.65:
+	
+	if local_vel.length() < 2.0:
+		if absf(spin) < 10.0:
+			$TireSqueal.stop()
+			return
+	
+	if slip_vec.length() < peak_slip.length() * 0.9:
 		$TireSqueal.stop()
 		return
 
 	if not $TireSqueal.playing:
 		$TireSqueal.play()
 	
-	$TireSqueal.pitch_scale = clampf(slip_vec.length() * 0.7 / peak_slip.length(), 0.65, 1.05)
+	var x := (absf(slip_vec.x) / peak_slip.x) * 0.65 
+	var y := absf(slip_vec.y)
+	var avg := (x + y) * 0.5
+	var pitch := clampf(avg, 0.65, 1.00)
+	
+	$TireSqueal.pitch_scale = pitch
 
 
 func apply_forces(opposite_comp, delta):
