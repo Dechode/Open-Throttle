@@ -17,9 +17,12 @@ gravity = Vector3(0, 0, 0)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ry7we"]
 albedo_color = Color(0.176471, 0.176471, 0.176471, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_8qb03"]
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_nahxj"]
 material = SubResource("StandardMaterial3D_ry7we")
-size = Vector2(0.2, 0.2)
+shape = 0
+size = 0.2
+sections = 2
+section_length = 0.1
 
 [node name="Wheel_br" type="RayCast3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 1.5)
@@ -27,17 +30,18 @@ script = ExtResource("2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
 mesh = SubResource("10")
 skeleton = NodePath("")
 
 [node name="TireMarks" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
-emitting = false
-amount = 10000
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.3, 0)
+visible = false
+amount = 100
 lifetime = 10.0
 visibility_aabb = AABB(-0.503298, -0.233458, -0.487277, 1.0066, 0.466916, 0.974553)
 process_material = SubResource("ParticleProcessMaterial_3a5fp")
-draw_pass_1 = SubResource("PlaneMesh_8qb03")
+draw_pass_1 = SubResource("RibbonTrailMesh_nahxj")
 
 [node name="TireSqueal" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_2n5q2")

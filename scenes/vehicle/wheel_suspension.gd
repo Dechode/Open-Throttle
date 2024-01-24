@@ -33,7 +33,7 @@ var rolling_resistance_coefficient := 0.02
 var y_force := 0.0
 
 var wheel_inertia := 0.0
-var spin := 0.0 :
+var spin := 0.0:
 	set = set_spin, get = get_spin
 
 var z_vel := 0.0
@@ -50,6 +50,9 @@ var prev_spin := 0.0
 var prev_compress := 0.0
 var spring_curr_length := spring_length
 
+var tire_mark_pool := []
+var max_tire_mark_count := 500
+var prev_mark_pos := Vector3.ZERO
 
 @onready var car = get_parent() as BaseCar
 @onready var wheelmesh = $MeshInstance3D
@@ -64,18 +67,20 @@ func _ready() -> void:
 	set_target_position(Vector3.DOWN * (spring_length + tire_radius))
 	
 	# Some sensible peak slip values just in case tire model fails to have them
-	peak_slip.x = 0.12 
-	peak_slip.y = 0.09 
+	peak_slip.x = 0.12
+	peak_slip.y = 0.09
+	
+	tire_mark_pool.resize(max_tire_mark_count)
+	
+	for i in range(max_tire_mark_count):
+		tire_mark_pool[i] = load("res://scenes/vehicle/tire_mark_decal.tscn").instantiate()
+		tire_mark_pool[i].active = false
+		get_tree().root.add_child(tire_mark_pool[i])
 
 
 func _process(delta: float) -> void:
-	$TireMarks.emitting = false
-	if abs(slip_vec.x) >= peak_slip.x or abs(slip_vec.y) >= peak_slip.y:
-		if local_vel.length() > 2.0:
-			$TireMarks.emitting = self.is_colliding()
-	
 	_update_tire_squeal()
-	
+	_update_tire_marks()
 	wheelmesh.position.y = -spring_curr_length
 	wheelmesh.rotate_x(wrapf(-spin * delta, 0, TAU))
 
@@ -138,6 +143,27 @@ func _update_tire_squeal():
 	var pitch := clampf(avg, 0.65, 1.00)
 	
 	$TireSqueal.pitch_scale = pitch
+
+
+func _update_tire_marks():
+	if local_vel.length() < 2.0:
+		return
+	if not is_colliding():
+		return
+	
+	if abs(slip_vec.x) >= peak_slip.x or abs(slip_vec.y) >= peak_slip.y:
+		for mark in tire_mark_pool:
+			if mark.active:
+				continue
+			
+			if global_position.distance_to(prev_mark_pos) < 0.2:
+				break
+			
+			mark.global_position = global_position
+			mark.global_rotation = global_rotation
+			prev_mark_pos = mark.global_position
+			mark.active = true
+			break
 
 
 func apply_forces(opposite_comp, delta):
