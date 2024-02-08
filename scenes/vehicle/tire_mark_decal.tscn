@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://0nh338l8d7ai"]
+
+[ext_resource type="Script" path="res://scenes/vehicle/tire_mark_decal.gd" id="1_pr6ks"]
+
+[sub_resource type="Gradient" id="Gradient_3xgt7"]
+colors = PackedColorArray(0, 0, 0, 1, 0.180005, 0.180005, 0.180005, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_usc7i"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wvypd"]
+color_ramp = SubResource("Gradient_3xgt7")
+noise = SubResource("FastNoiseLite_usc7i")
+
+[node name="TireMarkDecal" type="Decal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.134349, 1.5)
+layers = 4
+size = Vector3(0.2, 1, 0.2)
+texture_albedo = SubResource("NoiseTexture2D_wvypd")
+upper_fade = 1e-05
+lower_fade = 1e-05
+distance_fade_enabled = true
+cull_mask = 1048572
+script = ExtResource("1_pr6ks")
+
+[node name="TireMarkTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="TireMarkTimer" to="." method="_on_tire_mark_timer_timeout"]
