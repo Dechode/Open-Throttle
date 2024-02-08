@@ -80,7 +80,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_update_tire_squeal()
-	_update_tire_marks()
 	wheelmesh.position.y = -spring_curr_length
 	wheelmesh.rotate_x(wrapf(-spin * delta, 0, TAU))
 
@@ -98,6 +97,7 @@ func _physics_process(delta: float) -> void:
 	if is_finite(friction_power):
 		tire_wear = tire_model.update_tire_wear(tire_wear, friction_power, delta)
 		tire_temp = tire_model.update_tire_temps(tire_temp, friction_power, z_vel, delta)
+	_update_tire_marks()
 
 
 func set_params(params: WheelSuspensionParameters):
@@ -141,7 +141,6 @@ func _update_tire_squeal():
 	var y := absf(slip_vec.y)
 	var avg := (x + y) * 0.5
 	var pitch := clampf(avg, 0.65, 1.00)
-	
 	$TireSqueal.pitch_scale = pitch
 
 
@@ -156,11 +155,11 @@ func _update_tire_marks():
 			if mark.active:
 				continue
 			
-			if global_position.distance_to(prev_mark_pos) < 0.2:
+			if global_position.distance_to(prev_mark_pos) < 0.15:
 				break
 			
 			mark.global_position = global_position
-			mark.global_rotation = global_rotation
+			mark.global_rotation = global_rotation.rotated(global_transform.basis.y, prev_mark_pos.angle_to(global_position))
 			prev_mark_pos = mark.global_position
 			mark.active = true
 			break
