@@ -22,11 +22,45 @@ var clutch_device_sec := -1
 var handbrake_device_sec := -1
 var steering_device_sec := -1
 
+var throttle_used := false
+var brake_used := false
+var clutch_used := false
+var handbrake_used := false
+
+var throttle_sec_used := false
+var brake_sec_used := false
+var clutch_sec_used := false
+var handbrake_sec_used := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_input_devices()
 
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action("brake"):
+		brake_used = true
+	
+	if  event.is_action("brake_secondary"):
+		brake_sec_used = true
+	
+	if event.is_action("handbrake"):
+		handbrake_used = true
+		
+	if  event.is_action("handbrake_secondary"):
+		handbrake_sec_used = true
+	
+	if event.is_action("throttle"):
+		throttle_used = true
+	
+	if event.is_action("throttle_secondary"):
+		throttle_sec_used = true
+		
+	if event.is_action("clutch"):
+		clutch_used = true
+	
+	if event.is_action("clutch_secondary"):
+		clutch_sec_used = true
 
 # Updates DeviceID and possible Axises for all of the input actions 
 func update_input_devices():
@@ -105,16 +139,14 @@ func update_input_devices():
 					if event.device != steering_device_sec:
 						push_warning("Steer right and steer left were not on same device")
 					steering_device_sec = event.device
-	print_debug(steering_device)
-	print_debug(steering_device_sec)
 
 
-func get_steering_input():
-	var steer_left = max(Input.get_action_strength("steer_left"), 
+func get_steering_input() -> float:
+	var steer_left := maxf(Input.get_action_strength("steer_left"), 
 						Input.get_action_strength("steer_left_secondary"))
-	var steer_right = max(Input.get_action_strength("steer_right"), 
+	var steer_right := maxf(Input.get_action_strength("steer_right"), 
 						Input.get_action_strength("steer_right_secondary"))
-	var steering_input = steer_left - steer_right
+	var steering_input := steer_left - steer_right
 	return steering_input
 
 
@@ -124,29 +156,30 @@ func get_throttle_input():
 	var throttle_input = Input.get_action_strength("throttle")
 	var throttle_input_sec = Input.get_action_strength("throttle_secondary")
 	
-	
 	if throttle_axis >= 0:
 		throttle_input = Input.get_joy_axis(throttle_device, throttle_axis)
 		if minus1to1:
 			throttle_input = (1 + throttle_input) * 0.5
-#		throttle_input = 1 - throttle_input
 	
 	if throttle_axis_sec >= 0:
 		throttle_input_sec = Input.get_joy_axis(throttle_device_sec, throttle_axis_sec)
 		if minus1to1_sec:
 			throttle_input_sec = (1 + throttle_input_sec) * 0.5
-#		throttle_input_sec = 1 - throttle_input_sec
-	
+		
 	if OptionsManager.get_config_value("throttle_inverted"):
-#		print("Throttle inverted")
 		throttle_input = 1 - throttle_input
 	
 	if OptionsManager.get_config_value("throttle_inverted_sec"):
 		throttle_input_sec = 1 - throttle_input_sec
 	
+	if not throttle_used:
+		throttle_input = 0.0
+	
+	if not throttle_sec_used:
+		throttle_input_sec = 0.0
+		
 	throttle_input = max(throttle_input, throttle_input_sec)
 	throttle_input = clamp(throttle_input, 0, 1)
-#	throttle_input = throttle_axis_input
 	return throttle_input
 
 
@@ -155,26 +188,28 @@ func get_brake_input():
 	var minus1to1_sec = OptionsManager.get_config_value("brake_minus_one_to_one_sec")
 	var brake_input = Input.get_action_strength("brake")
 	var brake_input_sec = Input.get_action_strength("brake_secondary")
-	
-	
+		
 	if brake_axis >= 0:
 		brake_input = Input.get_joy_axis(brake_device, brake_axis)
 		if minus1to1:
 			brake_input = (1 + brake_input) * 0.5
-#		brake_input = 1 - brake_input
 	
 	if brake_axis_sec >= 0:
 		brake_input_sec = Input.get_joy_axis(brake_device_sec, brake_axis_sec)
 		if minus1to1_sec:
 			brake_input_sec = (1 + brake_input_sec) * 0.5
-#		brake_input_sec = 1 - brake_input_sec
 	
 	if OptionsManager.get_config_value("brake_inverted"):
-#		print("brake inverted")
 		brake_input = 1 - brake_input
 	
 	if OptionsManager.get_config_value("brake_inverted_sec"):
 		brake_input_sec = 1 - brake_input_sec
+	
+	if not brake_used:
+		brake_input = 0.0
+		
+	if not brake_sec_used:
+		brake_input_sec = 0.0
 	
 	brake_input = max(brake_input, brake_input_sec)
 	brake_input = clamp(brake_input, 0, 1)
@@ -188,25 +223,27 @@ func get_clutch_input():
 	var clutch_input = Input.get_action_strength("clutch")
 	var clutch_input_sec = Input.get_action_strength("clutch_secondary")
 	
-	
 	if clutch_axis >= 0:
 		clutch_input = Input.get_joy_axis(clutch_device, clutch_axis)
 		if minus1to1:
 			clutch_input = (1 + clutch_input) * 0.5
-#		clutch_input = 1 - clutch_input
 	
 	if clutch_axis_sec >= 0:
 		clutch_input_sec = Input.get_joy_axis(clutch_device_sec, clutch_axis_sec)
 		if minus1to1_sec:
 			clutch_input_sec = (1 + clutch_input_sec) * 0.5
-#		clutch_input_sec = 1 - clutch_input_sec
 	
 	if OptionsManager.get_config_value("clutch_inverted"):
-#		print("clutch inverted")
 		clutch_input = 1 - clutch_input
 	
 	if OptionsManager.get_config_value("clutch_inverted_sec"):
 		clutch_input_sec = 1 - clutch_input_sec
+	
+	if not clutch_used:
+		clutch_input = 0.0
+		
+	if not clutch_sec_used:
+		clutch_input_sec = 0.0
 	
 	clutch_input = max(clutch_input, clutch_input_sec)
 	clutch_input = clamp(clutch_input, 0, 1)
@@ -214,30 +251,34 @@ func get_clutch_input():
 
 
 func get_handbrake_input():
+	if not handbrake_used:
+		return 0.0
+	
 	var minus1to1 = OptionsManager.get_config_value("handbrake_minus_one_to_one")
 	var minus1to1_sec = OptionsManager.get_config_value("handbrake_minus_one_to_one_sec")
 	var handbrake_input = Input.get_action_strength("handbrake")
 	var handbrake_input_sec = Input.get_action_strength("handbrake_secondary")
-	
-	
 	if handbrake_axis >= 0:
 		handbrake_input = Input.get_joy_axis(handbrake_device, handbrake_axis)
 		if minus1to1:
 			handbrake_input = (1 + handbrake_input) * 0.5
-#		handbrake_input = 1 - handbrake_input
 	
 	if handbrake_axis_sec >= 0:
 		handbrake_input_sec = Input.get_joy_axis(handbrake_device_sec, handbrake_axis_sec)
 		if minus1to1_sec:
 			handbrake_input_sec = (1 + handbrake_input_sec) * 0.5
-#		handbrake_input_sec = 1 - handbrake_input_sec
 	
 	if OptionsManager.get_config_value("handbrake_inverted"):
-#		print("handbrake inverted")
 		handbrake_input = 1 - handbrake_input
 	
 	if OptionsManager.get_config_value("handbrake_inverted_sec"):
 		handbrake_input_sec = 1 - handbrake_input_sec
+	
+	if not handbrake_used:
+		handbrake_input = 0.0
+	
+	if not handbrake_sec_used:
+		handbrake_input_sec = 0.0
 	
 	handbrake_input = max(handbrake_input, handbrake_input_sec)
 	handbrake_input = clamp(handbrake_input, 0, 1)

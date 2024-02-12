@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu5d6u0jvancl"]
+[gd_scene load_steps=8 format=3 uid="uid://cu5d6u0jvancl"]
 
 [ext_resource type="Script" path="res://tools/tire_graph.gd" id="1_1l4bb"]
+[ext_resource type="Script" path="res://scenes/vehicle/tire_models/tire_model.gd" id="2_7d27a"]
+
+[sub_resource type="Curve" id="Curve_3k576"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yx75p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_f3qwe"]
+_data = [Vector2(0, 0), 0.0, 1.61579, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qyydo"]
+_data = [Vector2(0, 1), 0.0, -1.78947, 0, 0, Vector2(0.0897833, 0.936842), -0.357895, -0.357895, 0, 0, Vector2(1, 0.684211), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_uv2r8"]
+script = ExtResource("2_7d27a")
+tire_stiffness = 0.0
+thread_length = 0.0
+tire_width = 0.3
+tire_ratio = 0.4
+tire_rated_pressure = 2.0
+tire_pressure = 2.0
+tire_rim_size = 15.0
+max_tire_temperature = 130.0
+lateral_buildup = SubResource("Curve_3k576")
+longitudinal_buildup = SubResource("Curve_f3qwe")
+lateral_falloff = SubResource("Curve_yx75p")
+longitudinal_falloff = SubResource("Curve_qyydo")
 
 [node name="TireGraph" type="Control"]
 layout_mode = 3
@@ -10,6 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1l4bb")
+tire_model = SubResource("Resource_uv2r8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -202,26 +235,27 @@ value = 0.5
 layout_mode = 2
 text = "0.5"
 
-[node name="TireRadius" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+[node name="TireThreadLength" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRadius"]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireThreadLength"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Tire Radius"
+text = "Tire Thread Length"
 
-[node name="TireRadiusSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRadius"]
+[node name="ThreadLengthSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireThreadLength"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 4
-max_value = 1.0
+min_value = 0.05
+max_value = 2.0
 step = 0.01
-value = 0.3
+value = 1.55
 
-[node name="TireRadiusValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRadius"]
+[node name="ThreadLengthValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireThreadLength"]
 layout_mode = 2
-text = "0.3"
+text = "0.5"
 
 [node name="TireWidth" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -244,6 +278,48 @@ value = 0.3
 layout_mode = 2
 text = "0.225"
 
+[node name="TireRatio" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRatio"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Tire Aspect Ratio"
+
+[node name="TireRatioSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRatio"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.3
+
+[node name="TireRatioValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRatio"]
+layout_mode = 2
+text = "0.3"
+
+[node name="RimSize" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/RimSize"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Rim Size"
+
+[node name="RimSizeSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/RimSize"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 20.0
+step = 0.5
+value = 15.0
+
+[node name="RimSizeValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/RimSize"]
+layout_mode = 2
+text = "15"
+
 [node name="TireLoad" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -265,40 +341,6 @@ value = 3500.0
 [node name="TireLoadValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireLoad"]
 layout_mode = 2
 text = "3500"
-
-[node name="Friction" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Coefficient Of Friction"
-
-[node name="FrictionSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 2.0
-step = 0.05
-value = 1.0
-
-[node name="FrictionValue" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction"]
-layout_mode = 2
-text = "1.0"
-
-[node name="TireModel" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Tire Model"
-
-[node name="TireModelOption" type="OptionButton" parent="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/VBoxContainer/Parameters"]
 layout_mode = 2
@@ -330,8 +372,8 @@ text = "Load Sensitivity @ Current Load = 1.3"
 [connection signal="resized" from="HBoxContainer/VBoxContainer/GraphsPanel/HBoxContainer/LoadSensGraphContainer" to="." method="_on_load_sens_graph_container_resized"]
 [connection signal="toggled" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/SlipUnits/CheckButton" to="." method="_on_slip_units_toggled"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireStiffness/StiffnessSlider" to="." method="_on_stiffness_slider_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRadius/TireRadiusSlider" to="." method="_on_tire_radius_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireThreadLength/ThreadLengthSlider" to="." method="_on_thread_length_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireWidth/TireWidthSlider" to="." method="_on_tire_width_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireRatio/TireRatioSlider" to="." method="_on_tire_ratio_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/RimSize/RimSizeSlider" to="." method="_on_rim_size_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireLoad/TireLoadSlider" to="." method="_on_tire_load_slider_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/Friction/FrictionSlider" to="." method="_on_friction_slider_value_changed"]
-[connection signal="item_selected" from="HBoxContainer/VBoxContainer/Parameters/VBoxContainer/TireModel/TireModelOption" to="." method="_on_tire_model_option_item_selected"]

@@ -52,6 +52,7 @@ text = "Quit"
 
 [node name="Credits" type="Panel" parent="HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_h2fkf")
@@ -140,22 +141,6 @@ size_flags_horizontal = 4
 text = "Test Track"
 script = ExtResource("4")
 path = "res://scenes/levels/test_track.tscn"
-
-[node name="TrackButton2" type="Button" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer"]
-custom_minimum_size = Vector2(200, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Playground"
-script = ExtResource("4")
-path = "res://scenes/levels/playground.tscn"
-
-[node name="TrackButton3" type="Button" parent="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer"]
-custom_minimum_size = Vector2(200, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Drag Race"
-script = ExtResource("4")
-path = "res://scenes/levels/drag_test.tscn"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/PlayMenu/Track/HBoxContainer"]
 layout_mode = 2
@@ -506,14 +491,18 @@ dialog_text = "Quit?"
 visible = false
 layout_mode = 1
 
+[node name="Suspension" parent="CarSetupMenu" index="1"]
+visible = true
+
+[node name="Wheels" parent="CarSetupMenu" index="2"]
+visible = false
+
 [connection signal="pressed" from="HBoxContainer/MainButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="tab_changed" from="HBoxContainer/PlayMenu" to="HBoxContainer/PlayMenu/Start/HBoxContainer/SessionInfo/PlayButton" method="_on_tab_changed"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton" method="_on_TrackButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton2" method="_on_TrackButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" to="HBoxContainer/PlayMenu/Track/HBoxContainer/TrackList/VBoxContainer/TrackButton3" method="_on_TrackButton_pressed"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarPreview/ViewPortContainer/SubViewport/CarPreview" method="_on_car_selected"]
 [connection signal="car_selected" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="CarSetupMenu" method="_on_car_selected"]
 [connection signal="pressed" from="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" to="HBoxContainer/PlayMenu/Car/Cars/CarListScroll/CarListVbox/Button" method="_on_car_button_pressed"]

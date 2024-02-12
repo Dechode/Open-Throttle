@@ -2,7 +2,7 @@ extends Node
 
 signal car_changed(car)
 
-var car: BaseCar = BaseCar.new():
+var car := BaseCar.new():
 	set(value):
 		car = value
 		car_changed.emit(value)

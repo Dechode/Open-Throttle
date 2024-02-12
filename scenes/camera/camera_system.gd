@@ -11,6 +11,8 @@ var selected_cam := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	camera.fov = OptionsManager.get_config_value("fov")
+	
 	for child in get_children():
 		if not child is CamTargets:
 			continue

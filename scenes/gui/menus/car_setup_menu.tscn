@@ -13,6 +13,7 @@ size_flags_vertical = 3
 script = ExtResource("1_4tq7e")
 
 [node name="Suspension" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Suspension"]
@@ -239,7 +240,6 @@ auto_translate = false
 text = "Back"
 
 [node name="Wheels" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Wheels"]
@@ -251,9 +251,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Brakes" type="Label" parent="Wheels/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 text = "Brakes"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrakeBiasFrontBack" type="HBoxContainer" parent="Wheels/VBoxContainer"]
@@ -277,23 +279,13 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "0.5"
 
-[node name="Tires" type="Label" parent="Wheels/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="FrontTires" type="Label" parent="Wheels/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-text = "Tires"
+size_flags_horizontal = 0
+text = "Front Tires"
+horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="TireModel" type="HBoxContainer" parent="Wheels/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireModel"]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-text = "Tire Model"
-
-[node name="OptionButton" type="OptionButton" parent="Wheels/VBoxContainer/TireModel"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
 
 [node name="TireStiffness" type="HBoxContainer" parent="Wheels/VBoxContainer"]
 layout_mode = 2
@@ -317,27 +309,29 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "0.5"
 
-[node name="TireRadius" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+[node name="ThreadLength" type="HBoxContainer" parent="Wheels/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireRadius"]
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/ThreadLength"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Tire Radius"
+text = "Tire Thread Length"
 vertical_alignment = 1
 
-[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/TireRadius"]
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/ThreadLength"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-max_value = 1.0
+min_value = 0.05
+max_value = 2.0
 step = 0.01
-value = 0.5
+value = 1.6
 ticks_on_borders = true
 
-[node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireRadius"]
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/ThreadLength"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-text = "0.3"
+text = "1.6
+"
 
 [node name="TireWidth" type="HBoxContainer" parent="Wheels/VBoxContainer"]
 layout_mode = 2
@@ -353,7 +347,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 max_value = 1.0
 step = 0.005
-value = 0.5
+value = 0.225
 ticks_on_borders = true
 
 [node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireWidth"]
@@ -361,27 +355,169 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "0.225"
 
-[node name="TireRatedLoad" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+[node name="TireRatio" type="HBoxContainer" parent="Wheels/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireRatedLoad"]
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/TireRatio"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Tire Rated Load"
+text = "Tire Aspect Ratio"
 vertical_alignment = 1
 
-[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/TireRatedLoad"]
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/TireRatio"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-max_value = 15000.0
-step = 100.0
-value = 7000.0
+max_value = 1.0
+step = 0.01
+value = 0.5
 ticks_on_borders = true
 
-[node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireRatedLoad"]
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/TireRatio"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-text = "7000"
+text = "0.5"
+
+[node name="RimSize" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/RimSize"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Rim Size"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/RimSize"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 26.0
+step = 0.5
+value = 15.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/RimSize"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "15"
+
+[node name="RearTires" type="Label" parent="Wheels/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Rear Tires"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RearTireStiffness" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/RearTireStiffness"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Stiffness"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/RearTireStiffness"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/RearTireStiffness"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.5"
+
+[node name="RearThreadLength" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/RearThreadLength"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Thread Length"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/RearThreadLength"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+min_value = 0.05
+max_value = 2.0
+step = 0.01
+value = 1.6
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/RearThreadLength"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "1.6
+"
+
+[node name="RearTireWidth" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/RearTireWidth"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Width"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/RearTireWidth"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.005
+value = 0.225
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/RearTireWidth"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.225"
+
+[node name="RearTireRatio" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/RearTireRatio"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Tire Aspect Ratio"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/RearTireRatio"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/RearTireRatio"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0.5"
+
+[node name="RearRimSize" type="HBoxContainer" parent="Wheels/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wheels/VBoxContainer/RearRimSize"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Rim Size"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Wheels/VBoxContainer/RearRimSize"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+max_value = 26.0
+step = 0.5
+value = 15.0
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Wheels/VBoxContainer/RearRimSize"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "15"
 
 [node name="BackButton" type="Button" parent="Wheels/VBoxContainer"]
 custom_minimum_size = Vector2(100, 50)
@@ -447,8 +583,7 @@ text = "Final ratio"
 [node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/FinalRatio"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
+max_value = 6.0
 step = 0.01
 value = 3.7
 ticks_on_borders = true
@@ -469,8 +604,7 @@ text = "Gear 1 Ratio"
 [node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear1"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
+max_value = 6.0
 step = 0.01
 value = 3.7
 ticks_on_borders = true
@@ -491,8 +625,7 @@ text = "Gear 2 Ratio"
 [node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear2"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
+max_value = 6.0
 step = 0.01
 value = 3.7
 ticks_on_borders = true
@@ -513,8 +646,7 @@ text = "Gear 3 Ratio"
 [node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear3"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
+max_value = 6.0
 step = 0.01
 value = 3.7
 ticks_on_borders = true
@@ -535,8 +667,7 @@ text = "Gear 4 Ratio"
 [node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear4"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
+max_value = 6.0
 step = 0.01
 value = 3.7
 ticks_on_borders = true
@@ -557,8 +688,7 @@ text = "Gear 5 Ratio"
 [node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear5"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
+max_value = 6.0
 step = 0.01
 value = 3.7
 ticks_on_borders = true
@@ -579,8 +709,7 @@ text = "Gear 6 Ratio"
 [node name="Slider" type="HSlider" parent="Drivetrain/VBoxContainer/Gear6"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-min_value = 1.0
-max_value = 5.0
+max_value = 6.0
 step = 0.01
 value = 3.7
 ticks_on_borders = true
@@ -777,11 +906,16 @@ text = "Back"
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspReboundRateHi/SpinBox" to="." method="_on_rear_rebound_rate_hi_changed"]
 [connection signal="value_changed" from="Suspension/VBoxContainer/RearSuspAntiRollRate/SpinBox" to="." method="_on_rear_anti_roll_changed"]
 [connection signal="value_changed" from="Wheels/VBoxContainer/BrakeBiasFrontBack/Slider" to="." method="_on_brake_bias_changed"]
-[connection signal="item_selected" from="Wheels/VBoxContainer/TireModel/OptionButton" to="." method="_on_tire_model_selected"]
 [connection signal="value_changed" from="Wheels/VBoxContainer/TireStiffness/Slider" to="." method="_on_tire_stiffness_changed"]
-[connection signal="value_changed" from="Wheels/VBoxContainer/TireRadius/Slider" to="." method="_on_tire_radius_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/ThreadLength/Slider" to="." method="_on_thread_length_changed"]
 [connection signal="value_changed" from="Wheels/VBoxContainer/TireWidth/Slider" to="." method="_on_tire_width_changed"]
-[connection signal="value_changed" from="Wheels/VBoxContainer/TireRatedLoad/Slider" to="." method="_on_tire_rated_load_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/TireRatio/Slider" to="." method="_on_tire_aspect_ratio_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/RimSize/Slider" to="." method="_on_rim_size_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/RearTireStiffness/Slider" to="." method="_on_rear_tire_stiffness_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/RearThreadLength/Slider" to="." method="_on_rear_thread_length_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/RearTireWidth/Slider" to="." method="_on_rear_tire_width_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/RearTireRatio/Slider" to="." method="_on_rear_tire_ratio_changed"]
+[connection signal="value_changed" from="Wheels/VBoxContainer/RearRimSize/Slider" to="." method="_on_rear_rim_size_changed"]
 [connection signal="value_changed" from="Drivetrain/VBoxContainer/TorqueSplit/Slider" to="." method="_on_torque_split_changed"]
 [connection signal="value_changed" from="Drivetrain/VBoxContainer/FinalRatio/Slider" to="." method="_on_final_ratio_changed"]
 [connection signal="value_changed" from="Drivetrain/VBoxContainer/Gear1/Slider" to="." method="_on_gear1_ratio_changed"]

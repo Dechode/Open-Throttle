@@ -36,6 +36,37 @@ text = "Use steering interpolation"
 [node name="CheckButton" type="CheckButton" parent="GamePlay/VBoxContainer/SteeringInterpolation"]
 layout_mode = 2
 
+[node name="Label2" type="Label" parent="GamePlay/VBoxContainer/SteeringInterpolation"]
+layout_mode = 2
+text = "Speed:    "
+
+[node name="HSlider" type="HSlider" parent="GamePlay/VBoxContainer/SteeringInterpolation"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="GamepadSteering" type="HBoxContainer" parent="GamePlay/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GamePlay/VBoxContainer/GamepadSteering"]
+layout_mode = 2
+text = "Steering linearity:	    Linear"
+
+[node name="HSlider" type="HSlider" parent="GamePlay/VBoxContainer/GamepadSteering"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Label2" type="Label" parent="GamePlay/VBoxContainer/GamepadSteering"]
+layout_mode = 2
+text = "Non linear"
+
 [node name="Graphics" type="TabBar" parent="."]
 visible = false
 layout_mode = 2
@@ -109,6 +140,28 @@ text = "Shadows"
 
 [node name="CheckButton" type="CheckButton" parent="Graphics/VBoxContainer/Shadows"]
 layout_mode = 2
+
+[node name="Fov" type="HBoxContainer" parent="Graphics/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Graphics/VBoxContainer/Fov"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "vFov"
+
+[node name="HSlider" type="HSlider" parent="Graphics/VBoxContainer/Fov"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 20.0
+max_value = 180.0
+value = 60.0
+
+[node name="Label2" type="Label" parent="Graphics/VBoxContainer/Fov"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "60"
 
 [node name="Audio" type="TabBar" parent="."]
 visible = false
@@ -531,6 +584,32 @@ toggle_mode = true
 script = ExtResource("2")
 action = "toggle_lights_secondary"
 
+[node name="ResetCar" type="HBoxContainer" parent="Input/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Input/VBoxContainer/ResetCar"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+text = "Reset car"
+
+[node name="BindButton" type="Button" parent="Input/VBoxContainer/ResetCar"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "reset_car"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Input/VBoxContainer/ResetCar"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+
+[node name="BindButton2" type="Button" parent="Input/VBoxContainer/ResetCar"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("2")
+action = "reset_car_secondary"
+
 [node name="InputApp" parent="Input" instance=ExtResource("3_a07ff")]
 layout_mode = 1
 
@@ -625,11 +704,14 @@ max_value = 150.0
 suffix = "%"
 
 [connection signal="toggled" from="GamePlay/VBoxContainer/SteeringInterpolation/CheckButton" to="." method="_on_steering_interpolation_toggled"]
+[connection signal="value_changed" from="GamePlay/VBoxContainer/SteeringInterpolation/HSlider" to="." method="_on_steer_speed_changed"]
+[connection signal="value_changed" from="GamePlay/VBoxContainer/GamepadSteering/HSlider" to="." method="_on_steering_linearity_changed"]
 [connection signal="item_selected" from="Graphics/VBoxContainer/AspectRatio/OptionButton" to="." method="_on_aspect_ratio_selected"]
 [connection signal="item_selected" from="Graphics/VBoxContainer/Resolution/OptionButton" to="." method="_on_resolution_selected"]
 [connection signal="toggled" from="Graphics/VBoxContainer/Fullscreen/CheckButton" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="Graphics/VBoxContainer/VSync/CheckButton" to="." method="_on_vsync_toggled"]
 [connection signal="toggled" from="Graphics/VBoxContainer/Shadows/CheckButton" to="." method="_on_shadows_toggled"]
+[connection signal="value_changed" from="Graphics/VBoxContainer/Fov/HSlider" to="." method="_on_fov_changed"]
 [connection signal="value_changed" from="Audio/VBoxContainer/MasterVolume/HSlider" to="." method="_on_master_audio_changed"]
 [connection signal="toggled" from="Input/VBoxContainer/SteerLeft/BindButton" to="Input/VBoxContainer/SteerLeft/BindButton" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/SteerLeft/BindButton2" to="Input/VBoxContainer/SteerLeft/BindButton2" method="_toggled"]
@@ -667,6 +749,8 @@ suffix = "%"
 [connection signal="toggled" from="Input/VBoxContainer/ChangeCamera/BindButton2" to="Input/VBoxContainer/ChangeCamera/BindButton2" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ToggleLights/BindButton" to="Input/VBoxContainer/ToggleLights/BindButton" method="_toggled"]
 [connection signal="toggled" from="Input/VBoxContainer/ToggleLights/BindButton2" to="Input/VBoxContainer/ToggleLights/BindButton2" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ResetCar/BindButton" to="Input/VBoxContainer/ResetCar/BindButton" method="_toggled"]
+[connection signal="toggled" from="Input/VBoxContainer/ResetCar/BindButton2" to="Input/VBoxContainer/ResetCar/BindButton2" method="_toggled"]
 [connection signal="toggled" from="FFB/VBoxContainer/Options/Values/FFBEnabled" to="." method="_on_ffb_enabled_toggled"]
 [connection signal="toggled" from="FFB/VBoxContainer/Options/Values/FFBInverted" to="." method="_on_ffb_inverted_toggled"]
 [connection signal="value_changed" from="FFB/VBoxContainer/Options/Values/FFBGain" to="." method="_on_ffb_gain_value_changed"]

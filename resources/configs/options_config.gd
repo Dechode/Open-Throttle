@@ -3,6 +3,7 @@ extends Resource
 
 @export var config := {
 "input_map": {},
+"steer_speed": 1.0,
 "steer_left_inverted": 0,
 "steer_left_inverted_sec": 0,
 "steer_right_inverted": 0,
@@ -27,7 +28,9 @@ extends Resource
 "resolution" : 2, # index to resolutions array
 "fullscreen" : false,
 "vsync" : true,
+"fov": 60.0,
 "steering_interpolation" : true,
+"gamepad_steering" : 1.0,
 "master_audio_vol" : 0.5,
 "shadows" : true,
 "ffb_enabled" : false,

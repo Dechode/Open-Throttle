@@ -28,6 +28,8 @@ func _ready() -> void:
 	$GamePlay/VBoxContainer/SteeringInterpolation/CheckButton.button_pressed = OptionsManager.get_config_value("steering_interpolation")
 	$Graphics/VBoxContainer/Fullscreen/CheckButton.button_pressed = OptionsManager.get_config_value("fullscreen")
 	$Graphics/VBoxContainer/VSync/CheckButton.button_pressed = OptionsManager.get_config_value("vsync")
+	$Graphics/VBoxContainer/Fov/HSlider.value = OptionsManager.get_config_value("fov")
+	$Graphics/VBoxContainer/Fov/Label2.text = "%3.0f" % OptionsManager.get_config_value("fov")
 	$Audio/VBoxContainer/MasterVolume/HSlider.value = OptionsManager.get_config_value("master_audio_vol") * 100
 	
 	$Graphics/VBoxContainer/AspectRatio/OptionButton.clear()
@@ -70,6 +72,8 @@ func _ready() -> void:
 	$FFB/VBoxContainer/Options/Values/FFBMinForce.value = OptionsManager.get_config_value("ffb_min_force") * 100
 	$FFB/VBoxContainer/Options/Values/FFBFrontForce.value = OptionsManager.get_config_value("ffb_front_force") * 100
 	$FFB/VBoxContainer/Options/Values/FFBRearForce.value = OptionsManager.get_config_value("ffb_rear_force") * 100
+	$GamePlay/VBoxContainer/GamepadSteering/HSlider.value = OptionsManager.get_config_value("gamepad_steering")
+	$GamePlay/VBoxContainer/SteeringInterpolation/HSlider.value = OptionsManager.get_config_value("steer_speed")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -199,3 +203,16 @@ func _on_ffb_front_force_value_changed(value: float) -> void:
 
 func _on_ffb_rear_force_value_changed(value: float) -> void:
 	OptionsManager.set_config_value("ffb_rear_force", value * 0.01)
+
+
+func _on_steering_linearity_changed(value: float) -> void:
+	OptionsManager.set_config_value("gamepad_steering", value)
+
+
+func _on_steer_speed_changed(value: float) -> void:
+	OptionsManager.set_config_value("steer_speed", value)
+
+
+func _on_fov_changed(value: float) -> void:
+	OptionsManager.set_config_value("fov", value)
+	$Graphics/VBoxContainer/Fov/Label2.text = "%3.0f" % value

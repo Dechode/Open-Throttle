@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://nelgdfamj8jh"]
+[gd_scene load_steps=8 format=3 uid="uid://nelgdfamj8jh"]
 
 [ext_resource type="Material" path="res://resources/materials/tire.tres" id="1"]
 [ext_resource type="Script" path="res://scenes/vehicle/wheel_suspension.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://qarh8mk3e0uo" path="res://assets/audio/car_noise/tire_squeal_01.wav" id="3_2n5q2"]
 
 [sub_resource type="CylinderMesh" id="10"]
 material = ExtResource("1")
@@ -37,3 +38,7 @@ lifetime = 10.0
 visibility_aabb = AABB(-0.503298, -0.233458, -0.487277, 1.0066, 0.466916, 0.974553)
 process_material = SubResource("ParticleProcessMaterial_3a5fp")
 draw_pass_1 = SubResource("PlaneMesh_8qb03")
+
+[node name="TireSqueal" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_2n5q2")
+bus = &"Car_Bus"
